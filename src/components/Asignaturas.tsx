@@ -7,6 +7,7 @@ import {
   faClock,
   faCalendar,
 } from '@fortawesome/free-solid-svg-icons';
+import { generateSlug } from '../utils/stringUtils';
 
 const Asignaturas: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -115,9 +116,7 @@ const Asignaturas: React.FC = () => {
 
         <div className="mt-auto flex flex-col gap-2">
           <Link
-            to={`/modulos/${asignatura.modulo
-              .toLowerCase()
-              .replace(/\s+/g, '-')}`}
+            to={`/plan-estudios/${generateSlug(asignatura.modulo)}`}
             className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
             onClick={(e) => e.stopPropagation()}
           >

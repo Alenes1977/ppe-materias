@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from 'react-router-dom';
 import AsignaturaDetalle from './components/AsignaturaDetalle';
 import PlanEstudios from './components/PlanEstudios';
@@ -64,6 +65,14 @@ const App: React.FC = () => {
             />
             <Route path="/plan-estudios" element={<PlanEstudios />} />
             <Route path="/plan-estudios/:moduloSlug" element={<Modulo />} />
+            <Route
+              path="/modulos"
+              element={<Navigate to="/plan-estudios" replace />}
+            />
+            <Route
+              path="/modulos/:moduloSlug"
+              element={<Navigate to="/plan-estudios/:moduloSlug" replace />}
+            />
             <Route path="/materias" element={<Materias />} />
             <Route path="/materias/:materiaSlug" element={<Materia />} />
             <Route path="/competencias" element={<Competencias />} />

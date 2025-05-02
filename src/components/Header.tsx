@@ -26,16 +26,16 @@ const Header: React.FC = () => {
     <header className="fixed left-0 top-0 z-50 w-full bg-white shadow-md">
       {/* Contenedor grid para las tres secciones */}
       <div
-        className="mx-auto grid grid-cols-3 items-center px-4 py-2"
+        className="mx-auto grid grid-cols-12 items-center px-4 py-2"
         style={{ maxWidth: '1400px' }}
       >
         {/* Sección Izquierda: Breadcrumbs (visible solo en pantallas medianas y grandes) */}
-        <div className="hidden justify-self-start md:block">
+        <div className="col-span-5 hidden justify-self-start md:block">
           <Breadcrumb />
         </div>
 
         {/* Botón de menú móvil (visible solo en pantallas pequeñas) */}
-        <div className="justify-self-start md:hidden">
+        <div className="col-span-2 justify-self-start md:hidden">
           <button
             className="rounded-md p-1 hover:bg-gray-100"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -49,7 +49,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Sección Central: Solo Título - siempre centrado en el grid */}
-        <div className="justify-self-center">
+        <div className="col-span-5 justify-self-center md:col-span-2">
           <a
             href="/"
             onClick={handleNavigation('/')}
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Sección Derecha: Navegación Principal (visible solo en pantallas medianas y grandes) */}
-        <div className="hidden justify-self-end md:block">
+        <div className="col-span-3 hidden justify-self-end md:col-span-4 md:block">
           <nav className="flex items-center space-x-2 text-xs font-medium">
             <a
               href="/asignaturas"

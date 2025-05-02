@@ -6,8 +6,8 @@ import {
   faListCheck,
   faSearch,
   faChalkboardTeacher,
-  faFileAlt,
   faUniversity,
+  faBookOpen,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Home: React.FC = () => {
@@ -70,15 +70,16 @@ const Home: React.FC = () => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Enlaces convertidos a estilo botón */}
           <Link
-            to="/plan-estudios"
+            to="/asignaturas"
             className="group rounded-md border border-gray-200 bg-white px-4 py-3 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/70 hover:text-blue-600 hover:shadow-sm"
           >
             <div className="mb-4 text-blue-600">
-              <FontAwesomeIcon icon={faGraduationCap} className="text-3xl" />
+              <FontAwesomeIcon icon={faBookOpen} className="text-3xl" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold">Plan de Estudios</h3>
+            <h3 className="mb-2 text-lg font-semibold">Asignaturas</h3>
             <p className="mb-4 text-sm">
-              Estructura completa del grado: módulos, materias y asignaturas
+              Listado completo de asignaturas del grado con su información
+              detallada
             </p>
           </Link>
 
@@ -97,15 +98,15 @@ const Home: React.FC = () => {
           </Link>
 
           <Link
-            to="/modulos"
+            to="/plan-estudios"
             className="group rounded-md border border-gray-200 bg-white px-4 py-3 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50/70 hover:text-teal-600 hover:shadow-sm"
           >
             <div className="mb-4 text-teal-600">
-              <FontAwesomeIcon icon={faFileAlt} className="text-3xl" />
+              <FontAwesomeIcon icon={faGraduationCap} className="text-3xl" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold">Módulos</h3>
+            <h3 className="mb-2 text-lg font-semibold">Plan de Estudios</h3>
             <p className="mb-4 text-sm">
-              Información detallada de cada módulo formativo
+              Estructura completa del grado: módulos, materias y asignaturas
             </p>
           </Link>
 
@@ -142,7 +143,7 @@ const Home: React.FC = () => {
           {/* Módulo: Fundamentos humanísticos y filosóficos */}
           <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
             <Link
-              to="/modulos/fundamentos-humanisticos-y-filosoficos"
+              to="/plan-estudios/fundamentos-humanisticos-y-filosoficos"
               className="mb-4"
             >
               <h3 className="mb-2 text-xl font-bold text-blue-800">
@@ -183,7 +184,7 @@ const Home: React.FC = () => {
 
           {/* Módulo: Política y sociedad */}
           <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
-            <Link to="/modulos/politica-y-sociedad" className="mb-4">
+            <Link to="/plan-estudios/politica-y-sociedad" className="mb-4">
               <h3 className="mb-2 text-xl font-bold text-indigo-800">
                 Política y sociedad
               </h3>
@@ -213,7 +214,7 @@ const Home: React.FC = () => {
 
           {/* Módulo: Economía */}
           <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
-            <Link to="/modulos/economia" className="mb-4">
+            <Link to="/plan-estudios/economia" className="mb-4">
               <h3 className="mb-2 text-xl font-bold text-teal-800">Economía</h3>
               <p className="text-lg font-semibold text-teal-600">45 ECTS</p>
             </Link>
@@ -241,7 +242,7 @@ const Home: React.FC = () => {
 
           {/* Módulo: Formación complementaria */}
           <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
-            <Link to="/modulos/formacion-complementaria" className="mb-4">
+            <Link to="/plan-estudios/formacion-complementaria" className="mb-4">
               <h3 className="mb-2 text-xl font-bold text-purple-800">
                 Formación complementaria
               </h3>
@@ -262,7 +263,10 @@ const Home: React.FC = () => {
 
           {/* Módulo: Integración interdisciplinar */}
           <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
-            <Link to="/modulos/integracion-interdisciplinar" className="mb-4">
+            <Link
+              to="/plan-estudios/integracion-interdisciplinar"
+              className="mb-4"
+            >
               <h3 className="mb-2 text-xl font-bold text-green-800">
                 Integración interdisciplinar
               </h3>

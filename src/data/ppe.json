@@ -72,6 +72,7 @@
               "nombre": "Antropología",
               "curso": "1",
               "semestre": "anual",
+              "ects": 6,
               "competencias": [
                 "CG2",
                 "CG3",
@@ -87,6 +88,7 @@
               "nombre": "Ética",
               "curso": "2",
               "semestre": "anual",
+              "ects": 6,
               "competencias": [
                 "CG2",
                 "CG3",
@@ -102,6 +104,7 @@
               "nombre": "Claves culturales I",
               "curso": "2",
               "semestre": "2",
+              "ects": 3,
               "competencias": [
                 "CG2",
                 "CG3",
@@ -117,6 +120,7 @@
               "nombre": "Claves culturales II",
               "curso": "3",
               "semestre": "1",
+              "ects": 3,
               "competencias": ["CG2", "CG3", "CB1", "CB3", "CB4", "CT1", "CT2"]
             }
           ]
@@ -162,6 +166,7 @@
               "nombre": "Filosofía y pensamiento crítico",
               "curso": "1",
               "semestre": "1",
+              "ects": 6,
               "competencias": [
                 "CG1",
                 "CG2",
@@ -179,18 +184,21 @@
               "nombre": "Introducción a la lógica",
               "curso": "1",
               "semestre": "2",
+              "ects": 6,
               "competencias": ["CG1", "CB1"]
             },
             {
               "nombre": "Historia de la filosofía: grandes autores",
               "curso": "1",
               "semestre": "2",
+              "ects": 6,
               "competencias": ["CG1", "CB1", "CB4", "CE4", "CE5", "CE6"]
             },
             {
               "nombre": "Historia de la filosofía: textos fundamentales",
               "curso": "2",
               "semestre": "1",
+              "ects": 6,
               "competencias": ["CG1", "CB1", "CB4", "CE4", "CE5", "CE6"]
             }
           ]
@@ -236,6 +244,7 @@
               "nombre": "Knowledge and reality",
               "curso": "2",
               "semestre": "1",
+              "ects": 6,
               "competencias": [
                 "CG3",
                 "CG4",
@@ -251,18 +260,21 @@
               "nombre": "Filosofía de la economía",
               "curso": "1",
               "semestre": "2",
+              "ects": 3,
               "competencias": ["CG3", "CG4", "CB1", "CB3", "CE1", "CE5", "CE13"]
             },
             {
               "nombre": "Metafísica",
               "curso": "3",
               "semestre": "1",
+              "ects": 6,
               "competencias": ["CG4", "CB1", "CB2", "CB3", "CE1", "CE4", "CE6"]
             },
             {
               "nombre": "Debates filosóficos actuales",
               "curso": "4",
               "semestre": "2",
+              "ects": 3,
               "competencias": [
                 "CG3",
                 "CG4",
@@ -278,6 +290,7 @@
               "nombre": "Filosofía política y social",
               "curso": "2",
               "semestre": "2",
+              "ects": 6,
               "competencias": [
                 "CG3",
                 "CG4",
@@ -341,6 +354,7 @@
               "nombre": "Sociología",
               "curso": "1",
               "semestre": "1",
+              "ects": 6,
               "competencias": [
                 "CG1",
                 "CG5",
@@ -357,6 +371,7 @@
               "nombre": "Introducción a la ciencia política",
               "curso": "1",
               "semestre": "1",
+              "ects": 3,
               "competencias": [
                 "CG1",
                 "CG2",
@@ -373,12 +388,14 @@
               "nombre": "Cristianismo, sociedad y economía",
               "curso": "3",
               "semestre": "1",
+              "ects": 3,
               "competencias": ["CG5", "CB3", "CE1", "CE3", "CE5", "CE12"]
             },
             {
               "nombre": "Teoría de la acción y decisión política",
               "curso": "4",
               "semestre": "2",
+              "ects": 6,
               "competencias": [
                 "CG5",
                 "CB3",
@@ -433,6 +450,7 @@
               "nombre": "Historia universal contemporánea",
               "curso": "1",
               "semestre": "1",
+              "ects": 6,
               "competencias": [
                 "CG3",
                 "CB1",
@@ -449,6 +467,7 @@
               "nombre": "Sociedad y política en el mundo actual",
               "curso": "1",
               "semestre": "2",
+              "ects": 6,
               "competencias": [
                 "CG3",
                 "CB1",
@@ -469,18 +488,21 @@
               "nombre": "Retórica y oratoria",
               "curso": "1",
               "semestre": "2",
+              "ects": 3,
               "competencias": ["CG4", "CB2", "CB4"]
             },
             {
               "nombre": "Comunicación política",
               "curso": "2",
               "semestre": "2",
+              "ects": 6,
               "competencias": ["CG4", "CB1", "CB2", "CB4", "CB5", "CE9"]
             },
             {
               "nombre": "Historia de las ideas e ideologías políticas",
               "curso": "2",
               "semestre": "2",
+              "ects": 6,
               "competencias": [
                 "CG3",
                 "CB1",
@@ -500,6 +522,7 @@
               "nombre": "Opinión pública",
               "curso": "3",
               "semestre": "1",
+              "ects": 3,
               "competencias": ["CG4", "CB1", "CB2", "CB4", "CE7", "CE9"]
             }
           ]
@@ -551,12 +574,14 @@
               "nombre": "Fundamentos de economía",
               "curso": "1",
               "semestre": "1",
+              "ects": 6,
               "competencias": ["CG1", "CG2", "CG5", "CB2", "CB5", "CE10"]
             },
             {
               "nombre": "Microeconomía",
               "curso": "2",
               "semestre": "1",
+              "ects": 6,
               "competencias": [
                 "CG1",
                 "CB1",
@@ -571,6 +596,7 @@
               "nombre": "Macroeconomía",
               "curso": "2",
               "semestre": "1",
+              "ects": 6,
               "competencias": [
                 "CG1",
                 "CG2",
@@ -626,12 +652,14 @@
               "nombre": "Decision Making in Economics",
               "curso": "2",
               "semestre": "2",
+              "ects": 3,
               "competencias": ["CB1", "CB2", "CB3", "CE12"]
             },
             {
               "nombre": "International Macroeconomics",
               "curso": "2",
               "semestre": "2",
+              "ects": 3,
               "competencias": [
                 "CG4",
                 "CB1",
@@ -647,6 +675,7 @@
               "nombre": "Economía pública",
               "curso": "3",
               "semestre": "1",
+              "ects": 6,
               "competencias": [
                 "CB1",
                 "CB2",
@@ -663,12 +692,14 @@
               "nombre": "Historia del pensamiento económico",
               "curso": "3",
               "semestre": "1",
+              "ects": 6,
               "competencias": ["CG3", "CG4", "CB1", "CB2", "CB4", "CE1", "CE3"]
             },
             {
               "nombre": "Ética de la actividad económica",
               "curso": "4",
               "semestre": "2",
+              "ects": 3,
               "competencias": [
                 "CG4",
                 "CB1",
@@ -684,6 +715,7 @@
               "nombre": "Entorno económico global",
               "curso": "4",
               "semestre": "2",
+              "ects": 6,
               "competencias": [
                 "CG3",
                 "CG4",
@@ -747,6 +779,7 @@
               "nombre": "Optativas",
               "curso": "3",
               "semestre": "2",
+              "ects": 30,
               "competencias": [
                 "CG3",
                 "CG4",
@@ -765,6 +798,7 @@
               "nombre": "Optativas",
               "curso": "4",
               "semestre": "1",
+              "ects": 30,
               "competencias": [
                 "CG3",
                 "CG4",
@@ -828,6 +862,7 @@
               "nombre": "Capstone seminars I",
               "curso": "1",
               "semestre": "anual",
+              "ects": 3,
               "competencias": [
                 "CG1",
                 "CG2",
@@ -850,6 +885,7 @@
               "nombre": "Capstone seminars II",
               "curso": "2",
               "semestre": "anual",
+              "ects": 3,
               "competencias": [
                 "CG1",
                 "CG2",
@@ -872,6 +908,7 @@
               "nombre": "PPE Lab",
               "curso": "3",
               "semestre": "1",
+              "ects": 3,
               "competencias": [
                 "CG1",
                 "CG2",
@@ -893,7 +930,7 @@
           ]
         },
         {
-          "nombre": "Trabajo fin de grado",
+          "nombre": "Trabajo Fin de Grado",
           "ECTS-n": "12",
           "ECTS-basicos": "0",
           "ECTS-obligatorios": "12",
@@ -917,9 +954,10 @@
           ],
           "asignaturas": [
             {
-              "nombre": "Trabajo fin de grado",
+              "nombre": "Trabajo Fin de Grado",
               "curso": "4",
               "semestre": "anual",
+              "ects": 12,
               "competencias": [
                 "CG1",
                 "CG2",

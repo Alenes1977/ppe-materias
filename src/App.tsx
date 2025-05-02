@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
 import AsignaturaDetalle from './components/AsignaturaDetalle';
 import PlanEstudios from './components/PlanEstudios';
 import Header from './components/Header';
@@ -9,6 +14,19 @@ import Asignaturas from './components/Asignaturas';
 import Competencias from './components/Competencias';
 import Materia from './components/Materia';
 import Materias from './components/Materias';
+import Modulo from './components/Modulo';
+import { useEffect } from 'react';
+
+// Componente para manejar el scroll al principio en cada navegación
+const ScrollToTop: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+};
 
 // Tipos para TypeScript
 interface Asignatura {
@@ -33,9 +51,10 @@ interface Materia {
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow pb-14">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/asignaturas" element={<Asignaturas />} />
@@ -44,6 +63,7 @@ const App: React.FC = () => {
               element={<AsignaturaDetalle />}
             />
             <Route path="/plan-estudios" element={<PlanEstudios />} />
+            <Route path="/plan-estudios/:moduloSlug" element={<Modulo />} />
             <Route path="/materias" element={<Materias />} />
             <Route path="/materias/:materiaSlug" element={<Materia />} />
             <Route path="/competencias" element={<Competencias />} />

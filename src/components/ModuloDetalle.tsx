@@ -32,12 +32,6 @@ interface Materia {
   }[];
 }
 
-interface Modulo {
-  nombre: string;
-  ects: number;
-  materias: Materia[];
-}
-
 const ModuloDetalle: React.FC = () => {
   const { nombre } = useParams<{ nombre: string }>();
 

@@ -71,10 +71,10 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full bg-white px-4 py-2 shadow-md">
+    <header className="fixed left-0 top-0 z-50 w-full bg-white shadow-md">
       {/* Contenedor grid para las tres secciones */}
       <div
-        className="mx-auto grid grid-cols-3 items-center"
+        className="mx-auto grid grid-cols-3 items-center px-4 py-2"
         style={{ maxWidth: '1400px' }}
       >
         {/* Sección Izquierda: Breadcrumbs (visible solo en pantallas medianas y grandes) */}

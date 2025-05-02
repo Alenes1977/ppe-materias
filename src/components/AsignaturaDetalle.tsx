@@ -10,18 +10,6 @@ import {
   faList,
 } from '@fortawesome/free-solid-svg-icons';
 
-// Tipos para TypeScript
-interface EvaluacionItem {
-  tipo: string;
-  'ponderacion-minima': string;
-  'ponderacion-maxima': string;
-}
-
-// Cambiar el tipo para adaptarse a React Router v6
-interface Params {
-  [key: string]: string | undefined;
-}
-
 const AsignaturaDetalle: React.FC = () => {
   const { nombre } = useParams<{ nombre: string }>();
 

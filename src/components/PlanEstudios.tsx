@@ -1,96 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-// Tipos para TypeScript
-interface Asignatura {
-  nombre: string;
-  curso: string;
-  semestre: string;
-  competencias: string[];
-}
-
-interface Materia {
-  nombre: string;
-  ECTS?: string;
-  'ECTS-n'?: string;
-  'ECTS-basicos'?: string;
-  'ECTS-obligatorios'?: string;
-  'ECTS-optativos'?: string;
-  asignaturas: Asignatura[];
-  'actividad-formativa': string[];
-  evaluacion: {
-    tipo: string;
-    'ponderacion-minima': string;
-    'ponderacion-maxima': string;
-  }[];
-}
-
-interface Modulo {
-  nombre: string;
-  ects: number;
-  materias: Materia[];
-}
-
 const PlanEstudios: React.FC = () => {
-  const [cursoFilter, setCursoFilter] = useState<string>('');
-  // Inicializar con un objeto vacío para evitar errores al verificar propiedades
-  const [expandedModulos, setExpandedModulos] = useState<{
-    [key: string]: boolean;
-  }>({});
-  const [expandedMaterias, setExpandedMaterias] = useState<{
-    [key: string]: boolean;
-  }>({});
-
-  // Función para alternar la expansión de un módulo
-  const toggleModulo = (moduloNombre: string) => {
-    setExpandedModulos((prev) => ({
-      ...prev,
-      [moduloNombre]: !prev[moduloNombre],
-    }));
-  };
-
-  // Función para alternar la expansión de una materia
-  const toggleMateria = (materiaNombre: string) => {
-    setExpandedMaterias((prev) => ({
-      ...prev,
-      [materiaNombre]: !prev[materiaNombre],
-    }));
-  };
-
-  // Filtra asignaturas por curso seleccionado
-  const filtrarAsignaturasPorCurso = (asignaturas: Asignatura[]) => {
-    if (!cursoFilter) return asignaturas;
-    return asignaturas.filter((asignatura) => asignatura.curso === cursoFilter);
-  };
-
-  // Verificar si una materia tiene asignaturas para el curso seleccionado
-  const materiaContieneAsignaturasCurso = (materia: Materia) => {
-    if (!cursoFilter) return true;
-    return materia.asignaturas.some(
-      (asignatura) => asignatura.curso === cursoFilter,
-    );
-  };
-
-  // Función para verificar si todos los módulos están expandidos
-  const todosModulosExpandidos = () => {
-    // Si no hay módulos expandidos, devolver false
-    if (Object.keys(expandedModulos).length === 0) return false;
-
-    // Verificar si todos los módulos están expandidos
-    return data.modulos.every((modulo) => expandedModulos[modulo.nombre]);
-  };
-
-  // Función para obtener el número de ECTS de una materia, considerando diferentes formatos
-  const obtenerECTSMateria = (materia: Materia): string => {
-    return materia.ECTS || materia['ECTS-n'] || '0';
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-20">
         {/* Encabezado de la página */}
         <div className="mb-8 text-center">
           <h1 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">

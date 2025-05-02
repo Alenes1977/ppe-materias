@@ -1,190 +1,246 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/ppe.json';
+import FiltrosAsignaturas from './FiltrosAsignaturas';
 
 const Asignaturas: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [cursoFilter, setCursoFilter] = useState('');
   const [semestreFilter, setSemestreFilter] = useState('');
 
-  // Extraer todas las asignaturas de los módulos y materias
-  const todasLasAsignaturas = data.modulos.flatMap((modulo) =>
-    modulo.materias.flatMap((materia) =>
-      materia.asignaturas.map((asignatura) => ({
-        ...asignatura,
-        modulo: modulo.nombre,
-        materia: materia.nombre,
-        actividadesFormativas: materia['actividad-formativa'],
-        evaluacion: materia.evaluacion,
-      })),
-    ),
+  // Extraer todas las asignaturas
+  const todasLasAsignaturas = useMemo(
+    () =>
+      data.modulos.flatMap((modulo) =>
+        modulo.materias.flatMap((materia) =>
+          materia.asignaturas.map((asignatura) => ({
+            ...asignatura,
+            modulo: modulo.nombre,
+            materia: materia.nombre,
+            actividadesFormativas: materia['actividad-formativa'],
+            evaluacion: materia.evaluacion,
+          })),
+        ),
+      ),
+    [],
   );
 
-  // Filtrar asignaturas según los criterios
-  const asignaturasFiltradas = todasLasAsignaturas.filter((asignatura) => {
-    const matchesSearch = asignatura.nombre
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesCurso = cursoFilter === '' || asignatura.curso === cursoFilter;
-    const matchesSemestre =
-      semestreFilter === '' || asignatura.semestre === semestreFilter;
-    return matchesSearch && matchesCurso && matchesSemestre;
-  });
+  // Organizar asignaturas por curso y semestre
+  const asignaturasOrganizadas = useMemo(() => {
+    const filtradas = todasLasAsignaturas.filter((asignatura) => {
+      const matchesSearch = asignatura.nombre
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      const matchesCurso =
+        cursoFilter === '' || asignatura.curso === cursoFilter;
+      const matchesSemestre =
+        semestreFilter === '' || asignatura.semestre === semestreFilter;
+      return matchesSearch && matchesCurso && matchesSemestre;
+    });
+
+    const organizadas = new Map();
+    for (let curso = 1; curso <= 4; curso++) {
+      organizadas.set(curso, {
+        semestre1: [],
+        semestre2: [],
+        anual: [],
+      });
+    }
+
+    filtradas.forEach((asignatura) => {
+      const cursoData = organizadas.get(Number(asignatura.curso));
+      if (asignatura.semestre === 'anual') {
+        cursoData.anual.push(asignatura);
+      } else {
+        cursoData[`semestre${asignatura.semestre}`].push(asignatura);
+      }
+    });
+
+    return organizadas;
+  }, [todasLasAsignaturas, searchTerm, cursoFilter, semestreFilter]);
+
+  const renderLeyenda = () => (
+    <div className="mb-8 flex items-center gap-4 rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
+      <span className="text-sm font-medium text-gray-700">Leyenda:</span>
+      <Link
+        to="/plan-estudios"
+        className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 hover:bg-blue-200"
+      >
+        Módulo
+      </Link>
+      <Link
+        to="/materias"
+        className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 hover:bg-purple-200"
+      >
+        Materia
+      </Link>
+    </div>
+  );
+
+  const renderAsignatura = (asignatura: any) => (
+    <Link
+      key={asignatura.nombre}
+      to={`/asignaturas/${asignatura.nombre
+        .replace(/\s+/g, '-')
+        .toLowerCase()}`}
+      className="group block overflow-hidden rounded-xl border border-gray-100 bg-white p-6 transition-all hover:border-blue-200 hover:shadow-lg"
+    >
+      <h3 className="mb-4 text-xl font-bold text-gray-800 group-hover:text-blue-600">
+        {asignatura.nombre}
+      </h3>
+      <div className="flex flex-wrap gap-2">
+        <Link
+          to={`/plan-estudios/${asignatura.modulo
+            .replace(/\s+/g, '-')
+            .toLowerCase()}`}
+          className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 hover:bg-blue-200"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {asignatura.modulo}
+        </Link>
+        <Link
+          to={`/materias/${asignatura.materia
+            .replace(/\s+/g, '-')
+            .toLowerCase()}`}
+          className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 hover:bg-purple-200"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {asignatura.materia}
+        </Link>
+      </div>
+    </Link>
+  );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
-      <div className="container mx-auto px-4 py-8">
-        {/* Encabezado de la página */}
-        <div className="mb-8 text-center">
-          <h1 className="mb-2 text-3xl font-bold text-gray-800">Asignaturas</h1>
-          <p className="mx-auto max-w-2xl text-gray-600">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      <div className="container mx-auto px-4 py-14">
+        {/* Encabezado */}
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+            Plan de Estudios
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg text-gray-600">
             Explora todas las asignaturas del Grado en Filosofía, Política y
             Economía. Utiliza los filtros para encontrar la información que
             necesitas.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
-          {/* Filtros (panel lateral) */}
-          <div className="sticky top-24 self-start rounded-xl bg-white p-6 shadow-md md:col-span-1">
-            <h2 className="mb-4 border-b pb-2 text-xl font-bold text-gray-800">
-              Filtros
-            </h2>
-
-            {/* Búsqueda por nombre */}
-            <div className="mb-4">
-              <label
-                htmlFor="search"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                Nombre de la asignatura
-              </label>
-              <input
-                type="text"
-                id="search"
-                className="w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                placeholder="Buscar asignatura..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+          {/* Panel de filtros */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <FiltrosAsignaturas
+                searchTerm={searchTerm}
+                cursoFilter={cursoFilter}
+                semestreFilter={semestreFilter}
+                onSearchChange={setSearchTerm}
+                onCursoChange={setCursoFilter}
+                onSemestreChange={setSemestreFilter}
+                onClearFilters={() => {
+                  setSearchTerm('');
+                  setCursoFilter('');
+                  setSemestreFilter('');
+                }}
               />
             </div>
-
-            {/* Filtro por curso */}
-            <div className="mb-4">
-              <label
-                htmlFor="curso"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                Curso
-              </label>
-              <select
-                id="curso"
-                className="w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                value={cursoFilter}
-                onChange={(e) => setCursoFilter(e.target.value)}
-              >
-                <option value="">Todos los cursos</option>
-                <option value="1">1º Curso</option>
-                <option value="2">2º Curso</option>
-                <option value="3">3º Curso</option>
-                <option value="4">4º Curso</option>
-              </select>
-            </div>
-
-            {/* Filtro por semestre */}
-            <div className="mb-6">
-              <label
-                htmlFor="semestre"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                Semestre
-              </label>
-              <select
-                id="semestre"
-                className="w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                value={semestreFilter}
-                onChange={(e) => setSemestreFilter(e.target.value)}
-              >
-                <option value="">Todos los semestres</option>
-                <option value="1">1er Semestre</option>
-                <option value="2">2º Semestre</option>
-                <option value="anual">Anual</option>
-              </select>
-            </div>
-
-            {/* Botón para limpiar filtros */}
-            <button
-              className="w-full rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-200"
-              onClick={() => {
-                setSearchTerm('');
-                setCursoFilter('');
-                setSemestreFilter('');
-              }}
-            >
-              Limpiar filtros
-            </button>
           </div>
 
-          {/* Resultados de la búsqueda */}
-          <div className="rounded-xl bg-white p-6 shadow-md md:col-span-3">
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-xl font-bold text-gray-800">
-                Resultados{' '}
-                <span className="text-blue-600">
-                  ({asignaturasFiltradas.length})
-                </span>
-              </h2>
+          {/* Contenido principal */}
+          <div className="lg:col-span-3">
+            {/* Leyenda */}
+            {renderLeyenda()}
 
-              <div className="text-sm text-gray-500">
-                Mostrando {asignaturasFiltradas.length} de{' '}
-                {todasLasAsignaturas.length} asignaturas
-              </div>
-            </div>
+            {Array.from(asignaturasOrganizadas.entries()).map(
+              ([curso, data]) => {
+                const hasAsignaturas =
+                  data.semestre1.length > 0 ||
+                  data.semestre2.length > 0 ||
+                  data.anual.length > 0;
 
-            {asignaturasFiltradas.length > 0 ? (
-              <div className="grid grid-cols-1 gap-4">
-                {asignaturasFiltradas.map((asignatura, index) => (
-                  <Link
-                    key={index}
-                    to={`/asignaturas/${asignatura.nombre
-                      .replace(/\s+/g, '-')
-                      .toLowerCase()}`}
-                    className="block rounded-xl border border-gray-200 p-4 transition-all hover:border-blue-200 hover:bg-blue-50 hover:shadow-md"
-                  >
-                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                      <div>
-                        <h3 className="text-lg font-semibold text-blue-600">
-                          {asignatura.nombre}
-                        </h3>
-                        <div className="mt-1 flex items-center gap-2 text-sm text-gray-500">
-                          <span>{asignatura.modulo}</span>
-                          <span>•</span>
-                          <span>{asignatura.materia}</span>
-                        </div>
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-2 md:mt-0">
-                        <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                          {asignatura.curso}º Curso
-                        </span>
-                        <span className="inline-flex items-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-800">
-                          {asignatura.semestre === 'anual'
-                            ? 'Anual'
-                            : `${asignatura.semestre}º Semestre`}
-                        </span>
-                      </div>
+                if (
+                  !hasAsignaturas &&
+                  cursoFilter !== '' &&
+                  cursoFilter !== String(curso)
+                ) {
+                  return null;
+                }
+
+                return (
+                  <div key={curso} className="mb-12">
+                    <div className="mb-6 flex items-center">
+                      <h2 className="text-2xl font-bold text-gray-800">
+                        {curso}º Curso
+                      </h2>
+                      <div className="ml-4 h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent"></div>
                     </div>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div className="py-16 text-center">
-                <div className="mb-4 text-5xl text-gray-400">😕</div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-700">
+
+                    <div className="space-y-8">
+                      {/* Asignaturas anuales */}
+                      {data.anual.length > 0 && (
+                        <div>
+                          <h3 className="mb-4 text-lg font-semibold text-blue-600">
+                            Asignaturas Anuales
+                          </h3>
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            {data.anual.map(renderAsignatura)}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Primer semestre */}
+                      {data.semestre1.length > 0 && (
+                        <div>
+                          <h3 className="mb-4 text-lg font-semibold text-blue-600">
+                            Primer Semestre
+                          </h3>
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            {data.semestre1.map(renderAsignatura)}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Segundo semestre */}
+                      {data.semestre2.length > 0 && (
+                        <div>
+                          <h3 className="mb-4 text-lg font-semibold text-blue-600">
+                            Segundo Semestre
+                          </h3>
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            {data.semestre2.map(renderAsignatura)}
+                          </div>
+                        </div>
+                      )}
+
+                      {!hasAsignaturas && (
+                        <div className="rounded-lg bg-gray-50 p-8 text-center">
+                          <p className="text-gray-600">
+                            No hay asignaturas que coincidan con los criterios
+                            de búsqueda para este curso.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              },
+            )}
+
+            {/* Mensaje cuando no hay resultados */}
+            {Array.from(asignaturasOrganizadas.values()).every(
+              (data) =>
+                data.semestre1.length === 0 &&
+                data.semestre2.length === 0 &&
+                data.anual.length === 0,
+            ) && (
+              <div className="mt-12 rounded-xl bg-white p-12 text-center shadow-sm">
+                <div className="mb-4 text-5xl">🔍</div>
+                <h3 className="mb-2 text-xl font-semibold text-gray-800">
                   No se encontraron resultados
                 </h3>
-                <p className="mx-auto max-w-md text-gray-500">
+                <p className="mx-auto max-w-md text-gray-600">
                   No hay asignaturas que coincidan con los criterios de búsqueda
-                  seleccionados. Intenta con otros filtros.
+                  seleccionados. Intenta ajustar los filtros.
                 </p>
               </div>
             )}

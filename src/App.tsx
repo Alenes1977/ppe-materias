@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import data from './data/ppe.json';
 import AsignaturaDetalle from './components/AsignaturaDetalle';
 import PlanEstudios from './components/PlanEstudios';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Asignaturas from './components/Asignaturas';
-import ModuloDetalle from './components/ModuloDetalle';
 import Competencias from './components/Competencias';
+import Materia from './components/Materia';
+import Materias from './components/Materias';
 
 // Tipos para TypeScript
 interface Asignatura {
@@ -29,21 +29,13 @@ interface Materia {
   }[];
 }
 
-interface Modulo {
-  nombre: string;
-  ects: number;
-  materias: Materia[];
-}
-
 // Componente principal de la aplicación
 const App: React.FC = () => {
   return (
     <Router>
       <div className="flex min-h-screen flex-col">
         <Header />
-        <div className="flex-grow pt-16">
-          {' '}
-          {/* Añadido pt-16 para dar espacio al header fijo */}
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/asignaturas" element={<Asignaturas />} />
@@ -52,10 +44,11 @@ const App: React.FC = () => {
               element={<AsignaturaDetalle />}
             />
             <Route path="/plan-estudios" element={<PlanEstudios />} />
-            <Route path="/plan-estudios/:nombre" element={<ModuloDetalle />} />
+            <Route path="/materias" element={<Materias />} />
+            <Route path="/materias/:materiaSlug" element={<Materia />} />
             <Route path="/competencias" element={<Competencias />} />
           </Routes>
-        </div>
+        </main>
         <Footer />
       </div>
     </Router>

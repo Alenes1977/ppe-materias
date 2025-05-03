@@ -6,14 +6,15 @@ import {
   faBook,
   faChevronRight,
   faGraduationCap,
-  faCalendarAlt,
   faUniversity,
+  faLayerGroup,
+  faClock,
 } from '@fortawesome/free-solid-svg-icons';
 import { generateSlug } from '../utils/stringUtils';
 
 const PlanEstudios: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <div className="container mx-auto px-4 pb-14 pt-24">
         {/* Encabezado de la página */}
         <div className="mb-12 text-center">
@@ -32,99 +33,81 @@ const PlanEstudios: React.FC = () => {
         </div>
 
         {/* Resumen del plan */}
-        <div className="mb-12 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md">
-          <div className="border-b border-gray-200 bg-gradient-to-r from-blue-500 to-indigo-600 p-6 text-white">
-            <h2 className="text-2xl font-bold">Estructura General</h2>
-            <p className="mt-2 text-blue-100">
-              Información básica del plan de estudios
-            </p>
+        <div className="mb-12 grid gap-6 md:grid-cols-2">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-xl font-semibold text-gray-800">
+              <FontAwesomeIcon
+                icon={faUniversity}
+                className="mr-3 text-blue-600"
+              />
+              Información Básica
+            </h3>
+            <ul className="space-y-4">
+              <li className="flex items-center rounded-lg bg-gray-50 p-4">
+                <div>
+                  <span className="block text-sm font-medium text-gray-500">
+                    Titulación
+                  </span>
+                  <span className="text-gray-900">
+                    Grado en Filosofía, Política y Economía
+                  </span>
+                </div>
+              </li>
+              <li className="flex items-center rounded-lg bg-gray-50 p-4">
+                <div>
+                  <span className="block text-sm font-medium text-gray-500">
+                    Duración
+                  </span>
+                  <span className="text-gray-900">4 años académicos</span>
+                </div>
+              </li>
+              <li className="flex items-center rounded-lg bg-gray-50 p-4">
+                <div>
+                  <span className="block text-sm font-medium text-gray-500">
+                    Total Créditos
+                  </span>
+                  <span className="text-gray-900">240 ECTS</span>
+                </div>
+              </li>
+            </ul>
           </div>
-          <div className="grid gap-8 p-6 md:grid-cols-2">
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-gray-800">
-                Información Básica
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center rounded-lg bg-gray-50 p-3">
-                  <span className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                    <FontAwesomeIcon icon={faUniversity} />
-                  </span>
-                  <div>
-                    <span className="block text-sm font-medium text-gray-500">
-                      Titulación
-                    </span>
-                    <span className="text-gray-900">
-                      Grado en Filosofía, Política y Economía
-                    </span>
-                  </div>
-                </li>
-                <li className="flex items-center rounded-lg bg-gray-50 p-3">
-                  <span className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                    <FontAwesomeIcon icon={faGraduationCap} />
-                  </span>
-                  <div>
-                    <span className="block text-sm font-medium text-gray-500">
-                      Créditos ECTS
-                    </span>
-                    <span className="text-gray-900">240 ECTS</span>
-                  </div>
-                </li>
-                <li className="flex items-center rounded-lg bg-gray-50 p-3">
-                  <span className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                    <FontAwesomeIcon icon={faCalendarAlt} />
-                  </span>
-                  <div>
-                    <span className="block text-sm font-medium text-gray-500">
-                      Duración
-                    </span>
-                    <span className="text-gray-900">4 años académicos</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-gray-800">
-                Distribución de Créditos
-              </h3>
-              <div className="space-y-3">
-                <div className="rounded-lg bg-gray-50 p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-700">
-                      Formación Básica
-                    </span>
-                    <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
-                      60 ECTS
-                    </span>
-                  </div>
-                </div>
-                <div className="rounded-lg bg-gray-50 p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-700">
-                      Obligatorias
-                    </span>
-                    <span className="rounded-full bg-indigo-100 px-3 py-1 text-sm font-medium text-indigo-800">
-                      120 ECTS
-                    </span>
-                  </div>
-                </div>
-                <div className="rounded-lg bg-gray-50 p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-700">Optativas</span>
-                    <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800">
-                      48 ECTS
-                    </span>
-                  </div>
-                </div>
-                <div className="rounded-lg bg-gray-50 p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-700">
-                      Trabajo Fin de Grado
-                    </span>
-                    <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
-                      12 ECTS
-                    </span>
-                  </div>
-                </div>
+
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-xl font-semibold text-gray-800">
+              <FontAwesomeIcon
+                icon={faLayerGroup}
+                className="mr-3 text-blue-600"
+              />
+              Distribución de Créditos
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                <span className="font-medium text-gray-700">
+                  Formación Básica
+                </span>
+                <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
+                  60 ECTS
+                </span>
+              </div>
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                <span className="font-medium text-gray-700">Obligatorias</span>
+                <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800">
+                  120 ECTS
+                </span>
+              </div>
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                <span className="font-medium text-gray-700">Optativas</span>
+                <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800">
+                  48 ECTS
+                </span>
+              </div>
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                <span className="font-medium text-gray-700">
+                  Trabajo Fin de Grado
+                </span>
+                <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-800">
+                  12 ECTS
+                </span>
               </div>
             </div>
           </div>
@@ -143,40 +126,59 @@ const PlanEstudios: React.FC = () => {
               <Link
                 key={index}
                 to={`/plan-estudios/${generateSlug(modulo.nombre)}`}
-                className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                className="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
               >
-                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 text-white">
-                  <h3 className="text-xl font-bold">{modulo.nombre}</h3>
-                  <div className="mt-2 inline-block rounded-full bg-white/20 px-3 py-1 text-sm">
+                <div className="mb-4">
+                  <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
                     {modulo.ects} ECTS
-                  </div>
+                  </span>
                 </div>
-                <div className="flex flex-1 flex-col justify-between p-6">
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-sm font-semibold uppercase text-gray-500">
-                        Materias
-                      </h4>
-                      <p className="text-gray-700">
-                        {modulo.materias.length} materias en este módulo
-                      </p>
+                <h3 className="mb-4 text-xl font-bold text-gray-800 group-hover:text-blue-600">
+                  {modulo.nombre}
+                </h3>
+                <div className="mt-auto space-y-3">
+                  <Link
+                    to="/materias"
+                    className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2 transition-all hover:bg-purple-50 hover:text-purple-700"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <span className="text-sm text-gray-600 group-hover:text-purple-700">
+                      Materias
+                    </span>
+                    <div className="flex items-center">
+                      <span className="font-medium text-gray-800 group-hover:text-purple-700">
+                        {modulo.materias.length}
+                      </span>
+                      <FontAwesomeIcon
+                        icon={faChevronRight}
+                        className="ml-2 h-3 w-3 transform text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-purple-700"
+                      />
                     </div>
-                    <div>
-                      <h4 className="text-sm font-semibold uppercase text-gray-500">
-                        Asignaturas
-                      </h4>
-                      <p className="text-gray-700">
+                  </Link>
+                  <Link
+                    to="/asignaturas"
+                    className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2 transition-all hover:bg-green-50 hover:text-green-700"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <span className="text-sm text-gray-600 group-hover:text-green-700">
+                      Asignaturas
+                    </span>
+                    <div className="flex items-center">
+                      <span className="font-medium text-gray-800 group-hover:text-green-700">
                         {modulo.materias.reduce(
                           (total, materia) =>
                             total + materia.asignaturas.length,
                           0,
-                        )}{' '}
-                        asignaturas en total
-                      </p>
+                        )}
+                      </span>
+                      <FontAwesomeIcon
+                        icon={faChevronRight}
+                        className="ml-2 h-3 w-3 transform text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-green-700"
+                      />
                     </div>
-                  </div>
-                  <div className="mt-6 flex items-center text-sm font-medium text-blue-600">
-                    Ver detalle del módulo
+                  </Link>
+                  <div className="mt-4 flex items-center justify-end text-sm font-medium text-blue-600">
+                    Ver detalle
                     <FontAwesomeIcon
                       icon={faChevronRight}
                       className="ml-2 transform transition-transform group-hover:translate-x-1"
@@ -199,7 +201,8 @@ const PlanEstudios: React.FC = () => {
 
           {[1, 2, 3, 4].map((curso) => (
             <div key={curso} className="mb-8 last:mb-0">
-              <h3 className="mb-4 inline-block rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-2 text-lg font-bold text-white">
+              <h3 className="mb-4 inline-flex items-center rounded-lg bg-blue-100 px-4 py-2 text-lg font-bold text-blue-800">
+                <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
                 {curso}º Curso
               </h3>
 
@@ -234,26 +237,30 @@ const PlanEstudios: React.FC = () => {
                         {semestre === '1' ? 'Primer' : 'Segundo'} Semestre
                       </h4>
                       {asignaturasFiltradas.length > 0 ? (
-                        <ul className="space-y-2">
+                        <ul className="space-y-3">
                           {asignaturasFiltradas.map((asignatura, idx) => (
                             <li key={idx}>
                               <Link
-                                to={`/asignaturas/${asignatura.nombre
-                                  .replace(/\s+/g, '-')
-                                  .toLowerCase()}`}
-                                className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50"
+                                to={`/asignaturas/${generateSlug(
+                                  asignatura.nombre,
+                                )}`}
+                                className="group flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-4 transition-all hover:border-blue-200 hover:bg-blue-50"
                               >
                                 <div className="flex items-center">
                                   <FontAwesomeIcon
                                     icon={faBook}
                                     className="mr-3 text-blue-500"
                                   />
-                                  <span className="font-medium text-gray-700">
+                                  <span className="font-medium text-gray-700 group-hover:text-blue-600">
                                     {asignatura.nombre}
                                   </span>
                                 </div>
                                 {asignatura.semestre === 'anual' && (
-                                  <span className="ml-2 rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-800">
+                                  <span className="ml-2 inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+                                    <FontAwesomeIcon
+                                      icon={faClock}
+                                      className="mr-1.5"
+                                    />
                                     Anual
                                   </span>
                                 )}

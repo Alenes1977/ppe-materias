@@ -96,14 +96,14 @@ const Asignaturas: React.FC = () => {
         to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
         className={`group flex flex-col rounded-lg border border-gray-200 ${
           courseColors[asignatura.curso.toString()]
-        } p-4 shadow-sm transition-all hover:border-blue-300 hover:shadow-lg`}
+        } p-3 shadow-sm transition-all hover:border-blue-300 hover:shadow-lg sm:p-4`}
       >
-        <div className="mb-3 flex items-start gap-4">
+        <div className="mb-2 flex items-start gap-3 sm:mb-3 sm:gap-4">
           <div className="flex-grow">
-            <h3 className="text-base font-semibold text-gray-800 group-hover:text-blue-600">
+            <h3 className="text-sm font-semibold text-gray-800 group-hover:text-blue-600 sm:text-base">
               {asignatura.nombre}
             </h3>
-            <div className="mt-1 text-sm text-gray-600">
+            <div className="mt-0.5 text-xs text-gray-600 sm:mt-1 sm:text-sm">
               {asignatura.ects} ECTS
             </div>
           </div>
@@ -112,7 +112,7 @@ const Asignaturas: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-auto flex flex-col gap-2">
+        <div className="mt-auto flex flex-col gap-1.5 sm:gap-2">
           <Link
             to={`/plan-estudios/${generateSlug(asignatura.modulo)}`}
             className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
@@ -134,13 +134,13 @@ const Asignaturas: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 pb-14 pt-24">
+      <div className="container mx-auto px-4 pb-8 pt-20 sm:pb-14 sm:pt-24">
         {/* Encabezado */}
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+        <div className="mb-8 text-center sm:mb-12">
+          <h1 className="mb-3 text-2xl font-bold text-gray-900 sm:mb-4 sm:text-4xl">
             Asignaturas del Grado
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600">
+          <p className="mx-auto max-w-2xl text-sm text-gray-600 sm:text-lg">
             Explore todas las asignaturas del Grado en Filosofía, Política y
             Economía. Acceda a la información detallada de cada asignatura
             haciendo clic en ella.
@@ -148,9 +148,11 @@ const Asignaturas: React.FC = () => {
         </div>
 
         {/* Barra de búsqueda y leyenda */}
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="mb-6 flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:mb-8 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div className="flex flex-col gap-2">
-            <span className="text-sm font-medium text-gray-700">Leyenda:</span>
+            <span className="text-xs font-medium text-gray-700 sm:text-sm">
+              Leyenda:
+            </span>
             <div className="flex gap-3">
               <div className="flex flex-col gap-1">
                 <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
@@ -180,7 +182,7 @@ const Asignaturas: React.FC = () => {
               placeholder="Buscar asignatura..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 bg-gray-50 px-10 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 bg-gray-50 px-10 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:py-3"
             />
             {searchTerm && (
               <button
@@ -204,15 +206,15 @@ const Asignaturas: React.FC = () => {
           if (todasLasAsignaturasCurso.length === 0) return null;
 
           return (
-            <div key={curso} className="mb-8">
-              <div className="mb-4 flex items-center">
-                <h2 className="text-xl font-bold text-gray-800">
+            <div key={curso} className="mb-6 sm:mb-8">
+              <div className="mb-3 flex items-center sm:mb-4">
+                <h2 className="text-lg font-bold text-gray-800 sm:text-xl">
                   {curso}º Curso
                 </h2>
                 <div className="ml-4 h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent"></div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
                 {[...data.anual, ...data.semestre1, ...data.semestre2]
                   .sort((a, b) => {
                     if (a.semestre === 'anual') return -1;
@@ -232,12 +234,12 @@ const Asignaturas: React.FC = () => {
             data.semestre2.length === 0 &&
             data.anual.length === 0,
         ) && (
-          <div className="mt-8 rounded-xl bg-white p-8 text-center shadow-sm">
-            <div className="mb-4 text-4xl">🔍</div>
-            <h3 className="mb-2 text-xl font-semibold text-gray-800">
+          <div className="mt-8 rounded-xl bg-white p-6 text-center shadow-sm sm:p-8">
+            <div className="mb-3 text-3xl sm:mb-4 sm:text-4xl">🔍</div>
+            <h3 className="mb-2 text-lg font-semibold text-gray-800 sm:text-xl">
               No se encontraron asignaturas
             </h3>
-            <p className="mx-auto max-w-md text-gray-600">
+            <p className="mx-auto max-w-md text-sm text-gray-600 sm:text-base">
               No hay asignaturas que coincidan con su búsqueda. Intente con otro
               término.
             </p>

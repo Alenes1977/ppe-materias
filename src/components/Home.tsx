@@ -141,10 +141,10 @@ const Home: React.FC = () => {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Módulo: Fundamentos humanísticos y filosóficos */}
-          <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
+          <div className="group flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
             <Link
               to="/plan-estudios/fundamentos-humanisticos-y-filosoficos"
-              className="mb-4"
+              className="mb-4 transition-colors group-hover:text-blue-700"
             >
               <h3 className="mb-2 text-xl font-bold text-blue-800">
                 Fundamentos humanísticos y filosóficos
@@ -154,27 +154,27 @@ const Home: React.FC = () => {
             <div className="mt-4 space-y-3">
               <Link
                 to="/materias/core-curriculum"
-                className="block rounded-md border border-blue-100 bg-blue-50 p-3 transition-all hover:border-blue-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-blue-100 bg-blue-50 p-3 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-blue-700">
+                <span className="block font-semibold text-blue-700 group-hover/item:text-blue-800">
                   Core curriculum
                 </span>
                 <span className="text-sm text-blue-600">18 ECTS</span>
               </Link>
               <Link
                 to="/materias/fundamentos-de-filosofia"
-                className="block rounded-md border border-blue-100 bg-blue-50 p-3 transition-all hover:border-blue-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-blue-100 bg-blue-50 p-3 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-blue-700">
+                <span className="block font-semibold text-blue-700 group-hover/item:text-blue-800">
                   Fundamentos de filosofía
                 </span>
                 <span className="text-sm text-blue-600">24 ECTS</span>
               </Link>
               <Link
                 to="/materias/conocimiento-realidad-y-accion"
-                className="block rounded-md border border-blue-100 bg-blue-50 p-3 transition-all hover:border-blue-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-blue-100 bg-blue-50 p-3 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-blue-700">
+                <span className="block font-semibold text-blue-700 group-hover/item:text-blue-800">
                   Conocimiento, realidad y acción
                 </span>
                 <span className="text-sm text-blue-600">24 ECTS</span>
@@ -183,8 +183,11 @@ const Home: React.FC = () => {
           </div>
 
           {/* Módulo: Política y sociedad */}
-          <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
-            <Link to="/plan-estudios/politica-y-sociedad" className="mb-4">
+          <div className="group flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+            <Link
+              to="/plan-estudios/politica-y-sociedad"
+              className="mb-4 transition-colors group-hover:text-indigo-700"
+            >
               <h3 className="mb-2 text-xl font-bold text-indigo-800">
                 Política y sociedad
               </h3>
@@ -193,18 +196,18 @@ const Home: React.FC = () => {
             <div className="mt-4 space-y-3">
               <Link
                 to="/materias/teoria-politica-y-social"
-                className="block rounded-md border border-indigo-100 bg-indigo-50 p-3 transition-all hover:border-indigo-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-indigo-100 bg-indigo-50 p-3 transition-all hover:-translate-y-0.5 hover:border-indigo-300 hover:bg-indigo-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-indigo-700">
+                <span className="block font-semibold text-indigo-700 group-hover/item:text-indigo-800">
                   Teoría política y social
                 </span>
                 <span className="text-sm text-indigo-600">18 ECTS</span>
               </Link>
               <Link
                 to="/materias/sociedad-cultura-y-comunicacion"
-                className="block rounded-md border border-indigo-100 bg-indigo-50 p-3 transition-all hover:border-indigo-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-indigo-100 bg-indigo-50 p-3 transition-all hover:-translate-y-0.5 hover:border-indigo-300 hover:bg-indigo-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-indigo-700">
+                <span className="block font-semibold text-indigo-700 group-hover/item:text-indigo-800">
                   Sociedad, cultura y comunicación
                 </span>
                 <span className="text-sm text-indigo-600">30 ECTS</span>
@@ -213,26 +216,29 @@ const Home: React.FC = () => {
           </div>
 
           {/* Módulo: Economía */}
-          <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
-            <Link to="/plan-estudios/economia" className="mb-4">
+          <div className="group flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+            <Link
+              to="/plan-estudios/economia"
+              className="mb-4 transition-colors group-hover:text-teal-700"
+            >
               <h3 className="mb-2 text-xl font-bold text-teal-800">Economía</h3>
               <p className="text-lg font-semibold text-teal-600">45 ECTS</p>
             </Link>
             <div className="mt-4 space-y-3">
               <Link
                 to="/materias/teoria-economica"
-                className="block rounded-md border border-teal-100 bg-teal-50 p-3 transition-all hover:border-teal-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-teal-100 bg-teal-50 p-3 transition-all hover:-translate-y-0.5 hover:border-teal-300 hover:bg-teal-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-teal-700">
+                <span className="block font-semibold text-teal-700 group-hover/item:text-teal-800">
                   Teoría económica
                 </span>
                 <span className="text-sm text-teal-600">18 ECTS</span>
               </Link>
               <Link
                 to="/materias/economia-aplicada"
-                className="block rounded-md border border-teal-100 bg-teal-50 p-3 transition-all hover:border-teal-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-teal-100 bg-teal-50 p-3 transition-all hover:-translate-y-0.5 hover:border-teal-300 hover:bg-teal-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-teal-700">
+                <span className="block font-semibold text-teal-700 group-hover/item:text-teal-800">
                   Economía aplicada
                 </span>
                 <span className="text-sm text-teal-600">27 ECTS</span>
@@ -241,8 +247,11 @@ const Home: React.FC = () => {
           </div>
 
           {/* Módulo: Formación complementaria */}
-          <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
-            <Link to="/plan-estudios/formacion-complementaria" className="mb-4">
+          <div className="group flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+            <Link
+              to="/plan-estudios/formacion-complementaria"
+              className="mb-4 transition-colors group-hover:text-purple-700"
+            >
               <h3 className="mb-2 text-xl font-bold text-purple-800">
                 Formación complementaria
               </h3>
@@ -251,9 +260,9 @@ const Home: React.FC = () => {
             <div className="mt-4 space-y-3">
               <Link
                 to="/materias/formacion-especifica-complementaria"
-                className="block rounded-md border border-purple-100 bg-purple-50 p-3 transition-all hover:border-purple-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-purple-100 bg-purple-50 p-3 transition-all hover:-translate-y-0.5 hover:border-purple-300 hover:bg-purple-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-purple-700">
+                <span className="block font-semibold text-purple-700 group-hover/item:text-purple-800">
                   Formación específica complementaria
                 </span>
                 <span className="text-sm text-purple-600">60 ECTS</span>
@@ -262,10 +271,10 @@ const Home: React.FC = () => {
           </div>
 
           {/* Módulo: Integración interdisciplinar */}
-          <div className="flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
+          <div className="group flex flex-col rounded-lg bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
             <Link
               to="/plan-estudios/integracion-interdisciplinar"
-              className="mb-4"
+              className="mb-4 transition-colors group-hover:text-green-700"
             >
               <h3 className="mb-2 text-xl font-bold text-green-800">
                 Integración interdisciplinar
@@ -275,18 +284,18 @@ const Home: React.FC = () => {
             <div className="mt-4 space-y-3">
               <Link
                 to="/materias/seminarios-interdisciplinares"
-                className="block rounded-md border border-green-100 bg-green-50 p-3 transition-all hover:border-green-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-green-100 bg-green-50 p-3 transition-all hover:-translate-y-0.5 hover:border-green-300 hover:bg-green-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-green-700">
+                <span className="block font-semibold text-green-700 group-hover/item:text-green-800">
                   Seminarios interdisciplinares
                 </span>
                 <span className="text-sm text-green-600">9 ECTS</span>
               </Link>
               <Link
                 to="/materias/trabajo-fin-de-grado"
-                className="block rounded-md border border-green-100 bg-green-50 p-3 transition-all hover:border-green-200 hover:shadow-sm"
+                className="group/item block rounded-md border border-green-100 bg-green-50 p-3 transition-all hover:-translate-y-0.5 hover:border-green-300 hover:bg-green-100 hover:shadow-md"
               >
-                <span className="block font-semibold text-green-700">
+                <span className="block font-semibold text-green-700 group-hover/item:text-green-800">
                   Trabajo fin de grado
                 </span>
                 <span className="text-sm text-green-600">12 ECTS</span>
@@ -301,7 +310,7 @@ const Home: React.FC = () => {
         <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-gray-800 to-gray-900 shadow-lg">
           <div className="px-6 py-12 text-white md:px-12 md:py-16">
             <h2 className="mb-4 text-3xl font-bold">
-              Título oficial verificado por ANECA
+              Título oficial verificado por la ANECA
             </h2>
             <p className="mb-6 max-w-2xl text-gray-300">
               Toda la información académica disponible en este portal

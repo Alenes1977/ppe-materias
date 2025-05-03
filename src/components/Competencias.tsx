@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import data from '../data/ppe.json';
 import BackButton from './BackButton';
+import { Link } from 'react-router-dom';
 
 // Función para contar las asignaturas que tienen cada competencia
 const contarAsignaturasConCompetencia = (competenciaId: string): number => {
@@ -75,7 +76,10 @@ const CompetenciaCard: React.FC<{
     }[color] || 'bg-blue-50 text-blue-700 border-blue-200';
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+    <Link
+      to={`/competencias/${competencia.id}`}
+      className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+    >
       {/* Identificador y contador de asignaturas */}
       <div className="mb-4 flex items-center justify-between">
         <div
@@ -99,7 +103,7 @@ const CompetenciaCard: React.FC<{
       <div className="mt-auto">
         <div className="mb-2 flex items-center justify-between text-sm">
           <span className="font-medium text-gray-700">
-            Presencia en el plan
+            Presencia en el plan de estudios
           </span>
           <span className={`font-medium ${color.replace('bg-', 'text-')}`}>
             {Math.round(porcentajeAsignaturas)}%
@@ -112,7 +116,7 @@ const CompetenciaCard: React.FC<{
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -152,7 +156,7 @@ const Competencias: React.FC = () => {
     {
       id: 'básicas',
       nombre: 'Básicas',
-      color: 'bg-blue-500',
+      color: 'bg-blue-600',
       icon: faLayerGroup,
       descripcion:
         'Competencias fundamentales comunes a todos los grados universitarios',
@@ -160,7 +164,7 @@ const Competencias: React.FC = () => {
     {
       id: 'generales',
       nombre: 'Generales',
-      color: 'bg-indigo-500',
+      color: 'bg-indigo-600',
       icon: faGraduationCap,
       descripcion:
         'Habilidades generales desarrolladas específicamente en este grado',
@@ -168,14 +172,14 @@ const Competencias: React.FC = () => {
     {
       id: 'específicas',
       nombre: 'Específicas',
-      color: 'bg-purple-500',
+      color: 'bg-purple-600',
       icon: faBullseye,
       descripcion: 'Competencias propias de la disciplina y ámbito de estudio',
     },
     {
       id: 'transversales',
       nombre: 'Transversales',
-      color: 'bg-teal-500',
+      color: 'bg-teal-600',
       icon: faBook,
       descripcion:
         'Habilidades interdisciplinares aplicables en diversos contextos',

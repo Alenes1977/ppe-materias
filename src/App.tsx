@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Asignaturas from './components/Asignaturas';
 import Competencias from './components/Competencias';
+import CompetenciaDetalle from './components/CompetenciaDetalle';
 import Materia from './components/Materia';
 import Materias from './components/Materias';
 import Modulo from './components/Modulo';
@@ -76,6 +77,7 @@ const App: React.FC = () => {
             <Route path="/materias" element={<Materias />} />
             <Route path="/materias/:materiaSlug" element={<Materia />} />
             <Route path="/competencias" element={<Competencias />} />
+            <Route path="/competencias/:id" element={<CompetenciaDetalle />} />
           </Routes>
         </main>
         <Footer />

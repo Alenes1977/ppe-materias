@@ -2,24 +2,52 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { generateSlug } from '../utils/stringUtils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faLayerGroup,
+  faBook,
+  faChevronRight,
+  faCalendarAlt,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Materias: React.FC = () => {
-  const materiasInfo = useMemo(() => {
-    return data.modulos.flatMap((modulo) =>
-      modulo.materias.map((materia) => ({
+  const modulosInfo = useMemo(() => {
+    return data.modulos.map((modulo) => ({
+      ...modulo,
+      materias: modulo.materias.map((materia) => ({
         ...materia,
-        modulo: modulo.nombre,
-        asignaturasCount: materia.asignaturas.length,
+        totalECTS: materia.asignaturas.reduce(
+          (sum, asig) => sum + asig.ects,
+          0,
+        ),
+        asignaturasPorCurso: materia.asignaturas
+          .reduce(
+            (acc, asig) => {
+              const curso = acc.find((c) => c.curso === asig.curso);
+              if (curso) {
+                curso.asignaturas.push(asig);
+              } else {
+                acc.push({ curso: asig.curso, asignaturas: [asig] });
+              }
+              return acc;
+            },
+            [] as { curso: string; asignaturas: typeof materia.asignaturas }[],
+          )
+          .sort((a, b) => Number(a.curso) - Number(b.curso)),
       })),
-    );
+    }));
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <div className="container mx-auto px-4 py-14">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="container mx-auto px-4 pb-14 pt-24">
         {/* Encabezado */}
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+          <div className="mb-8 inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800">
+            <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
+            Materias del plan de estudios
+          </div>
+          <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
             Materias del Grado
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
@@ -29,48 +57,89 @@ const Materias: React.FC = () => {
           </p>
         </div>
 
-        {/* Grid de materias */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {materiasInfo.map((materia, index) => (
+        {/* Lista de módulos y sus materias */}
+        {modulosInfo.map((modulo, index) => (
+          <div key={index} className="mb-12 last:mb-0">
             <Link
-              key={index}
-              to={`/materias/${generateSlug(materia.nombre)}`}
-              className="group rounded-xl bg-white p-6 shadow-lg transition-all hover:shadow-xl"
+              to={`/plan-estudios/${generateSlug(modulo.nombre)}`}
+              className="group mb-6 inline-flex items-center"
             >
-              <div className="mb-4">
-                <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
-                  {materia.modulo}
-                </span>
-              </div>
-              <h2 className="mb-3 text-xl font-bold text-gray-800 group-hover:text-blue-600">
-                {materia.nombre}
+              <h2 className="text-xl font-bold text-gray-800 group-hover:text-blue-600">
+                {modulo.nombre}
               </h2>
-              <div className="flex items-center justify-between text-sm text-gray-600">
-                <span>{materia.asignaturasCount} asignaturas</span>
-                <span className="rounded-full bg-gray-100 px-3 py-1">
-                  Ver detalles →
-                </span>
-              </div>
-
-              {/* Preview de asignaturas */}
-              <div className="mt-4 space-y-2">
-                {materia.asignaturas.slice(0, 2).map((asignatura, idx) => (
-                  <div
-                    key={idx}
-                    className="text-sm text-gray-500 group-hover:text-gray-700"
-                  >
-                    • {asignatura.nombre}
-                  </div>
-                ))}
-                {materia.asignaturas.length > 2 && (
-                  <div className="text-sm text-blue-500">
-                    Y {materia.asignaturas.length - 2} más...
-                  </div>
-                )}
-              </div>
+              <span className="ml-3 inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
+                {modulo.ects} ECTS
+              </span>
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                className="ml-2 transform text-blue-600 transition-transform group-hover:translate-x-1"
+              />
             </Link>
-          ))}
-        </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {modulo.materias.map((materia, mIndex) => (
+                <Link
+                  key={mIndex}
+                  to={`/materias/${generateSlug(materia.nombre)}`}
+                  className="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+                >
+                  <div className="mb-4 flex items-center justify-between border-b border-gray-100 pb-4">
+                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-blue-600">
+                      {materia.nombre}
+                    </h3>
+                    <span className="ml-4 shrink-0 rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800">
+                      {materia.totalECTS} ECTS
+                    </span>
+                  </div>
+
+                  {/* Lista compacta de asignaturas por curso */}
+                  <div className="flex-1 space-y-3">
+                    {materia.asignaturasPorCurso.map((curso, idx) => (
+                      <div key={idx} className="rounded-lg bg-gray-50 p-3">
+                        <div className="mb-2 flex items-center text-sm font-medium text-gray-700">
+                          <FontAwesomeIcon
+                            icon={faCalendarAlt}
+                            className="mr-2 text-blue-500"
+                          />
+                          {curso.curso}º Curso
+                        </div>
+                        <div className="grid gap-2">
+                          {curso.asignaturas.map((asignatura, aIdx) => (
+                            <div
+                              key={aIdx}
+                              className="flex items-center justify-between text-sm"
+                            >
+                              <div className="flex items-center text-gray-600">
+                                <FontAwesomeIcon
+                                  icon={faBook}
+                                  className="mr-2 text-blue-400"
+                                  style={{ fontSize: '0.75rem' }}
+                                />
+                                {asignatura.nombre}
+                              </div>
+                              <span className="ml-2 shrink-0 whitespace-nowrap text-xs text-gray-500">
+                                {asignatura.ects} ECTS
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Botón de ver más */}
+                  <div className="mt-4 flex items-center justify-end border-t border-gray-100 pt-4 text-sm font-medium text-blue-600">
+                    Ver detalle
+                    <FontAwesomeIcon
+                      icon={faChevronRight}
+                      className="ml-2 transform transition-transform group-hover:translate-x-1"
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

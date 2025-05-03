@@ -26,37 +26,37 @@ const Header: React.FC = () => {
     <header className="fixed left-0 top-0 z-50 w-full bg-white shadow-md">
       {/* Contenedor grid para las tres secciones */}
       <div
-        className="mx-auto grid grid-cols-12 items-center gap-4 px-4 py-3 sm:px-6 lg:px-8"
+        className="mx-auto grid grid-cols-12 items-center px-4 py-2"
         style={{ maxWidth: '1400px' }}
       >
         {/* Sección Izquierda: Breadcrumbs (visible solo en pantallas medianas y grandes) */}
-        <div className="col-span-5 hidden justify-self-start lg:block">
+        <div className="col-span-5 hidden justify-self-start md:block">
           <Breadcrumb />
         </div>
 
         {/* Botón de menú móvil (visible solo en pantallas pequeñas) */}
-        <div className="col-span-3 justify-self-start lg:hidden">
+        <div className="col-span-2 justify-self-start md:hidden">
           <button
-            className="rounded-md p-2 hover:bg-gray-100"
+            className="rounded-md p-1 hover:bg-gray-100"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menú principal"
           >
             <FontAwesomeIcon
               icon={menuOpen ? faTimes : faBars}
-              className="text-xl text-gray-600"
+              className="text-lg text-gray-600"
             />
           </button>
         </div>
 
-        {/* Sección Central: Título - adaptativo según tamaño */}
-        <div className="col-span-6 justify-self-center text-center lg:col-span-2">
+        {/* Sección Central: Solo Título - siempre centrado en el grid */}
+        <div className="col-span-5 justify-self-center md:col-span-2">
           <a
             href="/"
             onClick={handleNavigation('/')}
-            className="inline-flex items-center space-x-2"
+            className="flex items-center space-x-3"
           >
             <span
-              className="font-poppins whitespace-nowrap text-base font-bold sm:text-lg"
+              className="text-primary-blue font-poppins self-center whitespace-nowrap text-sm font-bold md:text-lg"
               style={{ color: PRIMARY_BLUE }}
             >
               Grado en PPE
@@ -65,12 +65,12 @@ const Header: React.FC = () => {
         </div>
 
         {/* Sección Derecha: Navegación Principal (visible solo en pantallas medianas y grandes) */}
-        <div className="col-span-3 hidden justify-self-end lg:col-span-5 lg:block">
-          <nav className="flex items-center justify-end space-x-4 text-sm font-medium">
+        <div className="col-span-3 hidden justify-self-end md:col-span-4 md:block">
+          <nav className="flex items-center space-x-2 text-xs font-medium">
             <a
               href="/asignaturas"
               onClick={handleNavigation('/asignaturas')}
-              className={`flex items-center rounded-md px-3 py-2 transition-all duration-300 ${
+              className={`flex items-center rounded-md px-2 py-1 transition-all duration-300 ${
                 location.pathname === '/asignaturas' ||
                 location.pathname.startsWith('/asignaturas/')
                   ? 'bg-blue-50 font-semibold shadow-sm'
@@ -80,7 +80,9 @@ const Header: React.FC = () => {
                 location.pathname === '/asignaturas' ||
                 location.pathname.startsWith('/asignaturas/')
                   ? { color: PRIMARY_BLUE }
-                  : { color: 'rgba(156, 163, 175, 1)' }
+                  : {
+                      color: 'rgba(156, 163, 175, 1)', // Gris más claro
+                    }
               }
               onMouseEnter={(e) => {
                 if (
@@ -106,10 +108,13 @@ const Header: React.FC = () => {
               Asignaturas
             </a>
 
+            {/* Separador visual */}
+            <span className="text-gray-200">|</span>
+
             <a
               href="/plan-estudios"
               onClick={handleNavigation('/plan-estudios')}
-              className={`flex items-center rounded-md px-3 py-2 transition-all duration-300 ${
+              className={`flex items-center rounded-md px-2 py-1 transition-all duration-300 ${
                 location.pathname === '/plan-estudios' ||
                 location.pathname.startsWith('/plan-estudios/')
                   ? 'bg-blue-50 font-semibold shadow-sm'
@@ -119,7 +124,9 @@ const Header: React.FC = () => {
                 location.pathname === '/plan-estudios' ||
                 location.pathname.startsWith('/plan-estudios/')
                   ? { color: PRIMARY_BLUE }
-                  : { color: 'rgba(156, 163, 175, 1)' }
+                  : {
+                      color: 'rgba(156, 163, 175, 1)', // Gris más claro
+                    }
               }
               onMouseEnter={(e) => {
                 if (
@@ -145,10 +152,13 @@ const Header: React.FC = () => {
               Plan de Estudios
             </a>
 
+            {/* Separador visual */}
+            <span className="text-gray-200">|</span>
+
             <a
               href="/competencias"
               onClick={handleNavigation('/competencias')}
-              className={`flex items-center rounded-md px-3 py-2 transition-all duration-300 ${
+              className={`flex items-center rounded-md px-2 py-1 transition-all duration-300 ${
                 location.pathname === '/competencias'
                   ? 'bg-blue-50 font-semibold shadow-sm'
                   : 'border border-gray-200 bg-white hover:-translate-y-0.5 hover:transform hover:border-blue-200 hover:bg-blue-50/70 hover:shadow-sm'
@@ -156,7 +166,9 @@ const Header: React.FC = () => {
               style={
                 location.pathname === '/competencias'
                   ? { color: PRIMARY_BLUE }
-                  : { color: 'rgba(156, 163, 175, 1)' }
+                  : {
+                      color: 'rgba(156, 163, 175, 1)', // Gris más claro
+                    }
               }
               onMouseEnter={(e) => {
                 if (!(location.pathname === '/competencias')) {
@@ -175,30 +187,30 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Menú móvil desplegable */}
+      {/* Menú móvil desplegable (visible solo cuando menuOpen es true) */}
       {menuOpen && (
-        <div className="border-t bg-white shadow-lg lg:hidden">
-          <div className="mx-auto max-w-7xl space-y-3 px-4 py-4 sm:px-6">
+        <div className="mt-2 border-t bg-white py-2 shadow-inner md:hidden">
+          <div className="px-4 py-2">
             {/* Breadcrumbs en versión móvil */}
-            <Breadcrumb isMobile />
+            <Breadcrumb isMobile className="mb-3" />
 
             {/* Enlaces de navegación en versión móvil */}
-            <nav className="mt-4 flex flex-col space-y-2">
+            <div className="mt-4 flex flex-col space-y-2">
               <a
                 href="/asignaturas"
                 onClick={handleNavigation('/asignaturas')}
-                className={`w-full rounded-md px-4 py-3 text-center transition-colors ${
+                className={`rounded-md px-3 py-2 ${
                   location.pathname === '/asignaturas' ||
                   location.pathname.startsWith('/asignaturas/')
                     ? 'bg-blue-50 font-semibold'
-                    : 'border border-gray-200 hover:bg-gray-50'
+                    : 'border border-gray-200'
                 }`}
                 style={{
                   color:
                     location.pathname === '/asignaturas' ||
                     location.pathname.startsWith('/asignaturas/')
                       ? PRIMARY_BLUE
-                      : 'rgba(75, 85, 99, 1)',
+                      : 'rgba(156, 163, 175, 1)', // Gris más claro
                 }}
               >
                 Asignaturas
@@ -207,18 +219,18 @@ const Header: React.FC = () => {
               <a
                 href="/plan-estudios"
                 onClick={handleNavigation('/plan-estudios')}
-                className={`w-full rounded-md px-4 py-3 text-center transition-colors ${
+                className={`rounded-md px-3 py-2 ${
                   location.pathname === '/plan-estudios' ||
                   location.pathname.startsWith('/plan-estudios/')
                     ? 'bg-blue-50 font-semibold'
-                    : 'border border-gray-200 hover:bg-gray-50'
+                    : 'border border-gray-200'
                 }`}
                 style={{
                   color:
                     location.pathname === '/plan-estudios' ||
                     location.pathname.startsWith('/plan-estudios/')
                       ? PRIMARY_BLUE
-                      : 'rgba(75, 85, 99, 1)',
+                      : 'rgba(156, 163, 175, 1)', // Gris más claro
                 }}
               >
                 Plan de Estudios
@@ -227,21 +239,21 @@ const Header: React.FC = () => {
               <a
                 href="/competencias"
                 onClick={handleNavigation('/competencias')}
-                className={`w-full rounded-md px-4 py-3 text-center transition-colors ${
+                className={`rounded-md px-3 py-2 ${
                   location.pathname === '/competencias'
                     ? 'bg-blue-50 font-semibold'
-                    : 'border border-gray-200 hover:bg-gray-50'
+                    : 'border border-gray-200'
                 }`}
                 style={{
                   color:
                     location.pathname === '/competencias'
                       ? PRIMARY_BLUE
-                      : 'rgba(75, 85, 99, 1)',
+                      : 'rgba(156, 163, 175, 1)', // Gris más claro
                 }}
               >
                 Competencias
               </a>
-            </nav>
+            </div>
           </div>
         </div>
       )}

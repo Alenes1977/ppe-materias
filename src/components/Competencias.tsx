@@ -78,30 +78,30 @@ const CompetenciaCard: React.FC<{
   return (
     <Link
       to={`/competencias/${competencia.id}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg sm:p-6"
     >
       {/* Identificador y contador de asignaturas */}
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between sm:mb-4">
         <div
-          className={`rounded-lg ${color} px-3 py-1.5 text-sm font-bold text-white`}
+          className={`rounded-lg ${color} px-2 py-1 text-xs font-bold text-white sm:px-3 sm:py-1.5 sm:text-sm`}
         >
           {competencia.id}
         </div>
         <div
-          className={`rounded-full ${colorClasses} border px-3 py-1 text-sm font-medium`}
+          className={`rounded-full ${colorClasses} border px-2 py-1 text-xs font-medium sm:px-3`}
         >
           {competencia.numAsignaturas} asignaturas
         </div>
       </div>
 
       {/* Descripción */}
-      <p className="mb-6 flex-grow text-sm leading-relaxed text-gray-600">
+      <p className="mb-4 flex-grow text-xs leading-relaxed text-gray-600 sm:mb-6 sm:text-sm">
         {competencia.descripcion}
       </p>
 
       {/* Barra de progreso */}
       <div className="mt-auto">
-        <div className="mb-2 flex items-center justify-between text-sm">
+        <div className="mb-1.5 flex items-center justify-between text-xs sm:mb-2 sm:text-sm">
           <span className="font-medium text-gray-700">
             Presencia en el plan de estudios
           </span>
@@ -109,7 +109,7 @@ const CompetenciaCard: React.FC<{
             {Math.round(porcentajeAsignaturas)}%
           </span>
         </div>
-        <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 sm:h-2">
           <div
             className={`h-full ${color} transition-all duration-300`}
             style={{ width: `${porcentajeAsignaturas}%` }}
@@ -188,22 +188,22 @@ const Competencias: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 pb-14 pt-24">
+      <div className="container mx-auto px-4 pb-8 pt-20 sm:pb-14 sm:pt-24">
         {/* Navegación */}
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
           <BackButton to="/" />
         </div>
 
         {/* Cabecera */}
-        <div className="mb-12 text-center">
-          <div className="mb-8 inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800">
+        <div className="mb-8 text-center sm:mb-12">
+          <div className="mb-6 inline-block rounded-full bg-blue-100 px-3 py-1.5 text-xs font-semibold text-blue-800 sm:mb-8 sm:px-4 sm:py-2 sm:text-sm">
             <FontAwesomeIcon icon={faChartLine} className="mr-2" />
             Competencias y resultados de aprendizaje
           </div>
-          <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
+          <h1 className="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-4xl md:text-5xl">
             Competencias del Grado
           </h1>
-          <p className="mx-auto max-w-3xl text-lg text-gray-600">
+          <p className="mx-auto max-w-3xl text-sm text-gray-600 sm:text-lg">
             Explora las {stats.total} competencias que se desarrollan en el
             programa formativo, organizadas por categorías y vinculadas a las
             asignaturas del plan de estudios.
@@ -211,41 +211,46 @@ const Competencias: React.FC = () => {
         </div>
 
         {/* Estadísticas */}
-        <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {categorias.map((cat) => (
             <div
               key={cat.id}
-              className="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+              className="group flex flex-col rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg sm:p-6"
             >
               <div className="mb-2 flex items-center justify-between">
                 <FontAwesomeIcon
                   icon={cat.icon}
-                  className={`text-2xl ${cat.color.replace('bg-', 'text-')}`}
+                  className={`text-xl ${cat.color.replace(
+                    'bg-',
+                    'text-',
+                  )} sm:text-2xl`}
                 />
                 <span
-                  className={`rounded-full ${cat.color} px-3 py-1 text-sm font-bold text-white`}
+                  className={`rounded-full ${cat.color} px-2 py-1 text-xs font-bold text-white sm:px-3`}
                 >
                   {stats[cat.id]}
                 </span>
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-gray-800">
+              <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
                 {cat.nombre}
               </h3>
-              <p className="text-sm text-gray-600">{cat.descripcion}</p>
+              <p className="text-xs text-gray-600 sm:text-sm">
+                {cat.descripcion}
+              </p>
             </div>
           ))}
         </div>
 
         {/* Tabs de navegación */}
-        <div className="mb-8">
-          <div className="rounded-xl border border-gray-200 bg-white p-1">
-            <nav className="flex space-x-1">
+        <div className="mb-6 sm:mb-8">
+          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white p-1">
+            <nav className="flex min-w-max space-x-1">
               {categorias.map((categoria) => (
                 <button
                   key={categoria.id}
                   onClick={() => setCategoriaActiva(categoria.id)}
                   className={`
-                    flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium transition-all
+                    flex items-center justify-center gap-1 rounded-lg px-3 py-2 text-xs font-medium transition-all sm:flex-1 sm:gap-2 sm:px-4 sm:py-3 sm:text-sm
                     ${
                       categoriaActiva === categoria.id
                         ? `${categoria.color} text-white shadow-sm`
@@ -254,13 +259,16 @@ const Competencias: React.FC = () => {
                   `}
                 >
                   <FontAwesomeIcon icon={categoria.icon} />
-                  {categoria.nombre}
+                  <span className="hidden sm:inline">{categoria.nombre}</span>
+                  <span className="inline sm:hidden">
+                    {categoria.nombre.slice(0, 3)}
+                  </span>
                   <span
                     className={`rounded-full ${
                       categoriaActiva === categoria.id
                         ? 'bg-white/20 text-white'
                         : 'bg-gray-100 text-gray-600'
-                    } px-2.5 py-0.5 text-xs font-medium`}
+                    } px-1.5 py-0.5 text-xs font-medium sm:px-2.5`}
                   >
                     {stats[categoria.id]}
                   </span>
@@ -271,7 +279,7 @@ const Competencias: React.FC = () => {
         </div>
 
         {/* Grid de competencias */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {competenciasData[categoriaActiva].map((competencia) => (
             <CompetenciaCard
               key={competencia.id}

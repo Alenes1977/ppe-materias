@@ -79,80 +79,80 @@ const CompetenciaDetalle: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 pb-14 pt-24">
+      <div className="container mx-auto px-4 pb-8 pt-20 sm:pb-14 sm:pt-24">
         {/* Navegación */}
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
           <BackButton to="/competencias" label="Volver a competencias" />
         </div>
 
         {/* Cabecera */}
-        <div className="mb-12 text-center">
+        <div className="mb-8 text-center sm:mb-12">
           <div
-            className={`mb-8 inline-block rounded-full bg-${color}-100 px-4 py-2 text-sm font-semibold text-${color}-800`}
+            className={`mb-6 inline-block rounded-full bg-${color}-100 px-3 py-1.5 text-xs font-semibold text-${color}-800 sm:mb-8 sm:px-4 sm:py-2 sm:text-sm`}
           >
             <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
             Competencia {tipo}
           </div>
-          <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
+          <h1 className="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-4xl md:text-5xl">
             {id}
           </h1>
-          <p className="mx-auto max-w-3xl text-lg text-gray-600">
+          <p className="mx-auto max-w-3xl text-sm text-gray-600 sm:text-lg">
             {descripcion}
           </p>
         </div>
 
         {/* Estadísticas */}
-        <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:mb-8 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
           <Link
             to="/asignaturas"
-            className="group rounded-xl border border-green-200 bg-white p-6 text-center transition-all hover:-translate-y-1 hover:bg-green-50 hover:shadow-md"
+            className="group rounded-xl border border-green-200 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:bg-green-50 hover:shadow-md sm:p-6"
           >
-            <div className="mb-2 text-2xl font-bold text-green-600">
+            <div className="mb-1 text-xl font-bold text-green-600 sm:mb-2 sm:text-2xl">
               {asignaturasConCompetencia.length}
             </div>
-            <div className="text-sm text-gray-600 group-hover:text-green-600">
+            <div className="text-xs text-gray-600 group-hover:text-green-600 sm:text-sm">
               Asignaturas
             </div>
           </Link>
           <Link
             to="/materias"
-            className="group rounded-xl border border-purple-200 bg-white p-6 text-center transition-all hover:-translate-y-1 hover:bg-purple-50 hover:shadow-md"
+            className="group rounded-xl border border-purple-200 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:bg-purple-50 hover:shadow-md sm:p-6"
           >
-            <div className="mb-2 text-2xl font-bold text-purple-600">
+            <div className="mb-1 text-xl font-bold text-purple-600 sm:mb-2 sm:text-2xl">
               {new Set(asignaturasConCompetencia.map((a) => a.materia)).size}
             </div>
-            <div className="text-sm text-gray-600 group-hover:text-purple-600">
+            <div className="text-xs text-gray-600 group-hover:text-purple-600 sm:text-sm">
               Materias
             </div>
           </Link>
           <Link
             to="/plan-estudios"
-            className="group rounded-xl border border-blue-200 bg-white p-6 text-center transition-all hover:-translate-y-1 hover:bg-blue-50 hover:shadow-md"
+            className="group rounded-xl border border-blue-200 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:bg-blue-50 hover:shadow-md sm:col-span-2 sm:p-6 md:col-span-1"
           >
-            <div className="mb-2 text-2xl font-bold text-blue-600">
+            <div className="mb-1 text-xl font-bold text-blue-600 sm:mb-2 sm:text-2xl">
               {Object.keys(asignaturasPorModulo).length}
             </div>
-            <div className="text-sm text-gray-600 group-hover:text-blue-600">
+            <div className="text-xs text-gray-600 group-hover:text-blue-600 sm:text-sm">
               Módulos
             </div>
           </Link>
         </div>
 
         {/* Lista de asignaturas por módulo */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {Object.entries(asignaturasPorModulo).map(([modulo, asignaturas]) => (
             <div
               key={modulo}
-              className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
+              className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
             >
               <Link
                 to={`/plan-estudios/${generateSlug(modulo)}`}
-                className="group mb-6 flex items-center"
+                className="group mb-4 flex items-center sm:mb-6"
               >
-                <h2 className="flex items-center text-xl font-bold text-gray-800 group-hover:text-blue-600">
+                <h2 className="flex items-center text-lg font-bold text-gray-800 group-hover:text-blue-600 sm:text-xl">
                   <FontAwesomeIcon
                     icon={faLayerGroup}
-                    className={`mr-3 text-${color}-600 group-hover:text-blue-600`}
+                    className={`mr-2 text-${color}-600 group-hover:text-blue-600 sm:mr-3`}
                   />
                   {modulo}
                 </h2>
@@ -162,17 +162,17 @@ const CompetenciaDetalle: React.FC = () => {
                 />
               </Link>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
                 {asignaturas.map((asignatura, index) => (
                   <Link
                     key={index}
                     to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
-                    className="group flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 transition-all hover:border-blue-200 hover:bg-blue-50"
+                    className="group flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
                   >
-                    <h3 className="mb-2 font-medium text-gray-800 group-hover:text-blue-600">
+                    <h3 className="mb-2 text-sm font-medium text-gray-800 group-hover:text-blue-600 sm:text-base">
                       {asignatura.nombre}
                     </h3>
-                    <div className="mt-auto flex flex-wrap gap-2 text-sm">
+                    <div className="mt-auto flex flex-wrap gap-2">
                       <span
                         className={`inline-flex items-center rounded-full bg-${color}-100 px-2 py-1 text-xs font-medium text-${color}-800`}
                       >

@@ -196,7 +196,7 @@ const AsignaturaDetalle: React.FC = () => {
                     {asignaturaInfo.competencias.map((competencia, index) => (
                       <Link
                         key={index}
-                        to="/competencias"
+                        to={`/competencias/${competencia}`}
                         className="group relative inline-flex items-center rounded-full bg-gradient-to-r from-blue-50 to-blue-100 px-3 py-1.5 text-xs font-medium text-blue-800 transition-all hover:from-blue-100 hover:to-blue-200 sm:px-4 sm:py-2 sm:text-sm"
                         title={getCompetenciaDescripcion(competencia)}
                       >

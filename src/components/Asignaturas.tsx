@@ -93,9 +93,7 @@ const Asignaturas: React.FC = () => {
     return (
       <Link
         key={asignatura.nombre}
-        to={`/asignaturas/${asignatura.nombre
-          .toLowerCase()
-          .replace(/\s+/g, '-')}`}
+        to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
         className={`group flex flex-col rounded-lg border border-gray-200 ${
           courseColors[asignatura.curso.toString()]
         } p-4 shadow-sm transition-all hover:border-blue-300 hover:shadow-lg`}
@@ -123,9 +121,7 @@ const Asignaturas: React.FC = () => {
             {asignatura.modulo}
           </Link>
           <Link
-            to={`/materias/${asignatura.materia
-              .toLowerCase()
-              .replace(/\s+/g, '-')}`}
+            to={`/materias/${generateSlug(asignatura.materia)}`}
             className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 hover:bg-purple-100"
             onClick={(e) => e.stopPropagation()}
           >

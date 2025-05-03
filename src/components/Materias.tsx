@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/ppe.json';
+import { generateSlug } from '../utils/stringUtils';
 
 const Materias: React.FC = () => {
   const materiasInfo = useMemo(() => {
@@ -33,9 +34,7 @@ const Materias: React.FC = () => {
           {materiasInfo.map((materia, index) => (
             <Link
               key={index}
-              to={`/materias/${materia.nombre
-                .replace(/\s+/g, '-')
-                .toLowerCase()}`}
+              to={`/materias/${generateSlug(materia.nombre)}`}
               className="group rounded-xl bg-white p-6 shadow-lg transition-all hover:shadow-xl"
             >
               <div className="mb-4">

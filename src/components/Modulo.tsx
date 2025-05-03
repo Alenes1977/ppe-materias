@@ -12,6 +12,25 @@ import {
   faCalendarAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
+// Función para ordenar asignaturas por curso y semestre
+const ordenarAsignaturas = (asignaturas: any[]) => {
+  return [...asignaturas].sort((a, b) => {
+    // Primero ordenar por curso
+    if (a.curso !== b.curso) {
+      return parseInt(a.curso) - parseInt(b.curso);
+    }
+
+    // Si son del mismo curso, ordenar por semestre
+    // Orden: anual -> primer semestre -> segundo semestre
+    const ordenSemestre = (sem: string) => {
+      if (sem === 'anual') return 0;
+      return parseInt(sem);
+    };
+
+    return ordenSemestre(a.semestre) - ordenSemestre(b.semestre);
+  });
+};
+
 const Modulo: React.FC = () => {
   const { moduloSlug } = useParams<{ moduloSlug: string }>();
 
@@ -77,74 +96,125 @@ const Modulo: React.FC = () => {
             >
               {/* Cabecera de la materia */}
               <div className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white p-6">
-                <Link
-                  to={`/materias/${generateSlug(materia.nombre)}`}
-                  className="group"
-                >
-                  <h2 className="mb-4 text-xl font-bold text-gray-800 group-hover:text-blue-600">
-                    {materia.nombre}
-                  </h2>
-                </Link>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <div className="rounded-lg bg-blue-50 p-3">
-                    <p className="text-sm text-blue-600">ECTS Básicos</p>
-                    <p className="text-lg font-semibold text-blue-800">
-                      {materia['ECTS-basicos']}
-                    </p>
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  {/* Título de la materia */}
+                  <div>
+                    <div className="mb-2 inline-block rounded-full bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-800">
+                      <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
+                      Materia
+                    </div>
+                    <Link
+                      to={`/materias/${generateSlug(materia.nombre)}`}
+                      className="group"
+                    >
+                      <h2 className="text-xl font-bold text-gray-800 group-hover:text-blue-600">
+                        {materia.nombre}
+                      </h2>
+                    </Link>
                   </div>
-                  <div className="rounded-lg bg-green-50 p-3">
-                    <p className="text-sm text-green-600">ECTS Obligatorios</p>
-                    <p className="text-lg font-semibold text-green-800">
-                      {materia['ECTS-obligatorios']}
-                    </p>
-                  </div>
-                  <div className="rounded-lg bg-purple-50 p-3">
-                    <p className="text-sm text-purple-600">ECTS Optativos</p>
-                    <p className="text-lg font-semibold text-purple-800">
-                      {materia['ECTS-optativos']}
-                    </p>
+
+                  {/* Información de créditos */}
+                  <div className="flex flex-wrap items-center gap-3">
+                    {/* Créditos totales */}
+                    <div className="rounded-lg bg-indigo-100 px-4 py-2">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-2xl font-bold text-indigo-900">
+                          {parseInt(materia['ECTS-basicos'] || '0') +
+                            parseInt(materia['ECTS-obligatorios'] || '0') +
+                            parseInt(materia['ECTS-optativos'] || '0')}
+                        </span>
+                        <span className="text-sm font-medium text-indigo-800">
+                          ECTS totales
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="h-8 w-px bg-gray-200"></div>
+
+                    {/* Distribución de créditos */}
+                    <div className="flex gap-2">
+                      <div className="rounded-lg bg-blue-50 px-3 py-2">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-lg font-semibold text-blue-800">
+                            {materia['ECTS-basicos'] || '0'}
+                          </span>
+                          <span className="text-xs text-blue-600">básicos</span>
+                        </div>
+                      </div>
+                      <div className="rounded-lg bg-green-50 px-3 py-2">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-lg font-semibold text-green-800">
+                            {materia['ECTS-obligatorios'] || '0'}
+                          </span>
+                          <span className="text-xs text-green-600">
+                            obligatorios
+                          </span>
+                        </div>
+                      </div>
+                      <div className="rounded-lg bg-purple-50 px-3 py-2">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-lg font-semibold text-purple-800">
+                            {materia['ECTS-optativos'] || '0'}
+                          </span>
+                          <span className="text-xs text-purple-600">
+                            optativos
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Lista de asignaturas */}
-              <div className="divide-y divide-gray-100 bg-white">
-                {materia.asignaturas.map((asignatura, idx) => (
-                  <Link
-                    key={idx}
-                    to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
-                    className="flex flex-col gap-2 p-4 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <span className="font-medium text-gray-700">
-                      {asignatura.nombre}
-                    </span>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-800">
-                        <FontAwesomeIcon
-                          icon={faChalkboardTeacher}
-                          className="mr-1.5"
-                        />
-                        {asignatura.curso}º curso
-                      </span>
-                      <span className="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-1 text-xs font-medium text-purple-800">
-                        <FontAwesomeIcon
-                          icon={faCalendarAlt}
-                          className="mr-1.5"
-                        />
-                        {asignatura.semestre === 'anual'
-                          ? 'Anual'
-                          : `${asignatura.semestre}º semestre`}
-                      </span>
-                      <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-800">
-                        <FontAwesomeIcon
-                          icon={faLayerGroup}
-                          className="mr-1.5"
-                        />
-                        {asignatura.ects} ECTS
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+              <div className="divide-y divide-gray-100 bg-white p-6">
+                <h3 className="mb-4 text-lg font-semibold text-gray-700">
+                  <FontAwesomeIcon
+                    icon={faBookOpen}
+                    className="mr-2 text-blue-600"
+                  />
+                  Asignaturas de la materia
+                </h3>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {ordenarAsignaturas(materia.asignaturas).map(
+                    (asignatura, idx) => (
+                      <Link
+                        key={idx}
+                        to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
+                        className="group flex flex-col rounded-lg border border-gray-200 bg-gradient-to-br from-white to-blue-50 p-4 transition-all hover:border-blue-300 hover:shadow-md"
+                      >
+                        <h4 className="mb-3 text-base font-semibold text-gray-800 group-hover:text-blue-600">
+                          {asignatura.nombre}
+                        </h4>
+                        <div className="mt-auto flex flex-wrap gap-2">
+                          <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-800">
+                            <FontAwesomeIcon
+                              icon={faChalkboardTeacher}
+                              className="mr-1.5"
+                            />
+                            {asignatura.curso}º curso
+                          </span>
+                          <span className="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-1 text-xs font-medium text-purple-800">
+                            <FontAwesomeIcon
+                              icon={faCalendarAlt}
+                              className="mr-1.5"
+                            />
+                            {asignatura.semestre === 'anual'
+                              ? 'Anual'
+                              : `${asignatura.semestre}º semestre`}
+                          </span>
+                          <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-800">
+                            <FontAwesomeIcon
+                              icon={faLayerGroup}
+                              className="mr-1.5"
+                            />
+                            {asignatura.ects} ECTS
+                          </span>
+                        </div>
+                      </Link>
+                    ),
+                  )}
+                </div>
               </div>
             </div>
           ))}

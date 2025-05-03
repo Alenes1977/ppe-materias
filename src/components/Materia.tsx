@@ -11,6 +11,7 @@ import {
   faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
+import { generateSlug } from '../utils/stringUtils';
 
 interface MateriaInfo {
   nombre: string;
@@ -42,7 +43,7 @@ const Materia: React.FC = () => {
     // Encontrar la materia y su módulo correspondiente
     for (const modulo of data.modulos) {
       const materia = modulo.materias.find(
-        (m) => m.nombre.replace(/\s+/g, '-').toLowerCase() === materiaSlug,
+        (m) => generateSlug(m.nombre) === materiaSlug,
       );
       if (materia) {
         return {
@@ -97,9 +98,7 @@ const Materia: React.FC = () => {
           </h1>
           <div className="mx-auto flex max-w-2xl flex-wrap items-center justify-center gap-4">
             <Link
-              to={`/plan-estudios/${materiaInfo.modulo
-                .replace(/\s+/g, '-')
-                .toLowerCase()}`}
+              to={`/plan-estudios/${generateSlug(materiaInfo.modulo)}`}
               className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 transition-all hover:bg-blue-200"
             >
               <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
@@ -131,9 +130,7 @@ const Materia: React.FC = () => {
                 {materiaInfo.asignaturas.map((asignatura) => (
                   <Link
                     key={asignatura.nombre}
-                    to={`/asignaturas/${asignatura.nombre
-                      .replace(/\s+/g, '-')
-                      .toLowerCase()}`}
+                    to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
                     className="group flex flex-col rounded-lg border border-gray-200 bg-gradient-to-br from-white to-blue-50 p-4 transition-all hover:border-blue-300 hover:shadow-lg"
                   >
                     <h3 className="mb-3 text-lg font-semibold text-gray-800 group-hover:text-blue-600">

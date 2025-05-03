@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import data from '../data/ppe.json';
 import { PRIMARY_BLUE } from '../constants/colors';
+import { generateSlug } from '../utils/stringUtils';
 
 interface BreadcrumbItem {
   label: string;
@@ -18,7 +19,7 @@ const findAsignaturaName = (urlName: string): string => {
   for (const modulo of data.modulos) {
     for (const materia of modulo.materias) {
       const asignatura = materia.asignaturas.find(
-        (a) => a.nombre.toLowerCase().replace(/\s+/g, '-') === decodedUrlName,
+        (a) => generateSlug(a.nombre) === decodedUrlName,
       );
       if (asignatura) {
         return asignatura.nombre;
@@ -35,9 +36,26 @@ const findModuloName = (urlName: string): string => {
   const decodedUrlName = decodeURIComponent(urlName);
 
   const modulo = data.modulos.find(
-    (m) => m.nombre.toLowerCase().replace(/\s+/g, '-') === decodedUrlName,
+    (m) => generateSlug(m.nombre) === decodedUrlName,
   );
   return modulo ? modulo.nombre : decodedUrlName.replace(/-/g, ' ');
+};
+
+// Función para encontrar el nombre real de una materia
+const findMateriaName = (urlName: string): string => {
+  // Decodificamos la URL para manejar caracteres especiales
+  const decodedUrlName = decodeURIComponent(urlName);
+
+  for (const modulo of data.modulos) {
+    const materia = modulo.materias.find(
+      (m) => generateSlug(m.nombre) === decodedUrlName,
+    );
+    if (materia) {
+      return materia.nombre;
+    }
+  }
+  // Si no encontramos la materia, devolvemos el nombre decodificado y formateado
+  return decodedUrlName.replace(/-/g, ' ');
 };
 
 // Función para generar las migas de pan según la ruta actual
@@ -63,6 +81,18 @@ const getBreadcrumbs = (pathname: string): BreadcrumbItem[] => {
       const asignaturaName = findAsignaturaName(pathSegments[1]);
       paths.push({
         label: asignaturaName,
+        path: null,
+      });
+    }
+  } else if (pathname === '/materias') {
+    paths.push({ label: 'Materias', path: null });
+  } else if (pathname.startsWith('/materias/')) {
+    paths.push({ label: 'Materias', path: '/materias' });
+    // El nombre de la materia específica
+    if (pathSegments[1]) {
+      const materiaName = findMateriaName(pathSegments[1]);
+      paths.push({
+        label: materiaName,
         path: null,
       });
     }

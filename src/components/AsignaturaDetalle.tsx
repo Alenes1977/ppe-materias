@@ -12,6 +12,7 @@ import {
   faChartBar,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
+import { generateSlug } from '../utils/stringUtils';
 
 // Tipo para las competencias
 type CompetenciasType = {
@@ -30,7 +31,7 @@ const AsignaturaDetalle: React.FC = () => {
   for (const modulo of data.modulos) {
     for (const materia of modulo.materias) {
       const asignatura = materia.asignaturas.find(
-        (a) => a.nombre.replace(/\s+/g, '-').toLowerCase() === nombre,
+        (a) => generateSlug(a.nombre) === nombre,
       );
 
       if (asignatura) {
@@ -158,9 +159,7 @@ const AsignaturaDetalle: React.FC = () => {
                       Módulo
                     </h3>
                     <Link
-                      to={`/plan-estudios/${moduloInfo.nombre
-                        .replace(/\s+/g, '-')
-                        .toLowerCase()}`}
+                      to={`/plan-estudios/${generateSlug(moduloInfo.nombre)}`}
                       className="mt-1 block rounded-lg bg-blue-50 p-3 text-blue-700 transition-all hover:bg-blue-100"
                     >
                       {moduloInfo.nombre}
@@ -171,9 +170,7 @@ const AsignaturaDetalle: React.FC = () => {
                       Materia
                     </h3>
                     <Link
-                      to={`/materias/${materiaInfo.nombre
-                        .replace(/\s+/g, '-')
-                        .toLowerCase()}`}
+                      to={`/materias/${generateSlug(materiaInfo.nombre)}`}
                       className="mt-1 block rounded-lg bg-purple-50 p-3 text-purple-700 transition-all hover:bg-purple-100"
                     >
                       {materiaInfo.nombre}

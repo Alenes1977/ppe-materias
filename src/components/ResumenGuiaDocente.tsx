@@ -1,6 +1,19 @@
 import React from 'react';
 import { GuiaDocenteData } from './AsistenteGuiaDocente';
 import { AsignaturaProcesada } from '../lib/dataUtils';
+// @ts-expect-error: No existen declaraciones de tipo para pdfmake en build
+import pdfMake from 'pdfmake/build/pdfmake';
+// @ts-expect-error: No existen declaraciones de tipo para vfs_fonts en build
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { generarPDFGuiaDocente } from '../utils/pdfGuiaDocente';
+import ppeData from '../data/ppe.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFilePdf,
+  faFileCode,
+  faRobot,
+} from '@fortawesome/free-solid-svg-icons';
+import { generarHTMLGuiaDocente } from '../utils/htmlGuiaDocente';
 
 interface Props {
   guia: GuiaDocenteData;
@@ -9,6 +22,30 @@ interface Props {
 }
 
 const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
+  const handleDescargarPDF = () => {
+    generarPDFGuiaDocente(guia, asignatura);
+  };
+
+  const handleGenerarHTML = () => {
+    // Genera HTML elegante usando la utilidad
+    const html = generarHTMLGuiaDocente(guia, asignatura);
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `guia-docente.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleValorarIA = () => {
+    // De momento sin funcionalidad
+    alert('Próximamente: valoración automática con IA');
+  };
+
+  const competenciasDict: Record<string, string> = (ppeData as any)
+    .competencias;
+
   return (
     <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-md">
       <h2 className="mb-6 text-center text-2xl font-bold text-blue-900">
@@ -77,7 +114,12 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
         </div>
         <ul className="ml-6 list-disc text-gray-700">
           {asignatura.competencias?.map((c: string, i: number) => (
-            <li key={i}>{c}</li>
+            <li key={i}>
+              <span className="font-bold">{c}:</span>{' '}
+              <span>
+                {competenciasDict[c] || <em>Descripción no encontrada</em>}
+              </span>
+            </li>
           ))}
         </ul>
       </section>
@@ -92,14 +134,14 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
             Editar
           </button>
         </div>
-        <ul className="ml-6 list-decimal text-gray-700">
+        <div className="ml-6 text-gray-700">
           {guia.programa.map((u, i) => (
-            <li key={i}>
+            <div key={i} className="mb-4">
               <b>{u.titulo}</b>
               <div dangerouslySetInnerHTML={{ __html: u.descripcion }} />
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
       {/* Actividades formativas */}
       <section className="mb-6">
@@ -114,14 +156,17 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
             Editar
           </button>
         </div>
-        <ul className="ml-6 list-disc text-gray-700">
+        <div className="ml-6 text-gray-700">
           {guia.actividades.map((a, i) => (
-            <li key={i}>
-              <b>{a.nombre}:</b>{' '}
-              <span dangerouslySetInnerHTML={{ __html: a.descripcion }} />
-            </li>
+            <div key={i} className="mb-4">
+              <div className="font-bold">{a.nombre}</div>
+              <div
+                className="prose ml-6"
+                dangerouslySetInnerHTML={{ __html: a.descripcion }}
+              />
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
       {/* Evaluación */}
       <section className="mb-6">
@@ -134,19 +179,25 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
             Editar
           </button>
         </div>
-        <ul className="ml-6 list-disc text-gray-700">
+        <div className="ml-6 text-gray-700">
           {guia.evaluacion.map((e, i) => (
-            <li key={i}>
-              <b>
+            <div key={i} className="mb-4">
+              <div className="font-bold">
                 {e.tipo} ({e.porcentaje}%)
-              </b>
-              : <span dangerouslySetInnerHTML={{ __html: e.descripcion }} />
-            </li>
+              </div>
+              <div
+                className="prose ml-6"
+                dangerouslySetInnerHTML={{ __html: e.descripcion }}
+              />
+            </div>
           ))}
-        </ul>
-        <div className="mt-2">
-          <b>Convocatoria Extraordinaria:</b>{' '}
-          <span dangerouslySetInnerHTML={{ __html: guia.convocatoriaExtra }} />
+        </div>
+        <div className="ml-6 mt-2">
+          <b>Convocatoria Extraordinaria:</b>
+          <div
+            className="prose ml-6"
+            dangerouslySetInnerHTML={{ __html: guia.convocatoriaExtra }}
+          />
         </div>
       </section>
       {/* Horario de atención */}
@@ -189,13 +240,29 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
           </button>
         </div>
         <div
-          className="text-gray-700"
+          className="prose ml-6 text-gray-700"
           dangerouslySetInnerHTML={{ __html: guia.bibliografia }}
         />
       </section>
-      <div className="mt-8 flex justify-center">
-        <button className="rounded bg-blue-600 px-8 py-3 text-lg font-bold text-white shadow transition-all hover:bg-blue-700">
-          Descargar PDF (próximamente)
+      <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <button
+          className="group inline-flex items-center gap-3 rounded-xl border border-blue-300 bg-blue-50 px-8 py-5 text-xl font-bold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:shadow-lg"
+          onClick={handleDescargarPDF}
+        >
+          <FontAwesomeIcon icon={faFilePdf} className="text-2xl" /> PDF
+        </button>
+        <button
+          className="group inline-flex items-center gap-3 rounded-xl border border-green-300 bg-green-50 px-8 py-5 text-xl font-bold text-green-700 transition-all duration-200 hover:bg-green-100 hover:shadow-lg"
+          onClick={handleGenerarHTML}
+        >
+          <FontAwesomeIcon icon={faFileCode} className="text-2xl" /> HTML (para
+          ADI)
+        </button>
+        <button
+          className="group inline-flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-50 px-8 py-5 text-xl font-bold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:shadow-lg"
+          onClick={handleValorarIA}
+        >
+          <FontAwesomeIcon icon={faRobot} className="text-2xl" /> Valorar con IA
         </button>
       </div>
     </div>

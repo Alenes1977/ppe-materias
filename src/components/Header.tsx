@@ -196,7 +196,7 @@ const Header: React.FC = () => {
                   : 'border border-gray-200 bg-white text-gray-400 hover:-translate-y-0.5 hover:transform hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-800 hover:shadow-sm'
               }`}
             >
-              Asistente Guía Docente
+              Asistente
             </a>
           </nav>
         </div>

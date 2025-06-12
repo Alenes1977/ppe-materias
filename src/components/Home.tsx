@@ -8,6 +8,7 @@ import {
   faChalkboardTeacher,
   faUniversity,
   faBookOpen,
+  faMagicWandSparkles,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Home: React.FC = () => {
@@ -67,7 +68,7 @@ const Home: React.FC = () => {
         <h2 className="mb-6 text-xl font-bold text-gray-800 sm:mb-8 sm:text-2xl">
           Accesos Directos
         </h2>
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Enlaces convertidos a estilo botón */}
           <Link
             to="/asignaturas"
@@ -140,6 +141,25 @@ const Home: React.FC = () => {
             </h3>
             <p className="mb-3 text-xs sm:mb-4 sm:text-sm">
               Distribución y contenido de las materias del Grado
+            </p>
+          </Link>
+
+          <Link
+            to="/asistente-guia-docente"
+            className="group rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-600 hover:shadow-sm sm:px-4 sm:py-3 md:col-span-1"
+          >
+            <div className="mb-3 text-emerald-600 sm:mb-4">
+              <FontAwesomeIcon
+                icon={faMagicWandSparkles}
+                className="text-2xl sm:text-3xl"
+              />
+            </div>
+            <h3 className="mb-2 text-base font-semibold sm:text-lg">
+              Asistente Guía Docente
+            </h3>
+            <p className="mb-3 text-xs sm:mb-4 sm:text-sm">
+              Crea la guía docente para tu asignatura de forma asistida y
+              oficial.
             </p>
           </Link>
         </div>

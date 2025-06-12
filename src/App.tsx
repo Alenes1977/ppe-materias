@@ -17,6 +17,7 @@ import CompetenciaDetalle from './components/CompetenciaDetalle';
 import Materia from './components/Materia';
 import Materias from './components/Materias';
 import Modulo from './components/Modulo';
+import AsistenteGuiaDocente from './components/AsistenteGuiaDocente';
 import { useEffect } from 'react';
 
 // Componente para manejar el scroll al principio en cada navegación
@@ -59,6 +60,10 @@ const App: React.FC = () => {
         <main className="flex-grow pb-14">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route
+              path="/asistente-guia-docente"
+              element={<AsistenteGuiaDocente />}
+            />
             <Route path="/asignaturas" element={<Asignaturas />} />
             <Route
               path="/asignaturas/:nombre"

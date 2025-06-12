@@ -183,6 +183,21 @@ const Header: React.FC = () => {
             >
               Competencias
             </a>
+
+            {/* Separador visual */}
+            <span className="text-gray-200">|</span>
+
+            <a
+              href="/asistente-guia-docente"
+              onClick={handleNavigation('/asistente-guia-docente')}
+              className={`flex items-center rounded-md px-2 py-1 font-semibold transition-all duration-300 ${
+                location.pathname === '/asistente-guia-docente'
+                  ? 'bg-emerald-100 text-emerald-800 shadow-sm'
+                  : 'border border-gray-200 bg-white text-gray-400 hover:-translate-y-0.5 hover:transform hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-800 hover:shadow-sm'
+              }`}
+            >
+              Asistente Guía Docente
+            </a>
           </nav>
         </div>
       </div>
@@ -252,6 +267,18 @@ const Header: React.FC = () => {
                 }}
               >
                 Competencias
+              </a>
+
+              <a
+                href="/asistente-guia-docente"
+                onClick={handleNavigation('/asistente-guia-docente')}
+                className={`rounded-md px-3 py-2 font-semibold ${
+                  location.pathname === '/asistente-guia-docente'
+                    ? 'bg-emerald-100 text-emerald-800'
+                    : 'border border-gray-200 text-gray-400'
+                }`}
+              >
+                Asistente Guía Docente
               </a>
             </div>
           </div>

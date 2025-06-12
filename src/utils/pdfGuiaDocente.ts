@@ -32,7 +32,7 @@ export function generarPDFGuiaDocente(
   }
 
   const docDefinition = {
-    pageMargins: [70, 70, 70, 70],
+    pageMargins: [70, 40, 70, 70],
     content: [
       {
         columns: [
@@ -115,8 +115,7 @@ export function generarPDFGuiaDocente(
             return desc
               ? [
                   { text: u.titulo, bold: true },
-                  { text: '\n' },
-                  { margin: [2, 0, 0, 5], stack: desc },
+                  { margin: [0, 0, 0, 5], stack: desc },
                 ]
               : [{ text: u.titulo, bold: true }];
           })
@@ -134,8 +133,7 @@ export function generarPDFGuiaDocente(
             return desc
               ? [
                   { text: a.nombre, bold: true },
-                  { text: '\n' },
-                  { margin: [2, 0, 0, 5], stack: desc },
+                  { margin: [0, 0, 0, 5], stack: desc },
                 ]
               : [{ text: a.nombre, bold: true }];
           })
@@ -153,8 +151,7 @@ export function generarPDFGuiaDocente(
             return desc
               ? [
                   { text: `${e.tipo} (${e.porcentaje}%)`, bold: true },
-                  { text: '\n' },
-                  { margin: [2, 0, 0, 5], stack: desc },
+                  { margin: [0, 0, 0, 5], stack: desc },
                 ]
               : [{ text: `${e.tipo} (${e.porcentaje}%)`, bold: true }];
           })

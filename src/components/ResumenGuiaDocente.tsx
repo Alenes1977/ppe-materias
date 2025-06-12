@@ -12,6 +12,7 @@ import {
   faFilePdf,
   faFileCode,
   faRobot,
+  faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 import { generarHTMLGuiaDocente } from '../utils/htmlGuiaDocente';
 
@@ -47,7 +48,7 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
     .competencias;
 
   return (
-    <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-md">
+    <div className="mx-auto max-w-5xl rounded-lg bg-white p-10 shadow-md">
       <h2 className="mb-6 text-center text-2xl font-bold text-blue-900">
         Resumen de la Guía Docente
       </h2>
@@ -244,26 +245,41 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
           dangerouslySetInnerHTML={{ __html: guia.bibliografia }}
         />
       </section>
-      <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-        <button
-          className="group inline-flex items-center gap-3 rounded-xl border border-blue-300 bg-blue-50 px-8 py-5 text-xl font-bold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:shadow-lg"
-          onClick={handleDescargarPDF}
-        >
-          <FontAwesomeIcon icon={faFilePdf} className="text-2xl" /> PDF
-        </button>
-        <button
-          className="group inline-flex items-center gap-3 rounded-xl border border-green-300 bg-green-50 px-8 py-5 text-xl font-bold text-green-700 transition-all duration-200 hover:bg-green-100 hover:shadow-lg"
-          onClick={handleGenerarHTML}
-        >
-          <FontAwesomeIcon icon={faFileCode} className="text-2xl" /> HTML (para
-          ADI)
-        </button>
-        <button
-          className="group inline-flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-50 px-8 py-5 text-xl font-bold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:shadow-lg"
-          onClick={handleValorarIA}
-        >
-          <FontAwesomeIcon icon={faRobot} className="text-2xl" /> Valorar con IA
-        </button>
+      <div className="mt-12 flex w-full flex-col items-center gap-4 rounded-2xl border border-blue-100 bg-blue-50/60 p-8 shadow-lg">
+        <div className="mb-2 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
+          <button
+            className="group inline-flex items-center gap-3 rounded-xl border border-blue-300 bg-blue-50 px-6 py-4 text-lg font-bold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:shadow-lg"
+            onClick={handleDescargarPDF}
+          >
+            <FontAwesomeIcon icon={faFilePdf} className="text-2xl" /> Descargar
+            PDF
+          </button>
+          <button
+            className="group inline-flex items-center gap-3 rounded-xl border border-green-300 bg-green-50 px-6 py-4 text-lg font-bold text-green-700 transition-all duration-200 hover:bg-green-100 hover:shadow-lg"
+            onClick={handleGenerarHTML}
+          >
+            <FontAwesomeIcon icon={faFileCode} className="text-2xl" /> HTML
+            (para ADI)
+          </button>
+        </div>
+        <div className="mt-2 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
+          <button
+            className="group inline-flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-50 px-6 py-4 text-lg font-bold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:shadow-lg"
+            onClick={handleValorarIA}
+          >
+            <FontAwesomeIcon icon={faRobot} className="text-2xl" /> Valorar Guía
+            con IA
+          </button>
+          <button
+            className="group inline-flex items-center gap-3 rounded-xl border border-indigo-300 bg-indigo-50 px-6 py-4 text-lg font-bold text-indigo-700 transition-all duration-200 hover:bg-indigo-100 hover:shadow-lg"
+            onClick={() =>
+              alert('Funcionalidad de envío por correo próximamente')
+            }
+          >
+            <FontAwesomeIcon icon={faEnvelope} className="text-2xl" /> Enviar
+            archivos al correo-e del profesor
+          </button>
+        </div>
       </div>
     </div>
   );

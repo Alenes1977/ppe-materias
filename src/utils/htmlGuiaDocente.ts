@@ -44,7 +44,7 @@ export function generarHTMLGuiaDocente(
     .avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,#1e3a8a 60%,#2563eb 100%); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3em; font-weight: bold; box-shadow: 0 2px 8px #1e3a8a22; }
     .franja { margin-left: 2.5em; color: #222; font-size: 1em; margin-bottom: 0.2em; }
     .email { margin-left: 2.5em; color: #2563eb; font-size: 0.97em; margin-bottom: 0.7em; }
-    .biblio { background: linear-gradient(90deg,#f8fafc 60%,#e0e7ef 100%); border-radius: 10px; padding: 1.2em 1.5em; font-family: 'Georgia', serif; font-size: 1.08em; }
+    .biblio { background: linear-gradient(90deg,#f8fafc 60%,#e0e7ef 100%); border-radius: 10px; padding: 1.2em 1.5em; font-size: 1.08em; }
     @media (max-width: 700px) {
       .container { padding: 0 0 24px 0; }
       .header { flex-direction: column; align-items: flex-start; gap: 18px; padding: 28px 12px 18px 12px; }

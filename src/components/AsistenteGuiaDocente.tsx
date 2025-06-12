@@ -16,6 +16,7 @@ import PasoF_HorarioAtencion, {
 } from './PasoF_HorarioAtencion';
 import PasoG_Bibliografia from './PasoG_Bibliografia';
 import ResumenGuiaDocente from './ResumenGuiaDocente';
+import NavegacionPasos from './NavegacionPasos';
 
 // Tipo para las opciones de react-select
 type AsignaturaOption = {
@@ -103,6 +104,28 @@ const AsistenteGuiaDocente: React.FC = () => {
       setAsignaturaSeleccionada(null);
       setPasoActual(0);
     }
+  };
+
+  const handleReiniciar = () => {
+    localStorage.removeItem('guiaDocente');
+    setAsignaturaSeleccionada(null);
+    setPasoActual(0);
+    setGuia({
+      presentacion: {
+        profesores: [],
+        idioma: '',
+        aula: '',
+        horario: '',
+        resumen: '',
+      },
+      programa: [],
+      actividades: [],
+      evaluacion: [],
+      convocatoriaExtra: '',
+      horario: {},
+      bibliografia: '',
+      version: GUIA_VERSION,
+    });
   };
 
   // Renderizado del wizard de pasos
@@ -276,57 +299,12 @@ const AsistenteGuiaDocente: React.FC = () => {
             </div>
           </div>
           {/* Barra de pasos mejorada y visual */}
-          <div className="mb-10 flex items-center justify-center gap-4">
-            {pasos.map((paso, idx) => {
-              const isCompleted = idx < pasoActual;
-              const isCurrent = idx === pasoActual;
-              return (
-                <div key={paso.key} className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    disabled={idx > pasoActual}
-                    onClick={() => idx <= pasoActual && setPasoActual(idx)}
-                    className={`flex items-center justify-center rounded-full border-2 transition-all focus:outline-none focus:ring-2 focus:ring-blue-400
-                      ${
-                        isCurrent
-                          ? 'h-12 w-12 border-blue-600 bg-blue-600 text-lg font-bold text-white shadow-lg'
-                          : isCompleted
-                            ? 'h-12 w-12 border-green-500 bg-green-500 text-lg font-bold text-white'
-                            : 'h-12 w-12 border-gray-200 bg-gray-100 text-lg text-gray-400'
-                      }
-                    `}
-                    aria-current={isCurrent ? 'step' : undefined}
-                  >
-                    {isCompleted ? (
-                      <span className="text-2xl">✓</span>
-                    ) : (
-                      idx + 1
-                    )}
-                  </button>
-                  <span
-                    className={`text-sm font-semibold ${
-                      isCurrent
-                        ? 'text-blue-700'
-                        : isCompleted
-                          ? 'text-green-700'
-                          : 'text-gray-400'
-                    }`}
-                  >
-                    {paso.label}
-                  </span>
-                  {idx < pasos.length - 1 && (
-                    <span
-                      className={`mx-2 text-2xl ${
-                        isCompleted ? 'text-green-400' : 'text-gray-300'
-                      }`}
-                    >
-                      →
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          <NavegacionPasos
+            pasos={pasos}
+            pasoActual={pasoActual}
+            onIrAPaso={(idx) => idx <= pasoActual && setPasoActual(idx)}
+            onReiniciar={handleReiniciar}
+          />
           {/* Renderizado del paso actual */}
           {renderPaso()}
         </div>

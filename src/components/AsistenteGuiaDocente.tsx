@@ -225,9 +225,9 @@ const AsistenteGuiaDocente: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 pt-28">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       {!asignaturaSeleccionada ? (
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 pb-8 pt-20 sm:pb-14 sm:pt-24">
           <div className="rounded-lg bg-white p-6 text-center shadow-lg">
             <FontAwesomeIcon
               icon={faChalkboardUser}
@@ -274,7 +274,7 @@ const AsistenteGuiaDocente: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 pb-8 pt-20 sm:pb-14 sm:pt-24">
           <div className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-4 shadow-md">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>

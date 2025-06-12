@@ -52,6 +52,9 @@ const PasoA_Presentacion: React.FC<Props> = ({
     value.resumen.trim() !== '' &&
     value.resumen.replace(/<(.|\n)*?>/g, '').trim() !== '';
 
+  // Validación de email
+  const emailValido = /^\S+@\S+\.\S+$/.test(nuevoProfesor.email);
+
   const handleAddProfesor = () => {
     if (nuevoProfesor.nombre.trim() && nuevoProfesor.email.trim()) {
       onChange({
@@ -131,10 +134,22 @@ const PasoA_Presentacion: React.FC<Props> = ({
           </div>
           <div className="mb-3">
             <span className="block text-xs font-semibold text-gray-500">
-              Curso / Semestre
+              Curso
             </span>
             <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
-              {asignatura.curso} / {asignatura.semestre}
+              {asignatura.curso}º
+            </div>
+          </div>
+          <div className="mb-3">
+            <span className="block text-xs font-semibold text-gray-500">
+              Semestre
+            </span>
+            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
+              {asignatura.semestre === '1'
+                ? '1er Semestre'
+                : asignatura.semestre === '2'
+                  ? '2º Semestre'
+                  : 'Anual'}
             </div>
           </div>
         </div>
@@ -143,10 +158,10 @@ const PasoA_Presentacion: React.FC<Props> = ({
             <label className="mb-1 block font-medium text-gray-700">
               Profesores encargados <span className="text-red-500">*</span>
             </label>
-            <div className="mb-2 flex gap-2">
+            <div className="mb-2 flex flex-col gap-2 sm:flex-row">
               <input
                 type="text"
-                className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                className="min-w-0 flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
                 placeholder="Nombre del profesor"
                 value={nuevoProfesor.nombre}
                 onChange={(e) =>
@@ -155,7 +170,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
               />
               <input
                 type="email"
-                className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                className="min-w-0 flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
                 placeholder="Email"
                 value={nuevoProfesor.email}
                 onChange={(e) =>
@@ -164,15 +179,22 @@ const PasoA_Presentacion: React.FC<Props> = ({
               />
               <button
                 type="button"
-                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 sm:w-auto"
                 onClick={handleAddProfesor}
                 disabled={
-                  !nuevoProfesor.nombre.trim() || !nuevoProfesor.email.trim()
+                  !nuevoProfesor.nombre.trim() ||
+                  !nuevoProfesor.email.trim() ||
+                  !emailValido
                 }
               >
-                Añadir
+                {value.profesores.length === 0 ? 'Añadir' : 'Añadir otro'}
               </button>
             </div>
+            {nuevoProfesor.email && !emailValido && (
+              <div className="mt-1 text-xs text-red-500">
+                Introduce un email válido.
+              </div>
+            )}
             <ul className="space-y-1">
               {value.profesores.map((prof, idx) => (
                 <li
@@ -256,7 +278,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 <input
                   type="text"
                   className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
-                  placeholder="Ejemplo: Aula 101"
+                  placeholder="Ejemplo: Aula M04 Edificio Amigos"
                   value={aulaTemp}
                   onChange={(e) => setAulaTemp(e.target.value)}
                   onKeyDown={(e) => {
@@ -345,13 +367,14 @@ const PasoA_Presentacion: React.FC<Props> = ({
       </div>
       <div className="mb-6">
         <label className="mb-1 block font-medium text-gray-700">
-          Breve resumen <span className="text-red-500">*</span>
+          Breve descripción <span className="text-red-500">*</span>
         </label>
         <ReactQuill
           theme="snow"
           value={value.resumen}
           onChange={(resumen) => onChange({ ...value, resumen })}
-          className="bg-white"
+          className="bg-white text-base"
+          placeholder="[describa aquí brevemente la asignatura]"
         />
         {touched &&
           (value.resumen.trim() === '' ||

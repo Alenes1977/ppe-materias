@@ -90,9 +90,12 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
                 />
                 <ReactQuill
                   theme="snow"
-                  value={nuevaDescripcion}
+                  value={
+                    nuevaDescripcion === '<p><br></p>' ? '' : nuevaDescripcion
+                  }
                   onChange={(desc: string) => setNuevaDescripcion(desc)}
                   className="mb-2 bg-white"
+                  placeholder="[Opcionalmente, describa aquí brevemente la unidad o tema]"
                 />
                 {touched && nuevoTitulo.trim() === '' && (
                   <div className="mb-2 text-xs text-red-500">
@@ -165,9 +168,10 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
           />
           <ReactQuill
             theme="snow"
-            value={nuevaDescripcion}
+            value={nuevaDescripcion === '<p><br></p>' ? '' : nuevaDescripcion}
             onChange={(desc: string) => setNuevaDescripcion(desc)}
             className="mb-2 bg-white"
+            placeholder="[Opcionalmente, describa aquí brevemente la unidad o tema]"
           />
           {touched && nuevoTitulo.trim() === '' && (
             <div className="mb-2 text-xs text-red-500">

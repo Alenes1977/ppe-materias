@@ -187,7 +187,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
                   !emailValido
                 }
               >
-                {value.profesores.length === 0 ? 'Añadir' : 'Añadir otro'}
+                {value.profesores.length === 0 ? 'Confirmar' : 'Añadir otro'}
               </button>
             </div>
             {nuevoProfesor.email && !emailValido && (
@@ -245,7 +245,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
                   onClick={handleConfirmIdioma}
                   disabled={idiomaTemp.trim() === ''}
                 >
-                  Añadir
+                  Confirmar
                 </button>
               </div>
             ) : (
@@ -293,7 +293,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
                   className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
                   onClick={handleConfirmAula}
                 >
-                  Añadir
+                  Confirmar
                 </button>
               </div>
             ) : (
@@ -340,7 +340,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
                   className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
                   onClick={handleConfirmHorario}
                 >
-                  Añadir
+                  Confirmar
                 </button>
               </div>
             ) : (

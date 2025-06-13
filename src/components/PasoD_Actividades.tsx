@@ -25,14 +25,8 @@ const PasoD_Actividades: React.FC<Props> = ({
   // Para saber si el usuario ha intentado avanzar sin completar
   const [touched, setTouched] = useState(false);
 
-  // Devuelve true si todas las seleccionadas tienen descripción
-  const validas =
-    value.length > 0 &&
-    value.every(
-      (a) =>
-        a.descripcion.trim() &&
-        a.descripcion.replace(/<(.|\n)*?>/g, '').trim() !== '',
-    );
+  // Devuelve true si hay al menos una actividad seleccionada
+  const validas = value.length > 0;
 
   // Maneja el check/uncheck de una actividad
   const handleToggle = (nombre: string) => {
@@ -84,7 +78,7 @@ const PasoD_Actividades: React.FC<Props> = ({
               {checked && actividad && (
                 <div className="mt-2 rounded border border-blue-100 bg-blue-50 p-4">
                   <div className="mb-2 font-semibold text-blue-700">
-                    Describe esta actividad
+                    Describa esta actividad
                   </div>
                   <ReactQuill
                     theme="snow"

@@ -45,22 +45,20 @@ const PasoE_Evaluacion: React.FC<Props> = ({
     return ev.porcentaje < min || ev.porcentaje > max;
   });
 
-  // Todos los sistemas tienen descripción
-  const descripcionesOk = value.every(
-    (ev) =>
-      ev.descripcion.trim() &&
-      ev.descripcion.replace(/<(.|\n)*?>/g, '').trim() !== '',
-  );
-
   // No hay duplicados
   const tiposUnicos = new Set(value.map((ev) => ev.tipo)).size === value.length;
+
+  // Convocatoria extraordinaria completada
+  const convocatoriaOk =
+    convocatoriaExtra.trim() &&
+    convocatoriaExtra.replace(/<(.|\n)*?>/g, '').trim() !== '';
 
   const puedeAvanzar =
     value.length > 0 &&
     suma === 100 &&
     !fueraDeRango &&
-    descripcionesOk &&
-    tiposUnicos;
+    tiposUnicos &&
+    convocatoriaOk;
 
   // Añadir sistema
   const handleAdd = (tipo: string) => {
@@ -169,8 +167,7 @@ const PasoE_Evaluacion: React.FC<Props> = ({
             )}
             <div className="mb-2">
               <label className="mb-1 block text-sm font-medium text-gray-700">
-                Detalles de la evaluación{' '}
-                <span className="text-red-500">*</span>
+                Detalles de la evaluación
               </label>
               <ReactQuill
                 theme="snow"
@@ -178,20 +175,13 @@ const PasoE_Evaluacion: React.FC<Props> = ({
                 onChange={(desc: string) => handleDescripcion(ev.tipo, desc)}
                 className="bg-white"
               />
-              {touched &&
-                (ev.descripcion.trim() === '' ||
-                  ev.descripcion.replace(/<(.|\n)*?>/g, '').trim() === '') && (
-                  <div className="mt-1 text-xs text-red-500">
-                    Campo obligatorio.
-                  </div>
-                )}
             </div>
           </div>
         );
       })}
       <div className="mb-6">
         <div className="mb-1 text-lg font-bold text-blue-900">
-          Convocatoria Extraordinaria
+          Convocatoria Extraordinaria <span className="text-red-500">*</span>
         </div>
         <div className="mb-2 text-xs text-blue-700">
           Detalle a continuación las instrucciones específicas para la
@@ -203,6 +193,11 @@ const PasoE_Evaluacion: React.FC<Props> = ({
           onChange={(desc: string) => onChangeConvocatoria(desc)}
           className="bg-white"
         />
+        {touched &&
+          (convocatoriaExtra.trim() === '' ||
+            convocatoriaExtra.replace(/<(.|\n)*?>/g, '').trim() === '') && (
+            <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
+          )}
       </div>
       <div className="mb-4 text-right font-semibold text-blue-700">
         Suma total:{' '}

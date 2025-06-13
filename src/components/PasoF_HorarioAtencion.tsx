@@ -142,7 +142,7 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
                 <input
                   type="text"
                   className="flex-1 rounded border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
-                  placeholder="Día"
+                  placeholder="Días de la semana"
                   value={nuevo.dia}
                   onChange={(e) => setNuevo({ ...nuevo, dia: e.target.value })}
                 />
@@ -232,7 +232,7 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
                   )
                 }
               >
-                Añadir
+                Confirmar
               </button>
             </div>
           )}

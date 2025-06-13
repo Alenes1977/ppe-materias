@@ -15,6 +15,11 @@ import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 import { generarHTMLGuiaDocente } from '../utils/htmlGuiaDocente';
+import {
+  enviarGuiaParaValoracion,
+  ValoracionIAResponse,
+} from '../utils/valoracionIA';
+import ModalValoracionIA from './ModalValoracionIA';
 
 interface Props {
   guia: GuiaDocenteData;
@@ -23,6 +28,11 @@ interface Props {
 }
 
 const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
+  const [modalValoracionOpen, setModalValoracionOpen] = React.useState(false);
+  const [isLoadingValoracion, setIsLoadingValoracion] = React.useState(false);
+  const [valoracionResult, setValoracionResult] =
+    React.useState<ValoracionIAResponse | null>(null);
+
   const handleDescargarPDF = () => {
     generarPDFGuiaDocente(guia, asignatura);
   };
@@ -39,9 +49,27 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
     URL.revokeObjectURL(url);
   };
 
-  const handleValorarIA = () => {
-    // De momento sin funcionalidad
-    alert('Próximamente: valoración automática con IA');
+  const handleValorarIA = async () => {
+    setModalValoracionOpen(true);
+    setIsLoadingValoracion(true);
+    setValoracionResult(null);
+
+    try {
+      const resultado = await enviarGuiaParaValoracion(guia, asignatura);
+      setValoracionResult(resultado);
+    } catch (error) {
+      setValoracionResult({
+        success: false,
+        error: 'Error de conexión. Inténtalo de nuevo.',
+      });
+    } finally {
+      setIsLoadingValoracion(false);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalValoracionOpen(false);
+    setValoracionResult(null);
   };
 
   const competenciasDict: Record<string, string> = (ppeData as any)
@@ -281,6 +309,12 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
           </button>
         </div>
       </div>
+      <ModalValoracionIA
+        isOpen={modalValoracionOpen}
+        onClose={handleCloseModal}
+        isLoading={isLoadingValoracion}
+        valoracion={valoracionResult}
+      />
     </div>
   );
 };

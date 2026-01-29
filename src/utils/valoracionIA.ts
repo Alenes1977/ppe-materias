@@ -1,5 +1,5 @@
-import { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
-import { AsignaturaProcesada } from '../lib/dataUtils';
+import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
+import type { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 
 const competenciasDict: Record<string, string> = (ppeData as any).competencias;
@@ -51,7 +51,7 @@ export async function enviarGuiaParaValoracion(
 
     // Enviar al webhook de n8n
     const response = await fetch(
-      'https://n8n.aplicaciones.space/webhook/asistente-guia-unav',
+      'https://n8n.alejandronestor.eu/webhook/asistente-guia-unav',
       {
         method: 'POST',
         headers: {

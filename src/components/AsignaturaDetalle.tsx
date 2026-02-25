@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +10,7 @@ import {
   faBookOpen,
   faClipboardList,
   faChartBar,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
 import { generateSlug } from '../utils/stringUtils';
@@ -18,6 +19,13 @@ import { generateSlug } from '../utils/stringUtils';
 type CompetenciasType = {
   [key: string]: string;
 };
+
+const actividadNombre: Record<string, string> = Object.fromEntries(
+  data.actividades_formativas.map((af) => [af.id, af.nombre]),
+);
+const evaluacionNombre: Record<string, string> = Object.fromEntries(
+  data.sistemas_evaluacion.map((se) => [se.id, se.nombre]),
+);
 
 const AsignaturaDetalle: React.FC = () => {
   const { nombre } = useParams<{ nombre: string }>();
@@ -41,6 +49,7 @@ const AsignaturaDetalle: React.FC = () => {
           materia: materia.nombre,
           actividadesFormativas: materia['actividad-formativa'],
           evaluacion: materia.evaluacion,
+          resultadosAprendizaje: materia.resultados_aprendizaje,
         };
         moduloInfo = modulo;
         materiaInfo = materia;
@@ -129,13 +138,19 @@ const AsignaturaDetalle: React.FC = () => {
             </span>
             <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-medium text-indigo-800 sm:px-4 sm:py-2 sm:text-sm">
               <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
-              {asignaturaInfo.semestre === 'anual'
+              {String(asignaturaInfo.semestre) === 'anual'
                 ? 'Anual'
                 : `${asignaturaInfo.semestre}º Semestre`}
             </span>
             <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1.5 text-xs font-medium text-purple-800 sm:px-4 sm:py-2 sm:text-sm">
               {asignaturaInfo.ects} ECTS
             </span>
+            {asignaturaInfo.tipo === 'Básica' && (
+              <span className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-800 sm:px-4 sm:py-2 sm:text-sm">
+                <FontAwesomeIcon icon={faStar} className="mr-2" />
+                Básica
+              </span>
+            )}
           </div>
         </div>
 
@@ -180,37 +195,49 @@ const AsignaturaDetalle: React.FC = () => {
               </div>
             </div>
 
-            {/* Columna derecha: Competencias */}
+            {/* Columna derecha: Resultados de aprendizaje */}
             <div>
               <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-                <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:mb-6 sm:text-xl">
+                <h2 className="mb-1 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
                   <FontAwesomeIcon
                     icon={faClipboardList}
                     className="mr-3 text-blue-600"
                   />
-                  Competencias
+                  Resultados de aprendizaje (competencias)
                 </h2>
-                {asignaturaInfo.resultados_aprendizaje &&
-                asignaturaInfo.resultados_aprendizaje.length > 0 ? (
+                <p className="mb-4 text-xs text-gray-500 sm:mb-5">
+                  De la materia:{' '}
+                  <Link
+                    to={`/materias/${generateSlug(materiaInfo.nombre)}`}
+                    className="font-medium text-blue-600 hover:underline"
+                  >
+                    {materiaInfo.nombre}
+                  </Link>
+                </p>
+                {asignaturaInfo.resultadosAprendizaje &&
+                asignaturaInfo.resultadosAprendizaje.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
-                    {asignaturaInfo.resultados_aprendizaje.map((competencia, index) => (
-                      <Link
-                        key={index}
-                        to={`/competencias/${competencia}`}
-                        className="group relative inline-flex items-center rounded-full bg-gradient-to-r from-blue-50 to-blue-100 px-3 py-1.5 text-xs font-medium text-blue-800 transition-all hover:from-blue-100 hover:to-blue-200 sm:px-4 sm:py-2 sm:text-sm"
-                        title={getCompetenciaDescripcion(competencia)}
-                      >
-                        <span>{competencia}</span>
-                        <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-48 -translate-x-1/2 transform rounded-lg bg-gray-900 p-2 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 sm:w-72">
-                          {getCompetenciaDescripcion(competencia)}
-                          <div className="absolute left-1/2 top-full -translate-x-1/2 transform border-4 border-transparent border-t-gray-900"></div>
-                        </div>
-                      </Link>
-                    ))}
+                    {asignaturaInfo.resultadosAprendizaje.map(
+                      (competencia, index) => (
+                        <Link
+                          key={index}
+                          to={`/competencias/${competencia}`}
+                          className="group relative inline-flex items-center rounded-full bg-gradient-to-r from-blue-50 to-blue-100 px-3 py-1.5 text-xs font-medium text-blue-800 transition-all hover:from-blue-100 hover:to-blue-200 sm:px-4 sm:py-2 sm:text-sm"
+                          title={getCompetenciaDescripcion(competencia)}
+                        >
+                          <span>{competencia}</span>
+                          <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-48 -translate-x-1/2 transform rounded-lg bg-gray-900 p-2 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 sm:w-72">
+                            {getCompetenciaDescripcion(competencia)}
+                            <div className="absolute left-1/2 top-full -translate-x-1/2 transform border-4 border-transparent border-t-gray-900"></div>
+                          </div>
+                        </Link>
+                      ),
+                    )}
                   </div>
                 ) : (
                   <p className="text-sm text-gray-500">
-                    No hay competencias especificadas para esta asignatura.
+                    No hay resultados de aprendizaje especificados para esta
+                    materia.
                   </p>
                 )}
               </div>
@@ -236,7 +263,9 @@ const AsignaturaDetalle: React.FC = () => {
                       className="flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-xs sm:text-sm"
                     >
                       <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></div>
-                      <span className="text-gray-700">{actividad}</span>
+                      <span className="text-gray-700">
+                        {actividadNombre[actividad] ?? actividad}
+                      </span>
                     </div>
                   ),
                 )}
@@ -298,7 +327,7 @@ const AsignaturaDetalle: React.FC = () => {
                         >
                           <td className="whitespace-normal px-4 py-3 sm:px-6">
                             <span className="text-xs font-medium text-gray-900 sm:text-sm">
-                              {item.tipo}
+                              {evaluacionNombre[item.tipo] ?? item.tipo}
                             </span>
                           </td>
                           <td className="whitespace-nowrap px-4 py-3 text-center sm:px-6">

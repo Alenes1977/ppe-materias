@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import type React from 'react';
+import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +10,7 @@ import {
   faClipboardList,
   faChartBar,
   faLayerGroup,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
 import { generateSlug } from '../utils/stringUtils';
@@ -16,17 +18,18 @@ import { generateSlug } from '../utils/stringUtils';
 interface MateriaInfo {
   nombre: string;
   modulo: string;
-  ECTS?: string;
-  'ECTS-n'?: string;
-  'ECTS-basicos': string;
-  'ECTS-obligatorios': string;
-  'ECTS-optativos': string;
+  ECTS?: number;
+  'ECTS-n'?: number;
+  'ECTS-basicos': number;
+  'ECTS-obligatorios': number;
+  'ECTS-optativos': number;
   asignaturas: {
     nombre: string;
-    curso: string;
-    semestre: string;
+    curso: number;
+    semestre: number | string;
     ects: number;
-    resultados_aprendizaje: string[];
+    tipo?: string;
+    resultados_aprendizaje?: string[];
   }[];
   'actividad-formativa': string[];
   evaluacion: {
@@ -35,6 +38,13 @@ interface MateriaInfo {
     'ponderacion-maxima': string;
   }[];
 }
+
+const actividadNombre: Record<string, string> = Object.fromEntries(
+  data.actividades_formativas.map((af) => [af.id, af.nombre]),
+);
+const evaluacionNombre: Record<string, string> = Object.fromEntries(
+  data.sistemas_evaluacion.map((se) => [se.id, se.nombre]),
+);
 
 const Materia: React.FC = () => {
   const { materiaSlug } = useParams<{ materiaSlug: string }>();
@@ -106,161 +116,131 @@ const Materia: React.FC = () => {
             </Link>
             <div className="inline-flex items-center rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-800 sm:px-4 sm:py-2 sm:text-sm">
               <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
-              {materiaInfo['ECTS-n'] || materiaInfo.ECTS} ECTS totales (
-              {materiaInfo['ECTS-basicos'] || '0'} básicos,{' '}
-              {materiaInfo['ECTS-obligatorios'] || '0'} obligatorios,{' '}
-              {materiaInfo['ECTS-optativos'] || '0'} optativos)
+              {materiaInfo['ECTS-n'] ?? materiaInfo.ECTS} ECTS totales (
+              {materiaInfo['ECTS-basicos'] ?? 0} básicos,{' '}
+              {materiaInfo['ECTS-obligatorios'] ?? 0} obligatorios,{' '}
+              {materiaInfo['ECTS-optativos'] ?? 0} optativos)
             </div>
           </div>
         </div>
 
         {/* Contenido principal */}
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-3">
-          {/* Asignaturas de la materia */}
-          <div className="lg:col-span-2">
-            <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-              <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:mb-6 sm:text-xl">
-                <FontAwesomeIcon
-                  icon={faBookOpen}
-                  className="mr-2 text-blue-600 sm:mr-3"
-                />
-                Asignaturas de la materia
-              </h2>
-              <div className="grid gap-3 sm:gap-4">
-                {materiaInfo.asignaturas.map((asignatura) => (
-                  <Link
-                    key={asignatura.nombre}
-                    to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
-                    className="group flex flex-col rounded-lg border border-gray-200 bg-gradient-to-br from-white to-blue-50 p-3 transition-all hover:border-blue-300 hover:shadow-lg sm:p-4"
-                  >
-                    <h3 className="mb-2 text-base font-semibold text-gray-800 group-hover:text-blue-600 sm:mb-3 sm:text-lg">
-                      {asignatura.nombre}
-                    </h3>
-                    <div className="mt-auto flex flex-wrap gap-2">
-                      <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 sm:px-2.5">
-                        <FontAwesomeIcon
-                          icon={faGraduationCap}
-                          className="mr-1.5"
-                        />
-                        {asignatura.curso}º Curso
+        <div className="space-y-6 sm:space-y-8">
+          {/* Asignaturas de la materia — ancho completo */}
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+            <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:mb-6 sm:text-xl">
+              <FontAwesomeIcon
+                icon={faBookOpen}
+                className="mr-2 text-blue-600 sm:mr-3"
+              />
+              Asignaturas de la materia
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+              {materiaInfo.asignaturas.map((asignatura) => (
+                <Link
+                  key={asignatura.nombre}
+                  to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
+                  className="group flex flex-col rounded-lg border border-gray-200 bg-gradient-to-br from-white to-blue-50 p-3 transition-all hover:border-blue-300 hover:shadow-lg sm:p-4"
+                >
+                  <h3 className="mb-3 text-base font-semibold text-gray-800 group-hover:text-blue-600">
+                    {asignatura.nombre}
+                  </h3>
+                  <div className="mt-auto flex flex-wrap gap-2">
+                    {asignatura.tipo === 'Básica' && (
+                      <span className="inline-flex items-center rounded-full bg-amber-100 px-2 py-1 text-xs font-medium text-amber-800">
+                        <FontAwesomeIcon icon={faStar} className="mr-1.5" />
+                        Básica
                       </span>
-                      <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-800 sm:px-2.5">
-                        {asignatura.semestre === 'anual'
-                          ? 'Anual'
-                          : `${asignatura.semestre}º Semestre`}
-                      </span>
-                      <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800 sm:px-2.5">
-                        {asignatura.ects} ECTS
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                    )}
+                    <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+                      <FontAwesomeIcon
+                        icon={faGraduationCap}
+                        className="mr-1.5"
+                      />
+                      {asignatura.curso}º Curso
+                    </span>
+                    <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-800">
+                      {asignatura.semestre === 'anual'
+                        ? 'Anual'
+                        : `${asignatura.semestre}º Semestre`}
+                    </span>
+                    <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
+                      {asignatura.ects} ECTS
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Sidebar con información adicional */}
-          <div className="space-y-6 sm:space-y-8 lg:col-span-1">
+          {/* Actividades formativas y Evaluación — dos columnas */}
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
             {/* Actividades formativas */}
-            {materiaInfo['actividad-formativa'] && (
+            {materiaInfo['actividad-formativa'] ? (
               <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-                <h2 className="mb-3 flex items-center text-lg font-bold text-gray-800 sm:mb-4 sm:text-xl">
+                <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
                   <FontAwesomeIcon
                     icon={faClipboardList}
                     className="mr-2 text-blue-600 sm:mr-3"
                   />
                   Actividades formativas
                 </h2>
-                <div className="grid gap-2">
+                <div className="space-y-2">
                   {materiaInfo['actividad-formativa'].map(
                     (actividad, index) => (
                       <div
                         key={index}
-                        className="flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-xs sm:text-sm"
+                        className="flex items-start gap-3 rounded-lg border border-gray-100 bg-gray-50 px-4 py-3"
                       >
-                        <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></div>
-                        <span className="text-gray-700">{actividad}</span>
+                        <div className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></div>
+                        <span className="text-sm text-gray-700">
+                          {actividadNombre[actividad] ?? actividad}
+                        </span>
                       </div>
                     ),
                   )}
                 </div>
               </div>
-            )}
+            ) : null}
 
             {/* Evaluación */}
-            {materiaInfo.evaluacion && (
+            {materiaInfo.evaluacion ? (
               <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-                <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:mb-6 sm:text-xl">
+                <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
                   <FontAwesomeIcon
                     icon={faChartBar}
                     className="mr-2 text-blue-600 sm:mr-3"
                   />
                   Sistema de evaluación
                 </h2>
-                <div className="overflow-x-auto">
-                  <div className="inline-block min-w-full align-middle">
-                    <div className="overflow-hidden rounded-lg border border-gray-200">
-                      <table className="min-w-full divide-y divide-gray-200">
-                        <thead>
-                          <tr className="bg-gradient-to-r from-gray-50 to-gray-100">
-                            <th
-                              scope="col"
-                              className="px-3 py-2 text-left sm:px-4 sm:py-3"
-                            >
-                              <span className="text-xs font-medium uppercase tracking-wider text-gray-600">
-                                Tipo
-                              </span>
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-3 py-2 text-center sm:px-4 sm:py-3"
-                            >
-                              <span className="text-xs font-medium uppercase tracking-wider text-gray-600">
-                                Mín
-                              </span>
-                            </th>
-                            <th
-                              scope="col"
-                              className="px-3 py-2 text-center sm:px-4 sm:py-3"
-                            >
-                              <span className="text-xs font-medium uppercase tracking-wider text-gray-600">
-                                Máx
-                              </span>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white">
-                          {materiaInfo.evaluacion.map((evaluacion, index) => (
-                            <tr
-                              key={index}
-                              className={
-                                index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-                              }
-                            >
-                              <td className="whitespace-normal px-3 py-2 sm:px-4 sm:py-3">
-                                <span className="text-xs font-medium text-gray-900 sm:text-sm">
-                                  {evaluacion.tipo}
-                                </span>
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-2 text-center sm:px-4 sm:py-3">
-                                <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 sm:px-2.5">
-                                  {evaluacion['ponderacion-minima']}
-                                </span>
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-2 text-center sm:px-4 sm:py-3">
-                                <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 sm:px-2.5">
-                                  {evaluacion['ponderacion-maxima']}
-                                </span>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                <div className="space-y-3">
+                  {materiaInfo.evaluacion.map((evaluacion, index) => (
+                    <div
+                      key={index}
+                      className="rounded-lg border border-gray-100 bg-gray-50 px-4 py-3"
+                    >
+                      <p className="mb-2 text-sm font-medium text-gray-900">
+                        {evaluacionNombre[evaluacion.tipo] ?? evaluacion.tipo}
+                      </p>
+                      <div className="flex gap-4">
+                        <span className="text-xs text-gray-500">
+                          Mín:{' '}
+                          <span className="font-semibold text-blue-700">
+                            {evaluacion['ponderacion-minima']}
+                          </span>
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          Máx:{' '}
+                          <span className="font-semibold text-green-700">
+                            {evaluacion['ponderacion-maxima']}
+                          </span>
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

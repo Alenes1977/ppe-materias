@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { generateSlug } from '../utils/stringUtils';
@@ -10,10 +10,19 @@ import {
   faBookOpen,
   faChalkboardTeacher,
   faCalendarAlt,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 
+type Asignatura = {
+  nombre: string;
+  curso: number;
+  semestre: number | string;
+  ects: number;
+  tipo?: string;
+};
+
 // Función para ordenar asignaturas por curso y semestre
-const ordenarAsignaturas = (asignaturas: any[]) => {
+const ordenarAsignaturas = (asignaturas: Asignatura[]) => {
   return [...asignaturas].sort((a, b) => {
     // Primero ordenar por curso
     if (a.curso !== b.curso) {
@@ -21,11 +30,11 @@ const ordenarAsignaturas = (asignaturas: any[]) => {
     }
 
     // Si son del mismo curso, ordenar por semestre
-    return a.semestre - b.semestre;
+    return Number(a.semestre) - Number(b.semestre);
   });
 };
 
-const Modulo: React.FC = () => {
+const Modulo: FC = () => {
   const { moduloSlug } = useParams<{ moduloSlug: string }>();
 
   // Encontrar el módulo correspondiente
@@ -113,9 +122,9 @@ const Modulo: React.FC = () => {
                     <div className="rounded-lg bg-indigo-100 px-3 py-1.5 sm:px-4 sm:py-2">
                       <div className="flex items-baseline gap-1">
                         <span className="text-lg font-bold text-indigo-900 sm:text-2xl">
-                          {parseInt(materia['ECTS-basicos'] || '0') +
-                            parseInt(materia['ECTS-obligatorios'] || '0') +
-                            parseInt(materia['ECTS-optativos'] || '0')}
+                          {(materia['ECTS-basicos'] ?? 0) +
+                            (materia['ECTS-obligatorios'] ?? 0) +
+                            (materia['ECTS-optativos'] ?? 0)}
                         </span>
                         <span className="text-xs font-medium text-indigo-800 sm:text-sm">
                           ECTS totales
@@ -130,7 +139,7 @@ const Modulo: React.FC = () => {
                       <div className="rounded-lg bg-blue-50 px-2 py-1.5 sm:px-3 sm:py-2">
                         <div className="flex items-baseline gap-1">
                           <span className="text-base font-semibold text-blue-800 sm:text-lg">
-                            {materia['ECTS-basicos'] || '0'}
+                            {materia['ECTS-basicos'] ?? 0}
                           </span>
                           <span className="text-xs text-blue-600">básicos</span>
                         </div>
@@ -138,7 +147,7 @@ const Modulo: React.FC = () => {
                       <div className="rounded-lg bg-green-50 px-2 py-1.5 sm:px-3 sm:py-2">
                         <div className="flex items-baseline gap-1">
                           <span className="text-base font-semibold text-green-800 sm:text-lg">
-                            {materia['ECTS-obligatorios'] || '0'}
+                            {materia['ECTS-obligatorios'] ?? 0}
                           </span>
                           <span className="text-xs text-green-600">
                             obligatorios
@@ -148,7 +157,7 @@ const Modulo: React.FC = () => {
                       <div className="rounded-lg bg-purple-50 px-2 py-1.5 sm:px-3 sm:py-2">
                         <div className="flex items-baseline gap-1">
                           <span className="text-base font-semibold text-purple-800 sm:text-lg">
-                            {materia['ECTS-optativos'] || '0'}
+                            {materia['ECTS-optativos'] ?? 0}
                           </span>
                           <span className="text-xs text-purple-600">
                             optativos
@@ -181,6 +190,15 @@ const Modulo: React.FC = () => {
                           {asignatura.nombre}
                         </h4>
                         <div className="mt-auto flex flex-wrap gap-2">
+                          {asignatura.tipo === 'Básica' && (
+                            <span className="inline-flex items-center rounded-full bg-amber-100 px-2 py-1 text-xs font-medium text-amber-800 sm:px-2.5">
+                              <FontAwesomeIcon
+                                icon={faStar}
+                                className="mr-1.5"
+                              />
+                              Básica
+                            </span>
+                          )}
                           <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 sm:px-2.5">
                             <FontAwesomeIcon
                               icon={faChalkboardTeacher}
@@ -193,7 +211,9 @@ const Modulo: React.FC = () => {
                               icon={faCalendarAlt}
                               className="mr-1.5"
                             />
-                            {`${asignatura.semestre}º semestre`}
+                            {asignatura.semestre === 'anual'
+                              ? 'Anual'
+                              : `${asignatura.semestre}º semestre`}
                           </span>
                           <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800 sm:px-2.5">
                             <FontAwesomeIcon

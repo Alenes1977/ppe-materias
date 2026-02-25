@@ -3,7 +3,8 @@ import { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 import logoSVG from '../assets/marca-unav-negro.svg?raw';
 
-const competenciasDict: Record<string, string> = (ppeData as any).resultados_aprendizaje;
+const competenciasDict: Record<string, string> = (ppeData as any)
+  .resultados_aprendizaje;
 
 export function generarHTMLGuiaDocente(
   guia: GuiaDocenteData,

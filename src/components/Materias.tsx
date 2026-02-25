@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { generateSlug } from '../utils/stringUtils';
@@ -10,7 +10,7 @@ import {
   faCalendarAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
-const Materias: React.FC = () => {
+const Materias = () => {
   const modulosInfo = useMemo(() => {
     return data.modulos.map((modulo) => ({
       ...modulo,
@@ -31,7 +31,7 @@ const Materias: React.FC = () => {
               }
               return acc;
             },
-            [] as { curso: string; asignaturas: typeof materia.asignaturas }[],
+            [] as { curso: number; asignaturas: typeof materia.asignaturas }[],
           )
           .sort((a, b) => Number(a.curso) - Number(b.curso)),
       })),

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -97,11 +98,11 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
                   className="mb-2 bg-white"
                   placeholder="[Opcionalmente, describa aquí brevemente la unidad o tema]"
                 />
-                {touched && nuevoTitulo.trim() === '' && (
+                {touched && nuevoTitulo.trim() === '' ? (
                   <div className="mb-2 text-xs text-red-500">
                     El título es obligatorio.
                   </div>
-                )}
+                ) : null}
                 <div className="flex gap-2">
                   <button
                     type="button"
@@ -142,12 +143,12 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
                     </button>
                   </div>
                 </div>
-                {unidad.descripcion && (
+                {unidad.descripcion ? (
                   <div
                     className="mt-2 text-gray-700"
                     dangerouslySetInnerHTML={{ __html: unidad.descripcion }}
                   />
-                )}
+                ) : null}
               </div>
             )}
           </li>
@@ -173,11 +174,11 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
             className="mb-2 bg-white"
             placeholder="[Opcionalmente, describa aquí brevemente la unidad o tema]"
           />
-          {touched && nuevoTitulo.trim() === '' && (
+          {touched && nuevoTitulo.trim() === '' ? (
             <div className="mb-2 text-xs text-red-500">
               El título es obligatorio.
             </div>
-          )}
+          ) : null}
           <button
             type="button"
             className="rounded bg-blue-600 px-6 py-2 font-semibold text-white hover:bg-blue-700"

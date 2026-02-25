@@ -394,7 +394,8 @@ const Home: React.FC = () => {
                 Fecha aprobación del Título: 2018
               </span>
               <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
-                Fecha aprobación Modificación del Plan de Estudios: 30 octubre 2025
+                Fecha aprobación Modificación del Plan de Estudios: 30 octubre
+                2025
               </span>
               <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
                 Código RUCT: 2503724

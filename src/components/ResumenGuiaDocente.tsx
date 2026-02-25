@@ -1,10 +1,7 @@
-import React from 'react';
-import { GuiaDocenteData } from './AsistenteGuiaDocente';
-import { AsignaturaProcesada } from '../lib/dataUtils';
-// @ts-expect-error: No existen declaraciones de tipo para pdfmake en build
-import pdfMake from 'pdfmake/build/pdfmake';
-// @ts-expect-error: No existen declaraciones de tipo para vfs_fonts en build
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { type FC, useState } from 'react';
+import type { GuiaDocenteData } from './AsistenteGuiaDocente';
+import type { HorarioAtencion } from './PasoF_HorarioAtencion';
+import type { AsignaturaProcesada } from '../lib/dataUtils';
 import { generarPDFGuiaDocente } from '../utils/pdfGuiaDocente';
 import ppeData from '../data/ppe.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,10 +12,8 @@ import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 import { generarHTMLGuiaDocente } from '../utils/htmlGuiaDocente';
-import {
-  enviarGuiaParaValoracion,
-  ValoracionIAResponse,
-} from '../utils/valoracionIA';
+import type { ValoracionIAResponse } from '../utils/valoracionIA';
+import { enviarGuiaParaValoracion } from '../utils/valoracionIA';
 import ModalValoracionIA from './ModalValoracionIA';
 
 interface Props {
@@ -27,11 +22,11 @@ interface Props {
   onEdit: (paso: number) => void;
 }
 
-const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
-  const [modalValoracionOpen, setModalValoracionOpen] = React.useState(false);
-  const [isLoadingValoracion, setIsLoadingValoracion] = React.useState(false);
+const ResumenGuiaDocente: FC<Props> = ({ guia, asignatura, onEdit }) => {
+  const [modalValoracionOpen, setModalValoracionOpen] = useState(false);
+  const [isLoadingValoracion, setIsLoadingValoracion] = useState(false);
   const [valoracionResult, setValoracionResult] =
-    React.useState<ValoracionIAResponse | null>(null);
+    useState<ValoracionIAResponse | null>(null);
 
   const handleDescargarPDF = () => {
     generarPDFGuiaDocente(guia, asignatura);
@@ -44,7 +39,7 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `guia-docente.html`;
+    a.download = 'guia-docente.html';
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -72,8 +67,9 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
     setValoracionResult(null);
   };
 
-  const competenciasDict: Record<string, string> = (ppeData as any)
-    .resultados_aprendizaje;
+  const competenciasDict: Record<string, string> = (
+    ppeData as Record<string, Record<string, string>>
+  ).resultados_aprendizaje;
 
   return (
     <div className="mx-auto max-w-5xl rounded-lg bg-white p-10 shadow-md">
@@ -242,18 +238,20 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
             Editar
           </button>
         </div>
-        {Object.entries(guia.horario).map(([email, franjas]: any) => (
-          <div key={email} className="mb-2">
-            <b>{email}</b>:
-            <ul className="ml-4 list-disc">
-              {franjas.map((f: any, i: number) => (
-                <li key={i}>
-                  {f.lugar} | {f.dia} | {f.hora}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {Object.entries(guia.horario).map(
+          ([email, franjas]: [string, HorarioAtencion[]]) => (
+            <div key={email} className="mb-2">
+              <b>{email}</b>:
+              <ul className="ml-4 list-disc">
+                {franjas.map((f: HorarioAtencion, i: number) => (
+                  <li key={i}>
+                    {f.lugar} | {f.dia} | {f.hora}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ),
+        )}
       </section>
       {/* Bibliografía y recursos */}
       <section className="mb-6">

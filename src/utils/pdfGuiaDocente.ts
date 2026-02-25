@@ -10,7 +10,8 @@ import ppeData from '../data/ppe.json';
 import { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import { AsignaturaProcesada } from '../lib/dataUtils';
 
-const competenciasDict: Record<string, string> = (ppeData as any).resultados_aprendizaje;
+const competenciasDict: Record<string, string> = (ppeData as any)
+  .resultados_aprendizaje;
 
 export function generarPDFGuiaDocente(
   guia: GuiaDocenteData,

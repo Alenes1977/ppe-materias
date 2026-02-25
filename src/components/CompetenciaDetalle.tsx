@@ -14,9 +14,9 @@ const CompetenciaDetalle: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   // Obtener la descripción de la competencia
-  const descripcion = (data.resultados_aprendizaje as { [key: string]: string })[
-    id || ''
-  ];
+  const descripcion = (
+    data.resultados_aprendizaje as { [key: string]: string }
+  )[id || ''];
 
   if (!descripcion || !id) {
     return (
@@ -57,7 +57,9 @@ const CompetenciaDetalle: React.FC = () => {
     (acc, modulo) => {
       const asignaturasModulo = modulo.materias.flatMap((materia) =>
         materia.asignaturas
-          .filter((asignatura) => asignatura.resultados_aprendizaje.includes(id))
+          .filter((asignatura) =>
+            asignatura.resultados_aprendizaje.includes(id),
+          )
           .map((asignatura) => ({
             ...asignatura,
             modulo: modulo.nombre,

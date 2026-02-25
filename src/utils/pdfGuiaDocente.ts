@@ -10,7 +10,7 @@ import ppeData from '../data/ppe.json';
 import { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import { AsignaturaProcesada } from '../lib/dataUtils';
 
-const competenciasDict: Record<string, string> = (ppeData as any).competencias;
+const competenciasDict: Record<string, string> = (ppeData as any).resultados_aprendizaje;
 
 export function generarPDFGuiaDocente(
   guia: GuiaDocenteData,
@@ -23,7 +23,7 @@ export function generarPDFGuiaDocente(
     pdfFonts?.pdfMake?.vfs ||
     pdfFonts?.default ||
     pdfFonts;
-  if (vfs) pdfMake.vfs = vfs;
+  if (vfs) Object.assign(pdfMake, { vfs });
   else {
     // @ts-ignore
     console.error('No se pudo encontrar vfs en pdfFonts', pdfFonts);
@@ -96,7 +96,7 @@ export function generarPDFGuiaDocente(
       },
       { text: 'Competencias', style: 'sectionHeader' },
       {
-        ul: (asignatura.competencias || []).map((codigo: string) => ({
+        ul: (asignatura.resultados_aprendizaje || []).map((codigo: string) => ({
           text: [
             { text: `${codigo}: `, bold: true },
             { text: competenciasDict[codigo] || 'Descripción no encontrada' },

@@ -8,12 +8,12 @@ interface Props {
 }
 
 // Extrae el diccionario de competencias del JSON
-const competenciasDict: Record<string, string> = ppeData.competencias;
+const competenciasDict: Record<string, string> = ppeData.resultados_aprendizaje;
 
 const PasoB_Competencias: React.FC<Props> = ({ asignatura, onNext }) => {
   // Las competencias de la asignatura son un array de códigos
   // (ej: ["CB1", "CG2", ...])
-  const competencias = asignatura.competencias || [];
+  const competencias = asignatura.resultados_aprendizaje || [];
 
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">

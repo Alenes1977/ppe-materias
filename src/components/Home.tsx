@@ -391,7 +391,10 @@ const Home: React.FC = () => {
             </p>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:space-x-4">
               <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
-                Fecha aprobación del título: 2018
+                Fecha aprobación del Título: 2018
+              </span>
+              <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
+                Fecha aprobación Modificación del Plan de Estudios: 30 octubre 2025
               </span>
               <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
                 Código RUCT: 2503724

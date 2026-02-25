@@ -100,7 +100,7 @@ const AsignaturaDetalle: React.FC = () => {
   // Función para obtener la descripción de una competencia
   const getCompetenciaDescripcion = (competenciaId: string): string => {
     return (
-      (data.competencias as CompetenciasType)[competenciaId] ||
+      (data.resultados_aprendizaje as CompetenciasType)[competenciaId] ||
       'Descripción no disponible'
     );
   };
@@ -190,10 +190,10 @@ const AsignaturaDetalle: React.FC = () => {
                   />
                   Competencias
                 </h2>
-                {asignaturaInfo.competencias &&
-                asignaturaInfo.competencias.length > 0 ? (
+                {asignaturaInfo.resultados_aprendizaje &&
+                asignaturaInfo.resultados_aprendizaje.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
-                    {asignaturaInfo.competencias.map((competencia, index) => (
+                    {asignaturaInfo.resultados_aprendizaje.map((competencia, index) => (
                       <Link
                         key={index}
                         to={`/competencias/${competencia}`}

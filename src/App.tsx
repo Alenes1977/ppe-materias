@@ -36,7 +36,7 @@ interface Asignatura {
   nombre: string;
   curso: string;
   semestre: string;
-  competencias: string[];
+  resultados_aprendizaje: string[];
 }
 
 interface Materia {

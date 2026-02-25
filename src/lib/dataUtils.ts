@@ -15,15 +15,15 @@ export interface ActividadFormativa {
 export interface AsignaturaProcesada {
   id: string;
   nombre: string;
-  curso: string;
-  semestre: string;
+  curso: number;
+  semestre: number;
   ects: number;
   // Añadimos la información de la materia y el módulo para contexto
   materia: string;
   modulo: string;
   'actividad-formativa': string[];
   evaluacion: Evaluacion[];
-  competencias: string[];
+  resultados_aprendizaje: string[];
 }
 
 let asignaturasProcesadas: AsignaturaProcesada[] | null = null;
@@ -59,8 +59,8 @@ export const getAsignaturas = (): AsignaturaProcesada[] => {
           materia: materia.nombre,
           modulo: modulo.nombre,
           'actividad-formativa': materia['actividad-formativa'],
-          evaluacion: materia.evaluacion,
-          competencias: asignatura.competencias || [],
+          evaluacion: asignatura.evaluacion ?? materia.evaluacion,
+          resultados_aprendizaje: materia.resultados_aprendizaje || [],
         });
       });
     });

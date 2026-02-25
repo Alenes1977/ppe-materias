@@ -26,7 +26,7 @@ interface MateriaInfo {
     curso: string;
     semestre: string;
     ects: number;
-    competencias: string[];
+    resultados_aprendizaje: string[];
   }[];
   'actividad-formativa': string[];
   evaluacion: {

@@ -17,17 +17,11 @@ const ordenarAsignaturas = (asignaturas: any[]) => {
   return [...asignaturas].sort((a, b) => {
     // Primero ordenar por curso
     if (a.curso !== b.curso) {
-      return parseInt(a.curso) - parseInt(b.curso);
+      return a.curso - b.curso;
     }
 
     // Si son del mismo curso, ordenar por semestre
-    // Orden: anual -> primer semestre -> segundo semestre
-    const ordenSemestre = (sem: string) => {
-      if (sem === 'anual') return 0;
-      return parseInt(sem);
-    };
-
-    return ordenSemestre(a.semestre) - ordenSemestre(b.semestre);
+    return a.semestre - b.semestre;
   });
 };
 
@@ -199,9 +193,7 @@ const Modulo: React.FC = () => {
                               icon={faCalendarAlt}
                               className="mr-1.5"
                             />
-                            {asignatura.semestre === 'anual'
-                              ? 'Anual'
-                              : `${asignatura.semestre}º semestre`}
+                            {`${asignatura.semestre}º semestre`}
                           </span>
                           <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800 sm:px-2.5">
                             <FontAwesomeIcon

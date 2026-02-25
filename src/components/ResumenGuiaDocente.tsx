@@ -73,7 +73,7 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
   };
 
   const competenciasDict: Record<string, string> = (ppeData as any)
-    .competencias;
+    .resultados_aprendizaje;
 
   return (
     <div className="mx-auto max-w-5xl rounded-lg bg-white p-10 shadow-md">
@@ -142,7 +142,7 @@ const ResumenGuiaDocente: React.FC<Props> = ({ guia, asignatura, onEdit }) => {
           </button>
         </div>
         <ul className="ml-6 list-disc text-gray-700">
-          {asignatura.competencias?.map((c: string, i: number) => (
+          {asignatura.resultados_aprendizaje?.map((c: string, i: number) => (
             <li key={i}>
               <span className="font-bold">{c}:</span>{' '}
               <span>

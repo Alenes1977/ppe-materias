@@ -1,980 +1,893 @@
 {
-  "competencias": {
-    "CB1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio",
-    "CB2": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio",
-    "CB3": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética",
-    "CB4": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado",
-    "CB5": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía",
-    "CG1": "Formular razonamientos críticos y bien argumentados, empleando para ello terminología precisa, recursos especializados y documentación que avale dichos argumentos en los ámbitos de la filosofía, la política y la economía",
-    "CG2": "Diferenciar los marcos teóricos particulares y las herramientas de análisis específicas desde los que la filosofía, la política y la economía abordan los problemas de las sociedades contemporáneas",
-    "CG3": "Comprender, analizar y evaluar de manera crítica los elementos configuradores del ser humano y de la sociedad actual en sus múltiples dimensiones: antropológica, histórica, cultural, política, social y económica",
-    "CG4": "Expresar conocimientos e ideas de manera oral y escrita, con rigor, orden y creatividad, que aborden cuestiones y retos de la coyuntura económica, política, social y cultural de nuestra sociedad",
-    "CG5": "Saber combinar el razonamiento económico con el propio de la ciencia socio-política y de la filosofía para una comprensión holística de la sociedad contemporánea",
-    "CT1": "Afrontar de manera crítica y reflexiva el estudio de la filosofía, la política y la economía en su conexión con el resto de los saberes",
-    "CT2": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas",
-    "CT3": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la filosofía, la política y la economía",
-    "CE1": "Identificar y analizar los elementos más significativos que conforman las diferentes realidades sociales para interpretarlas desde un enfoque sistémico, que integre las áreas de conocimiento del Grado (filosofía, política y economía)",
-    "CE2": "Valorar la complementariedad y la contribución particular de la filosofía, la política y la economía en la interpretación de la realidad social",
-    "CE3": "Valorar y contrastar las distintas teorías políticas, económicas, o sociológicas que explican la organización particular de las sociedades contemporáneas",
-    "CE4": "Identificar cuestiones filosóficas de fondo implícitas en los debates abiertos actualmente en los ámbitos sociales de la cultura, la ciencia, la tecnología, la economía, el derecho, la política, y los medios de información y comunicación",
-    "CE5": "Analizar e interpretar desde una perspectiva filosófica los problemas y retos que afectan al ser humano y su organización social en las sociedades contemporáneas",
-    "CE6": "Conocer y manejar en análisis críticos las principales metodologías y conceptos de la filosofía",
-    "CE7": "Analizar los principales elementos de la realidad política y comprender las condiciones de su racionalidad",
-    "CE8": "Conocer las teorías políticas y sociológicas más representativas sobre la sociedad y la acción humana en sociedad",
-    "CE9": "Identificar y valorar desde las perspectivas filosófica, política y económica, el papel que la comunicación y la opinión pública desempeñan en la articulación social y las decisiones colectivas",
-    "CE10": "Conocer y utilizar los conceptos y métodos fundamentales de la Teoría Económica, aplicándolos al análisis y discusión de situaciones reales",
-    "CE11": "Identificar y manejar los principales modelos microeconómicos y macroeconómicos que explican los procesos y comportamientos económicos",
-    "CE12": "Reflexionar, desde una perspectiva histórica, sobre la dimensión ética de la actividad económica y su capacidad para configurar realidades sociopolíticas particulares",
-    "CE13": "Identificar los elementos relevantes del entorno económico globalizado, valorando su coherencia con otros parámetros normativos de índole política o filosófica"
+  "resultados_aprendizaje": {
+    "RA1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio.",
+    "RA2": "Diferenciar los marcos teóricos particulares y las herramientas de análisis específicas desde los que la filosofía, la política y la economía abordan los problemas de las sociedades contemporáneas.",
+    "RA3": "Comprender, analizar y evaluar de manera crítica los elementos configuradores del ser humano y de la sociedad actual en sus múltiples dimensiones: antropológica, histórica, cultural, política, social y económica.",
+    "RA4": "Identificar cuestiones filosóficas de fondo implícitas en los debates abiertos actualmente en los ámbitos sociales de la cultura, la ciencia, la tecnología, la economía, el derecho, la política, y los medios de información y comunicación.",
+    "RA5": "Conocer y manejar en análisis críticos las principales metodologías y conceptos de la filosofía.",
+    "RA6": "Conocer las teorías políticas y sociológicas más representativas sobre la sociedad y la acción humana en sociedad.",
+    "RA7": "Conocer y utilizar los conceptos y métodos fundamentales de la Teoría Económica, aplicándolos al análisis y discusión de situaciones reales.",
+    "RA8": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio.",
+    "RA9": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética.",
+    "RA10": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado.",
+    "RA11": "Formular razonamientos críticos y bien argumentados, empleando para ello terminología precisa, recursos especializados y documentación que avale dichos argumentos en los ámbitos de la filosofía, la política y la economía.",
+    "RA12": "Expresar conocimientos e ideas de manera oral y escrita, con rigor, orden y creatividad, que aborden cuestiones y retos de la coyuntura económica, política, social y cultural de nuestra sociedad.",
+    "RA13": "Identificar y analizar los elementos más significativos que conforman las diferentes realidades sociales para interpretarlas desde un enfoque sistémico, que integre las áreas de conocimiento del Grado (filosofía, política y economía).",
+    "RA14": "Analizar e interpretar desde una perspectiva filosófica los problemas y retos que afectan al ser humano y su organización social en las sociedades contemporáneas.",
+    "RA15": "Analizar los principales elementos de la realidad política y comprender las condiciones de su racionalidad.",
+    "RA16": "Identificar y valorar desde las perspectivas filosófica, política y económica, el papel que la comunicación y la opinión pública desempeñan en la articulación social y las decisiones colectivas.",
+    "RA17": "Identificar y manejar los principales modelos microeconómicos y macroeconómicos que explican los procesos y comportamientos económicos.",
+    "RA18": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía.",
+    "RA19": "Saber combinar el razonamiento económico con el propio de la ciencia socio-política y de la filosofía para una comprensión holística de la sociedad contemporánea.",
+    "RA20": "Afrontar de manera crítica y reflexiva el estudio de la filosofía, la política y la economía en su conexión con el resto de los saberes.",
+    "RA21": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas.",
+    "RA22": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la filosofía, la política y la economía.",
+    "RA23": "Valorar la complementariedad y la contribución particular de la filosofía, la política y la economía en la interpretación de la realidad social.",
+    "RA24": "Valorar y contrastar las distintas teorías políticas, económicas, o sociológicas que explican la organización particular de las sociedades contemporáneas.",
+    "RA25": "Reflexionar, desde una perspectiva histórica, sobre la dimensión ética de la actividad económica y su capacidad para configurar realidades sociopolíticas particulares.",
+    "RA26": "Identificar los elementos relevantes del entorno económico globalizado, valorando su coherencia con otros parámetros normativos de índole política o filosófica.",
+    "RA27": "Evaluar críticamente las implicaciones de las políticas y prácticas en relación con la calidad democrática, la equidad, el respeto a la igualdad, la inclusión social y la sostenibilidad, considerando los Objetivos de Desarrollo Sostenible."
   },
+  "actividades_formativas": [
+    {
+      "id": "AF1",
+      "nombre": "Asistencia a clases magistrales",
+      "descripcion": "Sesiones impartidas por el profesor o profesora en el aula sobre contenidos previstos en la guía docente de la asignatura."
+    },
+    {
+      "id": "AF2",
+      "nombre": "Seminarios de discusión y otras actividades presenciales",
+      "descripcion": "Sesiones de trabajo coordinadas por el profesor o profesora, con la participación de estudiantes y/o invitados/as y centradas en un apartado concreto de la asignatura."
+    },
+    {
+      "id": "AF3",
+      "nombre": "Realización de ejercicios",
+      "descripcion": "Trabajo práctico que realiza el alumnado con la guía del profesor o profesora con el fin de consolidar los conocimientos prácticos y la dimensión cuantitativa de algunas disciplinas."
+    },
+    {
+      "id": "AF4",
+      "nombre": "Tutorías",
+      "descripcion": "Asesoramiento personalizado por parte del profesor o profesora y recibido por el estudiante."
+    },
+    {
+      "id": "AF5",
+      "nombre": "Estudio personal",
+      "descripcion": "Conjunto de actividades que realiza el estudiante fuera del aula que son requeridas por el profesor o profesora para la superación de la asignatura."
+    },
+    {
+      "id": "AF6",
+      "nombre": "Elaboración de trabajos dirigidos",
+      "descripcion": "Realización de trabajos por parte de los estudiantes fuera del aula para el desarrollo y profundización de contenidos de la asignatura."
+    },
+    {
+      "id": "AF7",
+      "nombre": "Actividades presenciales",
+      "descripcion": "Sesiones de trabajo y de formación organizadas por el coordinador o coordinadora del TFG centradas en la adquisición de las competencias, las herramientas y los conocimientos transversales necesarios para el desarrollo de un proyecto aplicado e interdisciplinar."
+    },
+    {
+      "id": "AF8",
+      "nombre": "Elaboración del Trabajo Fin de Grado",
+      "descripcion": "Elaboración del trabajo por parte de los estudiantes y las estudiantes conforme a la estructura y requisitos que se determinan en la guía docente."
+    },
+    {
+      "id": "AF9",
+      "nombre": "Defensa del Trabajo Fin de Grado",
+      "descripcion": "Acto de presentación o defensa del trabajo realizado ante uno o varios profesores o profesoras y en sesión abierta al público."
+    }
+  ],
+  "metodologias_docentes": [
+    {
+      "id": "MD1",
+      "nombre": "Enseñanza expositiva",
+      "descripcion": "Metodología centrada en la exposición, desarrollo y transmisión estructurada del conocimiento por parte del docente."
+    },
+    {
+      "id": "MD2",
+      "nombre": "Aprendizaje dialógico",
+      "descripcion": "Generación de aprendizaje significativo a través del diálogo y la interacción entre estudiantes y docentes, promoviendo la argumentación, la reflexión conjunta y la participación activa."
+    },
+    {
+      "id": "MD3",
+      "nombre": "Clase invertida",
+      "descripcion": "Reorganización del proceso de enseñanza en la que los estudiantes acceden previamente a los contenidos teóricos fuera del aula, mientras que el tiempo en clase se dedica a la aplicación práctica, la resolución de dudas y el trabajo colaborativo."
+    },
+    {
+      "id": "MD4",
+      "nombre": "Aprendizaje basado en retos (ABR)",
+      "descripcion": "Planteamiento, análisis y resolución de desafíos, casos o problemas reales o significativos mediante la investigación, colaboración y la aplicación del conocimiento en contextos prácticos."
+    },
+    {
+      "id": "MD5",
+      "nombre": "Aprendizaje cooperativo",
+      "descripcion": "Trabajo en grupo en el que el alumnado alcanza conjuntamente metas comunes."
+    },
+    {
+      "id": "MD6",
+      "nombre": "Aprendizaje-Servicio (ApS)",
+      "descripcion": "Integración del aprendizaje académico con un servicio a la comunidad, donde los y las estudiantes aplican conocimientos y habilidades para resolver problemas sociales, desarrollando competencias en un contexto de impacto real."
+    }
+  ],
+  "sistemas_evaluacion": [
+    {
+      "id": "SE1",
+      "nombre": "Exámenes (escritos u orales)",
+      "descripcion": "Conjunto de pruebas de valoración planificadas por el profesor o profesora a lo largo de la asignatura para evaluar el progreso del aprendizaje de los y las estudiantes y la adquisición de las competencias previstas en la asignatura."
+    },
+    {
+      "id": "SE2",
+      "nombre": "Elaboración y presentación de trabajos dirigidos",
+      "descripcion": "Evaluación de los trabajos realizados por el alumno o la alumna, individuales o en equipo."
+    },
+    {
+      "id": "SE3",
+      "nombre": "Preparación y participación en seminarios de discusión y en otras actividades presenciales",
+      "descripcion": "Valoración del trabajo continuo y de la realización por parte del alumnado tanto de actividades de discusión como de otras actividades presenciales en el aula."
+    },
+    {
+      "id": "SE4",
+      "nombre": "Resolución de ejercicios",
+      "descripcion": "Evaluación de la resolución de problemas y casos que aproximan al y a la estudiante a situaciones reales de la práctica profesional."
+    },
+    {
+      "id": "SE5",
+      "nombre": "Participación en actividades presenciales",
+      "descripcion": "Valoración del cumplimiento de las actividades realizadas por el alumnado en el aula."
+    },
+    {
+      "id": "SE6",
+      "nombre": "Elaboración del Trabajo Fin de Grado",
+      "descripcion": "Evaluación por parte de uno o varios profesores/as del Trabajo Fin de Grado de acuerdo con las directrices establecidas."
+    },
+    {
+      "id": "SE7",
+      "nombre": "Defensa del Trabajo Fin de Grado",
+      "descripcion": "Evaluación por parte de uno o varios profesores/as de la defensa del Trabajo Fin de Grado."
+    }
+  ],
   "modulos": [
     {
-      "nombre": "Fundamentos humanísticos y filosóficos",
-      "ects": 66,
+      "nombre": "Módulo I: Filosofía y formación humanística",
+      "ects": 69,
       "materias": [
         {
-          "nombre": "Core curriculum",
-          "ECTS": "18",
-          "ECTS-basicos": "12",
-          "ECTS-obligatorios": "0",
-          "ECTS-optativos": "6",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "nombre": "Core Curriculum",
+          "ECTS": 18,
+          "ECTS-basicos": 0,
+          "ECTS-obligatorios": 18,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "70%"
+              "tipo": "SE1",
+              "ponderacion-minima": "30%",
+              "ponderacion-maxima": "60%"
             },
             {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
-              "ponderacion-minima": "0%",
+              "tipo": "SE2",
+              "ponderacion-minima": "20%",
               "ponderacion-maxima": "50%"
             },
             {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
+              "tipo": "SE3",
+              "ponderacion-minima": "20%",
               "ponderacion-maxima": "50%"
-            },
-            {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA1",
+            "RA2",
+            "RA3",
+            "RA9",
+            "RA10",
+            "RA20",
+            "RA21",
+            "RA22",
+            "RA27"
           ],
           "asignaturas": [
             {
-              "nombre": "Antropología",
-              "curso": "1",
-              "semestre": "anual",
-              "ects": 6,
-              "competencias": [
-                "CG2",
-                "CG3",
-                "CB1",
-                "CB3",
-                "CB4",
-                "CT1",
-                "CT2",
-                "CT3"
-              ]
+              "nombre": "Antropología I",
+              "tipo": "Obligatoria",
+              "curso": 1,
+              "semestre": 1,
+              "ects": 3
             },
             {
-              "nombre": "Ética",
-              "curso": "2",
-              "semestre": "anual",
-              "ects": 6,
-              "competencias": [
-                "CG2",
-                "CG3",
-                "CB1",
-                "CB3",
-                "CB4",
-                "CT1",
-                "CT2",
-                "CT3"
-              ]
+              "nombre": "Antropología II",
+              "tipo": "Obligatoria",
+              "curso": 1,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Ética I",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 1,
+              "ects": 3
+            },
+            {
+              "nombre": "Ética II",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 2,
+              "ects": 3
             },
             {
               "nombre": "Claves culturales I",
-              "curso": "2",
-              "semestre": "2",
-              "ects": 3,
-              "competencias": [
-                "CG2",
-                "CG3",
-                "CB1",
-                "CB3",
-                "CB4",
-                "CT1",
-                "CT2",
-                "CT3"
-              ]
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 1,
+              "ects": 3
             },
             {
               "nombre": "Claves culturales II",
-              "curso": "3",
-              "semestre": "1",
-              "ects": 3,
-              "competencias": ["CG2", "CG3", "CB1", "CB3", "CB4", "CT1", "CT2"]
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 3
             }
           ]
         },
         {
-          "nombre": "Fundamentos de filosofía",
-          "ECTS": "24",
-          "ECTS-basicos": "18",
-          "ECTS-obligatorios": "6",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "nombre": "Historia de la filosofía y filosofía teórica",
+          "ECTS": 27,
+          "ECTS-basicos": 12,
+          "ECTS-obligatorios": 15,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "70%"
+              "tipo": "SE1",
+              "ponderacion-minima": "30%",
+              "ponderacion-maxima": "60%"
             },
             {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
+              "tipo": "SE2",
               "ponderacion-minima": "20%",
-              "ponderacion-maxima": "100%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
               "ponderacion-maxima": "50%"
             },
             {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
+              "tipo": "SE3",
+              "ponderacion-minima": "20%",
+              "ponderacion-maxima": "40%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA2",
+            "RA1",
+            "RA11",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA4",
+            "RA14",
+            "RA5",
+            "RA19"
           ],
           "asignaturas": [
             {
-              "nombre": "Filosofía y pensamiento crítico",
-              "curso": "1",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": [
-                "CG1",
-                "CG2",
-                "CG5",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CE4",
-                "CE5",
-                "CE6"
-              ]
+              "nombre": "Historia de la Filosofía antigua y medieval",
+              "tipo": "Básica",
+              "curso": 1,
+              "semestre": 2,
+              "ects": 6
             },
             {
-              "nombre": "Introducción a la lógica",
-              "curso": "1",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": ["CG1", "CB1"]
+              "nombre": "Historia de la Filosofía moderna y contemporánea",
+              "tipo": "Básica",
+              "curso": 2,
+              "semestre": 2,
+              "ects": 6
             },
             {
-              "nombre": "Historia de la filosofía: grandes autores",
-              "curso": "1",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": ["CG1", "CB1", "CB4", "CE4", "CE5", "CE6"]
+              "nombre": "Filosofía de la cultura",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 2,
+              "ects": 3
             },
             {
-              "nombre": "Historia de la filosofía: textos fundamentales",
-              "curso": "2",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": ["CG1", "CB1", "CB4", "CE4", "CE5", "CE6"]
+              "nombre": "Knowledge and Truth",
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 1,
+              "ects": 6
+            },
+            {
+              "nombre": "Filosofía actual",
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 1,
+              "ects": 6
             }
           ]
         },
         {
-          "nombre": "Conocimiento, realidad y acción",
-          "ECTS": "24",
-          "ECTS-basicos": "6",
-          "ECTS-obligatorios": "18",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "nombre": "Filosofía práctica",
+          "ECTS": 24,
+          "ECTS-basicos": 12,
+          "ECTS-obligatorios": 12,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
+              "tipo": "SE1",
+              "ponderacion-minima": "10%",
+              "ponderacion-maxima": "40%"
+            },
+            {
+              "tipo": "SE2",
+              "ponderacion-minima": "40%",
               "ponderacion-maxima": "70%"
             },
             {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
+              "tipo": "SE3",
               "ponderacion-minima": "20%",
-              "ponderacion-maxima": "100%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
               "ponderacion-maxima": "50%"
-            },
-            {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA3",
+            "RA1",
+            "RA4",
+            "RA5",
+            "RA12",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA13",
+            "RA14",
+            "RA26",
+            "RA27"
           ],
           "asignaturas": [
             {
-              "nombre": "Knowledge and reality",
-              "curso": "2",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": [
-                "CG3",
-                "CG4",
-                "CB1",
-                "CB3",
-                "CB4",
-                "CE1",
-                "CE4",
-                "CE6"
-              ]
+              "nombre": "Filosofía política clásica y moderna",
+              "tipo": "Básica",
+              "curso": 1,
+              "semestre": 1,
+              "ects": 6
             },
             {
-              "nombre": "Filosofía de la economía",
-              "curso": "1",
-              "semestre": "2",
+              "nombre": "Philosophy of Economics",
+              "tipo": "Obligatoria",
+              "curso": 1,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Filosofía política contemporánea y actual",
+              "tipo": "Básica",
+              "curso": 2,
+              "semestre": 1,
+              "ects": 6
+            },
+            {
+              "nombre": "Filosofía para un mundo complejo",
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 2,
               "ects": 3,
-              "competencias": ["CG3", "CG4", "CB1", "CB3", "CE1", "CE5", "CE13"]
-            },
-            {
-              "nombre": "Metafísica",
-              "curso": "3",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": ["CG4", "CB1", "CB2", "CB3", "CE1", "CE4", "CE6"]
-            },
-            {
-              "nombre": "Debates filosóficos actuales",
-              "curso": "4",
-              "semestre": "2",
-              "ects": 3,
-              "competencias": [
-                "CG3",
-                "CG4",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CE5",
-                "CE13"
+              "evaluacion": [
+                {
+                  "tipo": "SE2",
+                  "ponderacion-minima": "50%",
+                  "ponderacion-maxima": "80%"
+                },
+                {
+                  "tipo": "SE3",
+                  "ponderacion-minima": "20%",
+                  "ponderacion-maxima": "50%"
+                }
               ]
             },
             {
-              "nombre": "Filosofía política y social",
-              "curso": "2",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": [
-                "CG3",
-                "CG4",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CE1",
-                "CE4",
-                "CE5",
-                "CE6",
-                "CE13"
-              ]
+              "nombre": "Filosofía de la acción",
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Teorías filosóficas sobre la ciudadanía",
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 3
             }
           ]
         }
       ]
     },
     {
-      "nombre": "Política y sociedad",
-      "ects": 48,
+      "nombre": "Módulo II: Política y sociedad",
+      "ects": 63,
       "materias": [
         {
-          "nombre": "Teoría política y social",
-          "ECTS-n": "18",
-          "ECTS-basicos": "6",
-          "ECTS-obligatorios": "12",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "nombre": "Teoría política",
+          "ECTS": 33,
+          "ECTS-basicos": 18,
+          "ECTS-obligatorios": 15,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "70%"
-            },
-            {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
+              "tipo": "SE1",
               "ponderacion-minima": "20%",
-              "ponderacion-maxima": "100%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
               "ponderacion-maxima": "50%"
             },
             {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
+              "tipo": "SE2",
+              "ponderacion-minima": "20%",
+              "ponderacion-maxima": "50%"
+            },
+            {
+              "tipo": "SE3",
+              "ponderacion-minima": "30%",
+              "ponderacion-maxima": "60%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA2",
+            "RA6",
+            "RA11",
+            "RA19",
+            "RA9",
+            "RA10",
+            "RA13",
+            "RA14",
+            "RA15",
+            "RA16",
+            "RA18",
+            "RA24",
+            "RA25",
+            "RA27"
           ],
           "asignaturas": [
             {
-              "nombre": "Sociología",
-              "curso": "1",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": [
-                "CG1",
-                "CG5",
-                "CB3",
-                "CB4",
-                "CE1",
-                "CE3",
-                "CE5",
-                "CE8",
-                "CE9"
-              ]
+              "nombre": "Political Science",
+              "tipo": "Básica",
+              "curso": 1,
+              "semestre": 1,
+              "ects": 6
             },
             {
-              "nombre": "Introducción a la ciencia política",
-              "curso": "1",
-              "semestre": "1",
+              "nombre": "Historia de las ideas y de las ideologías políticas",
+              "tipo": "Básica",
+              "curso": 1,
+              "semestre": 1,
+              "ects": 6
+            },
+            {
+              "nombre": "EU Institutions and Policy",
+              "tipo": "Obligatoria",
+              "curso": 1,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Comparative Political Systems",
+              "tipo": "Básica",
+              "curso": 2,
+              "semestre": 1,
+              "ects": 6
+            },
+            {
+              "nombre": "Evaluación de políticas públicas",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "International Relations",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 2,
+              "ects": 6
+            },
+            {
+              "nombre": "Gestión y políticas públicas",
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 1,
               "ects": 3,
-              "competencias": [
-                "CG1",
-                "CG2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE3",
-                "CE7",
-                "CE8"
-              ]
-            },
-            {
-              "nombre": "Cristianismo, sociedad y economía",
-              "curso": "3",
-              "semestre": "1",
-              "ects": 3,
-              "competencias": ["CG5", "CB3", "CE1", "CE3", "CE5", "CE12"]
-            },
-            {
-              "nombre": "Teoría de la acción y decisión política",
-              "curso": "4",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": [
-                "CG5",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE5",
-                "CE7",
-                "CE8",
-                "CE9"
+              "evaluacion": [
+                {
+                  "tipo": "SE2",
+                  "ponderacion-minima": "40%",
+                  "ponderacion-maxima": "70%"
+                },
+                {
+                  "tipo": "SE3",
+                  "ponderacion-minima": "30%",
+                  "ponderacion-maxima": "60%"
+                }
               ]
             }
           ]
         },
         {
-          "nombre": "Sociedad, cultura y comunicación en el mundo contemporáneo",
-          "ECTS-n": "30",
-          "ECTS-basicos": "12",
-          "ECTS-obligatorios": "18",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "nombre": "Sociedad, comunicación y cultura en el mundo contemporáneo",
+          "ECTS": 30,
+          "ECTS-basicos": 6,
+          "ECTS-obligatorios": 24,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "70%"
+              "tipo": "SE1",
+              "ponderacion-minima": "30%",
+              "ponderacion-maxima": "60%"
             },
             {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
+              "tipo": "SE2",
               "ponderacion-minima": "20%",
-              "ponderacion-maxima": "100%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
               "ponderacion-maxima": "50%"
             },
             {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
+              "tipo": "SE3",
+              "ponderacion-minima": "20%",
+              "ponderacion-maxima": "50%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA3",
+            "RA12",
+            "RA1",
+            "RA6",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA13",
+            "RA15",
+            "RA16",
+            "RA18",
+            "RA23",
+            "RA24",
+            "RA25",
+            "RA26",
+            "RA27"
           ],
           "asignaturas": [
             {
-              "nombre": "Historia universal contemporánea",
-              "curso": "1",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": [
-                "CG3",
-                "CB1",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE3",
-                "CE8",
-                "CE12",
-                "CE13"
-              ]
+              "nombre": "Contemporary Political History",
+              "tipo": "Obligatoria",
+              "curso": 1,
+              "semestre": 2,
+              "ects": 3
             },
             {
-              "nombre": "Sociedad y política en el mundo actual",
-              "curso": "1",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": [
-                "CG3",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE7",
-                "CE8",
-                "CE12",
-                "CE13"
-              ]
+              "nombre": "Estructura y cambio social",
+              "tipo": "Básica",
+              "curso": 2,
+              "semestre": 1,
+              "ects": 6
             },
             {
-              "nombre": "Retórica y oratoria",
-              "curso": "1",
-              "semestre": "2",
-              "ects": 3,
-              "competencias": ["CG4", "CB2", "CB4"]
+              "nombre": "Política y sociedad en la España actual",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 1,
+              "ects": 3
             },
             {
               "nombre": "Comunicación política",
-              "curso": "2",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": ["CG4", "CB1", "CB2", "CB4", "CB5", "CE9"]
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 1,
+              "ects": 6
             },
             {
-              "nombre": "Historia de las ideas e ideologías políticas",
-              "curso": "2",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": [
-                "CG3",
-                "CB1",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE7",
-                "CE8",
-                "CE12",
-                "CE13"
-              ]
+              "nombre": "Cristianismo, sociedad y economía",
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 1,
+              "ects": 3
             },
             {
-              "nombre": "Opinión pública",
-              "curso": "3",
-              "semestre": "1",
-              "ects": 3,
-              "competencias": ["CG4", "CB1", "CB2", "CB4", "CE7", "CE9"]
+              "nombre": "Política y cultura latinoamericana",
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Población: Teorías y políticas",
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Hegemony and Globalization",
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 3
             }
           ]
         }
       ]
     },
     {
-      "nombre": "Economía",
-      "ects": 45,
+      "nombre": "Módulo III: Economía",
+      "ects": 51,
       "materias": [
         {
           "nombre": "Teoría económica",
-          "ECTS-n": "18",
-          "ECTS-basicos": "6",
-          "ECTS-obligatorios": "12",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "ECTS": 24,
+          "ECTS-basicos": 6,
+          "ECTS-obligatorios": 18,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF1", "AF2", "AF3", "AF4", "AF5"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "70%"
+              "tipo": "SE1",
+              "ponderacion-minima": "30%",
+              "ponderacion-maxima": "60%"
             },
             {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
+              "tipo": "SE3",
+              "ponderacion-minima": "10%",
+              "ponderacion-maxima": "40%"
+            },
+            {
+              "tipo": "SE4",
               "ponderacion-minima": "20%",
-              "ponderacion-maxima": "100%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
               "ponderacion-maxima": "50%"
-            },
-            {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA11",
+            "RA2",
+            "RA1",
+            "RA19",
+            "RA8",
+            "RA9",
+            "RA7",
+            "RA18",
+            "RA17"
           ],
           "asignaturas": [
             {
-              "nombre": "Fundamentos de economía",
-              "curso": "1",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": ["CG1", "CG2", "CG5", "CB2", "CB5", "CE10"]
+              "nombre": "Historia del pensamiento económico",
+              "tipo": "Obligatoria",
+              "curso": 1,
+              "semestre": 1,
+              "ects": 3
             },
             {
-              "nombre": "Microeconomía",
-              "curso": "2",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": [
-                "CG1",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB5",
-                "CE10",
-                "CE11"
-              ]
+              "nombre": "Microeconomics",
+              "tipo": "Básica",
+              "curso": 1,
+              "semestre": 2,
+              "ects": 6
             },
             {
-              "nombre": "Macroeconomía",
-              "curso": "2",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": [
-                "CG1",
-                "CG2",
-                "CG5",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB5",
-                "CE10",
-                "CE11"
-              ]
+              "nombre": "Macroeconomics",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 1,
+              "ects": 6
+            },
+            {
+              "nombre": "International Economics",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Political Economy",
+              "tipo": "Obligatoria",
+              "curso": 2,
+              "semestre": 2,
+              "ects": 6
             }
           ]
         },
         {
           "nombre": "Economía aplicada",
-          "ECTS-n": "27",
-          "ECTS-basicos": "0",
-          "ECTS-obligatorios": "27",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "ECTS": 27,
+          "ECTS-basicos": 6,
+          "ECTS-obligatorios": 21,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "70%"
-            },
-            {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
+              "tipo": "SE1",
               "ponderacion-minima": "20%",
-              "ponderacion-maxima": "100%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
               "ponderacion-maxima": "50%"
             },
             {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
+              "tipo": "SE2",
+              "ponderacion-minima": "30%",
+              "ponderacion-maxima": "60%"
+            },
+            {
+              "tipo": "SE3",
+              "ponderacion-minima": "20%",
+              "ponderacion-maxima": "50%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA3",
+            "RA1",
+            "RA7",
+            "RA12",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA13",
+            "RA17",
+            "RA24",
+            "RA25",
+            "RA26",
+            "RA27"
           ],
           "asignaturas": [
             {
-              "nombre": "Decision Making in Economics",
-              "curso": "2",
-              "semestre": "2",
-              "ects": 3,
-              "competencias": ["CB1", "CB2", "CB3", "CE12"]
+              "nombre": "Métodos cuantitativos",
+              "tipo": "Básica",
+              "curso": 1,
+              "semestre": 1,
+              "ects": 6
             },
             {
-              "nombre": "International Macroeconomics",
-              "curso": "2",
-              "semestre": "2",
-              "ects": 3,
-              "competencias": [
-                "CG4",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CE10",
-                "CE11",
-                "CE13"
-              ]
-            },
-            {
-              "nombre": "Economía pública",
-              "curso": "3",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": [
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CE1",
-                "CE3",
-                "CE10",
-                "CE11",
-                "CE13"
-              ]
-            },
-            {
-              "nombre": "Historia del pensamiento económico",
-              "curso": "3",
-              "semestre": "1",
-              "ects": 6,
-              "competencias": ["CG3", "CG4", "CB1", "CB2", "CB4", "CE1", "CE3"]
-            },
-            {
-              "nombre": "Ética de la actividad económica",
-              "curso": "4",
-              "semestre": "2",
-              "ects": 3,
-              "competencias": [
-                "CG4",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CE1",
-                "CE12",
-                "CE13"
-              ]
+              "nombre": "Gestión de proyectos",
+              "tipo": "Obligatoria",
+              "curso": 1,
+              "semestre": 2,
+              "ects": 6
             },
             {
               "nombre": "Entorno económico global",
-              "curso": "4",
-              "semestre": "2",
-              "ects": 6,
-              "competencias": [
-                "CG3",
-                "CG4",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CE3",
-                "CE10",
-                "CE11",
-                "CE12",
-                "CE13"
-              ]
+              "tipo": "Obligatoria",
+              "curso": 3,
+              "semestre": 1,
+              "ects": 3
+            },
+            {
+              "nombre": "Ética del trabajo",
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 3
+            },
+            {
+              "nombre": "Economía pública",
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 6
+            },
+            {
+              "nombre": "Development Economics",
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 3
             }
           ]
         }
       ]
     },
     {
-      "nombre": "Formación complementaria",
-      "ects": 60,
+      "nombre": "Módulo IV: Formación complementaria",
+      "ects": 51,
       "materias": [
         {
-          "nombre": "Formación específica complementaria",
-          "ECTS-n": "60",
-          "ECTS-basicos": "0",
-          "ECTS-obligatorios": "0",
-          "ECTS-optativos": "60",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "nombre": "Formación complementaria",
+          "ECTS": 51,
+          "ECTS-basicos": 0,
+          "ECTS-obligatorios": 0,
+          "ECTS-optativos": 51,
+          "actividad-formativa": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "70%"
-            },
-            {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
+              "tipo": "SE1",
               "ponderacion-minima": "20%",
-              "ponderacion-maxima": "100%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "0%",
               "ponderacion-maxima": "50%"
             },
             {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
+              "tipo": "SE2",
+              "ponderacion-minima": "20%",
+              "ponderacion-maxima": "50%"
+            },
+            {
+              "tipo": "SE3",
+              "ponderacion-minima": "20%",
+              "ponderacion-maxima": "50%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA3",
+            "RA12",
+            "RA1",
+            "RA8",
+            "RA4",
+            "RA9",
+            "RA10",
+            "RA13",
+            "RA18",
+            "RA23",
+            "RA24",
+            "RA27"
           ],
           "asignaturas": [
             {
-              "nombre": "Optativas",
-              "curso": "3",
-              "semestre": "2",
-              "ects": 30,
-              "competencias": [
-                "CG3",
-                "CG4",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE4"
-              ]
+              "nombre": "Optativas 3º curso",
+              "tipo": "Optativa",
+              "curso": 3,
+              "semestre": 2,
+              "ects": 21
             },
             {
-              "nombre": "Optativas",
-              "curso": "4",
-              "semestre": "1",
-              "ects": 30,
-              "competencias": [
-                "CG3",
-                "CG4",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE4"
-              ]
+              "nombre": "Optativas 4º curso",
+              "tipo": "Optativa",
+              "curso": 4,
+              "semestre": 1,
+              "ects": 30
             }
           ]
         }
       ]
     },
     {
-      "nombre": "Integración interdisciplinar",
-      "ects": 21,
+      "nombre": "Módulo V: Trabajo Fin de Grado",
+      "ects": 6,
       "materias": [
         {
-          "nombre": "Seminarios interdisciplinares",
-          "ECTS-n": "9",
-          "ECTS-basicos": "0",
-          "ECTS-obligatorios": "9",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Asistencia a clases magistrales",
-            "Seminarios de discusión",
-            "Análisis de casos y actividades prácticas presenciales",
-            "Tutorías",
-            "Estudio personal",
-            "Elaboración de trabajos dirigidos"
-          ],
+          "nombre": "Trabajo Fin de Grado",
+          "ECTS": 6,
+          "ECTS-basicos": 0,
+          "ECTS-obligatorios": 6,
+          "ECTS-optativos": 0,
+          "actividad-formativa": ["AF7", "AF4", "AF8", "AF9"],
           "evaluacion": [
             {
-              "tipo": "Pruebas escritas",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "30%"
-            },
-            {
-              "tipo": "Elaboración y presentación de trabajos dirigidos",
-              "ponderacion-minima": "30%",
-              "ponderacion-maxima": "80%"
-            },
-            {
-              "tipo": "Casos prácticos y actividades presenciales",
-              "ponderacion-minima": "20%",
+              "tipo": "SE6",
+              "ponderacion-minima": "50%",
               "ponderacion-maxima": "70%"
             },
             {
-              "tipo": "Intervenciones en clase y tutorías",
-              "ponderacion-minima": "0%",
-              "ponderacion-maxima": "20%"
-            }
-          ],
-          "asignaturas": [
-            {
-              "nombre": "Capstone seminars I",
-              "curso": "1",
-              "semestre": "anual",
-              "ects": 3,
-              "competencias": [
-                "CG1",
-                "CG2",
-                "CG3",
-                "CG4",
-                "CG5",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE4",
-                "CE5"
-              ]
-            },
-            {
-              "nombre": "Capstone seminars II",
-              "curso": "2",
-              "semestre": "anual",
-              "ects": 3,
-              "competencias": [
-                "CG1",
-                "CG2",
-                "CG3",
-                "CG4",
-                "CG5",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE4",
-                "CE5"
-              ]
-            },
-            {
-              "nombre": "PPE Lab",
-              "curso": "3",
-              "semestre": "1",
-              "ects": 3,
-              "competencias": [
-                "CG1",
-                "CG2",
-                "CG3",
-                "CG4",
-                "CG5",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE4",
-                "CE5"
-              ]
-            }
-          ]
-        },
-        {
-          "nombre": "Trabajo Fin de Grado",
-          "ECTS-n": "12",
-          "ECTS-basicos": "0",
-          "ECTS-obligatorios": "12",
-          "ECTS-optativos": "0",
-          "actividad-formativa": [
-            "Tutorías",
-            "Elaboración del Trabajo Fin de Grado",
-            "Defensa del Trabajo Fin de Grado"
-          ],
-          "evaluacion": [
-            {
-              "tipo": "Realización del Trabajo Fin de Grado",
-              "ponderacion-minima": "60%",
-              "ponderacion-maxima": "90%"
-            },
-            {
-              "tipo": "Defensa del Trabajo Fin de Grado",
+              "tipo": "SE5",
               "ponderacion-minima": "10%",
+              "ponderacion-maxima": "10%"
+            },
+            {
+              "tipo": "SE7",
+              "ponderacion-minima": "20%",
               "ponderacion-maxima": "40%"
             }
+          ],
+          "resultados_aprendizaje": [
+            "RA2",
+            "RA3",
+            "RA1",
+            "RA4",
+            "RA11",
+            "RA12",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA13",
+            "RA14",
+            "RA19",
+            "RA18",
+            "RA23",
+            "RA24",
+            "RA27"
           ],
           "asignaturas": [
             {
               "nombre": "Trabajo Fin de Grado",
-              "curso": "4",
-              "semestre": "anual",
-              "ects": 12,
-              "competencias": [
-                "CG1",
-                "CG2",
-                "CG3",
-                "CG4",
-                "CG5",
-                "CB1",
-                "CB2",
-                "CB3",
-                "CB4",
-                "CB5",
-                "CE1",
-                "CE2",
-                "CE3",
-                "CE4",
-                "CE5"
-              ]
+              "tipo": "Obligatoria",
+              "curso": 4,
+              "semestre": 2,
+              "ects": 6
             }
           ]
         }

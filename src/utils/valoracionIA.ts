@@ -2,7 +2,7 @@ import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 
-const competenciasDict: Record<string, string> = (ppeData as any).competencias;
+const competenciasDict: Record<string, string> = (ppeData as any).resultados_aprendizaje;
 
 export interface ValoracionIAResponse {
   success: boolean;
@@ -27,7 +27,7 @@ export async function enviarGuiaParaValoracion(
         curso: asignatura.curso,
         semestre: asignatura.semestre,
         competencias:
-          asignatura.competencias?.map((codigo) => ({
+          asignatura.resultados_aprendizaje?.map((codigo) => ({
             codigo,
             descripcion:
               competenciasDict[codigo] || 'Descripción no encontrada',

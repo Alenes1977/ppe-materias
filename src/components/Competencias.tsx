@@ -16,7 +16,7 @@ const contarAsignaturasConCompetencia = (competenciaId: string): number => {
   return data.modulos.flatMap((modulo) =>
     modulo.materias.flatMap((materia) =>
       materia.asignaturas.filter((asignatura) =>
-        asignatura.competencias.includes(competenciaId),
+        asignatura.resultados_aprendizaje.includes(competenciaId),
       ),
     ),
   ).length;
@@ -24,7 +24,7 @@ const contarAsignaturasConCompetencia = (competenciaId: string): number => {
 
 // Transformar los datos del JSON al formato requerido
 const transformarCompetencias = () => {
-  const competencias = data.competencias;
+  const competencias = data.resultados_aprendizaje;
   const competenciasFormateadas = {
     básicas: Object.entries(competencias)
       .filter(([id]) => id.startsWith('CB'))

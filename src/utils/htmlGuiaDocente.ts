@@ -3,7 +3,7 @@ import { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 import logoSVG from '../assets/marca-unav-negro.svg?raw';
 
-const competenciasDict: Record<string, string> = (ppeData as any).competencias;
+const competenciasDict: Record<string, string> = (ppeData as any).resultados_aprendizaje;
 
 export function generarHTMLGuiaDocente(
   guia: GuiaDocenteData,
@@ -95,7 +95,7 @@ export function generarHTMLGuiaDocente(
     <div class="card">
       <h2>Competencias</h2>
       <div class="competencias-lista">
-        ${(asignatura.competencias || [])
+        ${(asignatura.resultados_aprendizaje || [])
           .map(
             (codigo: string) =>
               `<div class="competencia"><span class="competencia-icon">&#10003;</span><span class="competencia-id">${codigo}:</span> ${

@@ -8,11 +8,28 @@ import {
   faGraduationCap,
   faUniversity,
   faLayerGroup,
-  faClock,
 } from '@fortawesome/free-solid-svg-icons';
 import { generateSlug } from '../utils/stringUtils';
 
 const PlanEstudios: React.FC = () => {
+  const todasAsignaturas = data.modulos.flatMap((m) =>
+    m.materias.flatMap((mat) => mat.asignaturas),
+  );
+
+  const ectsBasicas = todasAsignaturas
+    .filter((a) => a.tipo === 'Básica')
+    .reduce((sum, a) => sum + a.ects, 0);
+
+  const ectsObligatorias = todasAsignaturas
+    .filter((a) => a.tipo === 'Obligatoria')
+    .reduce((sum, a) => sum + a.ects, 0);
+
+  const ectsOptativas = todasAsignaturas
+    .filter((a) => a.tipo === 'Optativa')
+    .reduce((sum, a) => sum + a.ects, 0);
+
+  const ectsTotal = ectsBasicas + ectsObligatorias + ectsOptativas;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <div className="container mx-auto px-4 pb-8 pt-16 sm:pb-14 sm:pt-20 md:pt-24">
@@ -69,7 +86,7 @@ const PlanEstudios: React.FC = () => {
                     Total Créditos
                   </span>
                   <span className="text-sm text-gray-900 sm:text-base">
-                    240 ECTS
+                    {ectsTotal} ECTS
                   </span>
                 </div>
               </li>
@@ -87,26 +104,26 @@ const PlanEstudios: React.FC = () => {
             <div className="space-y-3 sm:space-y-4">
               <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 sm:p-4">
                 <span className="text-sm font-medium text-gray-700 sm:text-base">
-                  Formación Básica
+                  Asignaturas Básicas
                 </span>
                 <span className="rounded-full bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-800 sm:px-3 sm:text-sm">
-                  60 ECTS
+                  {ectsBasicas} ECTS
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 sm:p-4">
                 <span className="text-sm font-medium text-gray-700 sm:text-base">
-                  Obligatorias
+                  Asignaturas Obligatorias
                 </span>
                 <span className="rounded-full bg-purple-100 px-2.5 py-1 text-xs font-medium text-purple-800 sm:px-3 sm:text-sm">
-                  120 ECTS
+                  {ectsObligatorias} ECTS
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 sm:p-4">
                 <span className="text-sm font-medium text-gray-700 sm:text-base">
-                  Optativas
+                  Asignaturas Optativas
                 </span>
                 <span className="rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-800 sm:px-3 sm:text-sm">
-                  48 ECTS
+                  {ectsOptativas} ECTS
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 sm:p-4">
@@ -216,16 +233,15 @@ const PlanEstudios: React.FC = () => {
 
               {/* Semestres */}
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                {['1', '2'].map((semestre) => {
+                {[1, 2].map((semestre) => {
                   const asignaturasFiltradas = data.modulos
                     .flatMap((modulo) =>
                       modulo.materias.flatMap((materia) =>
                         materia.asignaturas
                           .filter(
                             (asignatura) =>
-                              asignatura.curso === curso.toString() &&
-                              (asignatura.semestre === semestre ||
-                                asignatura.semestre === 'anual'),
+                              asignatura.curso === curso &&
+                              asignatura.semestre === semestre,
                           )
                           .map((asignatura) => ({
                             ...asignatura,
@@ -242,7 +258,7 @@ const PlanEstudios: React.FC = () => {
                       className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
                     >
                       <h4 className="mb-3 text-base font-semibold text-gray-800 sm:mb-4 sm:text-lg">
-                        {semestre === '1' ? 'Primer' : 'Segundo'} Semestre
+                        {semestre === 1 ? 'Primer' : 'Segundo'} Semestre
                       </h4>
                       {asignaturasFiltradas.length > 0 ? (
                         <ul className="space-y-2 sm:space-y-3">
@@ -254,24 +270,33 @@ const PlanEstudios: React.FC = () => {
                                 )}`}
                                 className="group flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
                               >
-                                <div className="flex items-center">
+                                <div className="flex min-w-0 items-center">
                                   <FontAwesomeIcon
                                     icon={faBook}
-                                    className="mr-2 text-blue-500 sm:mr-3"
+                                    className="mr-2 shrink-0 text-blue-500 sm:mr-3"
                                   />
-                                  <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 sm:text-base">
+                                  <span className="truncate text-sm font-medium text-gray-700 group-hover:text-blue-600 sm:text-base">
                                     {asignatura.nombre}
                                   </span>
                                 </div>
-                                {asignatura.semestre === 'anual' && (
-                                  <span className="ml-2 inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 sm:px-3">
-                                    <FontAwesomeIcon
-                                      icon={faClock}
-                                      className="mr-1.5"
-                                    />
-                                    Anual
+                                <div className="ml-2 flex shrink-0 items-center gap-1.5 sm:gap-2">
+                                  {asignatura.tipo && (
+                                    <span
+                                      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+                                        asignatura.tipo === 'Básica'
+                                          ? 'bg-purple-100 text-purple-700'
+                                          : asignatura.tipo === 'Optativa'
+                                            ? 'bg-amber-100 text-amber-700'
+                                            : 'bg-blue-100 text-blue-700'
+                                      }`}
+                                    >
+                                      {asignatura.tipo}
+                                    </span>
+                                  )}
+                                  <span className="inline-flex items-center rounded-full bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-600">
+                                    {asignatura.ects} ECTS
                                   </span>
-                                )}
+                                </div>
                               </Link>
                             </li>
                           ))}

@@ -145,9 +145,9 @@ const PasoA_Presentacion: React.FC<Props> = ({
               Semestre
             </span>
             <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
-              {asignatura.semestre === '1'
+              {asignatura.semestre === 1
                 ? '1er Semestre'
-                : asignatura.semestre === '2'
+                : asignatura.semestre === 2
                   ? '2º Semestre'
                   : 'Anual'}
             </div>

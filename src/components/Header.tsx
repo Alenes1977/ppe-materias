@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PRIMARY_BLUE } from '../constants/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Breadcrumb from './Breadcrumb';
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -203,7 +203,7 @@ const Header: React.FC = () => {
       </div>
 
       {/* Menú móvil desplegable (visible solo cuando menuOpen es true) */}
-      {menuOpen && (
+      {menuOpen ? (
         <div className="mt-2 border-t bg-white py-2 shadow-inner md:hidden">
           <div className="px-4 py-2">
             {/* Breadcrumbs en versión móvil */}
@@ -283,7 +283,7 @@ const Header: React.FC = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </header>
   );
 };

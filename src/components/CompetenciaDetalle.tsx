@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -73,7 +73,9 @@ const CompetenciaDetalle: React.FC = () => {
 
       return acc;
     },
-    {} as { [key: string]: Array<any> },
+    {} as {
+      [key: string]: Array<{ nombre: string; modulo: string; materia: string }>;
+    },
   );
 
   // Aplanar la lista para las estadísticas

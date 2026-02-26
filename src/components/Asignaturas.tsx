@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { type FC, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { generateSlug } from '../utils/stringUtils';
 
-const Asignaturas: React.FC = () => {
+const Asignaturas: FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Extraer todas las asignaturas con información adicional
@@ -82,7 +82,15 @@ const Asignaturas: React.FC = () => {
     }
   };
 
-  const renderAsignatura = (asignatura: any) => {
+  const renderAsignatura = (asignatura: {
+    nombre: string;
+    curso: number | string;
+    semestre: string;
+    ects: number;
+    tipo?: string;
+    modulo: string;
+    materia: string;
+  }) => {
     const courseColors: Record<string, string> = {
       '1': 'bg-gradient-to-br from-white to-blue-50',
       '2': 'bg-gradient-to-br from-white to-purple-50',
@@ -184,14 +192,14 @@ const Asignaturas: React.FC = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full rounded-lg border border-gray-300 bg-gray-50 px-10 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:py-3"
             />
-            {searchTerm && (
+            {searchTerm ? (
               <button
                 onClick={() => setSearchTerm('')}
                 className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
               >
                 ×
               </button>
-            )}
+            ) : null}
           </div>
         </div>
 

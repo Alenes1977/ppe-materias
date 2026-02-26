@@ -1,10 +1,11 @@
-import { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
-import { AsignaturaProcesada } from '../lib/dataUtils';
+import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
+import type { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 import logoSVG from '../assets/marca-unav-negro.svg?raw';
 
-const competenciasDict: Record<string, string> = (ppeData as any)
-  .resultados_aprendizaje;
+const competenciasDict: Record<string, string> = (
+  ppeData as { resultados_aprendizaje: Record<string, string> }
+).resultados_aprendizaje;
 
 export function generarHTMLGuiaDocente(
   guia: GuiaDocenteData,
@@ -145,26 +146,31 @@ export function generarHTMLGuiaDocente(
     <div class="card">
       <h2>Horario de atención</h2>
       ${Object.entries(guia.horario)
-        .map(([email, franjas]: any) => {
-          const prof = guia.presentacion.profesores.find(
-            (p) => p.email === email,
-          );
-          const inicial = prof
-            ? prof.nombre.trim()[0].toUpperCase()
-            : email[0].toUpperCase();
-          return (
-            `<div class="horario-prof"><div class="avatar">${inicial}</div><div><div class="item-titulo">${
-              prof ? prof.nombre : email
-            }</div></div></div>` +
-            franjas
-              .map(
-                (f: any) =>
-                  `<div class="franja">${f.lugar} | ${f.dia} | ${f.hora}</div>`,
-              )
-              .join('') +
-            `<div class="email">${email}</div>`
-          );
-        })
+        .map(
+          ([email, franjas]: [
+            string,
+            { lugar: string; dia: string; hora: string }[],
+          ]) => {
+            const prof = guia.presentacion.profesores.find(
+              (p) => p.email === email,
+            );
+            const inicial = prof
+              ? prof.nombre.trim()[0].toUpperCase()
+              : email[0].toUpperCase();
+            return (
+              `<div class="horario-prof"><div class="avatar">${inicial}</div><div><div class="item-titulo">${
+                prof ? prof.nombre : email
+              }</div></div></div>` +
+              franjas
+                .map(
+                  (f) =>
+                    `<div class="franja">${f.lugar} | ${f.dia} | ${f.hora}</div>`,
+                )
+                .join('') +
+              `<div class="email">${email}</div>`
+            );
+          },
+        )
         .join('')}
     </div>
     <div class="card">

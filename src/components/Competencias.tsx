@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import { type FC, useState, useMemo } from 'react';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBook,
@@ -58,7 +59,7 @@ const transformarCompetencias = () => {
   return competenciasFormateadas;
 };
 
-const CompetenciaCard: React.FC<{
+const CompetenciaCard: FC<{
   competencia: {
     id: string;
     descripcion: string;
@@ -126,7 +127,7 @@ type CategoriaCompetencia =
   | 'específicas'
   | 'transversales';
 
-const Competencias: React.FC = () => {
+const Competencias: FC = () => {
   const [categoriaActiva, setCategoriaActiva] =
     useState<CategoriaCompetencia>('básicas');
   const competenciasData = useMemo(() => transformarCompetencias(), []);
@@ -150,7 +151,7 @@ const Competencias: React.FC = () => {
     id: CategoriaCompetencia;
     nombre: string;
     color: string;
-    icon: any;
+    icon: IconDefinition;
     descripcion: string;
   }[] = [
     {

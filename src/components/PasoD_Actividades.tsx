@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -75,7 +76,7 @@ const PasoD_Actividades: React.FC<Props> = ({
                 />
                 <span className="font-medium text-blue-900">{nombre}</span>
               </label>
-              {checked && actividad && (
+              {checked && actividad ? (
                 <div className="mt-2 rounded border border-blue-100 bg-blue-50 p-4">
                   <div className="mb-2 font-semibold text-blue-700">
                     Describa esta actividad
@@ -87,16 +88,15 @@ const PasoD_Actividades: React.FC<Props> = ({
                     className="bg-white"
                   />
                   {touched &&
-                    (actividad.descripcion.trim() === '' ||
-                      actividad.descripcion
-                        .replace(/<(.|\n)*?>/g, '')
-                        .trim() === '') && (
-                      <div className="mt-1 text-xs text-red-500">
-                        Debes describir esta actividad.
-                      </div>
-                    )}
+                  (actividad.descripcion.trim() === '' ||
+                    actividad.descripcion.replace(/<(.|\n)*?>/g, '').trim() ===
+                      '') ? (
+                    <div className="mt-1 text-xs text-red-500">
+                      Debes describir esta actividad.
+                    </div>
+                  ) : null}
                 </div>
-              )}
+              ) : null}
             </div>
           );
         })}

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -32,11 +33,11 @@ const PasoG_Bibliografia: React.FC<Props> = ({ value, onChange, onNext }) => {
         onChange={onChange}
         className="mb-2 bg-white"
       />
-      {touched && !valido && (
+      {touched && !valido ? (
         <div className="mb-2 text-xs text-red-500">
           Este campo es obligatorio.
         </div>
-      )}
+      ) : null}
       <div className="flex justify-end">
         <button
           type="button"

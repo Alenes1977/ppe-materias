@@ -7,18 +7,19 @@ import logoSVG from '../assets/marca-unav-negro.svg?raw';
 import htmlToPdfmake from 'html-to-pdfmake';
 import ppeData from '../data/ppe.json';
 
-import { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
-import { AsignaturaProcesada } from '../lib/dataUtils';
+import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
+import type { AsignaturaProcesada } from '../lib/dataUtils';
 
-const competenciasDict: Record<string, string> = (ppeData as any)
-  .resultados_aprendizaje;
+const competenciasDict: Record<string, string> = (
+  ppeData as { resultados_aprendizaje: Record<string, string> }
+).resultados_aprendizaje;
 
 export function generarPDFGuiaDocente(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
 ) {
   // Detecta la estructura real de vfs
-  // @ts-ignore
+  // @ts-expect-error: acceso a propiedad no tipada de pdfFonts
   const vfs =
     pdfFonts?.default?.pdfMake?.vfs ||
     pdfFonts?.pdfMake?.vfs ||
@@ -26,7 +27,7 @@ export function generarPDFGuiaDocente(
     pdfFonts;
   if (vfs) Object.assign(pdfMake, { vfs });
   else {
-    // @ts-ignore
+    // @ts-expect-error: acceso a propiedad no tipada de pdfFonts
     console.error('No se pudo encontrar vfs en pdfFonts', pdfFonts);
     alert('Error al inicializar las fuentes PDF. Contacta con soporte.');
     return;
@@ -77,7 +78,7 @@ export function generarPDFGuiaDocente(
       {
         ul: [
           `Asignatura: ${asignatura.nombre}`,
-          `Titulación: Grado en Filosofía, Política y Economía (PPE)`,
+          'Titulación: Grado en Filosofía, Política y Economía (PPE)',
           `Módulo / Materia: ${asignatura.modulo} / ${asignatura.materia}`,
           `ECTS: ${asignatura.ects}`,
           `Curso / Semestre: ${asignatura.curso} / ${asignatura.semestre}`,
@@ -167,23 +168,28 @@ export function generarPDFGuiaDocente(
       ...htmlToPdfmake(guia.convocatoriaExtra),
       { text: 'Horario de atención', style: 'sectionHeader' },
       ...Object.entries(guia.horario)
-        .map(([email, franjas]: any) => {
-          const prof = guia.presentacion.profesores.find(
-            (p) => p.email === email,
-          );
-          return [
-            {
-              text: prof ? prof.nombre : email,
-              bold: true,
-              margin: [0, 5, 0, 0],
-            },
-            {
-              ul: franjas.map((f: any) => `${f.lugar} | ${f.dia} | ${f.hora}`),
-              margin: [15, 0, 0, 0],
-            },
-            { text: email, margin: [15, 0, 0, 10] },
-          ];
-        })
+        .map(
+          ([email, franjas]: [
+            string,
+            { lugar: string; dia: string; hora: string }[],
+          ]) => {
+            const prof = guia.presentacion.profesores.find(
+              (p) => p.email === email,
+            );
+            return [
+              {
+                text: prof ? prof.nombre : email,
+                bold: true,
+                margin: [0, 5, 0, 0],
+              },
+              {
+                ul: franjas.map((f) => `${f.lugar} | ${f.dia} | ${f.hora}`),
+                margin: [15, 0, 0, 0],
+              },
+              { text: email, margin: [15, 0, 0, 10] },
+            ];
+          },
+        )
         .flat(),
       { text: 'Bibliografía y recursos', style: 'sectionHeader' },
       ...htmlToPdfmake(guia.bibliografia),
@@ -212,6 +218,6 @@ export function generarPDFGuiaDocente(
       fontSize: 11,
     },
   };
-  // @ts-ignore
+  // @ts-expect-error: pdfMake no tiene tipos completos
   pdfMake.createPdf(docDefinition).download('guia-docente.pdf');
 }

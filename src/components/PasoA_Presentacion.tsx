@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { AsignaturaProcesada } from '../lib/dataUtils';
+import type { AsignaturaProcesada } from '../lib/dataUtils';
 
 export interface Profesor {
   nombre: string;
@@ -190,11 +191,11 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 {value.profesores.length === 0 ? 'Confirmar' : 'Añadir otro'}
               </button>
             </div>
-            {nuevoProfesor.email && !emailValido && (
+            {nuevoProfesor.email && !emailValido ? (
               <div className="mt-1 text-xs text-red-500">
                 Introduce un email válido.
               </div>
-            )}
+            ) : null}
             <ul className="space-y-1">
               {value.profesores.map((prof, idx) => (
                 <li
@@ -214,11 +215,11 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 </li>
               ))}
             </ul>
-            {touched && value.profesores.length === 0 && (
+            {touched && value.profesores.length === 0 ? (
               <div className="mt-1 text-xs text-red-500">
                 Debes añadir al menos un profesor.
               </div>
-            )}
+            ) : null}
           </div>
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">
@@ -265,11 +266,11 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 </button>
               </div>
             )}
-            {touched && value.idioma.trim() === '' && (
+            {touched && value.idioma.trim() === '' ? (
               <div className="mt-1 text-xs text-red-500">
                 Campo obligatorio.
               </div>
-            )}
+            ) : null}
           </div>
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">Aula</label>
@@ -377,10 +378,10 @@ const PasoA_Presentacion: React.FC<Props> = ({
           placeholder="[describa aquí brevemente la asignatura]"
         />
         {touched &&
-          (value.resumen.trim() === '' ||
-            value.resumen.replace(/<(.|\n)*?>/g, '').trim() === '') && (
-            <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
-          )}
+        (value.resumen.trim() === '' ||
+          value.resumen.replace(/<(.|\n)*?>/g, '').trim() === '') ? (
+          <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
+        ) : null}
       </div>
       <div className="flex justify-end">
         <button

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimes,
@@ -6,7 +6,7 @@ import {
   faRobot,
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
-import { ValoracionIAResponse } from '../utils/valoracionIA';
+import type { ValoracionIAResponse } from '../utils/valoracionIA';
 
 interface Props {
   isOpen: boolean;
@@ -80,7 +80,7 @@ const ModalValoracionIA: React.FC<Props> = ({
           ) : valoracion?.success ? (
             <div className="space-y-6">
               {/* Puntuación */}
-              {valoracion.puntuacion && (
+              {valoracion.puntuacion != null ? (
                 <div className="rounded-lg bg-blue-50 p-4">
                   <div className="mb-2 flex items-center gap-2">
                     <FontAwesomeIcon
@@ -95,10 +95,10 @@ const ModalValoracionIA: React.FC<Props> = ({
                     {valoracion.puntuacion}/10
                   </div>
                 </div>
-              )}
+              ) : null}
 
               {/* Valoración */}
-              {valoracion.valoracion && (
+              {valoracion.valoracion ? (
                 <div>
                   <h3 className="mb-3 font-semibold text-gray-900">
                     Valoración Detallada
@@ -112,25 +112,25 @@ const ModalValoracionIA: React.FC<Props> = ({
                     />
                   </div>
                 </div>
-              )}
+              ) : null}
 
               {/* Recomendaciones */}
               {valoracion.recomendaciones &&
-                valoracion.recomendaciones.length > 0 && (
-                  <div>
-                    <h3 className="mb-3 font-semibold text-gray-900">
-                      Recomendaciones de Mejora
-                    </h3>
-                    <ul className="space-y-2">
-                      {valoracion.recomendaciones.map((rec, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></span>
-                          <span className="text-gray-700">{rec}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+              valoracion.recomendaciones.length > 0 ? (
+                <div>
+                  <h3 className="mb-3 font-semibold text-gray-900">
+                    Recomendaciones de Mejora
+                  </h3>
+                  <ul className="space-y-2">
+                    {valoracion.recomendaciones.map((rec, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></span>
+                        <span className="text-gray-700">{rec}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-12">

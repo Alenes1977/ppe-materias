@@ -1,19 +1,25 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import Select, { SingleValue } from 'react-select';
-import { getAsignaturas, AsignaturaProcesada } from '../lib/dataUtils';
+import type React from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import Select from 'react-select';
+import type { SingleValue } from 'react-select';
+import { getAsignaturas } from '../lib/dataUtils';
+import type { AsignaturaProcesada } from '../lib/dataUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChalkboardUser,
   faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons';
-import PasoA_Presentacion, { PresentacionData } from './PasoA_Presentacion';
+import PasoA_Presentacion from './PasoA_Presentacion';
+import type { PresentacionData } from './PasoA_Presentacion';
 import PasoB_Competencias from './PasoB_Competencias';
-import PasoC_Programa, { UnidadPrograma } from './PasoC_Programa';
-import PasoD_Actividades, { ActividadSeleccionada } from './PasoD_Actividades';
-import PasoE_Evaluacion, { EvaluacionSeleccionada } from './PasoE_Evaluacion';
-import PasoF_HorarioAtencion, {
-  HorarioAtencion,
-} from './PasoF_HorarioAtencion';
+import PasoC_Programa from './PasoC_Programa';
+import type { UnidadPrograma } from './PasoC_Programa';
+import PasoD_Actividades from './PasoD_Actividades';
+import type { ActividadSeleccionada } from './PasoD_Actividades';
+import PasoE_Evaluacion from './PasoE_Evaluacion';
+import type { EvaluacionSeleccionada } from './PasoE_Evaluacion';
+import PasoF_HorarioAtencion from './PasoF_HorarioAtencion';
+import type { HorarioAtencion } from './PasoF_HorarioAtencion';
 import PasoG_Bibliografia from './PasoG_Bibliografia';
 import ResumenGuiaDocente from './ResumenGuiaDocente';
 import NavegacionPasos from './NavegacionPasos';

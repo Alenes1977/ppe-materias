@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { PRIMARY_BLUE } from '../constants/colors';
 import logoUnavBlanco from '../assets/LogoUnav.svg';
 

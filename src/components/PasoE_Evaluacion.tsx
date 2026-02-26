@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -194,10 +195,10 @@ const PasoE_Evaluacion: React.FC<Props> = ({
           className="bg-white"
         />
         {touched &&
-          (convocatoriaExtra.trim() === '' ||
-            convocatoriaExtra.replace(/<(.|\n)*?>/g, '').trim() === '') && (
-            <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
-          )}
+        (convocatoriaExtra.trim() === '' ||
+          convocatoriaExtra.replace(/<(.|\n)*?>/g, '').trim() === '') ? (
+          <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
+        ) : null}
       </div>
       <div className="mb-4 text-right font-semibold text-blue-700">
         Suma total:{' '}
@@ -205,11 +206,11 @@ const PasoE_Evaluacion: React.FC<Props> = ({
           {suma}%
         </span>
       </div>
-      {touched && suma !== 100 && (
+      {touched && suma !== 100 ? (
         <div className="mb-2 text-xs text-red-500">
           La suma de los porcentajes debe ser exactamente 100%.
         </div>
-      )}
+      ) : null}
       <div className="flex justify-end">
         <button
           type="button"

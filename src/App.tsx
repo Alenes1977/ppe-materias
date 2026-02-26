@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FC, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,10 +18,9 @@ import Materia from './components/Materia';
 import Materias from './components/Materias';
 import Modulo from './components/Modulo';
 import AsistenteGuiaDocente from './components/AsistenteGuiaDocente';
-import { useEffect } from 'react';
 
 // Componente para manejar el scroll al principio en cada navegación
-const ScrollToTop: React.FC = () => {
+const ScrollToTop: FC = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -51,7 +50,7 @@ interface Materia {
 }
 
 // Componente principal de la aplicación
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <Router>
       <ScrollToTop />

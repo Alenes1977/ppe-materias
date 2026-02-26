@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/ppe.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -280,7 +280,7 @@ const PlanEstudios: React.FC = () => {
                                   </span>
                                 </div>
                                 <div className="ml-2 flex shrink-0 items-center gap-1.5 sm:gap-2">
-                                  {asignatura.tipo && (
+                                  {asignatura.tipo ? (
                                     <span
                                       className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
                                         asignatura.tipo === 'Básica'
@@ -292,7 +292,7 @@ const PlanEstudios: React.FC = () => {
                                     >
                                       {asignatura.tipo}
                                     </span>
-                                  )}
+                                  ) : null}
                                   <span className="inline-flex items-center rounded-full bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-600">
                                     {asignatura.ects} ECTS
                                   </span>

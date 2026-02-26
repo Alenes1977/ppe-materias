@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { PRIMARY_BLUE } from '../constants/colors';

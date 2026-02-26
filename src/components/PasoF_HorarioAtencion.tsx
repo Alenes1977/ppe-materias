@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Profesor } from './PasoA_Presentacion';
+import type React from 'react';
+import { useState } from 'react';
+import type { Profesor } from './PasoA_Presentacion';
 
 export interface HorarioAtencion {
   lugar: string;
@@ -154,11 +155,11 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
                   onChange={(e) => setNuevo({ ...nuevo, hora: e.target.value })}
                 />
               </div>
-              {touched && (!nuevo.lugar || !nuevo.dia || !nuevo.hora) && (
+              {touched && (!nuevo.lugar || !nuevo.dia || !nuevo.hora) ? (
                 <div className="text-xs text-red-500">
                   Todos los campos son obligatorios.
                 </div>
-              )}
+              ) : null}
               <div className="mt-2 flex gap-2">
                 <button
                   type="button"

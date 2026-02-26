@@ -2,8 +2,9 @@ import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 
-const competenciasDict: Record<string, string> = (ppeData as any)
-  .resultados_aprendizaje;
+const competenciasDict: Record<string, string> = (
+  ppeData as { resultados_aprendizaje: Record<string, string> }
+).resultados_aprendizaje;
 
 export interface ValoracionIAResponse {
   success: boolean;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { AsignaturaProcesada } from '../lib/dataUtils';
+import type React from 'react';
+import type { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 
 interface Props {

@@ -67,8 +67,8 @@ const ResumenGuiaDocente: FC<Props> = ({ guia, asignatura, onEdit }) => {
     setValoracionResult(null);
   };
 
-  const competenciasDict: Record<string, string> = (
-    ppeData as Record<string, Record<string, string>>
+  const competenciasDict = (
+    ppeData as { resultados_aprendizaje: Record<string, string> }
   ).resultados_aprendizaje;
 
   return (

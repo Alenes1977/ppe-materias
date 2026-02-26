@@ -1,9 +1,6 @@
-// @ts-expect-error: No existen declaraciones de tipo para pdfmake en build
 import * as pdfMake from 'pdfmake/build/pdfmake';
-// @ts-expect-error: No existen declaraciones de tipo para vfs_fonts en build
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import logoSVG from '../assets/marca-unav-negro.svg?raw';
-// @ts-expect-error: No existen declaraciones de tipo para html-to-pdfmake
 import htmlToPdfmake from 'html-to-pdfmake';
 import ppeData from '../data/ppe.json';
 
@@ -19,7 +16,6 @@ export function generarPDFGuiaDocente(
   asignatura: AsignaturaProcesada,
 ) {
   // Detecta la estructura real de vfs
-  // @ts-expect-error: acceso a propiedad no tipada de pdfFonts
   const vfs =
     pdfFonts?.default?.pdfMake?.vfs ||
     pdfFonts?.pdfMake?.vfs ||
@@ -27,7 +23,6 @@ export function generarPDFGuiaDocente(
     pdfFonts;
   if (vfs) Object.assign(pdfMake, { vfs });
   else {
-    // @ts-expect-error: acceso a propiedad no tipada de pdfFonts
     console.error('No se pudo encontrar vfs en pdfFonts', pdfFonts);
     alert('Error al inicializar las fuentes PDF. Contacta con soporte.');
     return;
@@ -218,6 +213,5 @@ export function generarPDFGuiaDocente(
       fontSize: 11,
     },
   };
-  // @ts-expect-error: pdfMake no tiene tipos completos
   pdfMake.createPdf(docDefinition).download('guia-docente.pdf');
 }

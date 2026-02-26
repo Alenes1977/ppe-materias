@@ -44,10 +44,19 @@ const Asignaturas: FC = () => {
 
     filtradas.forEach((asignatura) => {
       const cursoData = organizadas.get(Number(asignatura.curso));
-      if (asignatura.semestre === 'anual') {
+      const semestre = String(asignatura.semestre);
+
+      if (!cursoData) {
+        return;
+      }
+
+      if (semestre === 'anual') {
         cursoData.anual.push(asignatura);
       } else {
-        cursoData[`semestre${asignatura.semestre}`].push(asignatura);
+        const semestreKey = `semestre${semestre}` as 'semestre1' | 'semestre2';
+        if (semestreKey in cursoData) {
+          cursoData[semestreKey].push(asignatura);
+        }
       }
     });
 

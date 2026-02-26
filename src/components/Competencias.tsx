@@ -1,62 +1,41 @@
-import { type FC, useState, useMemo } from 'react';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { type FC, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBook,
-  faGraduationCap,
-  faLayerGroup,
-  faBullseye,
+  faBookOpen,
+  faClipboardList,
   faChartLine,
+  faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons';
 import data from '../data/ppe.json';
 import BackButton from './BackButton';
 import { Link } from 'react-router-dom';
 
-// Función para contar las asignaturas que tienen cada competencia
-const contarAsignaturasConCompetencia = (competenciaId: string): number => {
+const TOTAL_ASIGNATURAS = data.modulos.flatMap((modulo) =>
+  modulo.materias.flatMap((materia) => materia.asignaturas),
+).length;
+
+const contarAsignaturasConRA = (resultadoId: string): number => {
   return data.modulos.flatMap((modulo) =>
     modulo.materias.flatMap((materia) =>
-      materia.asignaturas.filter((asignatura) =>
-        asignatura.resultados_aprendizaje.includes(competenciaId),
-      ),
+      materia.resultados_aprendizaje.includes(resultadoId)
+        ? materia.asignaturas
+        : [],
     ),
   ).length;
 };
 
-// Transformar los datos del JSON al formato requerido
-const transformarCompetencias = () => {
-  const competencias = data.resultados_aprendizaje;
-  const competenciasFormateadas = {
-    básicas: Object.entries(competencias)
-      .filter(([id]) => id.startsWith('CB'))
-      .map(([id, descripcion]) => ({
-        id,
-        descripcion,
-        numAsignaturas: contarAsignaturasConCompetencia(id),
-      })),
-    generales: Object.entries(competencias)
-      .filter(([id]) => id.startsWith('CG'))
-      .map(([id, descripcion]) => ({
-        id,
-        descripcion,
-        numAsignaturas: contarAsignaturasConCompetencia(id),
-      })),
-    específicas: Object.entries(competencias)
-      .filter(([id]) => id.startsWith('CE'))
-      .map(([id, descripcion]) => ({
-        id,
-        descripcion,
-        numAsignaturas: contarAsignaturasConCompetencia(id),
-      })),
-    transversales: Object.entries(competencias)
-      .filter(([id]) => id.startsWith('CT'))
-      .map(([id, descripcion]) => ({
-        id,
-        descripcion,
-        numAsignaturas: contarAsignaturasConCompetencia(id),
-      })),
-  };
-  return competenciasFormateadas;
+const transformarResultados = () => {
+  return Object.entries(data.resultados_aprendizaje)
+    .map(([id, descripcion]) => ({
+      id,
+      descripcion,
+      numAsignaturas: contarAsignaturasConRA(id),
+    }))
+    .sort((a, b) => {
+      const numA = Number.parseInt(a.id.replace(/\D/g, ''), 10);
+      const numB = Number.parseInt(b.id.replace(/\D/g, ''), 10);
+      return numA - numB;
+    });
 };
 
 const CompetenciaCard: FC<{
@@ -67,7 +46,10 @@ const CompetenciaCard: FC<{
   };
   color: string;
 }> = ({ competencia, color }) => {
-  const porcentajeAsignaturas = (competencia.numAsignaturas / 40) * 100;
+  const porcentajeAsignaturas =
+    TOTAL_ASIGNATURAS > 0
+      ? (competencia.numAsignaturas / TOTAL_ASIGNATURAS) * 100
+      : 0;
   const colorClasses =
     {
       'bg-blue-500': 'bg-blue-50 text-blue-700 border-blue-200',
@@ -121,71 +103,24 @@ const CompetenciaCard: FC<{
   );
 };
 
-type CategoriaCompetencia =
-  | 'básicas'
-  | 'generales'
-  | 'específicas'
-  | 'transversales';
-
 const Competencias: FC = () => {
-  const [categoriaActiva, setCategoriaActiva] =
-    useState<CategoriaCompetencia>('básicas');
-  const competenciasData = useMemo(() => transformarCompetencias(), []);
+  const resultadosData = useMemo(() => transformarResultados(), []);
 
-  // Estadísticas generales
   const stats = useMemo(() => {
-    const total = Object.values(competenciasData).reduce(
-      (sum, arr) => sum + arr.length,
+    const totalResultados = resultadosData.length;
+    const totalPresencias = resultadosData.reduce(
+      (sum, resultado) => sum + resultado.numAsignaturas,
       0,
     );
-    return {
-      total,
-      básicas: competenciasData.básicas.length,
-      generales: competenciasData.generales.length,
-      específicas: competenciasData.específicas.length,
-      transversales: competenciasData.transversales.length,
-    };
-  }, [competenciasData]);
+    const mediaAsignaturasPorRA =
+      totalResultados > 0 ? totalPresencias / totalResultados : 0;
 
-  const categorias: {
-    id: CategoriaCompetencia;
-    nombre: string;
-    color: string;
-    icon: IconDefinition;
-    descripcion: string;
-  }[] = [
-    {
-      id: 'básicas',
-      nombre: 'Básicas',
-      color: 'bg-blue-600',
-      icon: faLayerGroup,
-      descripcion:
-        'Competencias fundamentales comunes a todos los grados universitarios',
-    },
-    {
-      id: 'generales',
-      nombre: 'Generales',
-      color: 'bg-indigo-600',
-      icon: faGraduationCap,
-      descripcion:
-        'Habilidades generales desarrolladas específicamente en este grado',
-    },
-    {
-      id: 'específicas',
-      nombre: 'Específicas',
-      color: 'bg-purple-600',
-      icon: faBullseye,
-      descripcion: 'Competencias propias de la disciplina y ámbito de estudio',
-    },
-    {
-      id: 'transversales',
-      nombre: 'Transversales',
-      color: 'bg-teal-600',
-      icon: faBook,
-      descripcion:
-        'Habilidades interdisciplinares aplicables en diversos contextos',
-    },
-  ];
+    return {
+      totalResultados,
+      totalAsignaturas: TOTAL_ASIGNATURAS,
+      mediaAsignaturasPorRA,
+    };
+  }, [resultadosData]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
@@ -199,96 +134,81 @@ const Competencias: FC = () => {
         <div className="mb-8 text-center sm:mb-12">
           <div className="mb-6 inline-block rounded-full bg-blue-100 px-3 py-1.5 text-xs font-semibold text-blue-800 sm:mb-8 sm:px-4 sm:py-2 sm:text-sm">
             <FontAwesomeIcon icon={faChartLine} className="mr-2" />
-            Competencias y resultados de aprendizaje
+            Resultados de aprendizaje
           </div>
           <h1 className="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-4xl md:text-5xl">
-            Competencias del Grado
+            Resultados de aprendizaje (Competencias)
           </h1>
           <p className="mx-auto max-w-3xl text-sm text-gray-600 sm:text-lg">
-            Explora las {stats.total} competencias que se desarrollan en el
-            programa formativo, organizadas por categorías y vinculadas a las
-            asignaturas del plan de estudios.
+            Explora los {stats.totalResultados} resultados de aprendizaje del
+            grado, y su presencia en las asignaturas del plan de estudios.
           </p>
         </div>
 
         {/* Estadísticas */}
-        <div className="mb-8 grid grid-cols-1 gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-          {categorias.map((cat) => (
-            <div
-              key={cat.id}
-              className="group flex flex-col rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg sm:p-6"
-            >
-              <div className="mb-2 flex items-center justify-between">
-                <FontAwesomeIcon
-                  icon={cat.icon}
-                  className={`text-xl ${cat.color.replace(
-                    'bg-',
-                    'text-',
-                  )} sm:text-2xl`}
-                />
-                <span
-                  className={`rounded-full ${cat.color} px-2 py-1 text-xs font-bold text-white sm:px-3`}
-                >
-                  {stats[cat.id]}
-                </span>
-              </div>
-              <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
-                {cat.nombre}
-              </h3>
-              <p className="text-xs text-gray-600 sm:text-sm">
-                {cat.descripcion}
-              </p>
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-2 flex items-center justify-between">
+              <FontAwesomeIcon
+                icon={faClipboardList}
+                className="text-xl text-blue-600 sm:text-2xl"
+              />
+              <span className="rounded-full bg-blue-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
+                {stats.totalResultados}
+              </span>
             </div>
-          ))}
-        </div>
+            <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
+              Resultados de aprendizaje
+            </h3>
+            <p className="text-xs text-gray-600 sm:text-sm">
+              Total de RA definidos en `ppe.json`.
+            </p>
+          </div>
 
-        {/* Tabs de navegación */}
-        <div className="mb-6 sm:mb-8">
-          <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white p-1">
-            <nav className="flex min-w-max space-x-1">
-              {categorias.map((categoria) => (
-                <button
-                  key={categoria.id}
-                  onClick={() => setCategoriaActiva(categoria.id)}
-                  className={`
-                    flex items-center justify-center gap-1 rounded-lg px-3 py-2 text-xs font-medium transition-all sm:flex-1 sm:gap-2 sm:px-4 sm:py-3 sm:text-sm
-                    ${
-                      categoriaActiva === categoria.id
-                        ? `${categoria.color} text-white shadow-sm`
-                        : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
-                    }
-                  `}
-                >
-                  <FontAwesomeIcon icon={categoria.icon} />
-                  <span className="hidden sm:inline">{categoria.nombre}</span>
-                  <span className="inline sm:hidden">
-                    {categoria.nombre.slice(0, 3)}
-                  </span>
-                  <span
-                    className={`rounded-full ${
-                      categoriaActiva === categoria.id
-                        ? 'bg-white/20 text-white'
-                        : 'bg-gray-100 text-gray-600'
-                    } px-1.5 py-0.5 text-xs font-medium sm:px-2.5`}
-                  >
-                    {stats[categoria.id]}
-                  </span>
-                </button>
-              ))}
-            </nav>
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-2 flex items-center justify-between">
+              <FontAwesomeIcon
+                icon={faBookOpen}
+                className="text-xl text-indigo-600 sm:text-2xl"
+              />
+              <span className="rounded-full bg-indigo-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
+                {stats.totalAsignaturas}
+              </span>
+            </div>
+            <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
+              Asignaturas del plan
+            </h3>
+            <p className="text-xs text-gray-600 sm:text-sm">
+              Asignaturas totales consideradas para el cálculo de presencia.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-2 flex items-center justify-between">
+              <FontAwesomeIcon
+                icon={faLayerGroup}
+                className="text-xl text-teal-600 sm:text-2xl"
+              />
+              <span className="rounded-full bg-teal-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
+                {stats.mediaAsignaturasPorRA.toFixed(1)}
+              </span>
+            </div>
+            <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
+              Media de presencia
+            </h3>
+            <p className="text-xs text-gray-600 sm:text-sm">
+              Número medio de asignaturas por RA.
+            </p>
           </div>
         </div>
 
-        {/* Grid de competencias */}
+        {/* Grid de resultados */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-          {competenciasData[categoriaActiva].map((competencia) => (
+          {resultadosData.map((competencia) => (
             <CompetenciaCard
               key={competencia.id}
               competencia={competencia}
-              color={
-                categorias.find((cat) => cat.id === categoriaActiva)?.color ||
-                'bg-blue-500'
-              }
+              color="bg-blue-500"
             />
           ))}
         </div>

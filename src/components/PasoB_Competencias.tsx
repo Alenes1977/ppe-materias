@@ -5,12 +5,17 @@ import ppeData from '../data/ppe.json';
 interface Props {
   asignatura: AsignaturaProcesada;
   onNext: () => void;
+  labelSiguiente?: string;
 }
 
 // Extrae el diccionario de competencias del JSON
 const competenciasDict: Record<string, string> = ppeData.resultados_aprendizaje;
 
-const PasoB_Competencias: React.FC<Props> = ({ asignatura, onNext }) => {
+const PasoB_Competencias: React.FC<Props> = ({
+  asignatura,
+  onNext,
+  labelSiguiente = 'Siguiente',
+}) => {
   // Las competencias de la asignatura son un array de códigos
   // (ej: ["CB1", "CG2", ...])
   const competencias = asignatura.resultados_aprendizaje || [];
@@ -47,7 +52,7 @@ const PasoB_Competencias: React.FC<Props> = ({ asignatura, onNext }) => {
           className="rounded-md bg-blue-600 px-6 py-2 font-semibold text-white hover:bg-blue-700"
           onClick={onNext}
         >
-          Siguiente
+          {labelSiguiente}
         </button>
       </div>
     </div>

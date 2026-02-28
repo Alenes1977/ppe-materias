@@ -7,9 +7,15 @@ interface Props {
   value: string;
   onChange: (value: string) => void;
   onNext: () => void;
+  labelSiguiente?: string;
 }
 
-const PasoG_Bibliografia: React.FC<Props> = ({ value, onChange, onNext }) => {
+const PasoG_Bibliografia: React.FC<Props> = ({
+  value,
+  onChange,
+  onNext,
+  labelSiguiente = 'Finalizar',
+}) => {
   const [touched, setTouched] = useState(false);
   const valido =
     value.trim() !== '' && value.replace(/<(.|\n)*?>/g, '').trim() !== '';
@@ -49,7 +55,7 @@ const PasoG_Bibliografia: React.FC<Props> = ({ value, onChange, onNext }) => {
           onClick={handleNext}
           disabled={!valido}
         >
-          Finalizar
+          {labelSiguiente}
         </button>
       </div>
     </div>

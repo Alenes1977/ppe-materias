@@ -38,7 +38,7 @@ export function generarPDFGuiaDocente(
             width: 100,
           },
           {
-            text: 'Guía docente 2025-2026',
+            text: `Guía docente ${guia.presentacion.anioAcademico}`,
             alignment: 'right',
             fontSize: 18,
             bold: true,
@@ -74,6 +74,7 @@ export function generarPDFGuiaDocente(
         ul: [
           `Asignatura: ${asignatura.nombre}`,
           'Titulación: Grado en Filosofía, Política y Economía (PPE)',
+          `Año académico: ${guia.presentacion.anioAcademico}`,
           `Módulo / Materia: ${asignatura.modulo} / ${asignatura.materia}`,
           `ECTS: ${asignatura.ects}`,
           `Curso / Semestre: ${asignatura.curso} / ${asignatura.semestre}`,
@@ -88,7 +89,7 @@ export function generarPDFGuiaDocente(
       },
       { text: 'Breve resumen:', style: 'subHeader' },
       {
-        text: guia.presentacion.resumen.replace(/<[^>]+>/g, ''),
+        stack: htmlToPdfmake(guia.presentacion.resumen),
         margin: [0, 0, 0, 10],
       },
       { text: 'Competencias', style: 'sectionHeader' },

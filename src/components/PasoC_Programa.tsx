@@ -12,9 +12,15 @@ interface Props {
   value: UnidadPrograma[];
   onChange: (value: UnidadPrograma[]) => void;
   onNext: () => void;
+  labelSiguiente?: string;
 }
 
-const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
+const PasoC_Programa: React.FC<Props> = ({
+  value,
+  onChange,
+  onNext,
+  labelSiguiente = 'Siguiente',
+}) => {
   const [editando, setEditando] = useState<number | null>(null);
   const [nuevoTitulo, setNuevoTitulo] = useState('');
   const [nuevaDescripcion, setNuevaDescripcion] = useState('');
@@ -22,6 +28,20 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
 
   const unidadesValidas = value.filter((u) => u.titulo.trim() !== '');
   const puedeAvanzar = unidadesValidas.length > 0;
+
+  const handleMoveUp = (idx: number) => {
+    if (idx === 0) return;
+    const arr = [...value];
+    [arr[idx - 1], arr[idx]] = [arr[idx], arr[idx - 1]];
+    onChange(arr);
+  };
+
+  const handleMoveDown = (idx: number) => {
+    if (idx === value.length - 1) return;
+    const arr = [...value];
+    [arr[idx], arr[idx + 1]] = [arr[idx + 1], arr[idx]];
+    onChange(arr);
+  };
 
   const handleAdd = () => {
     if (nuevoTitulo.trim() !== '') {
@@ -126,7 +146,25 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
                   <span className="font-semibold text-blue-800">
                     {unidad.titulo}
                   </span>
-                  <div className="flex gap-2">
+                  <div className="flex gap-1">
+                    <button
+                      type="button"
+                      className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-200 disabled:opacity-30"
+                      onClick={() => handleMoveUp(idx)}
+                      disabled={idx === 0}
+                      title="Subir"
+                    >
+                      ▲
+                    </button>
+                    <button
+                      type="button"
+                      className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-200 disabled:opacity-30"
+                      onClick={() => handleMoveDown(idx)}
+                      disabled={idx === value.length - 1}
+                      title="Bajar"
+                    >
+                      ▼
+                    </button>
                     <button
                       type="button"
                       className="rounded bg-gray-200 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-gray-300"
@@ -199,7 +237,7 @@ const PasoC_Programa: React.FC<Props> = ({ value, onChange, onNext }) => {
           onClick={onNext}
           disabled={!puedeAvanzar}
         >
-          Siguiente
+          {labelSiguiente ?? 'Siguiente'}
         </button>
       </div>
     </div>

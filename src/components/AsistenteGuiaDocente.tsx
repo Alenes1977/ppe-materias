@@ -22,6 +22,7 @@ import PasoF_HorarioAtencion from './PasoF_HorarioAtencion';
 import type { HorarioAtencion } from './PasoF_HorarioAtencion';
 import PasoG_Bibliografia from './PasoG_Bibliografia';
 import ResumenGuiaDocente from './ResumenGuiaDocente';
+import ModalBorradorGuia from './ModalBorradorGuia';
 import NavegacionPasos from './NavegacionPasos';
 
 // Tipo para las opciones de react-select
@@ -31,7 +32,13 @@ type AsignaturaOption = {
 };
 
 // Estado global de la guía docente (por ahora solo A, luego se añaden B-F)
-const GUIA_VERSION = '2.0';
+const GUIA_VERSION = '3.0';
+
+function computeAnioAcademico(): string {
+  const now = new Date();
+  const yr = now.getFullYear();
+  return now.getMonth() >= 8 ? `${yr}-${yr + 1}` : `${yr - 1}-${yr}`;
+}
 
 export type GuiaDocenteData = {
   presentacion: PresentacionData;
@@ -74,6 +81,7 @@ const AsistenteGuiaDocente: React.FC = () => {
         aula: '',
         horario: '',
         resumen: '',
+        anioAcademico: computeAnioAcademico(),
       },
       programa: [],
       actividades: [],
@@ -84,6 +92,9 @@ const AsistenteGuiaDocente: React.FC = () => {
       version: GUIA_VERSION,
     };
   });
+
+  const [editandoDesdeResumen, setEditandoDesdeResumen] = useState(false);
+  const [modalBorradorOpen, setModalBorradorOpen] = useState(false);
 
   // Memoizamos la lista de asignaturas para no reprocesarla en cada render
   const opcionesAsignatura = useMemo((): AsignaturaOption[] => {
@@ -116,6 +127,7 @@ const AsistenteGuiaDocente: React.FC = () => {
     localStorage.removeItem('guiaDocente');
     setAsignaturaSeleccionada(null);
     setPasoActual(0);
+    setEditandoDesdeResumen(false);
     setGuia({
       presentacion: {
         profesores: [],
@@ -123,6 +135,7 @@ const AsistenteGuiaDocente: React.FC = () => {
         aula: '',
         horario: '',
         resumen: '',
+        anioAcademico: computeAnioAcademico(),
       },
       programa: [],
       actividades: [],
@@ -134,6 +147,24 @@ const AsistenteGuiaDocente: React.FC = () => {
     });
   };
 
+  const handleEdit = (paso: number) => {
+    setEditandoDesdeResumen(true);
+    setPasoActual(paso);
+  };
+
+  const handleStepNext = () => {
+    if (editandoDesdeResumen) {
+      setEditandoDesdeResumen(false);
+      setPasoActual(7);
+    } else {
+      setPasoActual((p) => p + 1);
+    }
+  };
+
+  const labelSiguiente = editandoDesdeResumen
+    ? 'Guardar y volver al resumen'
+    : undefined;
+
   // Renderizado del wizard de pasos
   const renderPaso = () => {
     switch (pasoActual) {
@@ -144,15 +175,17 @@ const AsistenteGuiaDocente: React.FC = () => {
             onChange={(presentacion) =>
               setGuia((g) => ({ ...g, presentacion }))
             }
-            onNext={() => setPasoActual((p) => p + 1)}
+            onNext={handleStepNext}
             asignatura={asignaturaSeleccionada!}
+            labelSiguiente={labelSiguiente}
           />
         );
       case 1:
         return (
           <PasoB_Competencias
             asignatura={asignaturaSeleccionada!}
-            onNext={() => setPasoActual((p) => p + 1)}
+            onNext={handleStepNext}
+            labelSiguiente={labelSiguiente}
           />
         );
       case 2:
@@ -160,7 +193,8 @@ const AsistenteGuiaDocente: React.FC = () => {
           <PasoC_Programa
             value={guia.programa}
             onChange={(programa) => setGuia((g) => ({ ...g, programa }))}
-            onNext={() => setPasoActual((p) => p + 1)}
+            onNext={handleStepNext}
+            labelSiguiente={labelSiguiente}
           />
         );
       case 3:
@@ -169,8 +203,9 @@ const AsistenteGuiaDocente: React.FC = () => {
             actividadesPosibles={asignaturaSeleccionada!['actividad-formativa']}
             value={guia.actividades}
             onChange={(actividades) => setGuia((g) => ({ ...g, actividades }))}
-            onNext={() => setPasoActual((p) => p + 1)}
+            onNext={handleStepNext}
             nombreAsignatura={asignaturaSeleccionada!.nombre}
+            labelSiguiente={labelSiguiente}
           />
         );
       case 4:
@@ -183,7 +218,8 @@ const AsistenteGuiaDocente: React.FC = () => {
             onChangeConvocatoria={(convocatoriaExtra) =>
               setGuia((g) => ({ ...g, convocatoriaExtra }))
             }
-            onNext={() => setPasoActual((p) => p + 1)}
+            onNext={handleStepNext}
+            labelSiguiente={labelSiguiente}
           />
         );
       case 5:
@@ -192,7 +228,8 @@ const AsistenteGuiaDocente: React.FC = () => {
             profesores={guia.presentacion.profesores}
             value={guia.horario}
             onChange={(horario) => setGuia((g) => ({ ...g, horario }))}
-            onNext={() => setPasoActual((p) => p + 1)}
+            onNext={handleStepNext}
+            labelSiguiente={labelSiguiente}
           />
         );
       case 6:
@@ -202,7 +239,8 @@ const AsistenteGuiaDocente: React.FC = () => {
             onChange={(bibliografia) =>
               setGuia((g) => ({ ...g, bibliografia }))
             }
-            onNext={() => setPasoActual((p) => p + 1)}
+            onNext={handleStepNext}
+            labelSiguiente={labelSiguiente}
           />
         );
       case 7:
@@ -210,7 +248,7 @@ const AsistenteGuiaDocente: React.FC = () => {
           <ResumenGuiaDocente
             guia={guia}
             asignatura={asignaturaSeleccionada!}
-            onEdit={setPasoActual}
+            onEdit={handleEdit}
           />
         );
       default:
@@ -295,13 +333,22 @@ const AsistenteGuiaDocente: React.FC = () => {
                   {asignaturaSeleccionada.modulo}
                 </p>
               </div>
-              <button
-                onClick={() => setAsignaturaSeleccionada(null)}
-                className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-blue-700 shadow-sm transition-all hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                <FontAwesomeIcon icon={faPenToSquare} />
-                Cambiar asignatura
-              </button>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => setModalBorradorOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-blue-700 shadow-sm transition-all hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  title="Ver borrador de la guía docente"
+                >
+                  Ver borrador
+                </button>
+                <button
+                  onClick={() => setAsignaturaSeleccionada(null)}
+                  className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-blue-700 shadow-sm transition-all hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                  Cambiar asignatura
+                </button>
+              </div>
             </div>
           </div>
           {/* Barra de pasos mejorada y visual */}
@@ -314,6 +361,14 @@ const AsistenteGuiaDocente: React.FC = () => {
           {/* Renderizado del paso actual */}
           {renderPaso()}
         </div>
+      )}
+      {asignaturaSeleccionada !== null && (
+        <ModalBorradorGuia
+          isOpen={modalBorradorOpen}
+          onClose={() => setModalBorradorOpen(false)}
+          guia={guia}
+          asignatura={asignaturaSeleccionada}
+        />
       )}
     </div>
   );

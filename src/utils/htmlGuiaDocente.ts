@@ -59,7 +59,9 @@ export function generarHTMLGuiaDocente(
     <div class="header">
       <div class="logo">${logoSVG}</div>
       <div class="header-content">
-        <div class="titulo">Guía docente 2025-2026</div>
+        <div class="titulo">Guía docente ${
+          guia.presentacion.anioAcademico
+        }</div>
         <div class="subtitulo">${asignatura.nombre}</div>
         <div class="linea"></div>
       </div>

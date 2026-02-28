@@ -13,6 +13,7 @@ interface Props {
   value: Record<string, HorarioAtencion[]>; // key: email del profesor
   onChange: (value: Record<string, HorarioAtencion[]>) => void;
   onNext: () => void;
+  labelSiguiente?: string;
 }
 
 const PasoF_HorarioAtencion: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
   value,
   onChange,
   onNext,
+  labelSiguiente = 'Siguiente',
 }) => {
   const [touched, setTouched] = useState(false);
   const [editando, setEditando] = useState<{
@@ -253,7 +255,7 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
           }}
           disabled={!valido}
         >
-          Siguiente
+          {labelSiguiente}
         </button>
       </div>
     </div>

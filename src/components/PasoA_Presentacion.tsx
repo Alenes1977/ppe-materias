@@ -15,6 +15,7 @@ export interface PresentacionData {
   aula: string;
   horario: string;
   resumen: string;
+  anioAcademico: string;
 }
 
 interface Props {
@@ -22,6 +23,7 @@ interface Props {
   onChange: (value: PresentacionData) => void;
   onNext: () => void;
   asignatura: AsignaturaProcesada;
+  labelSiguiente?: string;
 }
 
 const TITULACION = 'Grado en Filosofía, Política y Economía (PPE)';
@@ -31,6 +33,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
   onChange,
   onNext,
   asignatura,
+  labelSiguiente = 'Siguiente',
 }) => {
   const [nuevoProfesor, setNuevoProfesor] = useState<Profesor>({
     nombre: '',
@@ -38,13 +41,9 @@ const PasoA_Presentacion: React.FC<Props> = ({
   });
   const [touched, setTouched] = useState(false);
 
-  // Estados de edición para idioma, aula y horario
+  // Estado de edición para idioma (campo obligatorio con confirmación)
   const [editandoIdioma, setEditandoIdioma] = useState(value.idioma === '');
   const [idiomaTemp, setIdiomaTemp] = useState(value.idioma);
-  const [editandoAula, setEditandoAula] = useState(value.aula === '');
-  const [aulaTemp, setAulaTemp] = useState(value.aula);
-  const [editandoHorario, setEditandoHorario] = useState(value.horario === '');
-  const [horarioTemp, setHorarioTemp] = useState(value.horario);
 
   // Validación de campos obligatorios
   const camposObligatoriosCompletos =
@@ -78,17 +77,6 @@ const PasoA_Presentacion: React.FC<Props> = ({
       setEditandoIdioma(false);
     }
   };
-  // Confirmar aula
-  const handleConfirmAula = () => {
-    onChange({ ...value, aula: aulaTemp });
-    setEditandoAula(false);
-  };
-  // Confirmar horario
-  const handleConfirmHorario = () => {
-    onChange({ ...value, horario: horarioTemp });
-    setEditandoHorario(false);
-  };
-
   const handleNext = () => {
     setTouched(true);
     if (camposObligatoriosCompletos) {
@@ -157,6 +145,22 @@ const PasoA_Presentacion: React.FC<Props> = ({
         <div>
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">
+              {' '}
+              Año académico
+            </label>
+            <input
+              type="text"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              placeholder="Ej: 2025-2026"
+              value={value.anioAcademico}
+              onChange={(e) =>
+                onChange({ ...value, anioAcademico: e.target.value })
+              }
+            />
+          </div>
+          <div className="mb-3">
+            <label className="mb-1 block font-medium text-gray-700">
+              {' '}
               Profesores encargados <span className="text-red-500">*</span>
             </label>
             <div className="mb-2 flex flex-col gap-2 sm:flex-row">
@@ -274,95 +278,25 @@ const PasoA_Presentacion: React.FC<Props> = ({
           </div>
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">Aula</label>
-            {editandoAula ? (
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
-                  placeholder="Ejemplo: Aula M04 Edificio Amigos"
-                  value={aulaTemp}
-                  onChange={(e) => setAulaTemp(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleConfirmAula();
-                    }
-                  }}
-                />
-                <button
-                  type="button"
-                  className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-                  onClick={handleConfirmAula}
-                >
-                  Confirmar
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <div className="flex-1 rounded bg-blue-50 px-3 py-2 text-blue-900">
-                  {value.aula || (
-                    <span className="text-gray-400">Sin especificar</span>
-                  )}
-                </div>
-                <button
-                  type="button"
-                  className="rounded-md bg-gray-200 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
-                  onClick={() => {
-                    setEditandoAula(true);
-                    setAulaTemp(value.aula);
-                  }}
-                >
-                  Editar
-                </button>
-              </div>
-            )}
+            <input
+              type="text"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              placeholder="Ejemplo: Aula M04 Edificio Amigos"
+              value={value.aula}
+              onChange={(e) => onChange({ ...value, aula: e.target.value })}
+            />
           </div>
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">
-              Horario
+              Horario de clase
             </label>
-            {editandoHorario ? (
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
-                  placeholder="Ejemplo: Lunes y miércoles, 10:00-12:00"
-                  value={horarioTemp}
-                  onChange={(e) => setHorarioTemp(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleConfirmHorario();
-                    }
-                  }}
-                />
-                <button
-                  type="button"
-                  className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-                  onClick={handleConfirmHorario}
-                >
-                  Confirmar
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <div className="flex-1 rounded bg-blue-50 px-3 py-2 text-blue-900">
-                  {value.horario || (
-                    <span className="text-gray-400">Sin especificar</span>
-                  )}
-                </div>
-                <button
-                  type="button"
-                  className="rounded-md bg-gray-200 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
-                  onClick={() => {
-                    setEditandoHorario(true);
-                    setHorarioTemp(value.horario);
-                  }}
-                >
-                  Editar
-                </button>
-              </div>
-            )}
+            <input
+              type="text"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              placeholder="Ejemplo: Lunes y miércoles, 10:00-12:00"
+              value={value.horario}
+              onChange={(e) => onChange({ ...value, horario: e.target.value })}
+            />
           </div>
         </div>
       </div>
@@ -394,7 +328,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
           onClick={handleNext}
           disabled={!camposObligatoriosCompletos}
         >
-          Siguiente
+          {labelSiguiente}
         </button>
       </div>
     </div>

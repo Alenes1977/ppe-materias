@@ -11,23 +11,25 @@ const competenciasDict: Record<string, string> = (
   ppeData as { resultados_aprendizaje: Record<string, string> }
 ).resultados_aprendizaje;
 
-export function generarPDFGuiaDocente(
-  guia: GuiaDocenteData,
-  asignatura: AsignaturaProcesada,
-) {
-  // Detecta la estructura real de vfs
+function initVfs(): boolean {
   const vfs =
     pdfFonts?.default?.pdfMake?.vfs ||
     pdfFonts?.pdfMake?.vfs ||
     pdfFonts?.default ||
     pdfFonts;
-  if (vfs) Object.assign(pdfMake, { vfs });
-  else {
-    console.error('No se pudo encontrar vfs en pdfFonts', pdfFonts);
-    alert('Error al inicializar las fuentes PDF. Contacta con soporte.');
-    return;
+  if (vfs) {
+    Object.assign(pdfMake, { vfs });
+    return true;
   }
+  console.error('No se pudo encontrar vfs en pdfFonts', pdfFonts);
+  alert('Error al inicializar las fuentes PDF. Contacta con soporte.');
+  return false;
+}
 
+function buildDocDefinition(
+  guia: GuiaDocenteData,
+  asignatura: AsignaturaProcesada,
+) {
   const docDefinition = {
     pageMargins: [70, 40, 70, 70],
     content: [
@@ -210,9 +212,29 @@ export function generarPDFGuiaDocente(
         margin: [0, 10, 0, 20],
       },
     },
-    defaultStyle: {
-      fontSize: 11,
-    },
   };
-  pdfMake.createPdf(docDefinition).download('guia-docente.pdf');
+  return docDefinition;
+}
+
+export function generarPDFGuiaDocente(
+  guia: GuiaDocenteData,
+  asignatura: AsignaturaProcesada,
+) {
+  if (!initVfs()) return;
+  pdfMake
+    .createPdf(buildDocDefinition(guia, asignatura))
+    .download('guia-docente.pdf');
+}
+
+export function getGuiaDocentePDFBase64(
+  guia: GuiaDocenteData,
+  asignatura: AsignaturaProcesada,
+): Promise<string> {
+  return new Promise((resolve, reject) => {
+    if (!initVfs()) {
+      reject(new Error('No se pudo inicializar las fuentes PDF.'));
+      return;
+    }
+    pdfMake.createPdf(buildDocDefinition(guia, asignatura)).getBase64(resolve);
+  });
 }

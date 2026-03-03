@@ -17,6 +17,7 @@ import { generarHTMLGuiaDocente } from '../utils/htmlGuiaDocente';
 import type { ValoracionIAResponse } from '../utils/valoracionIA';
 import { enviarGuiaParaValoracion } from '../utils/valoracionIA';
 import ModalValoracionIA from './ModalValoracionIA';
+import ModalConfirmarEnvio from './ModalConfirmarEnvio';
 
 interface Props {
   guia: GuiaDocenteData;
@@ -36,6 +37,7 @@ const ResumenGuiaDocente: FC<Props> = ({
   const [valoracionResult, setValoracionResult] =
     useState<ValoracionIAResponse | null>(null);
   const [copiado, setCopiado] = useState(false);
+  const [modalEnvioOpen, setModalEnvioOpen] = useState(false);
 
   const handleDescargarPDF = () => {
     generarPDFGuiaDocente(guia, asignatura);
@@ -156,9 +158,7 @@ const ResumenGuiaDocente: FC<Props> = ({
             </button>
             <button
               className="group inline-flex items-center gap-3 rounded-xl border border-indigo-300 bg-indigo-50 px-6 py-4 text-lg font-bold text-indigo-700 transition-all duration-200 hover:bg-indigo-100 hover:shadow-lg"
-              onClick={() =>
-                alert('Funcionalidad de envío por correo próximamente')
-              }
+              onClick={() => setModalEnvioOpen(true)}
             >
               <FontAwesomeIcon icon={faEnvelope} className="text-2xl" />{' '}
               Confirmar y recibir por correo-e
@@ -388,6 +388,12 @@ const ResumenGuiaDocente: FC<Props> = ({
         onClose={handleCloseModal}
         isLoading={isLoadingValoracion}
         valoracion={valoracionResult}
+      />
+      <ModalConfirmarEnvio
+        isOpen={modalEnvioOpen}
+        onClose={() => setModalEnvioOpen(false)}
+        guia={guia}
+        asignatura={asignatura}
       />
     </div>
   );

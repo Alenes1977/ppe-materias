@@ -68,9 +68,10 @@ const PasoE_Evaluacion: React.FC<Props> = ({
   const tiposUnicos = new Set(value.map((ev) => ev.tipo)).size === value.length;
 
   // Convocatoria extraordinaria completada
-  const convocatoriaOk =
-    convocatoriaExtra.trim() &&
-    convocatoriaExtra.replace(/<(.|\n)*?>/g, '').trim() !== '';
+  const convocatoriaTextoPlano = convocatoriaExtra
+    .replace(/<(.|\n)*?>/g, '')
+    .trim();
+  const convocatoriaOk = convocatoriaTextoPlano !== '';
 
   const puedeAvanzar =
     value.length > 0 &&
@@ -157,129 +158,171 @@ const PasoE_Evaluacion: React.FC<Props> = ({
           </p>
         )}
       </div>
-      <div className="mb-6">
-        <div className="mb-2 font-semibold text-blue-700">
-          Sistemas disponibles:
+      <div className="mb-6 rounded-xl border border-blue-100 bg-gradient-to-b from-blue-50/80 to-white p-4 sm:p-5">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm font-medium text-blue-900">
+            Selecciona los sistemas de evaluación que utilizarás.
+          </p>
+          <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800">
+            {value.length} sistema{value.length === 1 ? '' : 's'} seleccionado
+            {value.length === 1 ? '' : 's'}
+          </span>
         </div>
-        <ul className="mb-2 space-y-2">
+
+        <div className="space-y-3">
           {sistemasPosibles.map((s) => {
             const info = seDict[s.tipo];
+            const evaluacionSeleccionada = value.find(
+              (ev) => ev.tipo === s.tipo,
+            );
+            const checked = !!evaluacionSeleccionada;
+            const min = parseInt(s['ponderacion-minima']);
+            const max = parseInt(s['ponderacion-maxima']);
+
             return (
-              <li key={s.tipo} className="flex items-center gap-2">
-                <button
-                  type="button"
-                  className={`rounded border px-3 py-1 text-xs font-semibold ${
-                    value.find((ev) => ev.tipo === s.tipo)
-                      ? 'border-blue-600 bg-blue-600 text-white'
-                      : 'border-blue-300 bg-white text-blue-700 hover:bg-blue-50'
-                  }`}
-                  onClick={() =>
-                    value.find((ev) => ev.tipo === s.tipo)
-                      ? handleRemove(s.tipo)
-                      : handleAdd(s.tipo)
-                  }
-                >
-                  {value.find((ev) => ev.tipo === s.tipo) ? 'Quitar' : 'Añadir'}
-                </button>
-                <span className="font-medium text-blue-900">
-                  {info?.nombre ?? s.tipo}
-                </span>
-                <span className="text-xs text-gray-500">
-                  ({s['ponderacion-minima']} - {s['ponderacion-maxima']})
-                </span>
-                {info?.descripcion ? (
-                  <span
-                    title={info.descripcion}
-                    className="flex-shrink-0 cursor-help text-blue-400 hover:text-blue-600"
-                    aria-label={info.descripcion}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="h-4 w-4"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9 7a1 1 0 112 0v.5a.5.5 0 01-.5.5H10a.5.5 0 010-1h.5V7zm.5 3.5a1 1 0 10-2 0V13a1 1 0 102 0v-2.5z"
-                        clipRule="evenodd"
+              <div
+                key={s.tipo}
+                className={`overflow-hidden rounded-xl border transition-all ${
+                  checked
+                    ? 'border-blue-300 bg-blue-50 shadow-sm'
+                    : 'border-gray-200 bg-white hover:border-blue-200 hover:shadow-sm'
+                }`}
+              >
+                <label className="flex cursor-pointer items-start gap-3 p-4 sm:p-5">
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() =>
+                      checked ? handleRemove(s.tipo) : handleAdd(s.tipo)
+                    }
+                    className="mt-1 h-5 w-5 rounded border-gray-300 accent-blue-600"
+                  />
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-base font-semibold text-blue-900">
+                        {info?.nombre ?? s.tipo}
+                      </span>
+                      <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
+                        {min}% - {max}%
+                      </span>
+                      {checked ? (
+                        <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-semibold text-white">
+                          Seleccionado
+                        </span>
+                      ) : null}
+                    </div>
+
+                    {info?.descripcion ? (
+                      <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                        {info.descripcion}
+                      </p>
+                    ) : null}
+                  </div>
+                </label>
+
+                {checked && evaluacionSeleccionada ? (
+                  <div className="border-t border-blue-100 bg-white/80 p-4 sm:p-5">
+                    <div className="mb-3 flex flex-wrap items-center gap-3">
+                      <label className="text-sm font-medium text-gray-700">
+                        Porcentaje:
+                      </label>
+                      <input
+                        type="number"
+                        min={min}
+                        max={max}
+                        value={evaluacionSeleccionada.porcentaje}
+                        onChange={(e) =>
+                          handlePorcentaje(s.tipo, Number(e.target.value))
+                        }
+                        className="w-24 rounded border border-gray-300 px-2 py-1 text-sm focus:border-blue-500 focus:outline-none"
                       />
-                    </svg>
-                  </span>
+                      <span className="text-xs text-gray-600">%</span>
+                      <span className="text-xs text-gray-500">
+                        Rango permitido: {min}% - {max}%
+                      </span>
+                    </div>
+
+                    {(evaluacionSeleccionada.porcentaje < min ||
+                      evaluacionSeleccionada.porcentaje > max) && (
+                      <div className="mb-3 text-sm font-medium text-red-600">
+                        El porcentaje debe estar entre {min}% y {max}%.
+                      </div>
+                    )}
+
+                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                      Detalles de la evaluación (opcional)
+                    </label>
+                    <ReactQuill
+                      theme="snow"
+                      value={evaluacionSeleccionada.descripcion}
+                      onChange={(desc: string) =>
+                        handleDescripcion(s.tipo, desc)
+                      }
+                      className="bg-white"
+                    />
+                  </div>
                 ) : null}
-              </li>
+              </div>
             );
           })}
-        </ul>
-      </div>
-      {value.map((ev) => {
-        const sistema = sistemasPosibles.find((s) => s.tipo === ev.tipo);
-        const min = sistema ? parseInt(sistema['ponderacion-minima']) : 0;
-        const max = sistema ? parseInt(sistema['ponderacion-maxima']) : 100;
-        return (
-          <div
-            key={ev.tipo}
-            className="mb-6 rounded border border-blue-100 bg-blue-50 p-4"
-          >
-            <div className="mb-2 font-semibold text-blue-700">
-              {seDict[ev.tipo]?.nombre ?? ev.tipo}{' '}
-              <span className="text-xs text-gray-500">
-                ({min}% - {max}%)
-              </span>
-            </div>
-            <div className="mb-2 flex items-center gap-2">
-              <label className="text-sm font-medium text-gray-700">
-                Porcentaje:
-              </label>
-              <input
-                type="number"
-                min={min}
-                max={max}
-                value={ev.porcentaje}
-                onChange={(e) =>
-                  handlePorcentaje(ev.tipo, Number(e.target.value))
-                }
-                className="w-20 rounded border border-gray-300 px-2 py-1 text-sm focus:border-blue-500 focus:outline-none"
-              />
-              <span className="text-xs text-gray-500">%</span>
-            </div>
-            {(ev.porcentaje < min || ev.porcentaje > max) && (
-              <div className="mb-2 text-xs text-red-500">
-                El porcentaje debe estar entre {min}% y {max}%
-              </div>
-            )}
-            <div className="mb-2">
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                Detalles de la evaluación
-              </label>
-              <ReactQuill
-                theme="snow"
-                value={ev.descripcion}
-                onChange={(desc: string) => handleDescripcion(ev.tipo, desc)}
-                className="bg-white"
-              />
-            </div>
+        </div>
+
+        {touched && value.length === 0 ? (
+          <div className="mt-3 text-sm font-medium text-red-600">
+            Debes seleccionar al menos un sistema de evaluación.
           </div>
-        );
-      })}
-      <div className="mb-6">
-        <div className="mb-1 text-lg font-bold text-blue-900">
-          Convocatoria Extraordinaria <span className="text-red-500">*</span>
+        ) : null}
+      </div>
+
+      <div
+        className={`mb-6 rounded-xl border-2 p-4 sm:p-5 ${
+          convocatoriaOk
+            ? 'border-emerald-200 bg-emerald-50/60'
+            : 'border-amber-300 bg-amber-50'
+        }`}
+      >
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <h4 className="text-lg font-bold text-blue-900">
+            Convocatoria extraordinaria <span className="text-red-500">*</span>
+          </h4>
+          <span
+            className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+              convocatoriaOk
+                ? 'bg-emerald-100 text-emerald-800'
+                : 'bg-amber-100 text-amber-800'
+            }`}
+          >
+            Obligatoria
+          </span>
         </div>
-        <div className="mb-2 text-xs text-blue-700">
-          Detalle a continuación las instrucciones específicas para la
-          evaluación en la convocatoria extraordinaria
-        </div>
+        <p className="mb-3 text-sm text-gray-700">
+          Este apartado debe estar cumplimentado para poder avanzar al paso
+          siguiente. Indica aquí las instrucciones de evaluación para la
+          convocatoria extraordinaria.
+        </p>
         <ReactQuill
           theme="snow"
           value={convocatoriaExtra}
           onChange={(desc: string) => onChangeConvocatoria(desc)}
           className="bg-white"
         />
-        {touched &&
-        (convocatoriaExtra.trim() === '' ||
-          convocatoriaExtra.replace(/<(.|\n)*?>/g, '').trim() === '') ? (
-          <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+          <p className="text-xs text-gray-600">
+            Incluye criterios, pruebas y condiciones específicas.
+          </p>
+          <span
+            className={`text-xs font-semibold ${
+              convocatoriaOk ? 'text-emerald-700' : 'text-amber-700'
+            }`}
+          >
+            {convocatoriaOk ? 'Completada' : 'Pendiente'}
+          </span>
+        </div>
+        {touched && !convocatoriaOk ? (
+          <div className="mt-2 text-sm font-medium text-red-600">
+            Campo obligatorio: completa la convocatoria extraordinaria.
+          </div>
         ) : null}
       </div>
       <div className="mb-4 text-right font-semibold text-blue-700">

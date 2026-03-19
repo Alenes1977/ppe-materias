@@ -3,17 +3,15 @@ import type { GuiaDocenteData } from './AsistenteGuiaDocente';
 import type { HorarioAtencion } from './PasoF_HorarioAtencion';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
 import { generarPDFGuiaDocente } from '../utils/pdfGuiaDocente';
+import { generarWordGuiaDocente } from '../utils/wordGuiaDocente';
 import ppeData from '../data/ppe.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFilePdf,
-  faFileCode,
+  faFileWord,
   faRobot,
   faEnvelope,
-  faCopy,
-  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import { generarHTMLGuiaDocente } from '../utils/htmlGuiaDocente';
 import type { ValoracionIAResponse } from '../utils/valoracionIA';
 import { enviarGuiaParaValoracion } from '../utils/valoracionIA';
 import ModalValoracionIA from './ModalValoracionIA';
@@ -36,52 +34,14 @@ const ResumenGuiaDocente: FC<Props> = ({
   const [isLoadingValoracion, setIsLoadingValoracion] = useState(false);
   const [valoracionResult, setValoracionResult] =
     useState<ValoracionIAResponse | null>(null);
-  const [copiado, setCopiado] = useState(false);
   const [modalEnvioOpen, setModalEnvioOpen] = useState(false);
 
   const handleDescargarPDF = () => {
     generarPDFGuiaDocente(guia, asignatura);
   };
 
-  const handleGenerarHTML = () => {
-    // Genera HTML elegante usando la utilidad
-    const html = generarHTMLGuiaDocente(guia, asignatura);
-    const blob = new Blob([html], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'guia-docente.html';
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const handleCopiarPortapapeles = async () => {
-    const html = generarHTMLGuiaDocente(guia, asignatura);
-    // Extrae solo el contenido del <body> para que pegue limpio en Word / ADI
-    const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-    const bodyHtml = bodyMatch ? bodyMatch[1].trim() : html;
-    const textoPlano = bodyHtml
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-    try {
-      if (typeof ClipboardItem !== 'undefined') {
-        await navigator.clipboard.write([
-          new ClipboardItem({
-            'text/html': new Blob([bodyHtml], { type: 'text/html' }),
-            'text/plain': new Blob([textoPlano], { type: 'text/plain' }),
-          }),
-        ]);
-      } else {
-        await navigator.clipboard.writeText(textoPlano);
-      }
-      setCopiado(true);
-      setTimeout(() => setCopiado(false), 2500);
-    } catch {
-      alert(
-        'No se pudo copiar al portapapeles. Prueba a descargar el HTML y abrirlo en el navegador.',
-      );
-    }
+  const handleDescargarWord = () => {
+    generarWordGuiaDocente(guia, asignatura);
   };
 
   const handleValorarIA = async () => {
@@ -117,52 +77,84 @@ const ResumenGuiaDocente: FC<Props> = ({
         Resumen de la Guía Docente
       </h2>
       {!modoPrevia && (
-        <div className="mb-8 flex w-full flex-col items-center gap-4 rounded-2xl border border-blue-100 bg-blue-50/60 p-8 shadow-lg">
-          <div className="mb-2 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
-            <button
-              className="group inline-flex items-center gap-3 rounded-xl border border-blue-300 bg-blue-50 px-6 py-4 text-lg font-bold text-blue-700 transition-all duration-200 hover:bg-blue-100 hover:shadow-lg"
-              onClick={handleDescargarPDF}
-            >
-              <FontAwesomeIcon icon={faFilePdf} className="text-2xl" />{' '}
-              Descargar PDF
-            </button>
-            <button
-              className="group inline-flex items-center gap-3 rounded-xl border border-green-300 bg-green-50 px-6 py-4 text-lg font-bold text-green-700 transition-all duration-200 hover:bg-green-100 hover:shadow-lg"
-              onClick={handleGenerarHTML}
-            >
-              <FontAwesomeIcon icon={faFileCode} className="text-2xl" /> HTML
-              (para ADI)
-            </button>
-            <button
-              className={`group inline-flex items-center gap-3 rounded-xl border px-6 py-4 text-lg font-bold transition-all duration-200 hover:shadow-lg ${
-                copiado
-                  ? 'border-emerald-400 bg-emerald-100 text-emerald-700'
-                  : 'border-teal-300 bg-teal-50 text-teal-700 hover:bg-teal-100'
-              }`}
-              onClick={handleCopiarPortapapeles}
-            >
-              <FontAwesomeIcon
-                icon={copiado ? faCheck : faCopy}
-                className="text-2xl"
-              />
-              {copiado ? '¡Copiado!' : 'Copiar al portapapeles'}
-            </button>
+        <div className="mb-12 space-y-6">
+          {/* Sección: Descargar Guía */}
+          <div className="rounded-xl border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-blue-100/50 p-8 shadow-md">
+            <h3 className="mb-4 text-xl font-bold text-blue-900">
+              📥 Descargar Guía Docente
+            </h3>
+            <p className="mb-4 text-sm text-blue-700">
+              Exporta tu guía en el formato que prefieras
+            </p>
+            <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-start">
+              <button
+                className="group inline-flex flex-1 items-center justify-center gap-3 rounded-lg border-2 border-blue-300 bg-white px-6 py-3 font-bold text-blue-700 transition-all duration-200 hover:bg-blue-50 hover:shadow-md sm:flex-none"
+                onClick={handleDescargarPDF}
+              >
+                <FontAwesomeIcon icon={faFilePdf} className="text-2xl" />
+                <span>PDF</span>
+              </button>
+              <button
+                className="group inline-flex flex-1 items-center justify-center gap-3 rounded-lg border-2 border-purple-300 bg-white px-6 py-3 font-bold text-purple-700 transition-all duration-200 hover:bg-purple-50 hover:shadow-md sm:flex-none"
+                onClick={handleDescargarWord}
+              >
+                <FontAwesomeIcon icon={faFileWord} className="text-2xl" />
+                <span>Word</span>
+              </button>
+            </div>
           </div>
-          <div className="mt-2 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
-            <button
-              className="group inline-flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-50 px-6 py-4 text-lg font-bold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:shadow-lg"
-              onClick={handleValorarIA}
-            >
-              <FontAwesomeIcon icon={faRobot} className="text-2xl" /> Valorar
-              Guía con IA
-            </button>
-            <button
-              className="group inline-flex items-center gap-3 rounded-xl border border-indigo-300 bg-indigo-50 px-6 py-4 text-lg font-bold text-indigo-700 transition-all duration-200 hover:bg-indigo-100 hover:shadow-lg"
-              onClick={() => setModalEnvioOpen(true)}
-            >
-              <FontAwesomeIcon icon={faEnvelope} className="text-2xl" />{' '}
-              Confirmar y recibir por correo-e
-            </button>
+
+          {/* Sección: Acciones Adicionales */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {/* Card: Valorar con IA */}
+            <div className="rounded-xl border-2 border-amber-200 bg-gradient-to-r from-amber-50 to-orange-100/50 p-6 shadow-md transition-all duration-200 hover:shadow-lg">
+              <div className="mb-3 flex items-center gap-3">
+                <div className="rounded-lg bg-amber-200 p-2">
+                  <FontAwesomeIcon
+                    icon={faRobot}
+                    className="text-xl text-amber-700"
+                  />
+                </div>
+                <h4 className="text-lg font-bold text-amber-900">
+                  Valorar con IA
+                </h4>
+              </div>
+              <p className="mb-4 text-sm text-amber-800">
+                Obtén retroalimentación automática sobre la calidad de tu guía
+                docente
+              </p>
+              <button
+                className="w-full rounded-lg bg-amber-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-amber-700"
+                onClick={handleValorarIA}
+              >
+                Iniciar valoración
+              </button>
+            </div>
+
+            {/* Card: Enviar por correo */}
+            <div className="rounded-xl border-2 border-indigo-200 bg-gradient-to-r from-indigo-50 to-purple-100/50 p-6 shadow-md transition-all duration-200 hover:shadow-lg">
+              <div className="mb-3 flex items-center gap-3">
+                <div className="rounded-lg bg-indigo-200 p-2">
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="text-xl text-indigo-700"
+                  />
+                </div>
+                <h4 className="text-lg font-bold text-indigo-900">
+                  Enviar por correo
+                </h4>
+              </div>
+              <p className="mb-4 text-sm text-indigo-800">
+                Confirmación automática al profesor y coordinador de la
+                titulación
+              </p>
+              <button
+                className="w-full rounded-lg bg-indigo-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-indigo-700"
+                onClick={() => setModalEnvioOpen(true)}
+              >
+                Confirmar y enviar
+              </button>
+            </div>
           </div>
         </div>
       )}

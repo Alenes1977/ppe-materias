@@ -5,8 +5,10 @@ import {
   faSpinner,
   faRobot,
   faStar,
+  faFilePdf,
 } from '@fortawesome/free-solid-svg-icons';
 import type { ValoracionIAResponse } from '../utils/valoracionIA';
+import { generarPDFValoracionIA } from '../utils/pdfValoracionIA';
 
 interface Props {
   isOpen: boolean;
@@ -37,6 +39,19 @@ const ModalValoracionIA: React.FC<Props> = ({
     textoFormateado = textoFormateado.replace(/\n/g, '<br>');
 
     return textoFormateado;
+  };
+
+  const puedeDescargarPDF =
+    valoracion?.success &&
+    (valoracion.valoracion ||
+      valoracion.puntuacion != null ||
+      (valoracion.recomendaciones && valoracion.recomendaciones.length > 0));
+
+  const handleDescargarPDF = () => {
+    if (!valoracion?.success) {
+      return;
+    }
+    generarPDFValoracionIA(valoracion);
   };
 
   return (
@@ -153,10 +168,19 @@ const ModalValoracionIA: React.FC<Props> = ({
 
         {/* Footer */}
         {!isLoading && (
-          <div className="flex-shrink-0 border-t border-gray-200 p-6">
+          <div className="flex flex-shrink-0 flex-col gap-3 border-t border-gray-200 p-6 sm:flex-row sm:justify-end">
+            {puedeDescargarPDF ? (
+              <button
+                onClick={handleDescargarPDF}
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-semibold text-red-700 transition-colors hover:bg-red-100"
+              >
+                <FontAwesomeIcon icon={faFilePdf} />
+                Descargar feedback (PDF)
+              </button>
+            ) : null}
             <button
               onClick={onClose}
-              className="w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-700"
+              className="rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-700 sm:min-w-36"
             >
               Cerrar
             </button>

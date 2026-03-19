@@ -1,0 +1,123 @@
+{
+  "asignatura": {
+    "id": "antropologia-i",
+    "nombre": "Antropología I",
+    "modulo": "Módulo I: Filosofía y formación humanística",
+    "materia": "Core Curriculum",
+    "ects": 3,
+    "curso": 1,
+    "semestre": 1
+  },
+  "presentacion": {
+    "anioAcademico": "2025-2026",
+    "profesores": [
+      {
+        "nombre": "Juan Pérez Navarro",
+        "email": "juan.perez@unav.es"
+      },
+      {
+        "nombre": "Marta Ramírez López",
+        "email": "marta.ramirez@unav.es"
+      }
+    ],
+    "idioma": "Español",
+    "aula": "Aula 2.14 - Edificio Central",
+    "horario": "Martes 10:00-12:00 y jueves 11:00-12:00",
+    "resumen": "<p>Introducción a la antropología filosófica con atención a la persona, la libertad, la dignidad y los desafíos contemporáneos de la vida humana.</p>"
+  },
+  "competencias": [
+    "RA1",
+    "RA2",
+    "RA3",
+    "RA9",
+    "RA10",
+    "RA20",
+    "RA21",
+    "RA22",
+    "RA27"
+  ],
+  "programa": [
+    {
+      "titulo": "Introducción a la antropología filosófica",
+      "descripcion": "<p>Presentación del objeto de estudio, metodología y preguntas centrales sobre la persona humana.</p>"
+    },
+    {
+      "titulo": "Naturaleza, libertad y dignidad",
+      "descripcion": "<p>Análisis de la libertad, la dignidad personal y el vínculo entre naturaleza y cultura.</p>"
+    },
+    {
+      "titulo": "Identidad, relación y trascendencia",
+      "descripcion": "<p>Estudio de la identidad personal, la relación con los otros y la apertura a la trascendencia.</p>"
+    },
+    {
+      "titulo": "La persona ante los desafíos contemporáneos",
+      "descripcion": "<p>Reflexión sobre tecnología, vulnerabilidad, cuidado y responsabilidad.</p>"
+    }
+  ],
+  "actividades": [
+    {
+      "nombre": "Asistencia a clases magistrales",
+      "descripcion": "<p>Exposición estructurada de los conceptos clave y discusión guiada de los textos de referencia.</p>"
+    },
+    {
+      "nombre": "Seminarios de discusión y otras actividades presenciales",
+      "descripcion": "<p>Debates breves sobre casos prácticos y lectura comentada de fragmentos seleccionados.</p>"
+    },
+    {
+      "nombre": "Tutorías",
+      "descripcion": "<p>Seguimiento personalizado para resolver dudas y orientar el trabajo autónomo del alumnado.</p>"
+    },
+    {
+      "nombre": "Estudio personal",
+      "descripcion": "<p>Lectura crítica, elaboración de apuntes y preparación de los materiales de evaluación.</p>"
+    },
+    {
+      "nombre": "Elaboración de trabajos dirigidos",
+      "descripcion": "<p>Redacción de un comentario crítico sobre un problema antropológico propuesto en clase.</p>"
+    }
+  ],
+  "evaluacion": [
+    {
+      "tipo": "Exámenes (escritos u orales)",
+      "porcentaje": 40,
+      "descripcion": "<p>Prueba final sobre los conceptos fundamentales y su aplicación a casos concretos.</p>"
+    },
+    {
+      "tipo": "Elaboración y presentación de trabajos dirigidos",
+      "porcentaje": 35,
+      "descripcion": "<p>Comentario escrito y breve exposición oral de un tema trabajado durante el semestre.</p>"
+    },
+    {
+      "tipo": "Preparación y participación en seminarios de discusión y en otras actividades presenciales",
+      "porcentaje": 25,
+      "descripcion": "<p>Valoración de la participación activa, la calidad de las intervenciones y la preparación previa.</p>"
+    }
+  ],
+  "convocatoriaExtra": "<p>En la convocatoria extraordinaria, el estudiante realizará una prueba escrita de síntesis y entregará una reflexión breve sobre los contenidos centrales de la asignatura.</p>",
+  "horarioAtencion": {
+    "juan.perez@unav.es": [
+      {
+        "lugar": "Despacho 3.18, Edificio Central",
+        "dia": "Lunes",
+        "hora": "12:00-13:30"
+      },
+      {
+        "lugar": "Despacho 3.18, Edificio Central",
+        "dia": "Miércoles",
+        "hora": "09:30-10:30"
+      }
+    ],
+    "marta.ramirez@unav.es": [
+      {
+        "lugar": "Despacho 2.11, Edificio Central",
+        "dia": "Martes",
+        "hora": "10:00-11:00"
+      }
+    ]
+  },
+  "bibliografia": "<p><strong>Bibliografía básica:</strong></p><ul><li>Millán-Puelles, A. <em>Antropología de la persona</em>.</li><li>Guardini, R. <em>La aceptación de sí mismo</em>.</li></ul><p><strong>Recursos complementarios:</strong> artículos y lecturas facilitadas en ADI.</p>",
+  "metadatos": {
+    "version": "3.0",
+    "fechaEnvio": "2026-03-19T00:00:00.000Z"
+  }
+}

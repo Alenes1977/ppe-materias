@@ -44,6 +44,7 @@ const PasoD_Actividades: React.FC<Props> = ({
   const [touched, setTouched] = useState(false);
 
   const validas = value.length > 0;
+  const seleccionadas = value.map((actividad) => actividad.nombre);
 
   // Usa el nombre completo como clave interna (útil en PDF/HTML)
   const handleToggle = (id: string) => {
@@ -79,71 +80,107 @@ const PasoD_Actividades: React.FC<Props> = ({
         se relacionan a continuación. Señale las que utilizará en su curso y
         opcionalmente describa cómo se desarrollará la actividad.
       </p>
-      <div className="mb-6 space-y-2">
-        {actividadesPosibles.map((id) => {
-          const info = actDict[id];
-          const nombreCompleto = info?.nombre ?? id;
-          const checked = !!value.find((a) => a.nombre === nombreCompleto);
-          const actividad = value.find((a) => a.nombre === nombreCompleto);
-          return (
-            <div key={id} className="mb-2">
-              <label className="flex cursor-pointer items-start gap-2">
-                <input
-                  type="checkbox"
-                  checked={checked}
-                  onChange={() => handleToggle(id)}
-                  className="mt-0.5 accent-blue-600"
-                />
-                <span className="font-medium text-blue-900">
-                  {nombreCompleto}
-                </span>
-                {info?.descripcion ? (
-                  <span
-                    title={info.descripcion}
-                    className="mt-0.5 flex-shrink-0 cursor-help text-blue-400 hover:text-blue-600"
-                    aria-label={info.descripcion}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="h-4 w-4"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9 7a1 1 0 112 0v.5a.5.5 0 01-.5.5H10a.5.5 0 010-1h.5V7zm.5 3.5a1 1 0 10-2 0V13a1 1 0 102 0v-2.5z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                ) : null}
-              </label>
-              {checked && actividad ? (
-                <div className="mt-2 rounded border border-blue-100 bg-blue-50 p-4">
-                  <div className="mb-2 font-semibold text-blue-700">
-                    Describa esta actividad (opcional)
-                  </div>
-                  <ReactQuill
-                    theme="snow"
-                    value={actividad.descripcion}
-                    onChange={(desc: string) =>
-                      handleDescripcion(nombreCompleto, desc)
-                    }
-                    className="bg-white"
+      <div className="mb-6 rounded-xl border border-blue-100 bg-gradient-to-b from-blue-50/80 to-white p-4 sm:p-5">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm font-medium text-blue-900">
+            Selecciona una o varias actividades para esta asignatura.
+          </p>
+          <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800">
+            {value.length} seleccionada{value.length === 1 ? '' : 's'}
+          </span>
+        </div>
+
+        <div className="space-y-3">
+          {actividadesPosibles.map((id) => {
+            const info = actDict[id];
+            const nombreCompleto = info?.nombre ?? id;
+            const checked = !!value.find((a) => a.nombre === nombreCompleto);
+            const actividad = value.find((a) => a.nombre === nombreCompleto);
+
+            return (
+              <div
+                key={id}
+                className={`overflow-hidden rounded-xl border transition-all ${
+                  checked
+                    ? 'border-blue-300 bg-blue-50 shadow-sm'
+                    : 'border-gray-200 bg-white hover:border-blue-200 hover:shadow-sm'
+                }`}
+              >
+                <label className="flex cursor-pointer items-start gap-3 p-4 sm:p-5">
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => handleToggle(id)}
+                    className="mt-1 h-5 w-5 rounded border-gray-300 accent-blue-600"
                   />
-                  {touched &&
-                  (actividad.descripcion.trim() === '' ||
-                    actividad.descripcion.replace(/<(.|\n)*?>/g, '').trim() ===
-                      '') ? (
-                    <div className="mt-1 text-xs text-red-500">
-                      Debes describir esta actividad.
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-base font-semibold text-blue-900">
+                        {nombreCompleto}
+                      </span>
+                      {checked ? (
+                        <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-semibold text-white">
+                          Seleccionada
+                        </span>
+                      ) : null}
                     </div>
-                  ) : null}
-                </div>
-              ) : null}
+
+                    {info?.descripcion ? (
+                      <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                        {info.descripcion}
+                      </p>
+                    ) : null}
+                  </div>
+                </label>
+
+                {checked && actividad ? (
+                  <div className="border-t border-blue-100 bg-white/80 p-4 sm:p-5">
+                    <div className="mb-2 font-semibold text-blue-700">
+                      Describa esta actividad (opcional)
+                    </div>
+                    <ReactQuill
+                      theme="snow"
+                      value={actividad.descripcion}
+                      onChange={(desc: string) =>
+                        handleDescripcion(nombreCompleto, desc)
+                      }
+                      className="bg-white"
+                    />
+                    <p className="mt-2 text-xs text-gray-500">
+                      Este campo es opcional y sirve para concretar cómo se
+                      aplicará la actividad en tu asignatura.
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+
+        {touched && !validas ? (
+          <div className="mt-3 text-sm font-medium text-red-600">
+            Debes seleccionar al menos una actividad formativa para continuar.
+          </div>
+        ) : null}
+
+        {seleccionadas.length > 0 ? (
+          <div className="mt-4 rounded-lg border border-blue-100 bg-white p-3">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-blue-700">
+              Selección actual
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {seleccionadas.map((nombre) => (
+                <span
+                  key={nombre}
+                  className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800"
+                >
+                  {nombre}
+                </span>
+              ))}
             </div>
-          );
-        })}
+          </div>
+        ) : null}
       </div>
       <div className="flex justify-end">
         <button

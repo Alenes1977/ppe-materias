@@ -11,10 +11,16 @@ import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
 import ppeData from '../data/ppe.json';
 
-export async function generarWordGuiaDocente(
+interface HorarioAtencionWord {
+  lugar: string;
+  dia: string;
+  hora: string;
+}
+
+function buildWordDocument(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
-) {
+): Document {
   const competenciasDict = (
     ppeData as { resultados_aprendizaje: Record<string, string> }
   ).resultados_aprendizaje;
@@ -191,13 +197,7 @@ export async function generarWordGuiaDocente(
       parrafoNegrita(`${prof ? `${prof.nombre} (${email})` : email}`),
     );
 
-    interface HorarioAtencion {
-      lugar: string;
-      dia: string;
-      hora: string;
-    }
-
-    (franjas as HorarioAtencion[]).forEach((f) => {
+    (franjas as HorarioAtencionWord[]).forEach((f) => {
       horarioContent.push(
         new Paragraph({
           text: `${f.lugar} | ${f.dia} | ${f.hora}`,
@@ -219,8 +219,7 @@ export async function generarWordGuiaDocente(
   ];
   sections.push(...crearSeccion('Bibliografía y recursos', biblioContent));
 
-  // Crear el documento
-  const doc = new Document({
+  return new Document({
     sections: [
       {
         children: sections,
@@ -237,6 +236,13 @@ export async function generarWordGuiaDocente(
       },
     ],
   });
+}
+
+export async function generarWordGuiaDocente(
+  guia: GuiaDocenteData,
+  asignatura: AsignaturaProcesada,
+) {
+  const doc = buildWordDocument(guia, asignatura);
 
   // Generar y descargar
   const blob = await Packer.toBlob(doc);
@@ -245,4 +251,12 @@ export async function generarWordGuiaDocente(
     '_',
   )}_${new Date().getFullYear()}.docx`;
   saveAs(blob, filename);
+}
+
+export async function getGuiaDocenteWordBase64(
+  guia: GuiaDocenteData,
+  asignatura: AsignaturaProcesada,
+): Promise<string> {
+  const doc = buildWordDocument(guia, asignatura);
+  return Packer.toBase64String(doc);
 }

@@ -141,18 +141,18 @@ const ResumenGuiaDocente: FC<Props> = ({
                   />
                 </div>
                 <h4 className="text-lg font-bold text-indigo-900">
-                  Enviar por correo
+                  Enviar a tu correo-e
                 </h4>
               </div>
               <p className="mb-4 text-sm text-indigo-800">
-                Confirmación automática al profesor y coordinador de la
-                titulación
+                Envío de la Guía docente (PDF y Word) a tu correo electrónico, y
+                aviso al Coordinador para su revisión.
               </p>
               <button
                 className="w-full rounded-lg bg-indigo-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-indigo-700"
                 onClick={() => setModalEnvioOpen(true)}
               >
-                Confirmar y enviar
+                Enviar Guía Docente
               </button>
             </div>
           </div>

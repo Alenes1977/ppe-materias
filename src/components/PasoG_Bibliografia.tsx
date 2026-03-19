@@ -7,6 +7,7 @@ interface Props {
   value: string;
   onChange: (value: string) => void;
   onNext: () => void;
+  onGuardarYSeguir?: () => void;
   labelSiguiente?: string;
 }
 
@@ -14,6 +15,7 @@ const PasoG_Bibliografia: React.FC<Props> = ({
   value,
   onChange,
   onNext,
+  onGuardarYSeguir,
   labelSiguiente = 'Finalizar',
 }) => {
   const [touched, setTouched] = useState(false);
@@ -23,6 +25,13 @@ const PasoG_Bibliografia: React.FC<Props> = ({
   const handleNext = () => {
     setTouched(true);
     if (valido) onNext();
+  };
+
+  const handleGuardarYSeguir = () => {
+    setTouched(true);
+    if (valido && onGuardarYSeguir) {
+      onGuardarYSeguir();
+    }
   };
 
   return (
@@ -44,7 +53,21 @@ const PasoG_Bibliografia: React.FC<Props> = ({
           Este campo es obligatorio.
         </div>
       ) : null}
-      <div className="flex justify-end">
+      <div className="flex flex-wrap justify-end gap-3">
+        {onGuardarYSeguir ? (
+          <button
+            type="button"
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
+              valido
+                ? ''
+                : 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
+            }`}
+            onClick={handleGuardarYSeguir}
+            disabled={!valido}
+          >
+            Guardar y seguir desde aquí
+          </button>
+        ) : null}
         <button
           type="button"
           className={`rounded-md px-6 py-2 font-semibold text-white ${

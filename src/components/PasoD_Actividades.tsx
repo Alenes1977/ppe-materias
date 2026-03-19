@@ -29,6 +29,7 @@ interface Props {
   value: ActividadSeleccionada[];
   onChange: (value: ActividadSeleccionada[]) => void;
   onNext: () => void;
+  onGuardarYSeguir?: () => void;
   nombreAsignatura: string;
   labelSiguiente?: string;
 }
@@ -38,6 +39,7 @@ const PasoD_Actividades: React.FC<Props> = ({
   value,
   onChange,
   onNext,
+  onGuardarYSeguir,
   nombreAsignatura,
   labelSiguiente = 'Siguiente',
 }) => {
@@ -67,6 +69,13 @@ const PasoD_Actividades: React.FC<Props> = ({
   const handleNext = () => {
     setTouched(true);
     if (validas) onNext();
+  };
+
+  const handleGuardarYSeguir = () => {
+    setTouched(true);
+    if (validas && onGuardarYSeguir) {
+      onGuardarYSeguir();
+    }
   };
 
   return (
@@ -182,7 +191,21 @@ const PasoD_Actividades: React.FC<Props> = ({
           </div>
         ) : null}
       </div>
-      <div className="flex justify-end">
+      <div className="flex flex-wrap justify-end gap-3">
+        {onGuardarYSeguir ? (
+          <button
+            type="button"
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
+              validas
+                ? ''
+                : 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
+            }`}
+            onClick={handleGuardarYSeguir}
+            disabled={!validas}
+          >
+            Guardar y seguir desde aquí
+          </button>
+        ) : null}
         <button
           type="button"
           className={`rounded-md px-6 py-2 font-semibold text-white ${

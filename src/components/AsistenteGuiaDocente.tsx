@@ -93,7 +93,7 @@ const AsistenteGuiaDocente: React.FC = () => {
     };
   });
 
-  const [editandoDesdeResumen, setEditandoDesdeResumen] = useState(false);
+  const [pasoRetorno, setPasoRetorno] = useState<number | null>(null);
   const [modalBorradorOpen, setModalBorradorOpen] = useState(false);
 
   // Memoizamos la lista de asignaturas para no reprocesarla en cada render
@@ -117,9 +117,11 @@ const AsistenteGuiaDocente: React.FC = () => {
       const asignatura = getAsignaturas().find((a) => a.id === opcion.value);
       setAsignaturaSeleccionada(asignatura || null);
       setPasoActual(0); // Reinicia el wizard si se cambia de asignatura
+      setPasoRetorno(null);
     } else {
       setAsignaturaSeleccionada(null);
       setPasoActual(0);
+      setPasoRetorno(null);
     }
   };
 
@@ -127,7 +129,7 @@ const AsistenteGuiaDocente: React.FC = () => {
     localStorage.removeItem('guiaDocente');
     setAsignaturaSeleccionada(null);
     setPasoActual(0);
-    setEditandoDesdeResumen(false);
+    setPasoRetorno(null);
     setGuia({
       presentacion: {
         profesores: [],
@@ -148,22 +150,39 @@ const AsistenteGuiaDocente: React.FC = () => {
   };
 
   const handleEdit = (paso: number) => {
-    setEditandoDesdeResumen(true);
+    setPasoRetorno(7);
     setPasoActual(paso);
   };
 
+  const handleIrAPaso = (idx: number) => {
+    if (idx >= pasoActual) {
+      return;
+    }
+
+    setPasoRetorno((actual) => actual ?? pasoActual);
+    setPasoActual(idx);
+  };
+
   const handleStepNext = () => {
-    if (editandoDesdeResumen) {
-      setEditandoDesdeResumen(false);
-      setPasoActual(7);
+    if (pasoRetorno !== null) {
+      setPasoActual(pasoRetorno);
+      setPasoRetorno(null);
     } else {
       setPasoActual((p) => p + 1);
     }
   };
 
-  const labelSiguiente = editandoDesdeResumen
-    ? 'Guardar y volver al resumen'
-    : undefined;
+  const handleStepSeguirDesdeAqui = () => {
+    setPasoRetorno(null);
+    setPasoActual((p) => p + 1);
+  };
+
+  const labelSiguiente =
+    pasoRetorno === null
+      ? undefined
+      : pasoRetorno === 7
+        ? 'Guardar y volver al resumen'
+        : `Guardar y volver a ${pasos[pasoRetorno].label}`;
 
   // Renderizado del wizard de pasos
   const renderPaso = () => {
@@ -176,6 +195,9 @@ const AsistenteGuiaDocente: React.FC = () => {
               setGuia((g) => ({ ...g, presentacion }))
             }
             onNext={handleStepNext}
+            onGuardarYSeguir={
+              pasoRetorno !== null ? handleStepSeguirDesdeAqui : undefined
+            }
             asignatura={asignaturaSeleccionada!}
             labelSiguiente={labelSiguiente}
           />
@@ -185,6 +207,9 @@ const AsistenteGuiaDocente: React.FC = () => {
           <PasoB_Competencias
             asignatura={asignaturaSeleccionada!}
             onNext={handleStepNext}
+            onGuardarYSeguir={
+              pasoRetorno !== null ? handleStepSeguirDesdeAqui : undefined
+            }
             labelSiguiente={labelSiguiente}
           />
         );
@@ -194,6 +219,9 @@ const AsistenteGuiaDocente: React.FC = () => {
             value={guia.programa}
             onChange={(programa) => setGuia((g) => ({ ...g, programa }))}
             onNext={handleStepNext}
+            onGuardarYSeguir={
+              pasoRetorno !== null ? handleStepSeguirDesdeAqui : undefined
+            }
             labelSiguiente={labelSiguiente}
           />
         );
@@ -204,6 +232,9 @@ const AsistenteGuiaDocente: React.FC = () => {
             value={guia.actividades}
             onChange={(actividades) => setGuia((g) => ({ ...g, actividades }))}
             onNext={handleStepNext}
+            onGuardarYSeguir={
+              pasoRetorno !== null ? handleStepSeguirDesdeAqui : undefined
+            }
             nombreAsignatura={asignaturaSeleccionada!.nombre}
             labelSiguiente={labelSiguiente}
           />
@@ -219,6 +250,9 @@ const AsistenteGuiaDocente: React.FC = () => {
               setGuia((g) => ({ ...g, convocatoriaExtra }))
             }
             onNext={handleStepNext}
+            onGuardarYSeguir={
+              pasoRetorno !== null ? handleStepSeguirDesdeAqui : undefined
+            }
             labelSiguiente={labelSiguiente}
           />
         );
@@ -229,6 +263,9 @@ const AsistenteGuiaDocente: React.FC = () => {
             value={guia.horario}
             onChange={(horario) => setGuia((g) => ({ ...g, horario }))}
             onNext={handleStepNext}
+            onGuardarYSeguir={
+              pasoRetorno !== null ? handleStepSeguirDesdeAqui : undefined
+            }
             labelSiguiente={labelSiguiente}
           />
         );
@@ -240,6 +277,9 @@ const AsistenteGuiaDocente: React.FC = () => {
               setGuia((g) => ({ ...g, bibliografia }))
             }
             onNext={handleStepNext}
+            onGuardarYSeguir={
+              pasoRetorno !== null ? handleStepSeguirDesdeAqui : undefined
+            }
             labelSiguiente={labelSiguiente}
           />
         );
@@ -355,7 +395,7 @@ const AsistenteGuiaDocente: React.FC = () => {
           <NavegacionPasos
             pasos={pasos}
             pasoActual={pasoActual}
-            onIrAPaso={(idx) => idx <= pasoActual && setPasoActual(idx)}
+            onIrAPaso={handleIrAPaso}
             onReiniciar={handleReiniciar}
           />
           {/* Renderizado del paso actual */}

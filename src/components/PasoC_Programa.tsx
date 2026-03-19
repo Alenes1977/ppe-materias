@@ -12,6 +12,7 @@ interface Props {
   value: UnidadPrograma[];
   onChange: (value: UnidadPrograma[]) => void;
   onNext: () => void;
+  onGuardarYSeguir?: () => void;
   labelSiguiente?: string;
 }
 
@@ -19,6 +20,7 @@ const PasoC_Programa: React.FC<Props> = ({
   value,
   onChange,
   onNext,
+  onGuardarYSeguir,
   labelSiguiente = 'Siguiente',
 }) => {
   const [editando, setEditando] = useState<number | null>(null);
@@ -226,7 +228,21 @@ const PasoC_Programa: React.FC<Props> = ({
           </button>
         </div>
       )}
-      <div className="flex justify-end">
+      <div className="flex flex-wrap justify-end gap-3">
+        {onGuardarYSeguir ? (
+          <button
+            type="button"
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
+              puedeAvanzar
+                ? ''
+                : 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
+            }`}
+            onClick={onGuardarYSeguir}
+            disabled={!puedeAvanzar}
+          >
+            Guardar y seguir desde aquí
+          </button>
+        ) : null}
         <button
           type="button"
           className={`rounded-md px-6 py-2 font-semibold text-white ${

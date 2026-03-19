@@ -38,6 +38,7 @@ interface Props {
   convocatoriaExtra: string;
   onChangeConvocatoria: (texto: string) => void;
   onNext: () => void;
+  onGuardarYSeguir?: () => void;
   labelSiguiente?: string;
 }
 
@@ -48,6 +49,7 @@ const PasoE_Evaluacion: React.FC<Props> = ({
   convocatoriaExtra,
   onChangeConvocatoria,
   onNext,
+  onGuardarYSeguir,
   labelSiguiente = 'Siguiente',
 }) => {
   const [touched, setTouched] = useState(false);
@@ -109,6 +111,13 @@ const PasoE_Evaluacion: React.FC<Props> = ({
   const handleNext = () => {
     setTouched(true);
     if (puedeAvanzar) onNext();
+  };
+
+  const handleGuardarYSeguir = () => {
+    setTouched(true);
+    if (puedeAvanzar && onGuardarYSeguir) {
+      onGuardarYSeguir();
+    }
   };
 
   return (
@@ -336,7 +345,21 @@ const PasoE_Evaluacion: React.FC<Props> = ({
           La suma de los porcentajes debe ser exactamente 100%.
         </div>
       ) : null}
-      <div className="flex justify-end">
+      <div className="flex flex-wrap justify-end gap-3">
+        {onGuardarYSeguir ? (
+          <button
+            type="button"
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
+              puedeAvanzar
+                ? ''
+                : 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
+            }`}
+            onClick={handleGuardarYSeguir}
+            disabled={!puedeAvanzar}
+          >
+            Guardar y seguir desde aquí
+          </button>
+        ) : null}
         <button
           type="button"
           className={`rounded-md px-6 py-2 font-semibold text-white ${

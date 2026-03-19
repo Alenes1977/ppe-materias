@@ -13,6 +13,7 @@ interface Props {
   value: Record<string, HorarioAtencion[]>; // key: email del profesor
   onChange: (value: Record<string, HorarioAtencion[]>) => void;
   onNext: () => void;
+  onGuardarYSeguir?: () => void;
   labelSiguiente?: string;
 }
 
@@ -21,6 +22,7 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
   value,
   onChange,
   onNext,
+  onGuardarYSeguir,
   labelSiguiente = 'Siguiente',
 }) => {
   const [touched, setTouched] = useState(false);
@@ -86,6 +88,20 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
       setNuevo({ email: '', lugar: '', dia: '', hora: '' });
     } else {
       setTouched(true);
+    }
+  };
+
+  const handleNext = () => {
+    setTouched(true);
+    if (valido) {
+      onNext();
+    }
+  };
+
+  const handleGuardarYSeguir = () => {
+    setTouched(true);
+    if (valido && onGuardarYSeguir) {
+      onGuardarYSeguir();
     }
   };
 
@@ -241,7 +257,21 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
           )}
         </div>
       ))}
-      <div className="flex justify-end">
+      <div className="flex flex-wrap justify-end gap-3">
+        {onGuardarYSeguir ? (
+          <button
+            type="button"
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
+              valido
+                ? ''
+                : 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
+            }`}
+            onClick={handleGuardarYSeguir}
+            disabled={!valido}
+          >
+            Guardar y seguir desde aquí
+          </button>
+        ) : null}
         <button
           type="button"
           className={`rounded-md px-6 py-2 font-semibold text-white ${
@@ -249,10 +279,7 @@ const PasoF_HorarioAtencion: React.FC<Props> = ({
               ? 'bg-blue-600 hover:bg-blue-700'
               : 'cursor-not-allowed bg-gray-300'
           }`}
-          onClick={() => {
-            setTouched(true);
-            if (valido) onNext();
-          }}
+          onClick={handleNext}
           disabled={!valido}
         >
           {labelSiguiente}

@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEnvelope,
@@ -10,10 +10,12 @@ import {
 import type { GuiaDocenteData } from './AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
 import { getGuiaDocentePDFBase64 } from '../utils/pdfGuiaDocente';
-import { generarHTMLGuiaDocente } from '../utils/htmlGuiaDocente';
+import { getGuiaDocenteWordBase64 } from '../utils/wordGuiaDocente';
 
 const WEBHOOK_URL =
   'https://n8n.alejandronestor.eu/webhook-test/confirma-guia-docente';
+
+const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 
 interface Props {
   isOpen: boolean;
@@ -32,14 +34,53 @@ const ModalConfirmarEnvio: FC<Props> = ({
 }) => {
   const [estado, setEstado] = useState<Estado>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [fuenteCorreo, setFuenteCorreo] = useState<'profesor' | 'alternativo'>(
+    'profesor',
+  );
+  const [emailProfesorSeleccionado, setEmailProfesorSeleccionado] =
+    useState('');
+  const [emailAlternativo, setEmailAlternativo] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
+
+  const emailsProfesores = useMemo(() => {
+    const unicos = new Set<string>();
+
+    guia.presentacion.profesores.forEach((prof) => {
+      const email = prof.email.trim();
+      if (EMAIL_REGEX.test(email)) {
+        unicos.add(email);
+      }
+    });
+
+    return Array.from(unicos);
+  }, [guia.presentacion.profesores]);
+
+  const emailDestino =
+    fuenteCorreo === 'alternativo'
+      ? emailAlternativo.trim()
+      : emailProfesorSeleccionado.trim();
+
+  const emailDestinoValido = EMAIL_REGEX.test(emailDestino);
 
   // Resetea el estado al abrir
   useEffect(() => {
     if (isOpen) {
       setEstado('idle');
       setErrorMsg('');
+      setEmailTouched(false);
+
+      const emailInicial = emailsProfesores[0] ?? '';
+      if (emailInicial !== '') {
+        setFuenteCorreo('profesor');
+        setEmailProfesorSeleccionado(emailInicial);
+        setEmailAlternativo('');
+      } else {
+        setFuenteCorreo('alternativo');
+        setEmailProfesorSeleccionado('');
+        setEmailAlternativo('');
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, emailsProfesores]);
 
   // Cierra con Escape (solo en idle)
   useEffect(() => {
@@ -53,15 +94,20 @@ const ModalConfirmarEnvio: FC<Props> = ({
 
   if (!isOpen) return null;
 
-  const profesorPrincipal = guia.presentacion.profesores[0];
-
   const handleConfirmar = async () => {
+    setEmailTouched(true);
+    if (!emailDestinoValido) {
+      return;
+    }
+
     setEstado('loading');
     setErrorMsg('');
 
     try {
-      const pdfBase64 = await getGuiaDocentePDFBase64(guia, asignatura);
-      const htmlGuia = generarHTMLGuiaDocente(guia, asignatura);
+      const [pdfBase64, wordBase64] = await Promise.all([
+        getGuiaDocentePDFBase64(guia, asignatura),
+        getGuiaDocenteWordBase64(guia, asignatura),
+      ]);
 
       const payload = {
         asignatura: {
@@ -92,14 +138,18 @@ const ModalConfirmarEnvio: FC<Props> = ({
           version: guia.version,
           fechaEnvio: new Date().toISOString(),
         },
+        notificacion: {
+          emailDestino,
+          fuenteCorreo,
+        },
         archivos: {
           pdf: {
             nombre: `guia-docente-${asignatura.id}-${guia.presentacion.anioAcademico}.pdf`,
             base64: pdfBase64,
           },
-          html: {
-            nombre: `guia-docente-${asignatura.id}-${guia.presentacion.anioAcademico}.html`,
-            contenido: htmlGuia,
+          word: {
+            nombre: `guia-docente-${asignatura.id}-${guia.presentacion.anioAcademico}.docx`,
+            base64: wordBase64,
           },
         },
       };
@@ -134,7 +184,7 @@ const ModalConfirmarEnvio: FC<Props> = ({
         {/* Cabecera */}
         <div className="flex items-center justify-between rounded-t-2xl border-b border-gray-200 px-6 py-4">
           <h2 className="text-lg font-bold text-blue-900">
-            Confirmar envío de la guía docente
+            Confirmar envío de la Guía Docente
           </h2>
           {estado !== 'loading' && (
             <button
@@ -153,6 +203,88 @@ const ModalConfirmarEnvio: FC<Props> = ({
           {/* Estado: idle */}
           {estado === 'idle' && (
             <>
+              <div className="mb-5 rounded-xl border border-blue-200 bg-blue-50 p-4">
+                <p className="mb-3 text-sm font-semibold text-blue-900">
+                  ¿A qué correo quieres recibir los archivos de la guía?
+                </p>
+
+                {emailsProfesores.length > 0 ? (
+                  <div className="space-y-3">
+                    <label className="flex items-center gap-2 text-sm text-gray-700">
+                      <input
+                        type="radio"
+                        name="correo-destino"
+                        checked={fuenteCorreo === 'profesor'}
+                        onChange={() => setFuenteCorreo('profesor')}
+                      />
+                      Usar correo de profesor
+                    </label>
+
+                    {fuenteCorreo === 'profesor' ? (
+                      emailsProfesores.length === 1 ? (
+                        <div className="rounded-lg border border-blue-200 bg-white px-3 py-2 text-sm text-blue-900">
+                          {emailsProfesores[0]}
+                        </div>
+                      ) : (
+                        <select
+                          className="w-full rounded-lg border border-blue-200 bg-white px-3 py-2 text-sm text-blue-900 focus:border-blue-500 focus:outline-none"
+                          value={emailProfesorSeleccionado}
+                          onChange={(e) =>
+                            setEmailProfesorSeleccionado(e.target.value)
+                          }
+                        >
+                          {emailsProfesores.map((email) => (
+                            <option key={email} value={email}>
+                              {email}
+                            </option>
+                          ))}
+                        </select>
+                      )
+                    ) : null}
+
+                    <label className="flex items-center gap-2 text-sm text-gray-700">
+                      <input
+                        type="radio"
+                        name="correo-destino"
+                        checked={fuenteCorreo === 'alternativo'}
+                        onChange={() => setFuenteCorreo('alternativo')}
+                      />
+                      Usar otro correo
+                    </label>
+
+                    {fuenteCorreo === 'alternativo' ? (
+                      <input
+                        type="email"
+                        className="w-full rounded-lg border border-blue-200 bg-white px-3 py-2 text-sm text-blue-900 focus:border-blue-500 focus:outline-none"
+                        placeholder="correo@ejemplo.com"
+                        value={emailAlternativo}
+                        onChange={(e) => setEmailAlternativo(e.target.value)}
+                      />
+                    ) : null}
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p className="text-sm text-amber-700">
+                      No hay un correo de profesor válido en la presentación.
+                      Indica un correo de destino.
+                    </p>
+                    <input
+                      type="email"
+                      className="w-full rounded-lg border border-blue-200 bg-white px-3 py-2 text-sm text-blue-900 focus:border-blue-500 focus:outline-none"
+                      placeholder="correo@ejemplo.com"
+                      value={emailAlternativo}
+                      onChange={(e) => setEmailAlternativo(e.target.value)}
+                    />
+                  </div>
+                )}
+
+                {emailTouched && !emailDestinoValido ? (
+                  <p className="mt-2 text-xs font-medium text-red-600">
+                    Introduce un correo electrónico válido para continuar.
+                  </p>
+                ) : null}
+              </div>
+
               <div className="mb-5 flex items-start gap-3 rounded-xl border border-indigo-200 bg-indigo-50 p-4 text-indigo-800">
                 <FontAwesomeIcon
                   icon={faEnvelope}
@@ -164,20 +296,14 @@ const ModalConfirmarEnvio: FC<Props> = ({
                   </p>
                   <ul className="ml-4 list-disc space-y-1">
                     <li>
-                      La guía docente de <strong>{asignatura.nombre}</strong> se
-                      enviará al <strong>Coordinador de Curso</strong> para su
-                      revisión.
+                      Recibirás los archivos de la guía (
+                      <strong>PDF y Word</strong>) en{' '}
+                      <strong>{emailDestino || 'el correo indicado'}</strong>.
                     </li>
                     <li>
-                      Recibirás los archivos de la guía (PDF y HTML) en tu
-                      correo electrónico
-                      {profesorPrincipal?.email ? (
-                        <>
-                          {' '}
-                          (<strong>{profesorPrincipal.email}</strong>)
-                        </>
-                      ) : null}
-                      .
+                      Además, la guía docente de{' '}
+                      <strong>{asignatura.nombre}</strong> se enviará al{' '}
+                      <strong>Coordinador de Curso</strong> para su revisión.
                     </li>
                   </ul>
                 </div>
@@ -197,7 +323,12 @@ const ModalConfirmarEnvio: FC<Props> = ({
                 <button
                   type="button"
                   onClick={handleConfirmar}
-                  className="inline-flex items-center gap-2 rounded-lg border border-indigo-400 bg-indigo-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-indigo-700 hover:shadow-md"
+                  className={`inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-bold text-white transition ${
+                    emailDestinoValido
+                      ? 'border-indigo-400 bg-indigo-600 hover:bg-indigo-700 hover:shadow-md'
+                      : 'cursor-not-allowed border-gray-300 bg-gray-300 text-gray-100'
+                  }`}
+                  disabled={!emailDestinoValido}
                 >
                   <FontAwesomeIcon icon={faEnvelope} />
                   Confirmar y enviar
@@ -232,7 +363,14 @@ const ModalConfirmarEnvio: FC<Props> = ({
                 </p>
                 <p className="mt-1 text-sm text-gray-600">
                   El Coordinador de Curso ha recibido la guía para su revisión.
-                  En breve recibirás los archivos en tu correo electrónico.
+                  En breve recibirás los archivos (PDF y Word)
+                  {emailDestino ? (
+                    <>
+                      {' '}
+                      en <strong>{emailDestino}</strong>
+                    </>
+                  ) : null}
+                  .
                 </p>
               </div>
               <button

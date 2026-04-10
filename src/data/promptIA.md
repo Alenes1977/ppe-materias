@@ -12,7 +12,7 @@ El sistema garantiza que:
 
 **Por lo tanto, NO revises estos aspectos; asume que están correctos.**
 
----
+----
 
 ## 🔍 Aspectos a Valorar
 

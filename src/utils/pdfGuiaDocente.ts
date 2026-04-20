@@ -1,4 +1,4 @@
-import * as pdfMake from 'pdfmake/build/pdfmake';
+import pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import logoSVG from '../assets/marca-unav-negro.svg?raw';
 import htmlToPdfmake from 'html-to-pdfmake';
@@ -18,7 +18,8 @@ function initVfs(): boolean {
     (pdfFonts as { default?: unknown })?.default ||
     pdfFonts;
   if (vfs) {
-    Object.assign(pdfMake, { vfs });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (pdfMake as any).vfs = vfs;
     return true;
   }
   console.error('No se pudo encontrar vfs en pdfFonts', pdfFonts);

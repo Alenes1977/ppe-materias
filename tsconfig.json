@@ -1,55 +1,55 @@
 {
   "compilerOptions": {
-    /** 将代码编译为最新版本的 JS */
+    /** Compila el código a la versión más reciente de JavaScript. */
     "target": "ESNext",
-    /** 引入 ES 最新特性和 DOM 接口的类型定义 */
+    /** Incluye las definiciones de tipos de las últimas características de ES y de DOM. */
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    /** 使用 ES Module 格式打包编译后的文件 */
+    /** Usa formato de ES Modules para el código compilado. */
     "module": "ESNext",
-    /** 跳过对 .d.ts 文件的类型检查 */
+    /** Omite la verificación de tipos en archivos .d.ts. */
     "skipLibCheck": true,
-    /** 查询的基础路径 */
+    /** Ruta base para resolver imports. */
     "baseUrl": ".",
-    /** 路径映射,配合别名使用 */
+    /** Mapeo de rutas para usar alias. */
     "paths": {
       "@/*": ["src/*"]
     },
 
     /* Bundler mode */
 
-    /** 使用 Bundler（如 Vite、Webpack）解析模块 */
+    /** Resuelve módulos como lo haría un bundler como Vite o Webpack. */
     "moduleResolution": "Bundler",
-    /** 允许在模块导入语句中使用Typescript文件的扩展名（.ts） */
+    /** Permite importar archivos TypeScript usando la extensión .ts. */
     "allowImportingTsExtensions": true,
-    /** 不允许使用js */
+    /** No permite usar archivos JavaScript. */
     "allowJs": false,
-    /** 允许引入 JSON 文件 */
+    /** Permite importar archivos JSON. */
     "resolveJsonModule": true,
-    /** 要求所有文件都是 ES Module 模块。 */
+    /** Requiere que todos los archivos sean módulos ES. */
     "isolatedModules": true,
-    /** 不输出文件,即编译后不会生成任何js文件 */
+    /** No emite archivos de salida, así que no genera JavaScript compilado. */
     "noEmit": true,
-    /** 将JSX代码转换为普通的JavaScript代码 */
+    /** Convierte JSX a JavaScript normal. */
     "jsx": "react-jsx",
-    /** 允许使用 import 引入使用 export 导出 */
+    /** Permite interoperabilidad entre import y export. */
     "esModuleInterop": true,
 
     /* Linting */
 
-    /** 开启所有严格的类型检查 */
+    /** Activa todas las comprobaciones estrictas de tipos. */
     "strict": true,
-    /** 不允许对同一个文件使用不一致格式的引用 */
+    /** Exige nombres de archivo consistentes. */
     "forceConsistentCasingInFileNames": true,
-    /** 报告未使用的局部变量的错误 */
+    /** Reporta errores por variables locales no usadas. */
     "noUnusedLocals": true,
-    /** 报告函数中未使用参数的错误 */
+    /** Reporta errores por parámetros de función no usados. */
     "noUnusedParameters": true,
-    /** 确保switch语句中的任何非空情况都包含 */
+    /** Asegura que los switch cubran todos los casos relevantes. */
     "noFallthroughCasesInSwitch": true
   },
-  /** 需要检测的文件 */
+  /** Archivos que se incluyen en la comprobación. */
   "include": ["src"],
-  /** 为文件进行不同配置 */
+  /** Referencias a otras configuraciones. */
   "references": [
     {
       "path": "./tsconfig.node.json"

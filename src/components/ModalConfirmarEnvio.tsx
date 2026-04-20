@@ -13,7 +13,7 @@ import { getGuiaDocentePDFBase64 } from '../utils/pdfGuiaDocente';
 import { getGuiaDocenteWordBase64 } from '../utils/wordGuiaDocente';
 
 const WEBHOOK_URL =
-  'https://n8n.alejandronestor.eu/webhook-test/confirma-guia-docente';
+  'https://n8n.alejandronestor.eu/webhook/confirma-guia-docente';
 
 const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 

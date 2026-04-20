@@ -1,17 +1,16 @@
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 import type { ValoracionIAResponse } from './valoracionIA';
 
 function initVfs(): boolean {
   const vfs =
-    pdfFonts?.default?.pdfMake?.vfs ||
-    pdfFonts?.pdfMake?.vfs ||
-    pdfFonts?.default ||
-    pdfFonts;
+    (pdfFonts as { pdfMake?: { vfs?: unknown }; vfs?: unknown })?.pdfMake?.vfs ||
+    (pdfFonts as { pdfMake?: { vfs?: unknown }; vfs?: unknown })?.vfs ||
+    (pdfFonts as { default?: { pdfMake?: { vfs?: unknown } } })?.default?.pdfMake?.vfs;
 
   if (vfs) {
-    Object.assign(pdfMake, { vfs });
+    (pdfMake as typeof pdfMake & { vfs?: unknown }).vfs = vfs;
     return true;
   }
 

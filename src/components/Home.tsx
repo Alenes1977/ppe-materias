@@ -229,7 +229,7 @@ const HomeWithDegree: React.FC = () => {
       </section>
 
       {/* Banner ANECA dinámico */}
-      {degreeInfo.anecaVerified && (
+      {degreeInfo.anecaVerified ? (
         <section className="mx-auto mt-8 max-w-7xl px-4 pb-8 sm:mt-12 sm:pb-10 md:px-8 lg:px-16">
           <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-gray-800 to-gray-900 shadow-lg">
             <div className="px-4 py-8 text-white sm:px-6 sm:py-12 md:px-12 md:py-16">
@@ -242,26 +242,26 @@ const HomeWithDegree: React.FC = () => {
                 Agencia Nacional de Evaluación de la Calidad y Acreditación.
               </p>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:space-x-4">
-                {degreeInfo.verificationYear && (
+                {degreeInfo.verificationYear ? (
                   <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
                     Fecha aprobación del Título: {degreeInfo.verificationYear}
                   </span>
-                )}
-                {degreeInfo.lastUpdated && (
+                ) : null}
+                {degreeInfo.lastUpdated ? (
                   <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
                     Última actualización del Plan: {degreeInfo.lastUpdated}
                   </span>
-                )}
-                {degreeInfo.ructCode && (
+                ) : null}
+                {degreeInfo.ructCode ? (
                   <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm">
                     Código RUCT: {degreeInfo.ructCode}
                   </span>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
         </section>
-      )}
+      ) : null}
     </div>
   );
 };

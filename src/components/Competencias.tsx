@@ -58,8 +58,6 @@ const Competencias: FC = () => {
 
   const labelPlural =
     labelLO.plural.charAt(0).toUpperCase() + labelLO.plural.slice(1);
-  const labelSingular =
-    labelLO.singular.charAt(0).toUpperCase() + labelLO.singular.slice(1);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">

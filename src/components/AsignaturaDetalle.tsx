@@ -238,11 +238,11 @@ const AsignaturaDetalle: React.FC = () => {
                       <p className="font-medium text-blue-800">
                         {act?.name ?? afId}
                       </p>
-                      {act?.description && (
+                      {act?.description ? (
                         <p className="mt-1 text-xs text-blue-600 sm:text-sm">
                           {act.description}
                         </p>
-                      )}
+                      ) : null}
                     </div>
                   );
                 })}

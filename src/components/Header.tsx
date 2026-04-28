@@ -1,5 +1,5 @@
 import { type FC, useState, useEffect, useContext } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PRIMARY_BLUE } from '../constants/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,7 +14,8 @@ import { DEGREES } from '../data/degrees';
 const Header: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { degreeId } = useParams<{ degreeId: string }>();
+  // useParams no funciona fuera de una Route con :degreeId; lo extraemos del path directamente
+  const degreeId = location.pathname.split('/')[1] || undefined;
   const ctx = useContext(DegreeContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [gradoOpen, setGradoOpen] = useState(false);
@@ -107,7 +108,7 @@ const Header: FC = () => {
                   className="text-xs text-gray-400"
                 />
               </button>
-              {gradoOpen && (
+              {gradoOpen ? (
                 <div className="absolute left-1/2 top-full mt-1 w-56 -translate-x-1/2 rounded-xl border border-gray-200 bg-white shadow-xl">
                   <div className="p-2">
                     <p className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-gray-400">
@@ -141,7 +142,7 @@ const Header: FC = () => {
                     </button>
                   </div>
                 </div>
-              )}
+              ) : null}
             </div>
           ) : (
             <a
@@ -160,7 +161,7 @@ const Header: FC = () => {
         </div>
 
         {/* Navegación (desktop) */}
-        {activeDegree && (
+        {activeDegree ? (
           <div className="col-span-3 hidden justify-self-end md:col-span-4 md:block">
             <nav className="flex items-center space-x-2 text-xs font-medium">
               <a
@@ -206,15 +207,15 @@ const Header: FC = () => {
               </a>
             </nav>
           </div>
-        )}
+        ) : null}
       </div>
 
       {/* Menú móvil */}
-      {menuOpen && (
+      {menuOpen ? (
         <div className="mt-2 border-t bg-white py-2 shadow-inner md:hidden">
           <div className="px-4 py-2">
             <Breadcrumb isMobile className="mb-3" />
-            {activeDegree && (
+            {activeDegree ? (
               <div className="mt-4 flex flex-col space-y-2">
                 <a
                   href={`${base}/asignaturas`}
@@ -283,10 +284,10 @@ const Header: FC = () => {
                   Cambiar grado →
                 </button>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
-      )}
+      ) : null}
     </header>
   );
 };

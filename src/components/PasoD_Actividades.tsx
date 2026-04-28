@@ -115,21 +115,21 @@ const PasoD_Actividades: React.FC<Props> = ({
                       <span className="text-base font-semibold text-blue-900">
                         {nombreCompleto}
                       </span>
-                      {checked && (
+                      {checked ? (
                         <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-semibold text-white">
                           Seleccionada
                         </span>
-                      )}
+                      ) : null}
                     </div>
-                    {act?.description && (
+                    {act?.description ? (
                       <p className="mt-1 text-sm leading-relaxed text-gray-600">
                         {act.description}
                       </p>
-                    )}
+                    ) : null}
                   </div>
                 </label>
 
-                {checked && actividad && (
+                {checked && actividad ? (
                   <div className="border-t border-blue-100 bg-white/80 p-4 sm:p-5">
                     <div className="mb-2 font-semibold text-blue-700">
                       Describa esta actividad (opcional)
@@ -147,19 +147,19 @@ const PasoD_Actividades: React.FC<Props> = ({
                       aplicará la actividad en tu asignatura.
                     </p>
                   </div>
-                )}
+                ) : null}
               </div>
             );
           })}
         </div>
 
-        {touched && !validas && (
+        {touched && !validas ? (
           <div className="mt-3 text-sm font-medium text-red-600">
             Debes seleccionar al menos una actividad formativa para continuar.
           </div>
-        )}
+        ) : null}
 
-        {seleccionadas.length > 0 && (
+        {seleccionadas.length > 0 ? (
           <div className="mt-4 rounded-lg border border-blue-100 bg-white p-3">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-blue-700">
               Selección actual
@@ -175,11 +175,11 @@ const PasoD_Actividades: React.FC<Props> = ({
               ))}
             </div>
           </div>
-        )}
+        ) : null}
       </div>
 
       <div className="flex flex-wrap justify-end gap-3">
-        {onGuardarYSeguir && (
+        {onGuardarYSeguir ? (
           <button
             type="button"
             className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
@@ -192,7 +192,7 @@ const PasoD_Actividades: React.FC<Props> = ({
           >
             Guardar y seguir desde aquí
           </button>
-        )}
+        ) : null}
         <button
           type="button"
           className={`rounded-md px-6 py-2 font-semibold text-white ${

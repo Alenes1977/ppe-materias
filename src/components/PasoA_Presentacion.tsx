@@ -199,11 +199,11 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 {value.profesores.length === 0 ? 'Confirmar' : 'Añadir otro'}
               </button>
             </div>
-            {nuevoProfesor.email && !emailValido && (
+            {nuevoProfesor.email && !emailValido ? (
               <div className="mt-1 text-xs text-red-500">
                 Introduce un email válido.
               </div>
-            )}
+            ) : null}
             <ul className="space-y-1">
               {value.profesores.map((prof, idx) => (
                 <li
@@ -223,11 +223,11 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 </li>
               ))}
             </ul>
-            {touched && value.profesores.length === 0 && (
+            {touched && value.profesores.length === 0 ? (
               <div className="mt-1 text-xs text-red-500">
                 Debes añadir al menos un profesor.
               </div>
-            )}
+            ) : null}
           </div>
 
           <div className="mb-3">
@@ -275,11 +275,11 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 </button>
               </div>
             )}
-            {touched && value.idioma.trim() === '' && (
+            {touched && value.idioma.trim() === '' ? (
               <div className="mt-1 text-xs text-red-500">
                 Campo obligatorio.
               </div>
-            )}
+            ) : null}
           </div>
 
           <div className="mb-3">
@@ -320,14 +320,14 @@ const PasoA_Presentacion: React.FC<Props> = ({
           placeholder="[describa aquí brevemente la asignatura]"
         />
         {touched &&
-          (value.resumen.trim() === '' ||
-            value.resumen.replace(/<(.|\n)*?>/g, '').trim() === '') && (
-            <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
-          )}
+        (value.resumen.trim() === '' ||
+          value.resumen.replace(/<(.|\n)*?>/g, '').trim() === '') ? (
+          <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
+        ) : null}
       </div>
 
       <div className="flex flex-wrap justify-end gap-3">
-        {onGuardarYSeguir && (
+        {onGuardarYSeguir ? (
           <button
             type="button"
             className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
@@ -340,7 +340,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
           >
             Guardar y seguir desde aquí
           </button>
-        )}
+        ) : null}
         <button
           type="button"
           className={`rounded-md px-6 py-2 font-semibold text-white ${

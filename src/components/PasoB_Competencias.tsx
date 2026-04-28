@@ -47,7 +47,7 @@ const PasoB_Competencias: React.FC<Props> = ({
         </ul>
       )}
       <div className="flex flex-wrap justify-end gap-3">
-        {onGuardarYSeguir && (
+        {onGuardarYSeguir ? (
           <button
             type="button"
             className="rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50"
@@ -55,7 +55,7 @@ const PasoB_Competencias: React.FC<Props> = ({
           >
             Guardar y seguir desde aquí
           </button>
-        )}
+        ) : null}
         <button
           type="button"
           className="rounded-md bg-blue-600 px-6 py-2 font-semibold text-white hover:bg-blue-700"

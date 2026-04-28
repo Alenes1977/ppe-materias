@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "learningOutcomes": {
+    "RA1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio.",
+    "RA2": "Diferenciar los marcos teóricos particulares y las herramientas de análisis específicas desde los que la filosofía, la política y la economía abordan los problemas de las sociedades contemporáneas.",
+    "RA3": "Comprender, analizar y evaluar de manera crítica los elementos configuradores del ser humano y de la sociedad actual en sus múltiples dimensiones: antropológica, histórica, cultural, política, social y económica.",
+    "RA4": "Identificar cuestiones filosóficas de fondo implícitas en los debates abiertos actualmente en los ámbitos sociales de la cultura, la ciencia, la tecnología, la economía, el derecho, la política, y los medios de información y comunicación.",
+    "RA5": "Conocer y manejar en análisis críticos las principales metodologías y conceptos de la filosofía.",
+    "RA6": "Conocer las teorías políticas y sociológicas más representativas sobre la sociedad y la acción humana en sociedad.",
+    "RA7": "Conocer y utilizar los conceptos y métodos fundamentales de la Teoría Económica, aplicándolos al análisis y discusión de situaciones reales.",
+    "RA8": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio.",
+    "RA9": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética.",
+    "RA10": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado.",
+    "RA11": "Formular razonamientos críticos y bien argumentados, empleando para ello terminología precisa, recursos especializados y documentación que avale dichos argumentos en los ámbitos de la filosofía, la política y la economía.",
+    "RA12": "Expresar conocimientos e ideas de manera oral y escrita, con rigor, orden y creatividad, que aborden cuestiones y retos de la coyuntura económica, política, social y cultural de nuestra sociedad.",
+    "RA13": "Identificar y analizar los elementos más significativos que conforman las diferentes realidades sociales para interpretarlas desde un enfoque sistémico, que integre las áreas de conocimiento del Grado (filosofía, política y economía).",
+    "RA14": "Analizar e interpretar desde una perspectiva filosófica los problemas y retos que afectan al ser humano y su organización social en las sociedades contemporáneas.",
+    "RA15": "Analizar los principales elementos de la realidad política y comprender las condiciones de su racionalidad.",
+    "RA16": "Identificar y valorar desde las perspectivas filosófica, política y económica, el papel que la comunicación y la opinión pública desempeñan en la articulación social y las decisiones colectivas.",
+    "RA17": "Identificar y manejar los principales modelos microeconómicos y macroeconómicos que explican los procesos y comportamientos económicos.",
+    "RA18": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía.",
+    "RA19": "Saber combinar el razonamiento económico con el propio de la ciencia socio-política y de la filosofía para una comprensión holística de la sociedad contemporánea.",
+    "RA20": "Afrontar de manera crítica y reflexiva el estudio de la filosofía, la política y la economía en su conexión con el resto de los saberes.",
+    "RA21": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas.",
+    "RA22": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la filosofía, la política y la economía.",
+    "RA23": "Valorar la complementariedad y la contribución particular de la filosofía, la política y la economía en la interpretación de la realidad social.",
+    "RA24": "Valorar y contrastar las distintas teorías políticas, económicas, o sociológicas que explican la organización particular de las sociedades contemporáneas.",
+    "RA25": "Reflexionar, desde una perspectiva histórica, sobre la dimensión ética de la actividad económica y su capacidad para configurar realidades sociopolíticas particulares.",
+    "RA26": "Identificar los elementos relevantes del entorno económico globalizado, valorando su coherencia con otros parámetros normativos de índole política o filosófica.",
+    "RA27": "Evaluar críticamente las implicaciones de las políticas y prácticas en relación con la calidad democrática, la equidad, el respeto a la igualdad, la inclusión social y la sostenibilidad, considerando los Objetivos de Desarrollo Sostenible."
+  },
+  "trainingActivities": [
+    {
+      "id": "AF1",
+      "name": "Asistencia a clases magistrales",
+      "description": "Sesiones impartidas por el profesor o profesora en el aula sobre contenidos previstos en la guía docente de la asignatura."
+    },
+    {
+      "id": "AF2",
+      "name": "Seminarios de discusión y otras actividades presenciales",
+      "description": "Sesiones de trabajo coordinadas por el profesor o profesora, con la participación de estudiantes y/o invitados/as y centradas en un apartado concreto de la asignatura."
+    },
+    {
+      "id": "AF3",
+      "name": "Realización de ejercicios",
+      "description": "Trabajo práctico que realiza el alumnado con la guía del profesor o profesora con el fin de consolidar los conocimientos prácticos y la dimensión cuantitativa de algunas disciplinas."
+    },
+    {
+      "id": "AF4",
+      "name": "Tutorías",
+      "description": "Asesoramiento personalizado por parte del profesor o profesora y recibido por el estudiante."
+    },
+    {
+      "id": "AF5",
+      "name": "Estudio personal",
+      "description": "Conjunto de actividades que realiza el estudiante fuera del aula que son requeridas por el profesor o profesora para la superación de la asignatura."
+    },
+    {
+      "id": "AF6",
+      "name": "Elaboración de trabajos dirigidos",
+      "description": "Realización de trabajos por parte de los estudiantes fuera del aula para el desarrollo y profundización de contenidos de la asignatura."
+    },
+    {
+      "id": "AF7",
+      "name": "Actividades presenciales",
+      "description": "Sesiones de trabajo y de formación organizadas por el coordinador o coordinadora del TFG centradas en la adquisición de las competencias, las herramientas y los conocimientos transversales necesarios para el desarrollo de un proyecto aplicado e interdisciplinar."
+    },
+    {
+      "id": "AF8",
+      "name": "Elaboración del Trabajo Fin de Grado",
+      "description": "Elaboración del trabajo por parte de los estudiantes y las estudiantes conforme a la estructura y requisitos que se determinan en la guía docente."
+    },
+    {
+      "id": "AF9",
+      "name": "Defensa del Trabajo Fin de Grado",
+      "description": "Acto de presentación o defensa del trabajo realizado ante uno o varios profesores o profesoras y en sesión abierta al público."
+    }
+  ],
+  "teachingMethodologies": [
+    {
+      "id": "MD1",
+      "name": "Enseñanza expositiva",
+      "description": "Metodología centrada en la exposición, desarrollo y transmisión estructurada del conocimiento por parte del docente."
+    },
+    {
+      "id": "MD2",
+      "name": "Aprendizaje dialógico",
+      "description": "Generación de aprendizaje significativo a través del diálogo y la interacción entre estudiantes y docentes, promoviendo la argumentación, la reflexión conjunta y la participación activa."
+    },
+    {
+      "id": "MD3",
+      "name": "Clase invertida",
+      "description": "Reorganización del proceso de enseñanza en la que los estudiantes acceden previamente a los contenidos teóricos fuera del aula, mientras que el tiempo en clase se dedica a la aplicación práctica, la resolución de dudas y el trabajo colaborativo."
+    },
+    {
+      "id": "MD4",
+      "name": "Aprendizaje basado en retos (ABR)",
+      "description": "Planteamiento, análisis y resolución de desafíos, casos o problemas reales o significativos mediante la investigación, colaboración y la aplicación del conocimiento en contextos prácticos."
+    },
+    {
+      "id": "MD5",
+      "name": "Aprendizaje cooperativo",
+      "description": "Trabajo en grupo en el que el alumnado alcanza conjuntamente metas comunes."
+    },
+    {
+      "id": "MD6",
+      "name": "Aprendizaje-Servicio (ApS)",
+      "description": "Integración del aprendizaje académico con un servicio a la comunidad, donde los y las estudiantes aplican conocimientos y habilidades para resolver problemas sociales, desarrollando competencias en un contexto de impacto real."
+    }
+  ],
+  "evaluationSystems": [
+    {
+      "id": "SE1",
+      "name": "Exámenes (escritos u orales)",
+      "description": "Conjunto de pruebas de valoración planificadas por el profesor o profesora a lo largo de la asignatura para evaluar el progreso del aprendizaje de los y las estudiantes y la adquisición de las competencias previstas en la asignatura."
+    },
+    {
+      "id": "SE2",
+      "name": "Elaboración y presentación de trabajos dirigidos",
+      "description": "Evaluación de los trabajos realizados por el alumno o la alumna, individuales o en equipo."
+    },
+    {
+      "id": "SE3",
+      "name": "Preparación y participación en seminarios de discusión y en otras actividades presenciales",
+      "description": "Valoración del trabajo continuo y de la realización por parte del alumnado tanto de actividades de discusión como de otras actividades presenciales en el aula."
+    },
+    {
+      "id": "SE4",
+      "name": "Resolución de ejercicios",
+      "description": "Evaluación de la resolución de problemas y casos que aproximan al y a la estudiante a situaciones reales de la práctica profesional."
+    },
+    {
+      "id": "SE5",
+      "name": "Participación en actividades presenciales",
+      "description": "Valoración del cumplimiento de las actividades realizadas por el alumnado en el aula."
+    },
+    {
+      "id": "SE6",
+      "name": "Elaboración del Trabajo Fin de Grado",
+      "description": "Evaluación por parte de uno o varios profesores/as del Trabajo Fin de Grado de acuerdo con las directrices establecidas."
+    },
+    {
+      "id": "SE7",
+      "name": "Defensa del Trabajo Fin de Grado",
+      "description": "Evaluación por parte de uno o varios profesores/as de la defensa del Trabajo Fin de Grado."
+    }
+  ],
+  "modules": [
+    {
+      "name": "Módulo I: Filosofía y formación humanística",
+      "ects": 69,
+      "subjects": [
+        {
+          "name": "Core Curriculum",
+          "ects": 18,
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "30%", "maxWeight": "60%" },
+            { "system": "SE2", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA2", "RA3", "RA9", "RA10", "RA20", "RA21", "RA22", "RA27"
+          ],
+          "courses": [
+            { "name": "Antropología I",   "type": "Obligatoria", "year": 1, "semester": 1, "ects": 3 },
+            { "name": "Antropología II",  "type": "Obligatoria", "year": 1, "semester": 2, "ects": 3 },
+            { "name": "Ética I",          "type": "Obligatoria", "year": 2, "semester": 1, "ects": 3 },
+            { "name": "Ética II",         "type": "Obligatoria", "year": 2, "semester": 2, "ects": 3 },
+            { "name": "Claves culturales I",  "type": "Obligatoria", "year": 3, "semester": 1, "ects": 3 },
+            { "name": "Claves culturales II", "type": "Obligatoria", "year": 4, "semester": 2, "ects": 3 }
+          ]
+        },
+        {
+          "name": "Historia de la filosofía y filosofía teórica",
+          "ects": 27,
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "30%", "maxWeight": "60%" },
+            { "system": "SE2", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE3", "minWeight": "20%", "maxWeight": "40%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA2", "RA4", "RA5", "RA8", "RA9", "RA10", "RA11", "RA14", "RA19"
+          ],
+          "courses": [
+            { "name": "Historia de la Filosofía antigua y medieval",     "type": "Básica",     "year": 1, "semester": 2, "ects": 6 },
+            { "name": "Historia de la Filosofía moderna y contemporánea","type": "Básica",     "year": 2, "semester": 2, "ects": 6 },
+            { "name": "Filosofía de la cultura",                         "type": "Obligatoria","year": 2, "semester": 2, "ects": 3 },
+            { "name": "Knowledge and Truth",                             "type": "Obligatoria","year": 3, "semester": 1, "ects": 6 },
+            { "name": "Filosofía actual",                                "type": "Obligatoria","year": 3, "semester": 1, "ects": 6 }
+          ]
+        },
+        {
+          "name": "Filosofía práctica",
+          "ects": 24,
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "10%", "maxWeight": "40%" },
+            { "system": "SE2", "minWeight": "40%", "maxWeight": "70%" },
+            { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA3", "RA4", "RA5", "RA8", "RA9", "RA10", "RA12", "RA13", "RA14", "RA26", "RA27"
+          ],
+          "courses": [
+            { "name": "Filosofía política clásica y moderna",       "type": "Básica",     "year": 1, "semester": 1, "ects": 6 },
+            { "name": "Philosophy of Economics",                    "type": "Obligatoria","year": 1, "semester": 2, "ects": 3 },
+            { "name": "Filosofía política contemporánea y actual",  "type": "Básica",     "year": 2, "semester": 1, "ects": 6 },
+            {
+              "name": "Filosofía para un mundo complejo",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 3,
+              "evaluation": [
+                { "system": "SE2", "minWeight": "50%", "maxWeight": "80%" },
+                { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
+              ]
+            },
+            { "name": "Filosofía de la acción",                          "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 },
+            { "name": "Teorías filosóficas sobre la ciudadanía",         "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Módulo II: Política y sociedad",
+      "ects": 63,
+      "subjects": [
+        {
+          "name": "Teoría política",
+          "ects": 33,
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE2", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE3", "minWeight": "30%", "maxWeight": "60%" }
+          ],
+          "learningOutcomes": [
+            "RA2", "RA6", "RA9", "RA10", "RA11", "RA13", "RA14", "RA15", "RA16", "RA18", "RA19", "RA24", "RA25", "RA27"
+          ],
+          "courses": [
+            { "name": "Political Science",                              "type": "Básica",     "year": 1, "semester": 1, "ects": 6 },
+            { "name": "Historia de las ideas y de las ideologías políticas", "type": "Básica","year": 1, "semester": 1, "ects": 6 },
+            { "name": "EU Institutions and Policy",                     "type": "Obligatoria","year": 1, "semester": 2, "ects": 3 },
+            { "name": "Comparative Political Systems",                  "type": "Básica",     "year": 2, "semester": 1, "ects": 6 },
+            { "name": "Evaluación de políticas públicas",               "type": "Obligatoria","year": 2, "semester": 2, "ects": 3 },
+            { "name": "International Relations",                        "type": "Obligatoria","year": 2, "semester": 2, "ects": 6 },
+            {
+              "name": "Gestión y políticas públicas",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3,
+              "evaluation": [
+                { "system": "SE2", "minWeight": "40%", "maxWeight": "70%" },
+                { "system": "SE3", "minWeight": "30%", "maxWeight": "60%" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sociedad, comunicación y cultura en el mundo contemporáneo",
+          "ects": 30,
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "30%", "maxWeight": "60%" },
+            { "system": "SE2", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA3", "RA6", "RA8", "RA9", "RA10", "RA12", "RA13", "RA15", "RA16", "RA18", "RA23", "RA24", "RA25", "RA26", "RA27"
+          ],
+          "courses": [
+            { "name": "Contemporary Political History",       "type": "Obligatoria","year": 1, "semester": 2, "ects": 3 },
+            { "name": "Estructura y cambio social",           "type": "Básica",     "year": 2, "semester": 1, "ects": 6 },
+            { "name": "Política y sociedad en la España actual","type": "Obligatoria","year": 2, "semester": 1, "ects": 3 },
+            { "name": "Comunicación política",                "type": "Obligatoria","year": 3, "semester": 1, "ects": 6 },
+            { "name": "Cristianismo, sociedad y economía",    "type": "Obligatoria","year": 3, "semester": 1, "ects": 3 },
+            { "name": "Política y cultura latinoamericana",   "type": "Obligatoria","year": 3, "semester": 2, "ects": 3 },
+            { "name": "Población: Teorías y políticas",       "type": "Obligatoria","year": 3, "semester": 2, "ects": 3 },
+            { "name": "Hegemony and Globalization",           "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Módulo III: Economía",
+      "ects": 51,
+      "subjects": [
+        {
+          "name": "Teoría económica",
+          "ects": 24,
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "30%", "maxWeight": "60%" },
+            { "system": "SE3", "minWeight": "10%", "maxWeight": "40%" },
+            { "system": "SE4", "minWeight": "20%", "maxWeight": "50%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA2", "RA7", "RA8", "RA9", "RA11", "RA17", "RA18", "RA19"
+          ],
+          "courses": [
+            { "name": "Historia del pensamiento económico","type": "Obligatoria","year": 1, "semester": 1, "ects": 3 },
+            { "name": "Microeconomics",                   "type": "Básica",     "year": 1, "semester": 2, "ects": 6 },
+            { "name": "Macroeconomics",                   "type": "Obligatoria","year": 2, "semester": 1, "ects": 6 },
+            { "name": "International Economics",          "type": "Obligatoria","year": 2, "semester": 2, "ects": 3 },
+            { "name": "Political Economy",                "type": "Obligatoria","year": 2, "semester": 2, "ects": 6 }
+          ]
+        },
+        {
+          "name": "Economía aplicada",
+          "ects": 27,
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE2", "minWeight": "30%", "maxWeight": "60%" },
+            { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA3", "RA7", "RA8", "RA9", "RA10", "RA12", "RA13", "RA17", "RA24", "RA25", "RA26", "RA27"
+          ],
+          "courses": [
+            { "name": "Métodos cuantitativos", "type": "Básica",     "year": 1, "semester": 1, "ects": 6 },
+            { "name": "Gestión de proyectos",  "type": "Obligatoria","year": 1, "semester": 2, "ects": 6 },
+            { "name": "Entorno económico global","type": "Obligatoria","year": 3, "semester": 1, "ects": 3 },
+            { "name": "Ética del trabajo",     "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 },
+            { "name": "Economía pública",      "type": "Obligatoria","year": 4, "semester": 2, "ects": 6 },
+            { "name": "Development Economics", "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Módulo IV: Formación complementaria",
+      "ects": 51,
+      "subjects": [
+        {
+          "name": "Formación complementaria",
+          "ects": 51,
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
+          "evaluation": [
+            { "system": "SE1", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE2", "minWeight": "20%", "maxWeight": "50%" },
+            { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA3", "RA4", "RA8", "RA9", "RA10", "RA12", "RA13", "RA18", "RA23", "RA24", "RA27"
+          ],
+          "courses": [
+            { "name": "Optativas 3º curso", "type": "Optativa", "year": 3, "semester": 2, "ects": 21 },
+            { "name": "Optativas 4º curso", "type": "Optativa", "year": 4, "semester": 1, "ects": 30 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Módulo V: Trabajo Fin de Grado",
+      "ects": 6,
+      "subjects": [
+        {
+          "name": "Trabajo Fin de Grado",
+          "ects": 6,
+          "trainingActivities": ["AF4", "AF7", "AF8", "AF9"],
+          "evaluation": [
+            { "system": "SE5", "minWeight": "10%", "maxWeight": "10%" },
+            { "system": "SE6", "minWeight": "50%", "maxWeight": "70%" },
+            { "system": "SE7", "minWeight": "20%", "maxWeight": "40%" }
+          ],
+          "learningOutcomes": [
+            "RA1", "RA2", "RA3", "RA4", "RA8", "RA9", "RA10", "RA11", "RA12", "RA13", "RA14", "RA18", "RA19", "RA23", "RA24", "RA27"
+          ],
+          "courses": [
+            { "name": "Trabajo Fin de Grado", "type": "Obligatoria", "year": 4, "semester": 2, "ects": 6 }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -100,7 +100,7 @@ const Materias = () => {
                     <h3 className="mb-3 text-base font-bold text-gray-800 group-hover:text-blue-600 sm:mb-4 sm:text-lg">
                       {materia.name}
                     </h3>
-                    <div className="mt-auto space-y-3">
+                    <div className="space-y-3">
                       {materia.asignaturasPorCurso.map(
                         ({ curso, asignaturas }) => (
                           <div key={curso}>
@@ -114,21 +114,24 @@ const Materias = () => {
                             <ul className="space-y-1">
                               {asignaturas.map((asig) => (
                                 <li key={asig.name}>
-                                  <div
-                                    className="flex items-center rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-xs text-gray-700"
-                                    onClick={(e) => e.preventDefault()}
+                                  <Link
+                                    to={`${base}/asignaturas/${generateSlug(
+                                      asig.name,
+                                    )}`}
+                                    className="flex items-center rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-xs text-gray-700 transition-colors hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+                                    onClick={(e) => e.stopPropagation()}
                                   >
                                     <FontAwesomeIcon
                                       icon={faBook}
                                       className="mr-2 shrink-0 text-blue-400"
                                     />
-                                    <span className="truncate">
+                                    <span className="min-w-0 break-words">
                                       {asig.name}
                                     </span>
                                     <span className="ml-auto shrink-0 text-gray-400">
-                                      {asig.ects}cr
+                                      {asig.ects} ECTS
                                     </span>
-                                  </div>
+                                  </Link>
                                 </li>
                               ))}
                             </ul>

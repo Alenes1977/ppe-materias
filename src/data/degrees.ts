@@ -1,8 +1,8 @@
 import type { DegreeInfo, DegreePlan } from '../types/degree';
-import { adaptLegacyPlan, validateReferences } from '../lib/planAdapter';
+import { validateReferences } from '../lib/planAdapter';
 
 import ppeMeta from './ppe-meta.json';
-import ppeLegacyRaw from './ppe.json';
+import ppePlanRaw from './ppe-plan.json';
 import ppe2017Meta from './ppe2017-meta.json';
 import ppe2017PlanRaw from './ppe2017-plan.json';
 
@@ -11,13 +11,16 @@ export interface DegreeEntry {
   plan: DegreePlan;
 }
 
+const ppePlan = ppePlanRaw as unknown as DegreePlan;
+validateReferences(ppePlan);
+
 const ppe2017Plan = ppe2017PlanRaw as unknown as DegreePlan;
 validateReferences(ppe2017Plan);
 
 export const DEGREES: Record<string, DegreeEntry> = {
   ppe: {
     meta: ppeMeta as DegreeInfo,
-    plan: adaptLegacyPlan(ppeLegacyRaw),
+    plan: ppePlan,
   },
   'ppe-2017': {
     meta: ppe2017Meta as DegreeInfo,

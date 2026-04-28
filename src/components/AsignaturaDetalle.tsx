@@ -71,7 +71,8 @@ const AsignaturaDetalle: React.FC = () => {
             min: e.minWeight,
             max: e.maxWeight,
           })),
-          resultadosAprendizaje: materia.learningOutcomes,
+          resultadosAprendizaje:
+            course.learningOutcomes ?? materia.learningOutcomes,
         };
         moduloName = modulo.name;
         materiaName = materia.name;

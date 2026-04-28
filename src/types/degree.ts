@@ -55,6 +55,8 @@ export interface CourseEntry {
   ects: number;
   /** Evaluación propia de la asignatura (si difiere de la materia) */
   evaluation?: EvaluationEntry[];
+  /** Competencias/resultados propios de la asignatura (si difieren de la materia) */
+  learningOutcomes?: string[];
 }
 
 export interface SubjectGroup {

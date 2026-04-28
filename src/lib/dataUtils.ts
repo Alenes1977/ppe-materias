@@ -71,7 +71,8 @@ export function getSubjectsFromPlan(plan: DegreePlan): ProcessedSubject[] {
           modulo: modulo.name,
           'actividad-formativa': materia.trainingActivities,
           evaluacion: evalEntries,
-          resultados_aprendizaje: materia.learningOutcomes,
+          resultados_aprendizaje:
+            course.learningOutcomes ?? materia.learningOutcomes,
         });
       }
     }

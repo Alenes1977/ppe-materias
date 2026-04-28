@@ -1,12 +1,16 @@
-import { useContext } from 'react';
 import type React from 'react';
+import { useLocation } from 'react-router-dom';
 import { PRIMARY_BLUE } from '../constants/colors';
 import logoUnavBlanco from '../assets/LogoUnav.svg';
-import { DegreeContext } from '../context/DegreeContext';
+import { DEGREES } from '../data/degrees';
 
 const Footer: React.FC = () => {
-  const ctx = useContext(DegreeContext);
-  const label = ctx ? `Grado en ${ctx.degreeInfo.shortName}` : 'Portal PPE';
+  const location = useLocation();
+  const degreeId = location.pathname.split('/')[1] || undefined;
+  const activeDegree = degreeId ? DEGREES[degreeId] : null;
+  const label = activeDegree
+    ? activeDegree.meta.name
+    : 'Portal de información académica y asistente para las guías docentes';
 
   return (
     <footer

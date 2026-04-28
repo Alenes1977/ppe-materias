@@ -110,7 +110,9 @@ const Header: FC = () => {
                 </span>
                 <FontAwesomeIcon
                   icon={faChevronDown}
-                  className={`text-xs text-gray-400 transition-transform duration-150 ${gradoOpen ? 'rotate-180' : ''}`}
+                  className={`text-xs text-gray-400 transition-transform duration-150 ${
+                    gradoOpen ? 'rotate-180' : ''
+                  }`}
                 />
               </button>
 
@@ -169,7 +171,8 @@ const Header: FC = () => {
                 className="font-poppins whitespace-nowrap text-sm font-bold md:text-base"
                 style={{ color: PRIMARY_BLUE }}
               >
-                Portal PPE
+                UNAV | Portal de información académica y asistente para las
+                guías docentes
               </span>
             </a>
           )}
@@ -226,10 +229,7 @@ const Header: FC = () => {
       {/* ── Fila 2: breadcrumb (desktop, solo dentro de un grado) ── */}
       {activeDegree ? (
         <div className="relative z-0 hidden border-t border-gray-100 bg-gray-50/80 md:block">
-          <div
-            className="mx-auto px-4 py-1.5"
-            style={{ maxWidth: '1400px' }}
-          >
+          <div className="mx-auto px-4 py-1.5" style={{ maxWidth: '1400px' }}>
             <Breadcrumb />
           </div>
         </div>

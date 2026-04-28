@@ -4,7 +4,7 @@ import type { HorarioAtencion } from './PasoF_HorarioAtencion';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
 import { generarPDFGuiaDocente } from '../utils/pdfGuiaDocente';
 import { generarWordGuiaDocente } from '../utils/wordGuiaDocente';
-import ppeData from '../data/ppe.json';
+import { useDegree } from '../context/DegreeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFilePdf,
@@ -35,13 +35,16 @@ const ResumenGuiaDocente: FC<Props> = ({
   const [valoracionResult, setValoracionResult] =
     useState<ValoracionIAResponse | null>(null);
   const [modalEnvioOpen, setModalEnvioOpen] = useState(false);
+  const { degreeInfo, degreePlan, labelLO } = useDegree();
+
+  const loDict = degreePlan.learningOutcomes;
 
   const handleDescargarPDF = () => {
-    generarPDFGuiaDocente(guia, asignatura);
+    generarPDFGuiaDocente(guia, asignatura, degreeInfo, degreePlan);
   };
 
   const handleDescargarWord = () => {
-    generarWordGuiaDocente(guia, asignatura);
+    generarWordGuiaDocente(guia, asignatura, degreeInfo, degreePlan);
   };
 
   const handleValorarIA = async () => {
@@ -50,9 +53,14 @@ const ResumenGuiaDocente: FC<Props> = ({
     setValoracionResult(null);
 
     try {
-      const resultado = await enviarGuiaParaValoracion(guia, asignatura);
+      const resultado = await enviarGuiaParaValoracion(
+        guia,
+        asignatura,
+        degreeInfo,
+        degreePlan,
+      );
       setValoracionResult(resultado);
-    } catch (error) {
+    } catch {
       setValoracionResult({
         success: false,
         error: 'Error de conexión. Inténtalo de nuevo.',
@@ -66,10 +74,6 @@ const ResumenGuiaDocente: FC<Props> = ({
     setModalValoracionOpen(false);
     setValoracionResult(null);
   };
-
-  const competenciasDict = (
-    ppeData as { resultados_aprendizaje: Record<string, string> }
-  ).resultados_aprendizaje;
 
   return (
     <div className="mx-auto max-w-5xl rounded-lg bg-white p-10 shadow-md">
@@ -213,10 +217,12 @@ const ResumenGuiaDocente: FC<Props> = ({
           </div>
         </div>
       </section>
-      {/* Competencias */}
+      {/* Resultados de aprendizaje / Competencias */}
       <section className="mb-6">
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-blue-700">Competencias</h3>
+          <h3 className="text-lg font-bold text-blue-700 capitalize">
+            {labelLO.plural}
+          </h3>
           {!modoPrevia && (
             <button
               className="text-xs text-blue-600 underline"
@@ -231,7 +237,7 @@ const ResumenGuiaDocente: FC<Props> = ({
             <li key={i}>
               <span className="font-bold">{c}:</span>{' '}
               <span>
-                {competenciasDict[c] || <em>Descripción no encontrada</em>}
+                {loDict[c] || <em>Descripción no encontrada</em>}
               </span>
             </li>
           ))}

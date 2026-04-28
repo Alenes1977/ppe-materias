@@ -34,24 +34,6 @@ La información está verificada por la ANECA y corresponde al plan de estudios 
 - [FontAwesome] para iconografía
 - [pdfmake], [docx], [react-quill] para generación de documentos
 
-## Instalación y uso
-
-1. Clona el repositorio:
-   ```sh
-   git clone <url-del-repo>
-   cd ppe-materias
-   ```
-2. Instala dependencias:
-   ```sh
-   pnpm install
-   # o npm install / yarn install
-   ```
-3. Inicia el servidor de desarrollo:
-   ```sh
-   pnpm run dev
-   # o npm run dev / yarn run dev
-   ```
-4. Accede a [http://localhost:5173](http://localhost:5173)
 
 ## Estructura del proyecto
 

@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import type { GuiaDocenteData } from './AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
+import { useDegree } from '../context/DegreeContext';
 import { getGuiaDocentePDFBase64 } from '../utils/pdfGuiaDocente';
 import { getGuiaDocenteWordBase64 } from '../utils/wordGuiaDocente';
 
@@ -32,6 +33,7 @@ const ModalConfirmarEnvio: FC<Props> = ({
   guia,
   asignatura,
 }) => {
+  const { degreeInfo, degreePlan } = useDegree();
   const [estado, setEstado] = useState<Estado>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [fuenteCorreo, setFuenteCorreo] = useState<'profesor' | 'alternativo'>(
@@ -105,8 +107,8 @@ const ModalConfirmarEnvio: FC<Props> = ({
 
     try {
       const [pdfBase64, wordBase64] = await Promise.all([
-        getGuiaDocentePDFBase64(guia, asignatura),
-        getGuiaDocenteWordBase64(guia, asignatura),
+        getGuiaDocentePDFBase64(guia, asignatura, degreeInfo, degreePlan),
+        getGuiaDocenteWordBase64(guia, asignatura, degreeInfo, degreePlan),
       ]);
 
       const payload = {

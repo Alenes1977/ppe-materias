@@ -6,6 +6,7 @@ import {
   useLocation,
   Navigate,
 } from 'react-router-dom';
+import { DegreeLayout, getLastDegreeId } from './context/DegreeContext';
 import AsignaturaDetalle from './components/AsignaturaDetalle';
 import PlanEstudios from './components/PlanEstudios';
 import Header from './components/Header';
@@ -19,37 +20,23 @@ import Materias from './components/Materias';
 import Modulo from './components/Modulo';
 import AsistenteGuiaDocente from './components/AsistenteGuiaDocente';
 
-// Componente para manejar el scroll al principio en cada navegación
 const ScrollToTop: FC = () => {
   const location = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-
   return null;
 };
 
-// Tipos para TypeScript
-interface Asignatura {
-  nombre: string;
-  curso: string;
-  semestre: string;
-  resultados_aprendizaje: string[];
-}
+/**
+ * Redirige desde / al último grado visitado, o muestra el selector de grado.
+ * El selector de grado está implementado en Home.tsx cuando no hay degreeId.
+ */
+const RootRedirect: FC = () => {
+  const lastId = getLastDegreeId();
+  return lastId ? <Navigate to={`/${lastId}`} replace /> : <Home />;
+};
 
-interface Materia {
-  nombre: string;
-  asignaturas: Asignatura[];
-  'actividad-formativa': string[];
-  evaluacion: {
-    tipo: string;
-    'ponderacion-minima': string;
-    'ponderacion-maxima': string;
-  }[];
-}
-
-// Componente principal de la aplicación
 const App: FC = () => {
   return (
     <Router>
@@ -58,30 +45,30 @@ const App: FC = () => {
         <Header />
         <main className="flex-grow pb-14">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/asistente-guia-docente"
-              element={<AsistenteGuiaDocente />}
-            />
-            <Route path="/asignaturas" element={<Asignaturas />} />
-            <Route
-              path="/asignaturas/:nombre"
-              element={<AsignaturaDetalle />}
-            />
-            <Route path="/plan-estudios" element={<PlanEstudios />} />
-            <Route path="/plan-estudios/:moduloSlug" element={<Modulo />} />
-            <Route
-              path="/modulos"
-              element={<Navigate to="/plan-estudios" replace />}
-            />
-            <Route
-              path="/modulos/:moduloSlug"
-              element={<Navigate to="/plan-estudios/:moduloSlug" replace />}
-            />
-            <Route path="/materias" element={<Materias />} />
-            <Route path="/materias/:materiaSlug" element={<Materia />} />
-            <Route path="/competencias" element={<Competencias />} />
-            <Route path="/competencias/:id" element={<CompetenciaDetalle />} />
+            {/* Pantalla raíz: selector de grado o redirección al último */}
+            <Route path="/" element={<RootRedirect />} />
+
+            {/* Layout por grado: provee DegreeContext a todas las subrutas */}
+            <Route path="/:degreeId" element={<DegreeLayout><Navigate to="inicio" replace /></DegreeLayout>} />
+            <Route path="/:degreeId/*" element={
+              <DegreeLayout>
+                <Routes>
+                  <Route path="inicio" element={<Home />} />
+                  <Route path="asignaturas" element={<Asignaturas />} />
+                  <Route path="asignaturas/:nombre" element={<AsignaturaDetalle />} />
+                  <Route path="plan-estudios" element={<PlanEstudios />} />
+                  <Route path="plan-estudios/:moduloSlug" element={<Modulo />} />
+                  <Route path="materias" element={<Materias />} />
+                  <Route path="materias/:materiaSlug" element={<Materia />} />
+                  <Route path="competencias" element={<Competencias />} />
+                  <Route path="competencias/:id" element={<CompetenciaDetalle />} />
+                  <Route path="asistente-guia-docente" element={<AsistenteGuiaDocente />} />
+                  {/* Compatibilidad con rutas antiguas sin prefijo de grado */}
+                  <Route path="modulos" element={<Navigate to="../plan-estudios" replace />} />
+                  <Route path="modulos/:moduloSlug" element={<Navigate to="../plan-estudios/:moduloSlug" replace />} />
+                </Routes>
+              </DegreeLayout>
+            } />
           </Routes>
         </main>
         <Footer />

@@ -1,0 +1,1157 @@
+{
+  "schemaVersion": 1,
+  "learningOutcomes": {
+    "CB1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio",
+    "CB2": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio",
+    "CB3": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética",
+    "CB4": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado",
+    "CB5": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía",
+    "CG1": "Formular razonamientos críticos y bien argumentados, empleando para ello terminología precisa, recursos especializados y documentación que avale dichos argumentos en los ámbitos de la filosofía, la política y la economía",
+    "CG2": "Diferenciar los marcos teóricos particulares y las herramientas de análisis específicas desde los que la filosofía, la política y la economía abordan los problemas de las sociedades contemporáneas",
+    "CG3": "Comprender, analizar y evaluar de manera crítica los elementos configuradores del ser humano y de la sociedad actual en sus múltiples dimensiones: antropológica, histórica, cultural, política, social y económica",
+    "CG4": "Expresar conocimientos e ideas de manera oral y escrita, con rigor, orden y creatividad, que aborden cuestiones y retos de la coyuntura económica, política, social y cultural de nuestra sociedad",
+    "CG5": "Saber combinar el razonamiento económico con el propio de la ciencia socio-política y de la filosofía para una comprensión holística de la sociedad contemporánea",
+    "CT1": "Afrontar de manera crítica y reflexiva el estudio de la filosofía, la política y la economía en su conexión con el resto de los saberes",
+    "CT2": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas",
+    "CT3": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la filosofía, la política y la economía",
+    "CE1": "Identificar y analizar los elementos más significativos que conforman las diferentes realidades sociales para interpretarlas desde un enfoque sistémico, que integre las áreas de conocimiento del Grado (filosofía, política y economía)",
+    "CE2": "Valorar la complementariedad y la contribución particular de la filosofía, la política y la economía en la interpretación de la realidad social",
+    "CE3": "Valorar y contrastar las distintas teorías políticas, económicas, o sociológicas que explican la organización particular de las sociedades contemporáneas",
+    "CE4": "Identificar cuestiones filosóficas de fondo implícitas en los debates abiertos actualmente en los ámbitos sociales de la cultura, la ciencia, la tecnología, la economía, el derecho, la política, y los medios de información y comunicación",
+    "CE5": "Analizar e interpretar desde una perspectiva filosófica los problemas y retos que afectan al ser humano y su organización social en las sociedades contemporáneas",
+    "CE6": "Conocer y manejar en análisis críticos las principales metodologías y conceptos de la filosofía",
+    "CE7": "Analizar los principales elementos de la realidad política y comprender las condiciones de su racionalidad",
+    "CE8": "Conocer las teorías políticas y sociológicas más representativas sobre la sociedad y la acción humana en sociedad",
+    "CE9": "Identificar y valorar desde las perspectivas filosófica, política y económica, el papel que la comunicación y la opinión pública desempeñan en la articulación social y las decisiones colectivas",
+    "CE10": "Conocer y utilizar los conceptos y métodos fundamentales de la Teoría Económica, aplicándolos al análisis y discusión de situaciones reales",
+    "CE11": "Identificar y manejar los principales modelos microeconómicos y macroeconómicos que explican los procesos y comportamientos económicos",
+    "CE12": "Reflexionar, desde una perspectiva histórica, sobre la dimensión ética de la actividad económica y su capacidad para configurar realidades sociopolíticas particulares",
+    "CE13": "Identificar los elementos relevantes del entorno económico globalizado, valorando su coherencia con otros parámetros normativos de índole política o filosófica"
+  },
+  "trainingActivities": [
+    {
+      "id": "AF-PPE2017-1",
+      "name": "Asistencia a clases magistrales",
+      "description": ""
+    },
+    {
+      "id": "AF-PPE2017-2",
+      "name": "Seminarios de discusión",
+      "description": ""
+    },
+    {
+      "id": "AF-PPE2017-3",
+      "name": "Tutorías",
+      "description": ""
+    },
+    {
+      "id": "AF-PPE2017-4",
+      "name": "Estudio personal",
+      "description": ""
+    },
+    {
+      "id": "AF-PPE2017-5",
+      "name": "Elaboración de trabajos dirigidos",
+      "description": ""
+    },
+    {
+      "id": "AF-PPE2017-6",
+      "name": "Análisis de casos y actividades prácticas presenciales",
+      "description": ""
+    },
+    {
+      "id": "AF-PPE2017-7",
+      "name": "Elaboración del Trabajo Fin de Grado",
+      "description": ""
+    },
+    {
+      "id": "AF-PPE2017-8",
+      "name": "Defensa del Trabajo Fin de Grado",
+      "description": ""
+    }
+  ],
+  "teachingMethodologies": [],
+  "evaluationSystems": [
+    {
+      "id": "SE-PPE2017-1",
+      "name": "Pruebas escritas",
+      "description": ""
+    },
+    {
+      "id": "SE-PPE2017-2",
+      "name": "Elaboración y presentación de trabajos dirigidos",
+      "description": ""
+    },
+    {
+      "id": "SE-PPE2017-3",
+      "name": "Casos prácticos y actividades presenciales",
+      "description": ""
+    },
+    {
+      "id": "SE-PPE2017-4",
+      "name": "Intervenciones en clase y tutorías",
+      "description": ""
+    },
+    {
+      "id": "SE-PPE2017-5",
+      "name": "Realización del Trabajo Fin de Grado",
+      "description": ""
+    },
+    {
+      "id": "SE-PPE2017-6",
+      "name": "Defensa del Trabajo Fin de Grado",
+      "description": ""
+    }
+  ],
+  "modules": [
+    {
+      "name": "Fundamentos humanísticos y filosóficos",
+      "ects": 66,
+      "subjects": [
+        {
+          "name": "Core curriculum",
+          "ects": 18,
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Antropología",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": "annual",
+              "ects": 6,
+              "learningOutcomes": [
+                "CG2",
+                "CG3",
+                "CB1",
+                "CB3",
+                "CB4",
+                "CT1",
+                "CT2",
+                "CT3"
+              ]
+            },
+            {
+              "name": "Ética",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": "annual",
+              "ects": 6,
+              "learningOutcomes": [
+                "CG2",
+                "CG3",
+                "CB1",
+                "CB3",
+                "CB4",
+                "CT1",
+                "CT2",
+                "CT3"
+              ]
+            },
+            {
+              "name": "Claves culturales I",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG2",
+                "CG3",
+                "CB1",
+                "CB3",
+                "CB4",
+                "CT1",
+                "CT2",
+                "CT3"
+              ]
+            },
+            {
+              "name": "Claves culturales II",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG2",
+                "CG3",
+                "CB1",
+                "CB3",
+                "CB4",
+                "CT1",
+                "CT2"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fundamentos de filosofía",
+          "ects": 24,
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "20%",
+              "maxWeight": "100%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Filosofía y pensamiento crítico",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CG5",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CE4",
+                "CE5",
+                "CE6"
+              ]
+            },
+            {
+              "name": "Introducción a la lógica",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CB1"
+              ]
+            },
+            {
+              "name": "Historia de la filosofía: grandes autores",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CB1",
+                "CB4",
+                "CE4",
+                "CE5",
+                "CE6"
+              ]
+            },
+            {
+              "name": "Historia de la filosofía: textos fundamentales",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CB1",
+                "CB4",
+                "CE4",
+                "CE5",
+                "CE6"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Conocimiento, realidad y acción",
+          "ects": 24,
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "20%",
+              "maxWeight": "100%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Knowledge and reality",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB3",
+                "CB4",
+                "CE1",
+                "CE4",
+                "CE6"
+              ]
+            },
+            {
+              "name": "Filosofía de la economía",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB3",
+                "CE1",
+                "CE5",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Metafísica",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CE1",
+                "CE4",
+                "CE6"
+              ]
+            },
+            {
+              "name": "Debates filosóficos actuales",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CE5",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Filosofía política y social",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CE1",
+                "CE4",
+                "CE5",
+                "CE6",
+                "CE13"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Política y sociedad",
+      "ects": 48,
+      "subjects": [
+        {
+          "name": "Teoría política y social",
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "20%",
+              "maxWeight": "100%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Sociología",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CG5",
+                "CB3",
+                "CB4",
+                "CE1",
+                "CE3",
+                "CE5",
+                "CE8",
+                "CE9"
+              ]
+            },
+            {
+              "name": "Introducción a la ciencia política",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE3",
+                "CE7",
+                "CE8"
+              ]
+            },
+            {
+              "name": "Cristianismo, sociedad y economía",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG5",
+                "CB3",
+                "CE1",
+                "CE3",
+                "CE5",
+                "CE12"
+              ]
+            },
+            {
+              "name": "Teoría de la acción y decisión política",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG5",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE5",
+                "CE7",
+                "CE8",
+                "CE9"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sociedad, cultura y comunicación en el mundo contemporáneo",
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "20%",
+              "maxWeight": "100%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Historia universal contemporánea",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG3",
+                "CB1",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE3",
+                "CE8",
+                "CE12",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Sociedad y política en el mundo actual",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG3",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE7",
+                "CE8",
+                "CE12",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Retórica y oratoria",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG4",
+                "CB2",
+                "CB4"
+              ]
+            },
+            {
+              "name": "Comunicación política",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB4",
+                "CB5",
+                "CE9"
+              ]
+            },
+            {
+              "name": "Historia de las ideas e ideologías políticas",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG3",
+                "CB1",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE7",
+                "CE8",
+                "CE12",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Opinión pública",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB4",
+                "CE7",
+                "CE9"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Economía",
+      "ects": 45,
+      "subjects": [
+        {
+          "name": "Teoría económica",
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "20%",
+              "maxWeight": "100%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Fundamentos de economía",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CG5",
+                "CB2",
+                "CB5",
+                "CE10"
+              ]
+            },
+            {
+              "name": "Microeconomía",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB5",
+                "CE10",
+                "CE11"
+              ]
+            },
+            {
+              "name": "Macroeconomía",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CG5",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB5",
+                "CE10",
+                "CE11"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Economía aplicada",
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "20%",
+              "maxWeight": "100%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Decision Making in Economics",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3,
+              "learningOutcomes": [
+                "CB1",
+                "CB2",
+                "CB3",
+                "CE12"
+              ]
+            },
+            {
+              "name": "International Macroeconomics",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CE10",
+                "CE11",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Economía pública",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CE1",
+                "CE3",
+                "CE10",
+                "CE11",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Historia del pensamiento económico",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB4",
+                "CE1",
+                "CE3"
+              ]
+            },
+            {
+              "name": "Ética de la actividad económica",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CE1",
+                "CE12",
+                "CE13"
+              ]
+            },
+            {
+              "name": "Entorno económico global",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 6,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CE3",
+                "CE10",
+                "CE11",
+                "CE12",
+                "CE13"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Formación complementaria",
+      "ects": 60,
+      "subjects": [
+        {
+          "name": "Formación específica complementaria",
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "20%",
+              "maxWeight": "100%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "0%",
+              "maxWeight": "50%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Optativas",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 30,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE4"
+              ]
+            },
+            {
+              "name": "Optativas",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 1,
+              "ects": 30,
+              "learningOutcomes": [
+                "CG3",
+                "CG4",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE4"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Integración interdisciplinar",
+      "ects": 21,
+      "subjects": [
+        {
+          "name": "Seminarios interdisciplinares",
+          "trainingActivities": [
+            "AF-PPE2017-1",
+            "AF-PPE2017-2",
+            "AF-PPE2017-6",
+            "AF-PPE2017-3",
+            "AF-PPE2017-4",
+            "AF-PPE2017-5"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-1",
+              "minWeight": "0%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE-PPE2017-2",
+              "minWeight": "30%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE-PPE2017-3",
+              "minWeight": "20%",
+              "maxWeight": "70%"
+            },
+            {
+              "system": "SE-PPE2017-4",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Capstone seminars I",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": "annual",
+              "ects": 3,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CG3",
+                "CG4",
+                "CG5",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE4",
+                "CE5"
+              ]
+            },
+            {
+              "name": "Capstone seminars II",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": "annual",
+              "ects": 3,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CG3",
+                "CG4",
+                "CG5",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE4",
+                "CE5"
+              ]
+            },
+            {
+              "name": "PPE Lab",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CG3",
+                "CG4",
+                "CG5",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE4",
+                "CE5"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Trabajo Fin de Grado",
+          "trainingActivities": [
+            "AF-PPE2017-3",
+            "AF-PPE2017-7",
+            "AF-PPE2017-8"
+          ],
+          "evaluation": [
+            {
+              "system": "SE-PPE2017-5",
+              "minWeight": "60%",
+              "maxWeight": "90%"
+            },
+            {
+              "system": "SE-PPE2017-6",
+              "minWeight": "10%",
+              "maxWeight": "40%"
+            }
+          ],
+          "learningOutcomes": [],
+          "courses": [
+            {
+              "name": "Trabajo Fin de Grado",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": "annual",
+              "ects": 12,
+              "learningOutcomes": [
+                "CG1",
+                "CG2",
+                "CG3",
+                "CG4",
+                "CG5",
+                "CB1",
+                "CB2",
+                "CB3",
+                "CB4",
+                "CB5",
+                "CE1",
+                "CE2",
+                "CE3",
+                "CE4",
+                "CE5"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

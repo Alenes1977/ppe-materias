@@ -1,8 +1,10 @@
-import ppeData from '../data/ppe.json';
+import type { DegreePlan, Semester } from '../types/degree';
 import { slugify } from '../lib/utils';
 
-// Tipos para los datos procesados
+// ── Tipos exportados ──────────────────────────────────────────────────────────
+
 export interface Evaluacion {
+  /** ID del sistema de evaluación */
   tipo: string;
   'ponderacion-minima': string;
   'ponderacion-maxima': string;
@@ -12,73 +14,92 @@ export interface ActividadFormativa {
   nombre: string;
 }
 
-export interface AsignaturaProcesada {
+/**
+ * Representación plana de una asignatura/curso, enriquecida con el contexto
+ * de su materia y módulo. Usada en el asistente y en los listados.
+ */
+export interface ProcessedSubject {
   id: string;
   nombre: string;
   curso: number;
-  semestre: number;
+  semestre: Semester;
   ects: number;
-  // Añadimos la información de la materia y el módulo para contexto
   materia: string;
   modulo: string;
+  /** IDs de actividades formativas de la materia */
   'actividad-formativa': string[];
+  /** Sistemas de evaluación (de la asignatura si los tiene, o de la materia) */
   evaluacion: Evaluacion[];
+  /** IDs de learning outcomes asociados a la materia */
   resultados_aprendizaje: string[];
 }
 
-let asignaturasProcesadas: AsignaturaProcesada[] | null = null;
+/** @deprecated Usa ProcessedSubject */
+export type AsignaturaProcesada = ProcessedSubject;
+
+// ── Función pura ──────────────────────────────────────────────────────────────
 
 /**
- * Procesa el JSON de ppe para extraer una lista plana de asignaturas,
- * enriqueciendo cada asignatura con los datos de su materia y módulo.
- * Cachea el resultado para evitar reprocesar en futuras llamadas.
+ * Extrae una lista plana de asignaturas/cursos desde un DegreePlan canónico.
+ * No cachea: la caché vive en DegreeContext (useMemo sobre el plan activo).
  */
-export const getAsignaturas = (): AsignaturaProcesada[] => {
-  if (asignaturasProcesadas) {
-    return asignaturasProcesadas;
+export function getSubjectsFromPlan(plan: DegreePlan): ProcessedSubject[] {
+  const list: ProcessedSubject[] = [];
+
+  for (const modulo of plan.modules) {
+    for (const materia of modulo.subjects) {
+      if (materia.name === 'Optativas') continue;
+
+      for (const course of materia.courses) {
+        if (course.name === 'Optativas') continue;
+
+        const evalEntries: Evaluacion[] = (
+          course.evaluation ?? materia.evaluation
+        ).map((e) => ({
+          tipo: e.system,
+          'ponderacion-minima': e.minWeight,
+          'ponderacion-maxima': e.maxWeight,
+        }));
+
+        list.push({
+          id: slugify(course.name),
+          nombre: course.name,
+          curso: course.year,
+          semestre: course.semester,
+          ects: course.ects,
+          materia: materia.name,
+          modulo: modulo.name,
+          'actividad-formativa': materia.trainingActivities,
+          evaluacion: evalEntries,
+          resultados_aprendizaje: materia.learningOutcomes,
+        });
+      }
+    }
   }
 
-  const listaCompleta: AsignaturaProcesada[] = [];
-
-  ppeData.modulos.forEach((modulo) => {
-    modulo.materias.forEach((materia) => {
-      // Ignoramos la materia de "Optativas" que no tiene asignaturas específicas
-      if (materia.nombre === 'Optativas') return;
-
-      materia.asignaturas.forEach((asignatura) => {
-        // La materia 'Formación específica complementaria' tiene una entrada genérica "Optativas"
-        // que no queremos como asignatura individual seleccionable.
-        if (asignatura.nombre === 'Optativas') return;
-
-        listaCompleta.push({
-          id: slugify(asignatura.nombre),
-          nombre: asignatura.nombre,
-          curso: asignatura.curso,
-          semestre: asignatura.semestre,
-          ects: asignatura.ects,
-          materia: materia.nombre,
-          modulo: modulo.nombre,
-          'actividad-formativa': materia['actividad-formativa'],
-          evaluacion: asignatura.evaluacion ?? materia.evaluacion,
-          resultados_aprendizaje: materia.resultados_aprendizaje || [],
-        });
-      });
-    });
-  });
-
-  // Ordenamos alfabéticamente por nombre de asignatura
-  listaCompleta.sort((a, b) => a.nombre.localeCompare(b.nombre));
-
-  asignaturasProcesadas = listaCompleta;
-  return asignaturasProcesadas;
-};
+  return list.sort((a, b) => a.nombre.localeCompare(b.nombre));
+}
 
 /**
- * Devuelve una asignatura específica por su ID (slug).
+ * Busca una asignatura por slug en una lista ya procesada.
  */
-export const getAsignaturaById = (
+export function getSubjectById(
+  subjects: ProcessedSubject[],
   id: string,
-): AsignaturaProcesada | undefined => {
-  const asignaturas = getAsignaturas();
-  return asignaturas.find((a) => a.id === id);
-};
+): ProcessedSubject | undefined {
+  return subjects.find((s) => s.id === id);
+}
+
+// ── Compatibilidad con código que usaba getAsignaturas() ─────────────────────
+// Los componentes que aún llamen a getAsignaturas() recibirán un error claro
+// para que se migren a useDegree().subjects.
+export function getAsignaturas(): never {
+  throw new Error(
+    'getAsignaturas() ha sido eliminado. Usa useDegree().subjects en su lugar.',
+  );
+}
+export function getAsignaturaById(): never {
+  throw new Error(
+    'getAsignaturaById() ha sido eliminado. Usa getSubjectById(subjects, id) en su lugar.',
+  );
+}

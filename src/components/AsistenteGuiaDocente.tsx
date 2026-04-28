@@ -2,8 +2,11 @@ import type React from 'react';
 import { useState, useMemo, useEffect } from 'react';
 import Select from 'react-select';
 import type { SingleValue } from 'react-select';
-import { getAsignaturas } from '../lib/dataUtils';
-import type { AsignaturaProcesada } from '../lib/dataUtils';
+import { useParams } from 'react-router-dom';
+import { useDegree } from '../context/DegreeContext';
+import type { ProcessedSubject } from '../lib/dataUtils';
+/** @deprecated alias for compatibility */
+type AsignaturaProcesada = ProcessedSubject;
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChalkboardUser,
@@ -61,62 +64,81 @@ const pasos = [
   { key: 'bibliografia', label: 'Bibliografía y recursos' },
 ];
 
+const defaultGuia = (): GuiaDocenteData => ({
+  presentacion: {
+    profesores: [],
+    idioma: '',
+    aula: '',
+    horario: '',
+    resumen: '',
+    anioAcademico: computeAnioAcademico(),
+  },
+  programa: [],
+  actividades: [],
+  evaluacion: [],
+  convocatoriaExtra: '',
+  horario: {},
+  bibliografia: '',
+  version: GUIA_VERSION,
+});
+
 const AsistenteGuiaDocente: React.FC = () => {
+  const { degreeId } = useParams<{ degreeId: string }>();
+  const { subjects } = useDegree();
+
+  const storageKey = (asignaturaId?: string) =>
+    `guiaDocente:${degreeId ?? 'unknown'}:${asignaturaId ?? '_draft'}`;
+
   const [asignaturaSeleccionada, setAsignaturaSeleccionada] =
     useState<AsignaturaProcesada | null>(null);
   const [pasoActual, setPasoActual] = useState(0);
-  const [guia, setGuia] = useState<GuiaDocenteData>(() => {
-    const saved = localStorage.getItem('guiaDocente');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (parsed.version === GUIA_VERSION) return parsed;
-      } catch {}
-      localStorage.removeItem('guiaDocente');
-    }
-    return {
-      presentacion: {
-        profesores: [],
-        idioma: '',
-        aula: '',
-        horario: '',
-        resumen: '',
-        anioAcademico: computeAnioAcademico(),
-      },
-      programa: [],
-      actividades: [],
-      evaluacion: [],
-      convocatoriaExtra: '',
-      horario: {},
-      bibliografia: '',
-      version: GUIA_VERSION,
-    };
-  });
+  const [guia, setGuia] = useState<GuiaDocenteData>(defaultGuia);
 
   const [pasoRetorno, setPasoRetorno] = useState<number | null>(null);
   const [modalBorradorOpen, setModalBorradorOpen] = useState(false);
 
   // Memoizamos la lista de asignaturas para no reprocesarla en cada render
   const opcionesAsignatura = useMemo((): AsignaturaOption[] => {
-    return getAsignaturas().map((a) => ({
+    return subjects.map((a) => ({
       value: a.id,
       label: `${a.nombre} (${a.curso}º Curso)`,
     }));
-  }, []);
+  }, [subjects]);
 
-  // Guardado automático en localStorage
+  // Guardado automático en localStorage con clave compuesta
   useEffect(() => {
+    if (!asignaturaSeleccionada) return;
     localStorage.setItem(
-      'guiaDocente',
+      storageKey(asignaturaSeleccionada.id),
       JSON.stringify({ ...guia, version: GUIA_VERSION }),
     );
-  }, [guia]);
+  }, [guia, asignaturaSeleccionada]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSelectChange = (opcion: SingleValue<AsignaturaOption>) => {
     if (opcion) {
-      const asignatura = getAsignaturas().find((a) => a.id === opcion.value);
-      setAsignaturaSeleccionada(asignatura || null);
-      setPasoActual(0); // Reinicia el wizard si se cambia de asignatura
+      const asignatura = subjects.find((a) => a.id === opcion.value) ?? null;
+      setAsignaturaSeleccionada(asignatura);
+      if (asignatura) {
+        const key = storageKey(asignatura.id);
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved) as GuiaDocenteData;
+            if (parsed.version === GUIA_VERSION) {
+              setGuia(parsed);
+            } else {
+              localStorage.removeItem(key);
+              setGuia(defaultGuia());
+            }
+          } catch {
+            localStorage.removeItem(key);
+            setGuia(defaultGuia());
+          }
+        } else {
+          setGuia(defaultGuia());
+        }
+      }
+      setPasoActual(0);
       setPasoRetorno(null);
     } else {
       setAsignaturaSeleccionada(null);
@@ -126,27 +148,13 @@ const AsistenteGuiaDocente: React.FC = () => {
   };
 
   const handleReiniciar = () => {
-    localStorage.removeItem('guiaDocente');
+    if (asignaturaSeleccionada) {
+      localStorage.removeItem(storageKey(asignaturaSeleccionada.id));
+    }
     setAsignaturaSeleccionada(null);
     setPasoActual(0);
     setPasoRetorno(null);
-    setGuia({
-      presentacion: {
-        profesores: [],
-        idioma: '',
-        aula: '',
-        horario: '',
-        resumen: '',
-        anioAcademico: computeAnioAcademico(),
-      },
-      programa: [],
-      actividades: [],
-      evaluacion: [],
-      convocatoriaExtra: '',
-      horario: {},
-      bibliografia: '',
-      version: GUIA_VERSION,
-    });
+    setGuia(defaultGuia());
   };
 
   const handleEdit = (paso: number) => {

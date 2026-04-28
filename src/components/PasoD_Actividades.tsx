@@ -2,29 +2,15 @@ import type React from 'react';
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import ppeData from '../data/ppe.json';
+import { useDegree } from '../context/DegreeContext';
 
 export interface ActividadSeleccionada {
   nombre: string;
   descripcion: string;
 }
 
-interface ActividadFormativaInfo {
-  id: string;
-  nombre: string;
-  descripcion: string;
-}
-
-// Diccionario id -> { nombre, descripcion }
-const actDict: Record<string, ActividadFormativaInfo> = Object.fromEntries(
-  (
-    ppeData as {
-      actividades_formativas: ActividadFormativaInfo[];
-    }
-  ).actividades_formativas.map((a) => [a.id, a]),
-);
-
 interface Props {
+  /** IDs de actividades formativas de la asignatura (del catálogo del plan) */
   actividadesPosibles: string[];
   value: ActividadSeleccionada[];
   onChange: (value: ActividadSeleccionada[]) => void;
@@ -43,14 +29,18 @@ const PasoD_Actividades: React.FC<Props> = ({
   nombreAsignatura,
   labelSiguiente = 'Siguiente',
 }) => {
+  const { degreePlan } = useDegree();
+  const actDict = Object.fromEntries(
+    degreePlan.trainingActivities.map((a) => [a.id, a]),
+  );
+
   const [touched, setTouched] = useState(false);
-
   const validas = value.length > 0;
-  const seleccionadas = value.map((actividad) => actividad.nombre);
+  const seleccionadas = value.map((a) => a.nombre);
 
-  // Usa el nombre completo como clave interna (útil en PDF/HTML)
   const handleToggle = (id: string) => {
-    const nombreCompleto = actDict[id]?.nombre ?? id;
+    const act = actDict[id];
+    const nombreCompleto = act?.name ?? id;
     if (value.find((a) => a.nombre === nombreCompleto)) {
       onChange(value.filter((a) => a.nombre !== nombreCompleto));
     } else {
@@ -59,11 +49,7 @@ const PasoD_Actividades: React.FC<Props> = ({
   };
 
   const handleDescripcion = (nombreCompleto: string, descripcion: string) => {
-    onChange(
-      value.map((a) =>
-        a.nombre === nombreCompleto ? { ...a, descripcion } : a,
-      ),
-    );
+    onChange(value.map((a) => (a.nombre === nombreCompleto ? { ...a, descripcion } : a)));
   };
 
   const handleNext = () => {
@@ -73,16 +59,12 @@ const PasoD_Actividades: React.FC<Props> = ({
 
   const handleGuardarYSeguir = () => {
     setTouched(true);
-    if (validas && onGuardarYSeguir) {
-      onGuardarYSeguir();
-    }
+    if (validas && onGuardarYSeguir) onGuardarYSeguir();
   };
 
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
-      <h3 className="mb-4 text-xl font-bold text-blue-900">
-        D. Actividades formativas
-      </h3>
+      <h3 className="mb-4 text-xl font-bold text-blue-900">D. Actividades formativas</h3>
       <p className="mb-6 text-gray-600">
         Las actividades formativas posibles asociadas a esta asignatura de{' '}
         <span className="font-semibold text-blue-800">{nombreAsignatura}</span>{' '}
@@ -101,8 +83,8 @@ const PasoD_Actividades: React.FC<Props> = ({
 
         <div className="space-y-3">
           {actividadesPosibles.map((id) => {
-            const info = actDict[id];
-            const nombreCompleto = info?.nombre ?? id;
+            const act = actDict[id];
+            const nombreCompleto = act?.name ?? id;
             const checked = !!value.find((a) => a.nombre === nombreCompleto);
             const actividad = value.find((a) => a.nombre === nombreCompleto);
 
@@ -122,28 +104,26 @@ const PasoD_Actividades: React.FC<Props> = ({
                     onChange={() => handleToggle(id)}
                     className="mt-1 h-5 w-5 rounded border-gray-300 accent-blue-600"
                   />
-
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="text-base font-semibold text-blue-900">
                         {nombreCompleto}
                       </span>
-                      {checked ? (
+                      {checked && (
                         <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-semibold text-white">
                           Seleccionada
                         </span>
-                      ) : null}
+                      )}
                     </div>
-
-                    {info?.descripcion ? (
+                    {act?.description && (
                       <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                        {info.descripcion}
+                        {act.description}
                       </p>
-                    ) : null}
+                    )}
                   </div>
                 </label>
 
-                {checked && actividad ? (
+                {checked && actividad && (
                   <div className="border-t border-blue-100 bg-white/80 p-4 sm:p-5">
                     <div className="mb-2 font-semibold text-blue-700">
                       Describa esta actividad (opcional)
@@ -151,9 +131,7 @@ const PasoD_Actividades: React.FC<Props> = ({
                     <ReactQuill
                       theme="snow"
                       value={actividad.descripcion}
-                      onChange={(desc: string) =>
-                        handleDescripcion(nombreCompleto, desc)
-                      }
+                      onChange={(desc: string) => handleDescripcion(nombreCompleto, desc)}
                       className="bg-white"
                     />
                     <p className="mt-2 text-xs text-gray-500">
@@ -161,19 +139,19 @@ const PasoD_Actividades: React.FC<Props> = ({
                       aplicará la actividad en tu asignatura.
                     </p>
                   </div>
-                ) : null}
+                )}
               </div>
             );
           })}
         </div>
 
-        {touched && !validas ? (
+        {touched && !validas && (
           <div className="mt-3 text-sm font-medium text-red-600">
             Debes seleccionar al menos una actividad formativa para continuar.
           </div>
-        ) : null}
+        )}
 
-        {seleccionadas.length > 0 ? (
+        {seleccionadas.length > 0 && (
           <div className="mt-4 rounded-lg border border-blue-100 bg-white p-3">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-blue-700">
               Selección actual
@@ -189,30 +167,23 @@ const PasoD_Actividades: React.FC<Props> = ({
               ))}
             </div>
           </div>
-        ) : null}
+        )}
       </div>
+
       <div className="flex flex-wrap justify-end gap-3">
-        {onGuardarYSeguir ? (
+        {onGuardarYSeguir && (
           <button
             type="button"
-            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
-              validas
-                ? ''
-                : 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
-            }`}
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${!validas ? 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white' : ''}`}
             onClick={handleGuardarYSeguir}
             disabled={!validas}
           >
             Guardar y seguir desde aquí
           </button>
-        ) : null}
+        )}
         <button
           type="button"
-          className={`rounded-md px-6 py-2 font-semibold text-white ${
-            validas
-              ? 'bg-blue-600 hover:bg-blue-700'
-              : 'cursor-not-allowed bg-gray-300'
-          }`}
+          className={`rounded-md px-6 py-2 font-semibold text-white ${validas ? 'bg-blue-600 hover:bg-blue-700' : 'cursor-not-allowed bg-gray-300'}`}
           onClick={handleNext}
           disabled={!validas}
         >

@@ -2,7 +2,7 @@ import type React from 'react';
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import ppeData from '../data/ppe.json';
+import { useDegree } from '../context/DegreeContext';
 
 export interface EvaluacionSeleccionada {
   tipo: string;
@@ -15,21 +15,6 @@ interface SistemaEvaluacion {
   'ponderacion-minima': string;
   'ponderacion-maxima': string;
 }
-
-interface SEInfo {
-  id: string;
-  nombre: string;
-  descripcion: string;
-}
-
-// Diccionario id -> { nombre, descripcion }
-const seDict: Record<string, SEInfo> = Object.fromEntries(
-  (
-    ppeData as {
-      sistemas_evaluacion: SEInfo[];
-    }
-  ).sistemas_evaluacion.map((s) => [s.id, s]),
-);
 
 interface Props {
   sistemasPosibles: SistemaEvaluacion[];
@@ -52,6 +37,10 @@ const PasoE_Evaluacion: React.FC<Props> = ({
   onGuardarYSeguir,
   labelSiguiente = 'Siguiente',
 }) => {
+  const { degreePlan } = useDegree();
+  const seDict = Object.fromEntries(
+    degreePlan.evaluationSystems.map((s) => [s.id, s]),
+  );
   const [touched, setTouched] = useState(false);
 
   // Suma total de porcentajes
@@ -210,7 +199,7 @@ const PasoE_Evaluacion: React.FC<Props> = ({
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="text-base font-semibold text-blue-900">
-                        {info?.nombre ?? s.tipo}
+                        {info?.name ?? s.tipo}
                       </span>
                       <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
                         {min}% - {max}%
@@ -222,9 +211,9 @@ const PasoE_Evaluacion: React.FC<Props> = ({
                       ) : null}
                     </div>
 
-                    {info?.descripcion ? (
+                    {info?.description ? (
                       <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                        {info.descripcion}
+                        {info.description}
                       </p>
                     ) : null}
                   </div>

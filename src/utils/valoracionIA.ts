@@ -1,10 +1,9 @@
 import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
-import type { AsignaturaProcesada } from '../lib/dataUtils';
-import ppeData from '../data/ppe.json';
+import type { ProcessedSubject } from '../lib/dataUtils';
+import type { DegreeInfo, DegreePlan } from '../types/degree';
 
-const competenciasDict: Record<string, string> = (
-  ppeData as { resultados_aprendizaje: Record<string, string> }
-).resultados_aprendizaje;
+/** @deprecated Usa ProcessedSubject */
+type AsignaturaProcesada = ProcessedSubject;
 
 export interface ValoracionIAResponse {
   success: boolean;
@@ -17,10 +16,18 @@ export interface ValoracionIAResponse {
 export async function enviarGuiaParaValoracion(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ): Promise<ValoracionIAResponse> {
   try {
-    // Organizar toda la información de la guía como JSON
+    const loDict = degreePlan.learningOutcomes;
+    const loLabel = degreeInfo.learningOutcomeLabel;
+
     const guiaCompleta = {
+      degreeId: degreeInfo.id,
+      degreeName: degreeInfo.name,
+      learningOutcomeLabel: loLabel.plural,
+      planSchemaVersion: 2,
       asignatura: {
         nombre: asignatura.nombre,
         modulo: asignatura.modulo,
@@ -28,12 +35,11 @@ export async function enviarGuiaParaValoracion(
         ects: asignatura.ects,
         curso: asignatura.curso,
         semestre: asignatura.semestre,
-        competencias:
-          asignatura.resultados_aprendizaje?.map((codigo) => ({
-            codigo,
-            descripcion:
-              competenciasDict[codigo] || 'Descripción no encontrada',
-          })) || [],
+        [loLabel.plural]:
+          asignatura.resultados_aprendizaje?.map((id) => ({
+            id,
+            descripcion: loDict[id] ?? 'Descripción no encontrada',
+          })) ?? [],
       },
       presentacion: {
         profesores: guia.presentacion.profesores,

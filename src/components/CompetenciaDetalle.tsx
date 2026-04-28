@@ -6,89 +6,72 @@ import {
   faClipboardList,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import data from '../data/ppe.json';
 import BackButton from './BackButton';
 import { generateSlug } from '../utils/stringUtils';
+import { useDegree } from '../context/DegreeContext';
 
 const CompetenciaDetalle: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id, degreeId } = useParams<{ id: string; degreeId: string }>();
+  const { degreePlan, labelLO } = useDegree();
+  const base = `/${degreeId}`;
 
-  // Obtener la descripción de la competencia
-  const descripcion = (
-    data.resultados_aprendizaje as { [key: string]: string }
-  )[id || ''];
+  const descripcion = id ? degreePlan.learningOutcomes[id] : undefined;
+  const labelSingular =
+    labelLO.singular.charAt(0).toUpperCase() + labelLO.singular.slice(1);
 
   if (!descripcion || !id) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50">
         <div className="max-w-md p-8 text-center">
           <h2 className="mb-4 text-2xl font-bold text-gray-800">
-            Resultado de aprendizaje no encontrado
+            {labelSingular} no encontrada
           </h2>
           <p className="mb-6 text-gray-600">
-            No se ha encontrado el resultado de aprendizaje especificado. Puede
-            que la URL sea incorrecta.
+            No se ha encontrado la {labelLO.singular} especificada.
           </p>
           <Link
-            to="/competencias"
+            to={`${base}/competencias`}
             className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
           >
             <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
-            Volver a competencias
+            Volver a {labelLO.plural}
           </Link>
         </div>
       </div>
     );
   }
 
-  // Encontrar todas las asignaturas que incluyen este RA y organizarlas por módulo
-  const asignaturasPorModulo = data.modulos.reduce(
+  const asignaturasPorModulo = degreePlan.modules.reduce(
     (acc, modulo) => {
-      const asignaturasModulo = modulo.materias.flatMap((materia) => {
-        if (!materia.resultados_aprendizaje.includes(id)) {
-          return [];
-        }
-
-        return materia.asignaturas.map((asignatura) => ({
-          ...asignatura,
-          modulo: modulo.nombre,
-          materia: materia.nombre,
+      const list = modulo.subjects.flatMap((subj) => {
+        if (!subj.learningOutcomes.includes(id)) return [];
+        return subj.courses.map((course) => ({
+          nombre: course.name,
+          modulo: modulo.name,
+          materia: subj.name,
+          curso: course.year,
+          ects: course.ects,
         }));
       });
-
-      if (asignaturasModulo.length > 0) {
-        acc[modulo.nombre] = asignaturasModulo;
-      }
-
+      if (list.length > 0) acc[modulo.name] = list;
       return acc;
     },
-    {} as {
-      [key: string]: Array<{
-        nombre: string;
-        modulo: string;
-        materia: string;
-        curso: number;
-        ects: number;
-      }>;
-    },
+    {} as Record<string, { nombre: string; modulo: string; materia: string; curso: number; ects: number }[]>,
   );
 
-  // Aplanar la lista para las estadísticas
   const asignaturasConCompetencia = Object.values(asignaturasPorModulo).flat();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-4 pb-8 pt-20 sm:pb-14 sm:pt-24">
-        {/* Navegación */}
         <div className="mb-4 sm:mb-6">
-          <BackButton to="/competencias" label="Volver a competencias" />
+          <BackButton to={`${base}/competencias`} label={`Volver a ${labelLO.plural}`} />
         </div>
 
-        {/* Cabecera */}
         <div className="mb-8 text-center sm:mb-12">
           <div className="mb-6 inline-block rounded-full bg-blue-100 px-3 py-1.5 text-xs font-semibold text-blue-800 sm:mb-8 sm:px-4 sm:py-2 sm:text-sm">
             <FontAwesomeIcon icon={faClipboardList} className="mr-2" />
-            Resultado de aprendizaje
+            {labelSingular}
           </div>
           <h1 className="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-4xl md:text-5xl">
             {id}
@@ -101,7 +84,7 @@ const CompetenciaDetalle: React.FC = () => {
         {/* Estadísticas */}
         <div className="mb-6 grid grid-cols-1 gap-4 sm:mb-8 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
           <Link
-            to="/asignaturas"
+            to={`${base}/asignaturas`}
             className="group rounded-xl border border-green-200 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:bg-green-50 hover:shadow-md sm:p-6"
           >
             <div className="mb-1 text-xl font-bold text-green-600 sm:mb-2 sm:text-2xl">
@@ -112,7 +95,7 @@ const CompetenciaDetalle: React.FC = () => {
             </div>
           </Link>
           <Link
-            to="/materias"
+            to={`${base}/materias`}
             className="group rounded-xl border border-purple-200 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:bg-purple-50 hover:shadow-md sm:p-6"
           >
             <div className="mb-1 text-xl font-bold text-purple-600 sm:mb-2 sm:text-2xl">
@@ -123,7 +106,7 @@ const CompetenciaDetalle: React.FC = () => {
             </div>
           </Link>
           <Link
-            to="/plan-estudios"
+            to={`${base}/plan-estudios`}
             className="group rounded-xl border border-blue-200 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:bg-blue-50 hover:shadow-md sm:col-span-2 sm:p-6 md:col-span-1"
           >
             <div className="mb-1 text-xl font-bold text-blue-600 sm:mb-2 sm:text-2xl">
@@ -135,7 +118,7 @@ const CompetenciaDetalle: React.FC = () => {
           </Link>
         </div>
 
-        {/* Lista de asignaturas por módulo */}
+        {/* Asignaturas por módulo */}
         <div className="space-y-6 sm:space-y-8">
           {Object.entries(asignaturasPorModulo).map(([modulo, asignaturas]) => (
             <div
@@ -143,14 +126,11 @@ const CompetenciaDetalle: React.FC = () => {
               className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
             >
               <Link
-                to={`/plan-estudios/${generateSlug(modulo)}`}
+                to={`${base}/plan-estudios/${generateSlug(modulo)}`}
                 className="group mb-4 flex items-center sm:mb-6"
               >
                 <h2 className="flex items-center text-lg font-bold text-gray-800 group-hover:text-blue-600 sm:text-xl">
-                  <FontAwesomeIcon
-                    icon={faLayerGroup}
-                    className="mr-2 text-blue-600 group-hover:text-blue-600 sm:mr-3"
-                  />
+                  <FontAwesomeIcon icon={faLayerGroup} className="mr-2 text-blue-600 sm:mr-3" />
                   {modulo}
                 </h2>
                 <FontAwesomeIcon
@@ -158,12 +138,11 @@ const CompetenciaDetalle: React.FC = () => {
                   className="ml-2 transform text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-blue-600"
                 />
               </Link>
-
               <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
-                {asignaturas.map((asignatura, index) => (
+                {asignaturas.map((asignatura) => (
                   <Link
-                    key={index}
-                    to={`/asignaturas/${generateSlug(asignatura.nombre)}`}
+                    key={asignatura.nombre}
+                    to={`${base}/asignaturas/${generateSlug(asignatura.nombre)}`}
                     className="group flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
                   >
                     <h3 className="mb-2 text-sm font-medium text-gray-800 group-hover:text-blue-600 sm:text-base">

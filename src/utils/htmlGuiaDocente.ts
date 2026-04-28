@@ -1,16 +1,18 @@
 import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
-import ppeData from '../data/ppe.json';
+import type { DegreeInfo, DegreePlan } from '../types/degree';
 import logoSVG from '../assets/marca-unav-negro.svg?raw';
-
-const competenciasDict: Record<string, string> = (
-  ppeData as { resultados_aprendizaje: Record<string, string> }
-).resultados_aprendizaje;
 
 export function generarHTMLGuiaDocente(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ): string {
+  const loDict = degreePlan.learningOutcomes;
+  const loLabel = degreeInfo.learningOutcomeLabel;
+  const loSectionTitle =
+    loLabel.plural.charAt(0).toUpperCase() + loLabel.plural.slice(1);
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -69,7 +71,7 @@ export function generarHTMLGuiaDocente(
     <div class="card">
       <h2>Presentación</h2>
       <div class="datos">
-        <div class="dato"><span class="dato-label">Titulación:</span> Grado en Filosofía, Política y Economía (PPE)</div>
+        <div class="dato"><span class="dato-label">Titulación:</span> ${degreeInfo.name}</div>
         <div class="dato"><span class="dato-label">Módulo / Materia:</span> ${
           asignatura.modulo
         } / ${asignatura.materia}</div>
@@ -97,13 +99,13 @@ export function generarHTMLGuiaDocente(
       }</div>
     </div>
     <div class="card">
-      <h2>Competencias</h2>
+      <h2>${loSectionTitle}</h2>
       <div class="competencias-lista">
         ${(asignatura.resultados_aprendizaje || [])
           .map(
-            (codigo: string) =>
-              `<div class="competencia"><span class="competencia-icon">&#10003;</span><span class="competencia-id">${codigo}:</span> ${
-                competenciasDict[codigo] || 'Descripción no encontrada'
+            (id: string) =>
+              `<div class="competencia"><span class="competencia-icon">&#10003;</span><span class="competencia-id">${id}:</span> ${
+                loDict[id] ?? 'Descripción no encontrada'
               }</div>`,
           )
           .join('')}

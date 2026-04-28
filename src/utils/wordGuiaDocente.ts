@@ -9,7 +9,7 @@ import {
 import { saveAs } from 'file-saver';
 import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
-import ppeData from '../data/ppe.json';
+import type { DegreeInfo, DegreePlan } from '../types/degree';
 
 interface HorarioAtencionWord {
   lugar: string;
@@ -20,10 +20,11 @@ interface HorarioAtencionWord {
 function buildWordDocument(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ): Document {
-  const competenciasDict = (
-    ppeData as { resultados_aprendizaje: Record<string, string> }
-  ).resultados_aprendizaje;
+  const loDict = degreePlan.learningOutcomes;
+  const loLabel = degreeInfo.learningOutcomeLabel;
 
   // Función auxiliar para convertir HTML a párrafos (eliminando tags HTML)
   const limpiarHTML = (html: string): string => {
@@ -72,7 +73,7 @@ function buildWordDocument(
         spacing: { line: 240, after: 120 },
       }),
       new Paragraph({
-        text: 'Titulación: Grado en Filosofía, Política y Economía (PPE)',
+        text: `Titulación: ${degreeInfo.name}`,
         spacing: { line: 240, after: 120 },
       }),
       new Paragraph({
@@ -116,18 +117,20 @@ function buildWordDocument(
     ]),
   );
 
-  // Competencias
-  const competenciasContent: Paragraph[] = [];
-  asignatura.resultados_aprendizaje?.forEach((c: string) => {
-    competenciasContent.push(
+  // Resultados de aprendizaje / Competencias
+  const loContent: Paragraph[] = [];
+  asignatura.resultados_aprendizaje?.forEach((id: string) => {
+    loContent.push(
       new Paragraph({
-        text: `${c}: ${competenciasDict[c] || 'Descripción no encontrada'}`,
+        text: `${id}: ${loDict[id] ?? 'Descripción no encontrada'}`,
         spacing: { line: 240, after: 120 },
         bullet: { level: 0 },
       }),
     );
   });
-  sections.push(...crearSeccion('Competencias', competenciasContent));
+  const loSectionTitle =
+    loLabel.plural.charAt(0).toUpperCase() + loLabel.plural.slice(1);
+  sections.push(...crearSeccion(loSectionTitle, loContent));
 
   // Programa
   const programaContent: Paragraph[] = [];
@@ -241,8 +244,10 @@ function buildWordDocument(
 export async function generarWordGuiaDocente(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ) {
-  const doc = buildWordDocument(guia, asignatura);
+  const doc = buildWordDocument(guia, asignatura, degreeInfo, degreePlan);
 
   // Generar y descargar
   const blob = await Packer.toBlob(doc);
@@ -256,7 +261,9 @@ export async function generarWordGuiaDocente(
 export async function getGuiaDocenteWordBase64(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ): Promise<string> {
-  const doc = buildWordDocument(guia, asignatura);
+  const doc = buildWordDocument(guia, asignatura, degreeInfo, degreePlan);
   return Packer.toBase64String(doc);
 }

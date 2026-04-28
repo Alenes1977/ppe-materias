@@ -2,7 +2,8 @@ import type React from 'react';
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import type { AsignaturaProcesada } from '../lib/dataUtils';
+import type { ProcessedSubject } from '../lib/dataUtils';
+import { useDegree } from '../context/DegreeContext';
 
 export interface Profesor {
   nombre: string;
@@ -23,11 +24,9 @@ interface Props {
   onChange: (value: PresentacionData) => void;
   onNext: () => void;
   onGuardarYSeguir?: () => void;
-  asignatura: AsignaturaProcesada;
+  asignatura: ProcessedSubject;
   labelSiguiente?: string;
 }
-
-const TITULACION = 'Grado en Filosofía, Política y Economía (PPE)';
 
 const PasoA_Presentacion: React.FC<Props> = ({
   value,
@@ -37,60 +36,51 @@ const PasoA_Presentacion: React.FC<Props> = ({
   asignatura,
   labelSiguiente = 'Siguiente',
 }) => {
-  const [nuevoProfesor, setNuevoProfesor] = useState<Profesor>({
-    nombre: '',
-    email: '',
-  });
+  const { degreeInfo } = useDegree();
+  const [nuevoProfesor, setNuevoProfesor] = useState<Profesor>({ nombre: '', email: '' });
   const [touched, setTouched] = useState(false);
-
-  // Estado de edición para idioma (campo obligatorio con confirmación)
   const [editandoIdioma, setEditandoIdioma] = useState(value.idioma === '');
   const [idiomaTemp, setIdiomaTemp] = useState(value.idioma);
 
-  // Validación de campos obligatorios
   const camposObligatoriosCompletos =
     value.profesores.length > 0 &&
     value.idioma.trim() !== '' &&
     value.resumen.trim() !== '' &&
     value.resumen.replace(/<(.|\n)*?>/g, '').trim() !== '';
 
-  // Validación de email
   const emailValido = /^\S+@\S+\.\S+$/.test(nuevoProfesor.email);
+
+  const semLabel = () => {
+    if (asignatura.semestre === 'annual') return 'Anual';
+    return asignatura.semestre === 1 ? '1er Semestre' : '2º Semestre';
+  };
 
   const handleAddProfesor = () => {
     if (nuevoProfesor.nombre.trim() && nuevoProfesor.email.trim()) {
-      onChange({
-        ...value,
-        profesores: [...value.profesores, { ...nuevoProfesor }],
-      });
+      onChange({ ...value, profesores: [...value.profesores, { ...nuevoProfesor }] });
       setNuevoProfesor({ nombre: '', email: '' });
     }
   };
 
   const handleRemoveProfesor = (index: number) => {
-    const nuevos = value.profesores.filter((_, i) => i !== index);
-    onChange({ ...value, profesores: nuevos });
+    onChange({ ...value, profesores: value.profesores.filter((_, i) => i !== index) });
   };
 
-  // Confirmar idioma
   const handleConfirmIdioma = () => {
     if (idiomaTemp.trim() !== '') {
       onChange({ ...value, idioma: idiomaTemp });
       setEditandoIdioma(false);
     }
   };
+
   const handleNext = () => {
     setTouched(true);
-    if (camposObligatoriosCompletos) {
-      onNext();
-    }
+    if (camposObligatoriosCompletos) onNext();
   };
 
   const handleGuardarYSeguir = () => {
     setTouched(true);
-    if (camposObligatoriosCompletos && onGuardarYSeguir) {
-      onGuardarYSeguir();
-    }
+    if (camposObligatoriosCompletos && onGuardarYSeguir) onGuardarYSeguir();
   };
 
   return (
@@ -99,77 +89,47 @@ const PasoA_Presentacion: React.FC<Props> = ({
       <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
           <div className="mb-3">
-            <span className="block text-xs font-semibold text-gray-500">
-              Nombre de la Asignatura
-            </span>
-            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
-              {asignatura.nombre}
-            </div>
+            <span className="block text-xs font-semibold text-gray-500">Nombre de la Asignatura</span>
+            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">{asignatura.nombre}</div>
           </div>
           <div className="mb-3">
-            <span className="block text-xs font-semibold text-gray-500">
-              Titulación
-            </span>
-            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
-              {TITULACION}
-            </div>
+            <span className="block text-xs font-semibold text-gray-500">Titulación</span>
+            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">{degreeInfo.name}</div>
           </div>
           <div className="mb-3">
-            <span className="block text-xs font-semibold text-gray-500">
-              Módulo / Materia
-            </span>
+            <span className="block text-xs font-semibold text-gray-500">Módulo / Materia</span>
             <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
               {asignatura.modulo} / {asignatura.materia}
             </div>
           </div>
           <div className="mb-3">
-            <span className="block text-xs font-semibold text-gray-500">
-              ECTS
-            </span>
-            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
-              {asignatura.ects}
-            </div>
+            <span className="block text-xs font-semibold text-gray-500">ECTS</span>
+            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">{asignatura.ects}</div>
           </div>
           <div className="mb-3">
-            <span className="block text-xs font-semibold text-gray-500">
-              Curso
-            </span>
-            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
-              {asignatura.curso}º
-            </div>
+            <span className="block text-xs font-semibold text-gray-500">Curso</span>
+            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">{asignatura.curso}º</div>
           </div>
           <div className="mb-3">
-            <span className="block text-xs font-semibold text-gray-500">
-              Semestre
-            </span>
-            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">
-              {asignatura.semestre === 1
-                ? '1er Semestre'
-                : asignatura.semestre === 2
-                  ? '2º Semestre'
-                  : 'Anual'}
-            </div>
+            <span className="block text-xs font-semibold text-gray-500">Semestre</span>
+            <div className="rounded bg-gray-100 px-3 py-2 text-gray-700">{semLabel()}</div>
           </div>
         </div>
+
         <div>
           <div className="mb-3">
-            <label className="mb-1 block font-medium text-gray-700">
-              {' '}
-              Año académico
-            </label>
+            <label className="mb-1 block font-medium text-gray-700">Año académico</label>
             <input
               type="text"
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
               placeholder="Ej: 2025-2026"
               value={value.anioAcademico}
-              onChange={(e) =>
-                onChange({ ...value, anioAcademico: e.target.value })
-              }
+              onChange={(e) => onChange({ ...value, anioAcademico: e.target.value })}
             />
           </div>
+
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">
-              {' '}
               Profesores encargados <span className="text-red-500">*</span>
             </label>
             <div className="mb-2 flex flex-col gap-2 sm:flex-row">
@@ -178,46 +138,31 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 className="min-w-0 flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
                 placeholder="Nombre del profesor"
                 value={nuevoProfesor.nombre}
-                onChange={(e) =>
-                  setNuevoProfesor({ ...nuevoProfesor, nombre: e.target.value })
-                }
+                onChange={(e) => setNuevoProfesor({ ...nuevoProfesor, nombre: e.target.value })}
               />
               <input
                 type="email"
                 className="min-w-0 flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
                 placeholder="Email"
                 value={nuevoProfesor.email}
-                onChange={(e) =>
-                  setNuevoProfesor({ ...nuevoProfesor, email: e.target.value })
-                }
+                onChange={(e) => setNuevoProfesor({ ...nuevoProfesor, email: e.target.value })}
               />
               <button
                 type="button"
                 className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 sm:w-auto"
                 onClick={handleAddProfesor}
-                disabled={
-                  !nuevoProfesor.nombre.trim() ||
-                  !nuevoProfesor.email.trim() ||
-                  !emailValido
-                }
+                disabled={!nuevoProfesor.nombre.trim() || !nuevoProfesor.email.trim() || !emailValido}
               >
                 {value.profesores.length === 0 ? 'Confirmar' : 'Añadir otro'}
               </button>
             </div>
-            {nuevoProfesor.email && !emailValido ? (
-              <div className="mt-1 text-xs text-red-500">
-                Introduce un email válido.
-              </div>
-            ) : null}
+            {nuevoProfesor.email && !emailValido && (
+              <div className="mt-1 text-xs text-red-500">Introduce un email válido.</div>
+            )}
             <ul className="space-y-1">
               {value.profesores.map((prof, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-center justify-between rounded bg-blue-50 px-3 py-1 text-blue-900"
-                >
-                  <span>
-                    {prof.nombre} ({prof.email})
-                  </span>
+                <li key={idx} className="flex items-center justify-between rounded bg-blue-50 px-3 py-1 text-blue-900">
+                  <span>{prof.nombre} ({prof.email})</span>
                   <button
                     type="button"
                     className="ml-2 text-xs text-red-500 hover:underline"
@@ -228,12 +173,11 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 </li>
               ))}
             </ul>
-            {touched && value.profesores.length === 0 ? (
-              <div className="mt-1 text-xs text-red-500">
-                Debes añadir al menos un profesor.
-              </div>
-            ) : null}
+            {touched && value.profesores.length === 0 && (
+              <div className="mt-1 text-xs text-red-500">Debes añadir al menos un profesor.</div>
+            )}
           </div>
+
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">
               Idioma <span className="text-red-500">*</span>
@@ -246,12 +190,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
                   placeholder="Ejemplo: Español, Inglés..."
                   value={idiomaTemp}
                   onChange={(e) => setIdiomaTemp(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleConfirmIdioma();
-                    }
-                  }}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleConfirmIdioma(); } }}
                 />
                 <button
                   type="button"
@@ -264,27 +203,21 @@ const PasoA_Presentacion: React.FC<Props> = ({
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <div className="flex-1 rounded bg-blue-50 px-3 py-2 text-blue-900">
-                  {value.idioma}
-                </div>
+                <div className="flex-1 rounded bg-blue-50 px-3 py-2 text-blue-900">{value.idioma}</div>
                 <button
                   type="button"
                   className="rounded-md bg-gray-200 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
-                  onClick={() => {
-                    setEditandoIdioma(true);
-                    setIdiomaTemp(value.idioma);
-                  }}
+                  onClick={() => { setEditandoIdioma(true); setIdiomaTemp(value.idioma); }}
                 >
                   Editar
                 </button>
               </div>
             )}
-            {touched && value.idioma.trim() === '' ? (
-              <div className="mt-1 text-xs text-red-500">
-                Campo obligatorio.
-              </div>
-            ) : null}
+            {touched && value.idioma.trim() === '' && (
+              <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
+            )}
           </div>
+
           <div className="mb-3">
             <label className="mb-1 block font-medium text-gray-700">Aula</label>
             <input
@@ -295,10 +228,9 @@ const PasoA_Presentacion: React.FC<Props> = ({
               onChange={(e) => onChange({ ...value, aula: e.target.value })}
             />
           </div>
+
           <div className="mb-3">
-            <label className="mb-1 block font-medium text-gray-700">
-              Horario de clase
-            </label>
+            <label className="mb-1 block font-medium text-gray-700">Horario de clase</label>
             <input
               type="text"
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -309,6 +241,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
           </div>
         </div>
       </div>
+
       <div className="mb-6">
         <label className="mb-1 block font-medium text-gray-700">
           Breve descripción <span className="text-red-500">*</span>
@@ -320,34 +253,25 @@ const PasoA_Presentacion: React.FC<Props> = ({
           className="bg-white text-base"
           placeholder="[describa aquí brevemente la asignatura]"
         />
-        {touched &&
-        (value.resumen.trim() === '' ||
-          value.resumen.replace(/<(.|\n)*?>/g, '').trim() === '') ? (
+        {touched && (value.resumen.trim() === '' || value.resumen.replace(/<(.|\n)*?>/g, '').trim() === '') && (
           <div className="mt-1 text-xs text-red-500">Campo obligatorio.</div>
-        ) : null}
+        )}
       </div>
+
       <div className="flex flex-wrap justify-end gap-3">
-        {onGuardarYSeguir ? (
+        {onGuardarYSeguir && (
           <button
             type="button"
-            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
-              camposObligatoriosCompletos
-                ? ''
-                : 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
-            }`}
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${!camposObligatoriosCompletos ? 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white' : ''}`}
             onClick={handleGuardarYSeguir}
             disabled={!camposObligatoriosCompletos}
           >
             Guardar y seguir desde aquí
           </button>
-        ) : null}
+        )}
         <button
           type="button"
-          className={`rounded-md px-6 py-2 font-semibold text-white ${
-            camposObligatoriosCompletos
-              ? 'bg-blue-600 hover:bg-blue-700'
-              : 'cursor-not-allowed bg-gray-300'
-          }`}
+          className={`rounded-md px-6 py-2 font-semibold text-white ${camposObligatoriosCompletos ? 'bg-blue-600 hover:bg-blue-700' : 'cursor-not-allowed bg-gray-300'}`}
           onClick={handleNext}
           disabled={!camposObligatoriosCompletos}
         >

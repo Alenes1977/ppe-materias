@@ -1,0 +1,15 @@
+{
+  "id": "ppe-2017",
+  "name": "Grado en Filosofía, Política y Economía (Plan 2017)",
+  "shortName": "PPE 2017",
+  "university": "Universidad de Navarra",
+  "anecaVerified": true,
+  "verificationYear": "2017",
+  "primaryColor": "#1e3a8a",
+  "logoSrc": "FaviconUnav_rojo.svg",
+  "learningOutcomeLabel": {
+    "singular": "competencia",
+    "plural": "competencias",
+    "acronym": "C"
+  }
+}

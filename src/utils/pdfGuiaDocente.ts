@@ -2,14 +2,10 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import logoSVG from '../assets/marca-unav-negro.svg?raw';
 import htmlToPdfmake from 'html-to-pdfmake';
-import ppeData from '../data/ppe.json';
 
 import type { GuiaDocenteData } from '../components/AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
-
-const competenciasDict: Record<string, string> = (
-  ppeData as { resultados_aprendizaje: Record<string, string> }
-).resultados_aprendizaje;
+import type { DegreeInfo, DegreePlan } from '../types/degree';
 
 function initVfs(): boolean {
   const vfs =
@@ -30,7 +26,11 @@ function initVfs(): boolean {
 function buildDocDefinition(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ) {
+  const loDict = degreePlan.learningOutcomes;
+  const loLabel = degreeInfo.learningOutcomeLabel;
   const docDefinition = {
     pageMargins: [70, 40, 70, 70],
     content: [
@@ -76,7 +76,7 @@ function buildDocDefinition(
       {
         ul: [
           `Asignatura: ${asignatura.nombre}`,
-          'Titulación: Grado en Filosofía, Política y Economía (PPE)',
+          `Titulación: ${degreeInfo.name}`,
           `Año académico: ${guia.presentacion.anioAcademico}`,
           `Módulo / Materia: ${asignatura.modulo} / ${asignatura.materia}`,
           `ECTS: ${asignatura.ects}`,
@@ -95,12 +95,12 @@ function buildDocDefinition(
         stack: htmlToPdfmake(guia.presentacion.resumen),
         margin: [0, 0, 0, 10],
       },
-      { text: 'Competencias', style: 'sectionHeader' },
+      { text: loLabel.plural.charAt(0).toUpperCase() + loLabel.plural.slice(1), style: 'sectionHeader' },
       {
-        ul: (asignatura.resultados_aprendizaje || []).map((codigo: string) => ({
+        ul: (asignatura.resultados_aprendizaje || []).map((id: string) => ({
           text: [
-            { text: `${codigo}: `, bold: true },
-            { text: competenciasDict[codigo] || 'Descripción no encontrada' },
+            { text: `${id}: `, bold: true },
+            { text: loDict[id] ?? 'Descripción no encontrada' },
           ],
         })),
         margin: [0, 0, 0, 10],
@@ -220,22 +220,28 @@ function buildDocDefinition(
 export function generarPDFGuiaDocente(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ) {
   if (!initVfs()) return;
   pdfMake
-    .createPdf(buildDocDefinition(guia, asignatura))
+    .createPdf(buildDocDefinition(guia, asignatura, degreeInfo, degreePlan))
     .download('guia-docente.pdf');
 }
 
 export function getGuiaDocentePDFBase64(
   guia: GuiaDocenteData,
   asignatura: AsignaturaProcesada,
+  degreeInfo: DegreeInfo,
+  degreePlan: DegreePlan,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     if (!initVfs()) {
       reject(new Error('No se pudo inicializar las fuentes PDF.'));
       return;
     }
-    pdfMake.createPdf(buildDocDefinition(guia, asignatura)).getBase64(resolve);
+    pdfMake
+      .createPdf(buildDocDefinition(guia, asignatura, degreeInfo, degreePlan))
+      .getBase64(resolve);
   });
 }

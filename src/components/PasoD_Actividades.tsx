@@ -49,7 +49,11 @@ const PasoD_Actividades: React.FC<Props> = ({
   };
 
   const handleDescripcion = (nombreCompleto: string, descripcion: string) => {
-    onChange(value.map((a) => (a.nombre === nombreCompleto ? { ...a, descripcion } : a)));
+    onChange(
+      value.map((a) =>
+        a.nombre === nombreCompleto ? { ...a, descripcion } : a,
+      ),
+    );
   };
 
   const handleNext = () => {
@@ -64,7 +68,9 @@ const PasoD_Actividades: React.FC<Props> = ({
 
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
-      <h3 className="mb-4 text-xl font-bold text-blue-900">D. Actividades formativas</h3>
+      <h3 className="mb-4 text-xl font-bold text-blue-900">
+        D. Actividades formativas
+      </h3>
       <p className="mb-6 text-gray-600">
         Las actividades formativas posibles asociadas a esta asignatura de{' '}
         <span className="font-semibold text-blue-800">{nombreAsignatura}</span>{' '}
@@ -131,7 +137,9 @@ const PasoD_Actividades: React.FC<Props> = ({
                     <ReactQuill
                       theme="snow"
                       value={actividad.descripcion}
-                      onChange={(desc: string) => handleDescripcion(nombreCompleto, desc)}
+                      onChange={(desc: string) =>
+                        handleDescripcion(nombreCompleto, desc)
+                      }
                       className="bg-white"
                     />
                     <p className="mt-2 text-xs text-gray-500">
@@ -174,7 +182,11 @@ const PasoD_Actividades: React.FC<Props> = ({
         {onGuardarYSeguir && (
           <button
             type="button"
-            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${!validas ? 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white' : ''}`}
+            className={`rounded-md border border-blue-300 bg-white px-6 py-2 font-semibold text-blue-700 hover:bg-blue-50 ${
+              !validas
+                ? 'cursor-not-allowed border-gray-300 text-gray-400 hover:bg-white'
+                : ''
+            }`}
             onClick={handleGuardarYSeguir}
             disabled={!validas}
           >
@@ -183,7 +195,11 @@ const PasoD_Actividades: React.FC<Props> = ({
         )}
         <button
           type="button"
-          className={`rounded-md px-6 py-2 font-semibold text-white ${validas ? 'bg-blue-600 hover:bg-blue-700' : 'cursor-not-allowed bg-gray-300'}`}
+          className={`rounded-md px-6 py-2 font-semibold text-white ${
+            validas
+              ? 'bg-blue-600 hover:bg-blue-700'
+              : 'cursor-not-allowed bg-gray-300'
+          }`}
           onClick={handleNext}
           disabled={!validas}
         >

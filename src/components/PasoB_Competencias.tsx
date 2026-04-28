@@ -24,9 +24,7 @@ const PasoB_Competencias: React.FC<Props> = ({
 
   return (
     <div className="rounded-lg bg-white p-6 shadow-md">
-      <h3 className="mb-4 text-xl font-bold text-blue-900">
-        B. {titleLabel}
-      </h3>
+      <h3 className="mb-4 text-xl font-bold text-blue-900">B. {titleLabel}</h3>
       {codigos.length === 0 ? (
         <p className="text-gray-500">
           No hay {labelLO.plural} asociadas a esta asignatura.
@@ -38,7 +36,9 @@ const PasoB_Competencias: React.FC<Props> = ({
               key={codigo}
               className="rounded border border-blue-100 bg-blue-50 px-4 py-2"
             >
-              <span className="mr-2 font-semibold text-blue-800">{codigo}:</span>
+              <span className="mr-2 font-semibold text-blue-800">
+                {codigo}:
+              </span>
               <span className="text-gray-800">
                 {loDict[codigo] || <em>Descripción no encontrada</em>}
               </span>

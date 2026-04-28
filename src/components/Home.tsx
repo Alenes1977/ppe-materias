@@ -84,11 +84,17 @@ const HomeWithDegree: React.FC = () => {
             className="group rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/70 hover:text-blue-600 hover:shadow-sm sm:px-4 sm:py-3"
           >
             <div className="mb-3 text-blue-600 sm:mb-4">
-              <FontAwesomeIcon icon={faBookOpen} className="text-2xl sm:text-3xl" />
+              <FontAwesomeIcon
+                icon={faBookOpen}
+                className="text-2xl sm:text-3xl"
+              />
             </div>
-            <h3 className="mb-2 text-base font-semibold sm:text-lg">Asignaturas</h3>
+            <h3 className="mb-2 text-base font-semibold sm:text-lg">
+              Asignaturas
+            </h3>
             <p className="mb-3 text-xs sm:mb-4 sm:text-sm">
-              Listado completo de asignaturas del grado con su información detallada
+              Listado completo de asignaturas del grado con su información
+              detallada
             </p>
           </Link>
 
@@ -97,7 +103,10 @@ const HomeWithDegree: React.FC = () => {
             className="group rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-50/70 hover:text-indigo-600 hover:shadow-sm sm:px-4 sm:py-3"
           >
             <div className="mb-3 text-indigo-600 sm:mb-4">
-              <FontAwesomeIcon icon={faListCheck} className="text-2xl sm:text-3xl" />
+              <FontAwesomeIcon
+                icon={faListCheck}
+                className="text-2xl sm:text-3xl"
+              />
             </div>
             <h3 className="mb-2 text-base font-semibold sm:text-lg">
               {degreeInfo.learningOutcomeLabel.plural.charAt(0).toUpperCase() +
@@ -115,9 +124,14 @@ const HomeWithDegree: React.FC = () => {
             className="group rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50/70 hover:text-teal-600 hover:shadow-sm sm:px-4 sm:py-3"
           >
             <div className="mb-3 text-teal-600 sm:mb-4">
-              <FontAwesomeIcon icon={faGraduationCap} className="text-2xl sm:text-3xl" />
+              <FontAwesomeIcon
+                icon={faGraduationCap}
+                className="text-2xl sm:text-3xl"
+              />
             </div>
-            <h3 className="mb-2 text-base font-semibold sm:text-lg">Plan de Estudios</h3>
+            <h3 className="mb-2 text-base font-semibold sm:text-lg">
+              Plan de Estudios
+            </h3>
             <p className="mb-3 text-xs sm:mb-4 sm:text-sm">
               Estructura completa del grado: módulos, materias y asignaturas
             </p>
@@ -128,9 +142,14 @@ const HomeWithDegree: React.FC = () => {
             className="group rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-200 hover:bg-purple-50/70 hover:text-purple-600 hover:shadow-sm sm:px-4 sm:py-3"
           >
             <div className="mb-3 text-purple-600 sm:mb-4">
-              <FontAwesomeIcon icon={faUniversity} className="text-2xl sm:text-3xl" />
+              <FontAwesomeIcon
+                icon={faUniversity}
+                className="text-2xl sm:text-3xl"
+              />
             </div>
-            <h3 className="mb-2 text-base font-semibold sm:text-lg">Materias</h3>
+            <h3 className="mb-2 text-base font-semibold sm:text-lg">
+              Materias
+            </h3>
             <p className="mb-3 text-xs sm:mb-4 sm:text-sm">
               Distribución y contenido de las materias del Grado
             </p>
@@ -141,11 +160,17 @@ const HomeWithDegree: React.FC = () => {
             className="group rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-500 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-600 hover:shadow-sm sm:px-4 sm:py-3 md:col-span-1"
           >
             <div className="mb-3 text-emerald-600 sm:mb-4">
-              <FontAwesomeIcon icon={faMagicWandSparkles} className="text-2xl sm:text-3xl" />
+              <FontAwesomeIcon
+                icon={faMagicWandSparkles}
+                className="text-2xl sm:text-3xl"
+              />
             </div>
-            <h3 className="mb-2 text-base font-semibold sm:text-lg">Asistente Guía Docente</h3>
+            <h3 className="mb-2 text-base font-semibold sm:text-lg">
+              Asistente Guía Docente
+            </h3>
             <p className="mb-3 text-xs sm:mb-4 sm:text-sm">
-              Crea la guía docente para tu asignatura de forma asistida y oficial.
+              Crea la guía docente para tu asignatura de forma asistida y
+              oficial.
             </p>
           </Link>
         </div>
@@ -213,8 +238,8 @@ const HomeWithDegree: React.FC = () => {
               </h2>
               <p className="mb-4 max-w-2xl text-sm text-gray-300 sm:mb-6 sm:text-base">
                 Toda la información académica disponible en este portal
-                corresponde al plan de estudios oficial verificado por la Agencia
-                Nacional de Evaluación de la Calidad y Acreditación.
+                corresponde al plan de estudios oficial verificado por la
+                Agencia Nacional de Evaluación de la Calidad y Acreditación.
               </p>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:space-x-4">
                 {degreeInfo.verificationYear && (
@@ -278,7 +303,9 @@ const HomeSelector: React.FC = () => {
               <h2 className="mb-1 text-lg font-bold text-gray-800 group-hover:text-blue-700">
                 {entry.meta.name}
               </h2>
-              <p className="mb-4 text-sm text-gray-500">{entry.meta.university}</p>
+              <p className="mb-4 text-sm text-gray-500">
+                {entry.meta.university}
+              </p>
               <span
                 className="mt-auto inline-flex items-center text-sm font-semibold"
                 style={{ color: entry.meta.primaryColor }}

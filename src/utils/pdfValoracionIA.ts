@@ -5,9 +5,11 @@ import type { ValoracionIAResponse } from './valoracionIA';
 
 function initVfs(): boolean {
   const vfs =
-    (pdfFonts as { pdfMake?: { vfs?: unknown }; vfs?: unknown })?.pdfMake?.vfs ||
+    (pdfFonts as { pdfMake?: { vfs?: unknown }; vfs?: unknown })?.pdfMake
+      ?.vfs ||
     (pdfFonts as { pdfMake?: { vfs?: unknown }; vfs?: unknown })?.vfs ||
-    (pdfFonts as { default?: { pdfMake?: { vfs?: unknown } } })?.default?.pdfMake?.vfs;
+    (pdfFonts as { default?: { pdfMake?: { vfs?: unknown } } })?.default
+      ?.pdfMake?.vfs;
 
   if (vfs) {
     (pdfMake as typeof pdfMake & { vfs?: unknown }).vfs = vfs;

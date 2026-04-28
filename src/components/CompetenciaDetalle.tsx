@@ -56,7 +56,16 @@ const CompetenciaDetalle: React.FC = () => {
       if (list.length > 0) acc[modulo.name] = list;
       return acc;
     },
-    {} as Record<string, { nombre: string; modulo: string; materia: string; curso: number; ects: number }[]>,
+    {} as Record<
+      string,
+      {
+        nombre: string;
+        modulo: string;
+        materia: string;
+        curso: number;
+        ects: number;
+      }[]
+    >,
   );
 
   const asignaturasConCompetencia = Object.values(asignaturasPorModulo).flat();
@@ -65,7 +74,10 @@ const CompetenciaDetalle: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-4 pb-8 pt-20 sm:pb-14 sm:pt-24">
         <div className="mb-4 sm:mb-6">
-          <BackButton to={`${base}/competencias`} label={`Volver a ${labelLO.plural}`} />
+          <BackButton
+            to={`${base}/competencias`}
+            label={`Volver a ${labelLO.plural}`}
+          />
         </div>
 
         <div className="mb-8 text-center sm:mb-12">
@@ -130,7 +142,10 @@ const CompetenciaDetalle: React.FC = () => {
                 className="group mb-4 flex items-center sm:mb-6"
               >
                 <h2 className="flex items-center text-lg font-bold text-gray-800 group-hover:text-blue-600 sm:text-xl">
-                  <FontAwesomeIcon icon={faLayerGroup} className="mr-2 text-blue-600 sm:mr-3" />
+                  <FontAwesomeIcon
+                    icon={faLayerGroup}
+                    className="mr-2 text-blue-600 sm:mr-3"
+                  />
                   {modulo}
                 </h2>
                 <FontAwesomeIcon
@@ -142,7 +157,9 @@ const CompetenciaDetalle: React.FC = () => {
                 {asignaturas.map((asignatura) => (
                   <Link
                     key={asignatura.nombre}
-                    to={`${base}/asignaturas/${generateSlug(asignatura.nombre)}`}
+                    to={`${base}/asignaturas/${generateSlug(
+                      asignatura.nombre,
+                    )}`}
                     className="group flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
                   >
                     <h3 className="mb-2 text-sm font-medium text-gray-800 group-hover:text-blue-600 sm:text-base">

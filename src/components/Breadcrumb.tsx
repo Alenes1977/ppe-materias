@@ -83,14 +83,18 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
       }
     } else if (section === 'plan-estudios') {
       if (slug) {
-        items.push({ label: 'Plan de Estudios', path: `${base}/plan-estudios` });
+        items.push({
+          label: 'Plan de Estudios',
+          path: `${base}/plan-estudios`,
+        });
         items.push({ label: findName(slug, 'modulo'), path: null });
       } else {
         items.push({ label: 'Plan de Estudios', path: null });
       }
     } else if (section === 'competencias') {
       const labelPlural = ctx
-        ? ctx.labelLO.plural.charAt(0).toUpperCase() + ctx.labelLO.plural.slice(1)
+        ? ctx.labelLO.plural.charAt(0).toUpperCase() +
+          ctx.labelLO.plural.slice(1)
         : 'Competencias';
       if (slug) {
         items.push({ label: labelPlural, path: `${base}/competencias` });

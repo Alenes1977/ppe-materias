@@ -22,7 +22,10 @@ const semLabel = (s: Semester) => {
 };
 
 const Materia: React.FC = () => {
-  const { materiaSlug, degreeId } = useParams<{ materiaSlug: string; degreeId: string }>();
+  const { materiaSlug, degreeId } = useParams<{
+    materiaSlug: string;
+    degreeId: string;
+  }>();
   const { degreePlan, labelLO } = useDegree();
   const base = `/${degreeId}`;
 
@@ -101,7 +104,10 @@ const Materia: React.FC = () => {
           {/* Asignaturas */}
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:mb-6 sm:text-xl">
-              <FontAwesomeIcon icon={faBookOpen} className="mr-2 text-blue-600 sm:mr-3" />
+              <FontAwesomeIcon
+                icon={faBookOpen}
+                className="mr-2 text-blue-600 sm:mr-3"
+              />
               Asignaturas de la materia
             </h2>
             <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
@@ -122,7 +128,10 @@ const Materia: React.FC = () => {
                       </span>
                     )}
                     <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
-                      <FontAwesomeIcon icon={faGraduationCap} className="mr-1.5" />
+                      <FontAwesomeIcon
+                        icon={faGraduationCap}
+                        className="mr-1.5"
+                      />
                       {course.year}º Curso
                     </span>
                     <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-800">
@@ -142,7 +151,10 @@ const Materia: React.FC = () => {
             {materiaInfo.trainingActivities.length > 0 && (
               <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
                 <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
-                  <FontAwesomeIcon icon={faClipboardList} className="mr-2 text-blue-600 sm:mr-3" />
+                  <FontAwesomeIcon
+                    icon={faClipboardList}
+                    className="mr-2 text-blue-600 sm:mr-3"
+                  />
                   Actividades formativas
                 </h2>
                 <div className="space-y-2">
@@ -165,23 +177,33 @@ const Materia: React.FC = () => {
             {materiaInfo.evaluation.length > 0 && (
               <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
                 <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
-                  <FontAwesomeIcon icon={faChartBar} className="mr-2 text-blue-600 sm:mr-3" />
+                  <FontAwesomeIcon
+                    icon={faChartBar}
+                    className="mr-2 text-blue-600 sm:mr-3"
+                  />
                   Sistema de evaluación
                 </h2>
                 <div className="space-y-3">
                   {materiaInfo.evaluation.map((ev, i) => (
-                    <div key={i} className="rounded-lg border border-gray-100 bg-gray-50 px-4 py-3">
+                    <div
+                      key={i}
+                      className="rounded-lg border border-gray-100 bg-gray-50 px-4 py-3"
+                    >
                       <p className="mb-2 text-sm font-medium text-gray-900">
                         {evalDict[ev.system]?.name ?? ev.system}
                       </p>
                       <div className="flex gap-4">
                         <span className="text-xs text-gray-500">
                           Mín:{' '}
-                          <span className="font-semibold text-blue-700">{ev.minWeight}</span>
+                          <span className="font-semibold text-blue-700">
+                            {ev.minWeight}
+                          </span>
                         </span>
                         <span className="text-xs text-gray-500">
                           Máx:{' '}
-                          <span className="font-semibold text-green-700">{ev.maxWeight}</span>
+                          <span className="font-semibold text-green-700">
+                            {ev.maxWeight}
+                          </span>
                         </span>
                       </div>
                     </div>
@@ -194,8 +216,12 @@ const Materia: React.FC = () => {
             {materiaInfo.learningOutcomes.length > 0 && (
               <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:col-span-2">
                 <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
-                  <FontAwesomeIcon icon={faClipboardList} className="mr-2 text-blue-600 sm:mr-3" />
-                  {labelLO.plural.charAt(0).toUpperCase() + labelLO.plural.slice(1)}
+                  <FontAwesomeIcon
+                    icon={faClipboardList}
+                    className="mr-2 text-blue-600 sm:mr-3"
+                  />
+                  {labelLO.plural.charAt(0).toUpperCase() +
+                    labelLO.plural.slice(1)}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {materiaInfo.learningOutcomes.map((loId) => (

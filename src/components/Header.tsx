@@ -2,7 +2,11 @@ import { type FC, useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { PRIMARY_BLUE } from '../constants/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faTimes,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import Breadcrumb from './Breadcrumb';
 import { DegreeContext } from '../context/DegreeContext';
 import { DEGREES } from '../data/degrees';
@@ -220,7 +224,11 @@ const Header: FC = () => {
                       ? 'bg-blue-50 font-semibold'
                       : 'border border-gray-200'
                   }`}
-                  style={{ color: isActive('asignaturas') ? PRIMARY_BLUE : 'rgba(156,163,175,1)' }}
+                  style={{
+                    color: isActive('asignaturas')
+                      ? PRIMARY_BLUE
+                      : 'rgba(156,163,175,1)',
+                  }}
                 >
                   Asignaturas
                 </a>
@@ -232,7 +240,11 @@ const Header: FC = () => {
                       ? 'bg-blue-50 font-semibold'
                       : 'border border-gray-200'
                   }`}
-                  style={{ color: isActive('plan-estudios') ? PRIMARY_BLUE : 'rgba(156,163,175,1)' }}
+                  style={{
+                    color: isActive('plan-estudios')
+                      ? PRIMARY_BLUE
+                      : 'rgba(156,163,175,1)',
+                  }}
                 >
                   Plan de Estudios
                 </a>
@@ -244,7 +256,11 @@ const Header: FC = () => {
                       ? 'bg-blue-50 font-semibold'
                       : 'border border-gray-200'
                   }`}
-                  style={{ color: isActive('competencias') ? PRIMARY_BLUE : 'rgba(156,163,175,1)' }}
+                  style={{
+                    color: isActive('competencias')
+                      ? PRIMARY_BLUE
+                      : 'rgba(156,163,175,1)',
+                  }}
                 >
                   {labelCompetencias}
                 </a>

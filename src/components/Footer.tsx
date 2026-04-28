@@ -23,7 +23,9 @@ const Footer: React.FC = () => {
 
       <div className="flex items-center space-x-3">
         <div className="flex flex-col items-center md:items-end">
-          <span className="flex h-8 items-center font-bold md:h-10">{label}</span>
+          <span className="flex h-8 items-center font-bold md:h-10">
+            {label}
+          </span>
         </div>
       </div>
 

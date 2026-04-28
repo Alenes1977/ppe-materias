@@ -33,7 +33,7 @@ const Materias = () => {
                 }
                 return acc;
               },
-              [] as { curso: number; asignaturas: (typeof subj.courses) }[],
+              [] as { curso: number; asignaturas: typeof subj.courses }[],
             )
             .sort((a, b) => a.curso - b.curso);
           return { ...subj, totalECTS, asignaturasPorCurso };
@@ -101,33 +101,40 @@ const Materias = () => {
                       {materia.name}
                     </h3>
                     <div className="mt-auto space-y-3">
-                      {materia.asignaturasPorCurso.map(({ curso, asignaturas }) => (
-                        <div key={curso}>
-                          <div className="mb-1.5 flex items-center text-xs text-gray-500 sm:mb-2">
-                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-1.5" />
-                            {curso}º Curso
+                      {materia.asignaturasPorCurso.map(
+                        ({ curso, asignaturas }) => (
+                          <div key={curso}>
+                            <div className="mb-1.5 flex items-center text-xs text-gray-500 sm:mb-2">
+                              <FontAwesomeIcon
+                                icon={faCalendarAlt}
+                                className="mr-1.5"
+                              />
+                              {curso}º Curso
+                            </div>
+                            <ul className="space-y-1">
+                              {asignaturas.map((asig) => (
+                                <li key={asig.name}>
+                                  <div
+                                    className="flex items-center rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-xs text-gray-700"
+                                    onClick={(e) => e.preventDefault()}
+                                  >
+                                    <FontAwesomeIcon
+                                      icon={faBook}
+                                      className="mr-2 shrink-0 text-blue-400"
+                                    />
+                                    <span className="truncate">
+                                      {asig.name}
+                                    </span>
+                                    <span className="ml-auto shrink-0 text-gray-400">
+                                      {asig.ects}cr
+                                    </span>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
-                          <ul className="space-y-1">
-                            {asignaturas.map((asig) => (
-                              <li key={asig.name}>
-                                <div
-                                  className="flex items-center rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-xs text-gray-700"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  <FontAwesomeIcon
-                                    icon={faBook}
-                                    className="mr-2 shrink-0 text-blue-400"
-                                  />
-                                  <span className="truncate">{asig.name}</span>
-                                  <span className="ml-auto shrink-0 text-gray-400">
-                                    {asig.ects}cr
-                                  </span>
-                                </div>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                        ),
+                      )}
                     </div>
                   </Link>
                 ))}

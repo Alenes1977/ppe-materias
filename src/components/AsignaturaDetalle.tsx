@@ -22,7 +22,10 @@ const semLabel = (s: Semester) => {
 };
 
 const AsignaturaDetalle: React.FC = () => {
-  const { nombre, degreeId } = useParams<{ nombre: string; degreeId: string }>();
+  const { nombre, degreeId } = useParams<{
+    nombre: string;
+    degreeId: string;
+  }>();
   const { degreePlan, labelLO } = useDegree();
   const base = `/${degreeId}`;
 
@@ -142,7 +145,10 @@ const AsignaturaDetalle: React.FC = () => {
             {/* Ubicación */}
             <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
               <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
-                <FontAwesomeIcon icon={faBuilding} className="mr-3 text-blue-600" />
+                <FontAwesomeIcon
+                  icon={faBuilding}
+                  className="mr-3 text-blue-600"
+                />
                 Ubicación en el Plan de Estudios
               </h2>
               <div className="space-y-4">
@@ -170,8 +176,12 @@ const AsignaturaDetalle: React.FC = () => {
             {/* Learning outcomes */}
             <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
               <h2 className="mb-1 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
-                <FontAwesomeIcon icon={faClipboardList} className="mr-3 text-blue-600" />
-                {labelLO.plural.charAt(0).toUpperCase() + labelLO.plural.slice(1)}
+                <FontAwesomeIcon
+                  icon={faClipboardList}
+                  className="mr-3 text-blue-600"
+                />
+                {labelLO.plural.charAt(0).toUpperCase() +
+                  labelLO.plural.slice(1)}
               </h2>
               <p className="mb-4 text-xs text-gray-500 sm:mb-5">
                 De la materia:{' '}
@@ -210,7 +220,10 @@ const AsignaturaDetalle: React.FC = () => {
           {/* Actividades formativas */}
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
-              <FontAwesomeIcon icon={faBookOpen} className="mr-3 text-blue-600" />
+              <FontAwesomeIcon
+                icon={faBookOpen}
+                className="mr-3 text-blue-600"
+              />
               Actividades Formativas
             </h2>
             {asignaturaInfo.actividadesFormativas.length > 0 ? (
@@ -244,7 +257,10 @@ const AsignaturaDetalle: React.FC = () => {
           {/* Evaluación */}
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
-              <FontAwesomeIcon icon={faChartBar} className="mr-3 text-blue-600" />
+              <FontAwesomeIcon
+                icon={faChartBar}
+                className="mr-3 text-blue-600"
+              />
               Sistema de Evaluación
             </h2>
             {asignaturaInfo.evaluacion.length > 0 ? (

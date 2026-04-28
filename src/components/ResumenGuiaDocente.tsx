@@ -220,7 +220,7 @@ const ResumenGuiaDocente: FC<Props> = ({
       {/* Resultados de aprendizaje / Competencias */}
       <section className="mb-6">
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-blue-700 capitalize">
+          <h3 className="text-lg font-bold capitalize text-blue-700">
             {labelLO.plural}
           </h3>
           {!modoPrevia && (
@@ -236,9 +236,7 @@ const ResumenGuiaDocente: FC<Props> = ({
           {asignatura.resultados_aprendizaje?.map((c: string, i: number) => (
             <li key={i}>
               <span className="font-bold">{c}:</span>{' '}
-              <span>
-                {loDict[c] || <em>Descripción no encontrada</em>}
-              </span>
+              <span>{loDict[c] || <em>Descripción no encontrada</em>}</span>
             </li>
           ))}
         </ul>

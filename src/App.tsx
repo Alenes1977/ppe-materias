@@ -49,26 +49,56 @@ const App: FC = () => {
             <Route path="/" element={<RootRedirect />} />
 
             {/* Layout por grado: provee DegreeContext a todas las subrutas */}
-            <Route path="/:degreeId" element={<DegreeLayout><Navigate to="inicio" replace /></DegreeLayout>} />
-            <Route path="/:degreeId/*" element={
-              <DegreeLayout>
-                <Routes>
-                  <Route path="inicio" element={<Home />} />
-                  <Route path="asignaturas" element={<Asignaturas />} />
-                  <Route path="asignaturas/:nombre" element={<AsignaturaDetalle />} />
-                  <Route path="plan-estudios" element={<PlanEstudios />} />
-                  <Route path="plan-estudios/:moduloSlug" element={<Modulo />} />
-                  <Route path="materias" element={<Materias />} />
-                  <Route path="materias/:materiaSlug" element={<Materia />} />
-                  <Route path="competencias" element={<Competencias />} />
-                  <Route path="competencias/:id" element={<CompetenciaDetalle />} />
-                  <Route path="asistente-guia-docente" element={<AsistenteGuiaDocente />} />
-                  {/* Compatibilidad con rutas antiguas sin prefijo de grado */}
-                  <Route path="modulos" element={<Navigate to="../plan-estudios" replace />} />
-                  <Route path="modulos/:moduloSlug" element={<Navigate to="../plan-estudios/:moduloSlug" replace />} />
-                </Routes>
-              </DegreeLayout>
-            } />
+            <Route
+              path="/:degreeId"
+              element={
+                <DegreeLayout>
+                  <Navigate to="inicio" replace />
+                </DegreeLayout>
+              }
+            />
+            <Route
+              path="/:degreeId/*"
+              element={
+                <DegreeLayout>
+                  <Routes>
+                    <Route path="inicio" element={<Home />} />
+                    <Route path="asignaturas" element={<Asignaturas />} />
+                    <Route
+                      path="asignaturas/:nombre"
+                      element={<AsignaturaDetalle />}
+                    />
+                    <Route path="plan-estudios" element={<PlanEstudios />} />
+                    <Route
+                      path="plan-estudios/:moduloSlug"
+                      element={<Modulo />}
+                    />
+                    <Route path="materias" element={<Materias />} />
+                    <Route path="materias/:materiaSlug" element={<Materia />} />
+                    <Route path="competencias" element={<Competencias />} />
+                    <Route
+                      path="competencias/:id"
+                      element={<CompetenciaDetalle />}
+                    />
+                    <Route
+                      path="asistente-guia-docente"
+                      element={<AsistenteGuiaDocente />}
+                    />
+                    {/* Compatibilidad con rutas antiguas sin prefijo de grado */}
+                    <Route
+                      path="modulos"
+                      element={<Navigate to="../plan-estudios" replace />}
+                    />
+                    <Route
+                      path="modulos/:moduloSlug"
+                      element={
+                        <Navigate to="../plan-estudios/:moduloSlug" replace />
+                      }
+                    />
+                  </Routes>
+                </DegreeLayout>
+              }
+            />
           </Routes>
         </main>
         <Footer />

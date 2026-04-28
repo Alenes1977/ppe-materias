@@ -15,7 +15,10 @@ import { useDegree } from '../context/DegreeContext';
 import type { Semester } from '../types/degree';
 
 const Modulo: FC = () => {
-  const { moduloSlug, degreeId } = useParams<{ moduloSlug: string; degreeId: string }>();
+  const { moduloSlug, degreeId } = useParams<{
+    moduloSlug: string;
+    degreeId: string;
+  }>();
   const { degreePlan } = useDegree();
   const base = `/${degreeId}`;
 
@@ -107,7 +110,10 @@ const Modulo: FC = () => {
                       {materia.ects} ECTS
                     </span>
                     <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-800 sm:px-4 sm:text-sm">
-                      <FontAwesomeIcon icon={faChalkboardTeacher} className="mr-2" />
+                      <FontAwesomeIcon
+                        icon={faChalkboardTeacher}
+                        className="mr-2"
+                      />
                       {materia.courses.length} asignaturas
                     </span>
                   </div>
@@ -135,7 +141,10 @@ const Modulo: FC = () => {
                       </div>
                       <div className="mt-auto flex flex-wrap gap-1.5">
                         <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
-                          <FontAwesomeIcon icon={faCalendarAlt} className="mr-1" />
+                          <FontAwesomeIcon
+                            icon={faCalendarAlt}
+                            className="mr-1"
+                          />
                           {course.year}º curso
                         </span>
                         <span className="inline-flex items-center rounded-full bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-600">

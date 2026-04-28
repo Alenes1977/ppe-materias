@@ -77,7 +77,11 @@ const Asignaturas: FC = () => {
     const maxCurso = Math.max(...filtradas.map((a) => a.curso), 1);
     const organizadas = new Map<
       number,
-      { semestre1: AsignaturaItem[]; semestre2: AsignaturaItem[]; anual: AsignaturaItem[] }
+      {
+        semestre1: AsignaturaItem[];
+        semestre2: AsignaturaItem[];
+        anual: AsignaturaItem[];
+      }
     >();
 
     for (let curso = 1; curso <= maxCurso; curso++) {
@@ -165,19 +169,25 @@ const Asignaturas: FC = () => {
 
         <div className="mb-6 flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:mb-8 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-medium text-gray-700 sm:text-sm">Leyenda:</span>
+            <span className="text-xs font-medium text-gray-700 sm:text-sm">
+              Leyenda:
+            </span>
             <div className="flex gap-3">
               <div className="flex flex-col gap-1">
                 <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
                   Módulo
                 </span>
-                <span className="text-xs text-gray-500">Pulse para ver el detalle</span>
+                <span className="text-xs text-gray-500">
+                  Pulse para ver el detalle
+                </span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
                   Materia
                 </span>
-                <span className="text-xs text-gray-500">Pulse para ver el detalle</span>
+                <span className="text-xs text-gray-500">
+                  Pulse para ver el detalle
+                </span>
               </div>
             </div>
           </div>
@@ -204,33 +214,46 @@ const Asignaturas: FC = () => {
           </div>
         </div>
 
-        {Array.from(asignaturasOrganizadas.entries()).map(([curso, cursoData]) => {
-          const all = [...cursoData.anual, ...cursoData.semestre1, ...cursoData.semestre2];
-          if (all.length === 0) return null;
+        {Array.from(asignaturasOrganizadas.entries()).map(
+          ([curso, cursoData]) => {
+            const all = [
+              ...cursoData.anual,
+              ...cursoData.semestre1,
+              ...cursoData.semestre2,
+            ];
+            if (all.length === 0) return null;
 
-          return (
-            <div key={curso} className="mb-6 sm:mb-8">
-              <div className="mb-3 flex items-center sm:mb-4">
-                <h2 className="text-lg font-bold text-gray-800 sm:text-xl">
-                  {curso}º Curso
-                </h2>
-                <div className="ml-4 h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent" />
+            return (
+              <div key={curso} className="mb-6 sm:mb-8">
+                <div className="mb-3 flex items-center sm:mb-4">
+                  <h2 className="text-lg font-bold text-gray-800 sm:text-xl">
+                    {curso}º Curso
+                  </h2>
+                  <div className="ml-4 h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent" />
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+                  {[
+                    ...cursoData.anual,
+                    ...cursoData.semestre1,
+                    ...cursoData.semestre2,
+                  ]
+                    .sort((a, b) => {
+                      if (a.semestre === 'annual') return -1;
+                      if (b.semestre === 'annual') return 1;
+                      return (a.semestre as number) - (b.semestre as number);
+                    })
+                    .map(renderAsignatura)}
+                </div>
               </div>
-              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
-                {[...cursoData.anual, ...cursoData.semestre1, ...cursoData.semestre2]
-                  .sort((a, b) => {
-                    if (a.semestre === 'annual') return -1;
-                    if (b.semestre === 'annual') return 1;
-                    return (a.semestre as number) - (b.semestre as number);
-                  })
-                  .map(renderAsignatura)}
-              </div>
-            </div>
-          );
-        })}
+            );
+          },
+        )}
 
         {Array.from(asignaturasOrganizadas.values()).every(
-          (d) => d.semestre1.length === 0 && d.semestre2.length === 0 && d.anual.length === 0,
+          (d) =>
+            d.semestre1.length === 0 &&
+            d.semestre2.length === 0 &&
+            d.anual.length === 0,
         ) && (
           <div className="mt-8 rounded-xl bg-white p-6 text-center shadow-sm sm:p-8">
             <div className="mb-3 text-3xl sm:mb-4 sm:text-4xl">🔍</div>

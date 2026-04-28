@@ -9,7 +9,8 @@ import type { DegreeInfo, DegreePlan } from '../types/degree';
 
 function initVfs(): boolean {
   const vfs =
-    (pdfFonts as { default?: { pdfMake?: { vfs?: unknown } } })?.default?.pdfMake?.vfs ||
+    (pdfFonts as { default?: { pdfMake?: { vfs?: unknown } } })?.default
+      ?.pdfMake?.vfs ||
     (pdfFonts as { pdfMake?: { vfs?: unknown } })?.pdfMake?.vfs ||
     (pdfFonts as { default?: unknown })?.default ||
     pdfFonts;
@@ -95,7 +96,10 @@ function buildDocDefinition(
         stack: htmlToPdfmake(guia.presentacion.resumen),
         margin: [0, 0, 0, 10],
       },
-      { text: loLabel.plural.charAt(0).toUpperCase() + loLabel.plural.slice(1), style: 'sectionHeader' },
+      {
+        text: loLabel.plural.charAt(0).toUpperCase() + loLabel.plural.slice(1),
+        style: 'sectionHeader',
+      },
       {
         ul: (asignatura.resultados_aprendizaje || []).map((id: string) => ({
           text: [

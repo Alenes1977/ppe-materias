@@ -71,7 +71,9 @@ export function generarHTMLGuiaDocente(
     <div class="card">
       <h2>Presentación</h2>
       <div class="datos">
-        <div class="dato"><span class="dato-label">Titulación:</span> ${degreeInfo.name}</div>
+        <div class="dato"><span class="dato-label">Titulación:</span> ${
+          degreeInfo.name
+        }</div>
         <div class="dato"><span class="dato-label">Módulo / Materia:</span> ${
           asignatura.modulo
         } / ${asignatura.materia}</div>

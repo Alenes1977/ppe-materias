@@ -47,7 +47,8 @@ const PlanEstudios: React.FC = () => {
           </h1>
           <p className="mx-auto max-w-3xl text-sm text-gray-600 sm:text-base md:text-lg">
             Explora la estructura completa del {degreeInfo.name}. Conoce los
-            módulos, materias y asignaturas que componen este programa formativo.
+            módulos, materias y asignaturas que componen este programa
+            formativo.
           </p>
         </div>
 
@@ -55,7 +56,10 @@ const PlanEstudios: React.FC = () => {
         <div className="mb-8 grid gap-4 sm:mb-12 sm:gap-6 md:grid-cols-2">
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h3 className="mb-3 text-lg font-semibold text-gray-800 sm:mb-4 sm:text-xl">
-              <FontAwesomeIcon icon={faUniversity} className="mr-2 text-blue-600 sm:mr-3" />
+              <FontAwesomeIcon
+                icon={faUniversity}
+                className="mr-2 text-blue-600 sm:mr-3"
+              />
               Información Básica
             </h3>
             <ul className="space-y-3 sm:space-y-4">
@@ -94,7 +98,10 @@ const PlanEstudios: React.FC = () => {
 
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h3 className="mb-3 text-lg font-semibold text-gray-800 sm:mb-4 sm:text-xl">
-              <FontAwesomeIcon icon={faLayerGroup} className="mr-2 text-blue-600 sm:mr-3" />
+              <FontAwesomeIcon
+                icon={faLayerGroup}
+                className="mr-2 text-blue-600 sm:mr-3"
+              />
               Distribución de Créditos
             </h3>
             <div className="space-y-3 sm:space-y-4">
@@ -171,7 +178,9 @@ const PlanEstudios: React.FC = () => {
                     className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 transition-all hover:bg-purple-50 hover:text-purple-700 sm:px-4"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <span className="text-xs text-gray-600 sm:text-sm">Materias</span>
+                    <span className="text-xs text-gray-600 sm:text-sm">
+                      Materias
+                    </span>
                     <div className="flex items-center">
                       <span className="text-sm font-medium text-gray-800">
                         {modulo.subjects.length}
@@ -187,10 +196,15 @@ const PlanEstudios: React.FC = () => {
                     className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 transition-all hover:bg-green-50 hover:text-green-700 sm:px-4"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <span className="text-xs text-gray-600 sm:text-sm">Asignaturas</span>
+                    <span className="text-xs text-gray-600 sm:text-sm">
+                      Asignaturas
+                    </span>
                     <div className="flex items-center">
                       <span className="text-sm font-medium text-gray-800">
-                        {modulo.subjects.reduce((t, s) => t + s.courses.length, 0)}
+                        {modulo.subjects.reduce(
+                          (t, s) => t + s.courses.length,
+                          0,
+                        )}
                       </span>
                       <FontAwesomeIcon
                         icon={faChevronRight}
@@ -248,7 +262,10 @@ const PlanEstudios: React.FC = () => {
                     .sort((a, b) => a.name.localeCompare(b.name));
 
                   return (
-                    <div key={semestre} className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+                    <div
+                      key={semestre}
+                      className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
+                    >
                       <h4 className="mb-3 text-base font-semibold text-gray-800 sm:mb-4 sm:text-lg">
                         {semestre === 1 ? 'Primer' : 'Segundo'} Semestre
                       </h4>
@@ -257,7 +274,9 @@ const PlanEstudios: React.FC = () => {
                           {filtradas.map((c) => (
                             <li key={c.name}>
                               <Link
-                                to={`${base}/asignaturas/${generateSlug(c.name)}`}
+                                to={`${base}/asignaturas/${generateSlug(
+                                  c.name,
+                                )}`}
                                 className="group flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
                               >
                                 <div className="flex min-w-0 items-center">
@@ -277,7 +296,9 @@ const PlanEstudios: React.FC = () => {
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-sm text-gray-500">Sin asignaturas.</p>
+                        <p className="text-sm text-gray-500">
+                          Sin asignaturas.
+                        </p>
                       )}
                     </div>
                   );

@@ -87,7 +87,10 @@ const Competencias: FC = () => {
         <div className="mb-8 grid grid-cols-1 gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-2 flex items-center justify-between">
-              <FontAwesomeIcon icon={faClipboardList} className="text-xl text-blue-600 sm:text-2xl" />
+              <FontAwesomeIcon
+                icon={faClipboardList}
+                className="text-xl text-blue-600 sm:text-2xl"
+              />
               <span className="rounded-full bg-blue-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
                 {stats.total}
               </span>
@@ -102,7 +105,10 @@ const Competencias: FC = () => {
 
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-2 flex items-center justify-between">
-              <FontAwesomeIcon icon={faBookOpen} className="text-xl text-indigo-600 sm:text-2xl" />
+              <FontAwesomeIcon
+                icon={faBookOpen}
+                className="text-xl text-indigo-600 sm:text-2xl"
+              />
               <span className="rounded-full bg-indigo-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
                 {stats.totalCourses}
               </span>
@@ -117,7 +123,10 @@ const Competencias: FC = () => {
 
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-2 flex items-center justify-between">
-              <FontAwesomeIcon icon={faLayerGroup} className="text-xl text-teal-600 sm:text-2xl" />
+              <FontAwesomeIcon
+                icon={faLayerGroup}
+                className="text-xl text-teal-600 sm:text-2xl"
+              />
               <span className="rounded-full bg-teal-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
                 {stats.media.toFixed(1)}
               </span>

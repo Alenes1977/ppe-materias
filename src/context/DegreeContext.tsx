@@ -1,8 +1,18 @@
-import { createContext, useContext, useMemo, type FC, type ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useMemo,
+  type FC,
+  type ReactNode,
+} from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { DEGREES, getDegree } from '../data/degrees';
 import { getSubjectsFromPlan } from '../lib/dataUtils';
-import type { DegreeInfo, DegreePlan, LearningOutcomeLabel } from '../types/degree';
+import type {
+  DegreeInfo,
+  DegreePlan,
+  LearningOutcomeLabel,
+} from '../types/degree';
 import type { ProcessedSubject } from '../lib/dataUtils';
 
 const LAST_DEGREE_KEY = 'lastDegreeId';

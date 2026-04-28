@@ -1,0 +1,839 @@
+{
+  "schemaVersion": 1,
+  "learningOutcomes": {
+    "CB1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio.",
+    "CB2": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio.",
+    "CB3": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética.",
+    "CB4": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado.",
+    "CB5": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía.",
+    "CG1": "Tener una actitud reflexiva y crítica que permita identificar supuestos y evaluar situaciones en términos de evidencia, con un punto de vista creativo, constructivo y orientado a la resolución de problemas relacionados con la gestión y dirección empresarial.",
+    "CG2": "Alcanzar el nivel de usuario avanzado en el uso de las TICs necesarias para la gestión.",
+    "CG3": "Organizar y planificar el trabajo propio; saber gestionar el tiempo, con habilidad para la organización y temporalización de las tareas propias de la gestión y dirección empresarial.",
+    "CG4": "Buscar, analizar y sintetizar información proveniente de fuentes diversas dentro del ámbito de la gestión y dirección de empresas.",
+    "CG5": "Trabajar e integrarse, dentro del ámbito de la gestión y dirección de empresas, en equipos multidisciplinares y contextos multiculturales sin perder autonomía.",
+    "CG6": "Generar entornos de trabajo fundados en la confianza, honradez, lealtad, compromiso y respeto, observando el principio de confidencialidad por razón del ejercicio profesional.",
+    "CT1": "Comprender que es propio del espíritu universitario afrontar de manera crítica y reflexiva el estudio de la propia disciplina en su conexión con el resto de los saberes.",
+    "CT2": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas.",
+    "CT3": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la propia disciplina.",
+    "CE1": "Comprender la estructura y el funcionamiento de la empresa a nivel estratégico, táctico y operativo, los mecanismos de cooperación interfuncional y sus interacciones con el entorno en un contexto global.",
+    "CE2": "Facilitar y coordinar el trabajo y la cooperación interfuncional, actuando como puente de comunicación entre distintas redes de trabajo interrelacionadas.",
+    "CE3": "Identificar los rasgos básicos de una cultura organizacional y reflejarlos en el trabajo diario.",
+    "CE4": "Identificar y gestionar eficazmente los foros y relaciones clave para el desarrollo de la actividad de la empresa.",
+    "CE5": "Utilizar eficazmente los canales de comunicación interna y externa de la organización.",
+    "CE6": "Obtener, catalogar y archivar la información necesaria y relevante utilizando fuentes diversas y fiables, asegurando su localización, aplicando los aspectos legales y éticos, y preservando la confidencialidad de los datos.",
+    "CE7": "Elaborar y presentar la información en el formato y soporte adecuado que permita su uso y transferencia.",
+    "CE8": "Gestionar eficazmente los documentos asociados a los sistemas de gestión y procesos de la organización conforme a los principios de la calidad total.",
+    "CE9": "Saber aplicar los principios contables y normas de valoración del Plan General Contable en cualquier tipo de organización y analizar, o preparar para su posterior análisis, la información contable y financiera relevante que de ahí se deriva.",
+    "CE10": "Interpretar los indicadores macroeconómicos y comprender el funcionamiento de los mercados para poder relacionar su comportamiento con la actividad de la organización en un contexto global.",
+    "CE11": "Comprender los fundamentos del Derecho y la legislación vigente en relación a la actividad propia de las organizaciones, de modo que se puedan interpretar los textos jurídicos de los ámbitos laboral, fiscal y mercantil.",
+    "CE12": "Conocer las instituciones y trámites relacionados con actos de comercio y ser capaz de localizar las fuentes donde buscar la solución a cuestiones jurídicas concretas en contextos nacionales e internacionales.",
+    "CE13": "Conocer y aplicar los soportes que ofrecen las nuevas tecnologías como medio para expandir la actividad de la organización, conociendo los sistemas de seguridad y la legislación vigente en relación con la actividad comercial y los negocios electrónicos.",
+    "CE14": "Interactuar eficazmente con otras personas para alcanzar objetivos profesionales en contextos empresariales nacionales e internacionales.",
+    "CE15": "Identificar y afrontar los conflictos que se originan en el entorno de trabajo mediante la negociación con el fin de que las partes implicadas adquieran una visión más objetiva y global de la situación y descubran o creen elementos que produzcan valor añadido a la relación.",
+    "CE16": "Comunicarse en al menos dos idiomas más, diferentes a la lengua materna, alcanzando un nivel avanzado en uno de ellos y un nivel intermedio en el otro, según los criterios del Marco Común Europeo de Referencia para las lenguas."
+  },
+  "trainingActivities": [
+    {
+      "id": "AF1 Clases presenciales teóricas y/o prácticas",
+      "name": "AF1 Clases presenciales teóricas y/o prácticas",
+      "description": "Sesiones en el aula, impartidas por el profesor, sobre los contenidos previstos en la guía docente de la asignatura."
+    },
+    {
+      "id": "AF2 Trabajo individual o en grupo y estudio personal",
+      "name": "AF2 Trabajo individual o en grupo y estudio personal",
+      "description": "Realización de trabajos por parte de los estudiantes, fuera del aula, para la aplicación, desarrollo y profundización de los conocimientos, habilidades y competencias de la asignatura, así como la dedicación al estudio personal."
+    },
+    {
+      "id": "AF3 Tutorías",
+      "name": "AF3 Tutorías",
+      "description": "Asesoramiento personalizado del estudiante por parte de un profesor tutor, encargado de orientar y aconsejar en la adquisición de los conocimientos, habilidades y competencias del Grado."
+    },
+    {
+      "id": "AF4 Presentaciones y defensas orales",
+      "name": "AF4 Presentaciones y defensas orales",
+      "description": "Sesión coordinada por uno o varios profesores, centrada en la defensa oral de trabajos individuales o en grupo realizados y presentados por estudiantes."
+    },
+    {
+      "id": "AF5 Actividad en empresas u organizaciones",
+      "name": "AF5 Actividad en empresas u organizaciones",
+      "description": "Actividades prácticas que realizan los alumnos fuera de la universidad, en empresas u otro tipo de organizaciones, con el fin de adquirir los conocimientos, habilidades y competencias del Grado."
+    }
+  ],
+  "teachingMethodologies": [
+    {
+      "id": "MD1 Sesiones teóricas y/o prácticas",
+      "name": "MD1 Sesiones teóricas y/o prácticas",
+      "description": "Esta metodología implica la exposición, desarrollo y transmisión de los contenidos previstos en la guía docente de la asignatura, con empleo de complementos prácticos para su aplicación por parte de los estudiantes."
+    },
+    {
+      "id": "MD2 Trabajo individual y/o en grupo",
+      "name": "MD2 Trabajo individual y/o en grupo",
+      "description": "Esta metodología consiste en el diseño de trabajos con finalidad formativa, de modo que su realización por los estudiantes conlleve la adquisición de los conocimientos, habilidades y competencias previstos."
+    },
+    {
+      "id": "MD3 Aprendizaje basado en proyectos",
+      "name": "MD3 Aprendizaje basado en proyectos",
+      "description": "En esta metodología, los estudiantes trabajan en proyectos prácticos y aplican sus conocimientos para resolver problemas específicos. Los estudiantes reciben retroalimentación de los profesores tras sucesivas entregas parciales del proyecto. Finalmente, presentan el proyecto una vez concluido."
+    },
+    {
+      "id": "MD4 Aprendizaje basado en problemas y/o casos prácticos",
+      "name": "MD4 Aprendizaje basado en problemas y/o casos prácticos",
+      "description": "Esta metodología implica la identificación de un problema o el estudio de un caso real, que los estudiantes deben analizar, discutir y resolver mediante la investigación y la aplicación de conocimientos, habilidades y competencias del Grado."
+    },
+    {
+      "id": "MD5 Estancia de trabajo en una organización con el seguimiento de un tutor de empresa y otro académico",
+      "name": "MD5 Estancia de trabajo en una organización con el seguimiento de un tutor de empresa y otro académico",
+      "description": "Esta metodología consiste en que el estudiante asuma un conjunto de tareas y responsabilidades en un contexto profesional, con el asesoramiento de un profesional externo y del propio profesor, para desarrollar o adquirir las competencias previstas."
+    },
+    {
+      "id": "MD6 Informe y defensa oral y pública del TFG",
+      "name": "MD6 Informe y defensa oral y pública del TFG",
+      "description": "Esta metodología establece los objetivos y requisitos para que los estudiantes elaboren un Trabajo Final de Grado, lo presenten a modo de informe y lo expongan para su evaluación por el tribunal establecido al efecto."
+    }
+  ],
+  "evaluationSystems": [
+    {
+      "id": "SE1 Intervención en clases, teóricas y/o prácticas",
+      "name": "SE1 Intervención en clases, teóricas y/o prácticas",
+      "description": "Evaluación de las aportaciones del estudiante en el contexto de las actividades formativas desarrolladas por el profesor en el aula."
+    },
+    {
+      "id": "SE2 Resolución de problemas y/o casos prácticos",
+      "name": "SE2 Resolución de problemas y/o casos prácticos",
+      "description": "Evaluación de la resolución de problemas y casos que aproximan al estudiante a situaciones reales de la práctica profesional."
+    },
+    {
+      "id": "SE3 Evaluaciones parciales y finales",
+      "name": "SE3 Evaluaciones parciales y finales",
+      "description": "Conjunto de pruebas de valoración planificadas por el profesor a lo largo de la asignatura para evaluar el progreso del aprendizaje de los estudiantes y la adquisición de los conocimientos, habilidades y competencias previstas."
+    },
+    {
+      "id": "SE4 Autoevaluación y coevaluación",
+      "name": "SE4 Autoevaluación y coevaluación",
+      "description": "Sistemas de evaluación en los que son los propios estudiantes los que se autocalifican (autoevaluación) o califican a sus compañeros (coevaluación), tomando conciencia de su grado de adquisición de los conocimientos, habilidades y competencias."
+    },
+    {
+      "id": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+      "name": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+      "description": "Evaluación de los trabajos realizados por el estudiante o el grupo de estudiantes para la aplicación, desarrollo y profundización de los conocimientos, habilidades y competencias de la asignatura."
+    },
+    {
+      "id": "SE6 Exposición oral y defensa pública",
+      "name": "SE6 Exposición oral y defensa pública",
+      "description": "Evaluación por parte de un tribunal de la defensa pública del trabajo realizado y presentado por el estudiante o grupo de estudiantes."
+    },
+    {
+      "id": "SE7 Comprensión auditiva",
+      "name": "SE7 Comprensión auditiva",
+      "description": "Evaluación de la capacidad de comprender lo que se escucha en una lengua extranjera, tanto la idea general como la información específica, en contextos cotidianos y profesionales."
+    },
+    {
+      "id": "SE8 Comprensión lectora",
+      "name": "SE8 Comprensión lectora",
+      "description": "Evaluación de la capacidad de comprender textos escritos en una lengua extranjera, tanto la idea general como la información específica, en contextos cotidianos y profesionales."
+    },
+    {
+      "id": "SE9 Expresión escrita",
+      "name": "SE9 Expresión escrita",
+      "description": "Evaluación de la capacidad de producir textos escritos en una lengua extranjera, en un lenguaje y registro adecuado al contexto, que demuestren habilidades comunicativas propias de entornos académicos y profesionales."
+    },
+    {
+      "id": "SE10 Gramática y vocabulario",
+      "name": "SE10 Gramática y vocabulario",
+      "description": "Evaluación de la capacidad de utilizar correctamente la gramática y el vocabulario propios de la lengua extranjera."
+    },
+    {
+      "id": "SE11 Expresión oral",
+      "name": "SE11 Expresión oral",
+      "description": "Evaluación de la capacidad de expresarse de manera oral (mediante presentaciones, conversaciones, discusiones, etc.) en una lengua extranjera, en un lenguaje y registro adecuado al contexto, que demuestren habilidades comunicativas propias de entornos académicos y profesionales."
+    }
+  ],
+  "modules": [
+    {
+      "name": "MÓDULO 1: EMPRESA",
+      "ects": 54,
+      "subjects": [
+        {
+          "name": "Empresa y Entorno",
+          "ects": 24,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            },
+            {
+              "system": "SE2 Resolución de problemas y/o casos prácticos",
+              "minWeight": "5%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "30%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE4 Autoevaluación y coevaluación",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "20%",
+              "maxWeight": "60%"
+            },
+            {
+              "system": "SE6 Exposición oral y defensa pública",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG1",
+            "CG2",
+            "CG3",
+            "CG4",
+            "CG5",
+            "CG6",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB5",
+            "CE1",
+            "CE2",
+            "CE3",
+            "CE4",
+            "CE6",
+            "CE8",
+            "CE10",
+            "CE13",
+            "CE15"
+          ],
+          "courses": [
+            {
+              "name": "Gestión Empresarial 1",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 12
+            },
+            {
+              "name": "Gestión Empresarial 2",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 12
+            }
+          ]
+        },
+        {
+          "name": "Derecho",
+          "ects": 12,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            },
+            {
+              "system": "SE2 Resolución de problemas y/o casos prácticos",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "30%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE4 Autoevaluación y coevaluación",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "20%",
+              "maxWeight": "60%"
+            },
+            {
+              "system": "SE6 Exposición oral y defensa pública",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG1",
+            "CG4",
+            "CG6",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CE11",
+            "CE12"
+          ],
+          "courses": [
+            {
+              "name": "Derecho (semestre 6)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Derecho (semestre 7)",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 1,
+              "ects": 6
+            }
+          ]
+        },
+        {
+          "name": "Contabilidad y Finanzas",
+          "ects": 18,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            },
+            {
+              "system": "SE2 Resolución de problemas y/o casos prácticos",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "30%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE4 Autoevaluación y coevaluación",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "20%",
+              "maxWeight": "60%"
+            },
+            {
+              "system": "SE6 Exposición oral y defensa pública",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            }
+          ],
+          "learningOutcomes": ["CG1", "CG4", "CB3", "CE9"],
+          "courses": [
+            {
+              "name": "Contabilidad y Finanzas 1",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Contabilidad y Finanzas (semestre 3)",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Contabilidad y Finanzas (semestre 4)",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Contabilidad y Finanzas (semestre 5)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Contabilidad y Finanzas (semestre 6)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MÓDULO 2: COMUNICACIÓN E IDIOMAS MODERNOS",
+      "ects": 84,
+      "subjects": [
+        {
+          "name": "Comunicación en las Organizaciones",
+          "ects": 27,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            },
+            {
+              "system": "SE2 Resolución de problemas y/o casos prácticos",
+              "minWeight": "5%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "5%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE4 Autoevaluación y coevaluación",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "40%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE6 Exposición oral y defensa pública",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG1",
+            "CB3",
+            "CB4",
+            "CE2",
+            "CE4",
+            "CE5",
+            "CE7",
+            "CE14"
+          ],
+          "courses": [
+            {
+              "name": "Comunicación Empresarial 1",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Comunicación Empresarial 2",
+              "type": "Básica",
+              "year": 2,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Comunicación en las Organizaciones (semestre 4)",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Comunicación en las Organizaciones (semestre 5)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Comunicación en las Organizaciones (semestre 6)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Comunicación en las Organizaciones (semestre 7)",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 1,
+              "ects": 6
+            }
+          ]
+        },
+        {
+          "name": "Comunicación en Idiomas Modernos",
+          "ects": 57,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE7 Comprensión auditiva",
+              "minWeight": "10%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE8 Comprensión lectora",
+              "minWeight": "10%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE9 Expresión escrita",
+              "minWeight": "10%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE10 Gramática y vocabulario",
+              "minWeight": "10%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE11 Expresión oral",
+              "minWeight": "10%",
+              "maxWeight": "30%"
+            }
+          ],
+          "learningOutcomes": ["CG5", "CB2", "CB4", "CE14", "CE16"],
+          "courses": [
+            {
+              "name": "Segundo Idioma Moderno 1",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 9
+            },
+            {
+              "name": "Tercer Idioma Moderno 1",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 9
+            },
+            {
+              "name": "Comunicación en Idiomas Modernos (semestre 3)",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 9
+            },
+            {
+              "name": "Comunicación en Idiomas Modernos (semestre 4)",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 9
+            },
+            {
+              "name": "Comunicación en Idiomas Modernos (semestre 5)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 9
+            },
+            {
+              "name": "Comunicación en Idiomas Modernos (semestre 6)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 9
+            },
+            {
+              "name": "Comunicación en Idiomas Modernos (semestre 7)",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 1,
+              "ects": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MÓDULO 3: OPTATIVAS",
+      "ects": 48,
+      "subjects": [
+        {
+          "name": "Prácticas Externas",
+          "ects": 24,
+          "trainingActivities": [
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE2 Resolución de problemas y/o casos prácticos",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE4 Autoevaluación y coevaluación",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "70%",
+              "maxWeight": "90%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG1",
+            "CG2",
+            "CG3",
+            "CG4",
+            "CG5",
+            "CG6",
+            "CB2",
+            "CE2",
+            "CE3"
+          ],
+          "courses": [
+            {
+              "name": "Prácticas Externas",
+              "type": "Optativa",
+              "year": 4,
+              "semester": 2,
+              "ects": 24
+            }
+          ]
+        },
+        {
+          "name": "Formación Complementaria",
+          "ects": 24,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
+              "minWeight": "0%",
+              "maxWeight": "10%"
+            },
+            {
+              "system": "SE2 Resolución de problemas y/o casos prácticos",
+              "minWeight": "5%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "5%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "40%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE6 Exposición oral y defensa pública",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": ["CB1", "CB2", "CB3", "CB4", "CB5", "CE16"],
+          "courses": [
+            {
+              "name": "Formación Complementaria",
+              "type": "Optativa",
+              "year": 4,
+              "semester": 2,
+              "ects": 24
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MÓDULO 4: TRABAJO FIN DE GRADO",
+      "ects": 6,
+      "subjects": [
+        {
+          "name": "Trabajo Fin de Grado",
+          "ects": 6,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales",
+            "AF5 Actividad en empresas u organizaciones"
+          ],
+          "evaluation": [
+            {
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "0%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE4 Autoevaluación y coevaluación",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "70%",
+              "maxWeight": "90%"
+            },
+            {
+              "system": "SE6 Exposición oral y defensa pública",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG1",
+            "CG3",
+            "CG4",
+            "CB1",
+            "CB3",
+            "CB4",
+            "CE1",
+            "CE6",
+            "CE16"
+          ],
+          "courses": [
+            {
+              "name": "Trabajo Fin de Grado",
+              "type": "Trabajo Fin de Grado / Máster",
+              "year": 4,
+              "semester": 2,
+              "ects": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MODULO 5: Core Curriculum",
+      "ects": 18,
+      "subjects": [
+        {
+          "name": "Formación Transversal",
+          "ects": 18,
+          "trainingActivities": [
+            "AF1 Clases presenciales teóricas y/o prácticas",
+            "AF2 Trabajo individual o en grupo y estudio personal",
+            "AF3 Tutorías",
+            "AF4 Presentaciones y defensas orales"
+          ],
+          "evaluation": [
+            {
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
+              "minWeight": "0%",
+              "maxWeight": "30%"
+            },
+            {
+              "system": "SE2 Resolución de problemas y/o casos prácticos",
+              "minWeight": "0%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE3 Evaluaciones parciales y finales",
+              "minWeight": "0%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
+              "minWeight": "0%",
+              "maxWeight": "80%"
+            },
+            {
+              "system": "SE6 Exposición oral y defensa pública",
+              "minWeight": "0%",
+              "maxWeight": "20%"
+            }
+          ],
+          "learningOutcomes": ["CG6", "CB3", "CT1", "CT2", "CT3"],
+          "courses": [
+            {
+              "name": "Formación Transversal (semestre 1)",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Formación Transversal (semestre 2)",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Formación Transversal (semestre 3)",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Formación Transversal (semestre 4)",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Formación Transversal (semestre 5)",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Formación Transversal (semestre 7)",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 1,
+              "ects": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

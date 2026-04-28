@@ -1,0 +1,1081 @@
+{
+  "schemaVersion": 1,
+  "learningOutcomes": {
+    "CB1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio",
+    "CB2": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio",
+    "CB3": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética",
+    "CB4": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado",
+    "CB5": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía",
+    "CG01": "Ser capaz, en el ámbito de la enfermería, de prestar una atención sanitaria técnica y profesional adecuada a las necesidades de salud de las personas que atienden, de acuerdo con el estado de desarrollo de los conocimientos científicos de cada momento y con los niveles de calidad y seguridad que se establecen en las normas legales y deontológicas aplicables.",
+    "CG02": "Planificar y prestar cuidados de enfermería dirigidos a las personas, familia o grupos, orientados a los resultados en salud evaluando su impacto, a través de guías de práctica clínica y asistencial, que describen los procesos por los cuales se diagnostica, trata o cuida un problema de salud.",
+    "CG03": "Conocer y aplicar los fundamentos y principios teóricos y metodológicos de la enfermería.",
+    "CG04": "Comprender el comportamiento interactivo de la persona en función del género, grupo o comunidad, dentro de su contexto social y multicultural.",
+    "CG05": "Diseñar sistemas de cuidados dirigidos a las personas, familia o grupos, evaluando su impacto y estableciendo las modificaciones oportunas.",
+    "CG06": "Basar las intervenciones de la enfermería en la evidencia científica y en los medios disponibles.",
+    "CG07": "Comprender sin prejuicios a las personas, considerando sus aspectos físicos, psicológicos y sociales, como individuos autónomos e independientes, asegurando el respeto a sus opiniones, creencias y valores, garantizando el derecho a la intimidad, a través de la confidencialidad y el secreto profesional.",
+    "CG08": "Promover y respetar el derecho de participación, información, autonomía y el consentimiento informado en la toma de decisiones de las personas atendidas, acorde con la forma en que viven su proceso de salud -enfermedad.",
+    "CG09": "Fomentar estilos de vida saludables, el autocuidado, apoyando el mantenimiento de conductas preventivas y terapéuticas.",
+    "CG10": "Proteger la salud y el bienestar de las personas, familia o grupos atendidos, garantizando su seguridad.",
+    "CG11": "Establecer una comunicación eficaz con pacientes, familia, grupos sociales y compañeros y fomentar la educación para la salud.",
+    "CG12": "Conocer el código ético y deontológico de la enfermería española, comprendiendo las implicaciones éticas de la salud en un contexto mundial en transformación.",
+    "CG13": "Conocer los principios de financiación sanitaria y sociosanitaria y utilizar adecuadamente los recursos disponibles.",
+    "CG14": "Establecer mecanismos de evaluación, considerando los aspectos científico-técnicos y los de calidad.",
+    "CG15": "Trabajar con el equipo de profesionales como unidad básica en la que se estructuran de forma uni o multidisciplinar e interdisciplinar los profesionales y demás personal de las organizaciones asistenciales.",
+    "CG16": "Conocer los sistemas de información sanitaria.",
+    "CG17": "Realizar los cuidados de enfermería basándose en la atención integral de salud, que supone la cooperación multiprofesional, la integración de los procesos y la continuidad asistencial.",
+    "CG18": "Conocer las estrategias para adoptar medidas de confortabilidad y atención de síntomas, dirigidas al paciente y familia, en la aplicación de cuidados paliativos que contribuyan a aliviar la situación de enfermos avanzados y terminales.",
+    "CT1": "Comprender que es propio del espíritu universitario afrontar de manera crítica y reflexiva el estudio de la propia disciplina en su conexión con el resto de los saberes.",
+    "CT2": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas.",
+    "CT3": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la propia disciplina.",
+    "CE01": "Conocer e identificar la estructura y función del cuerpo humano. Comprender las bases moleculares y fisiológicas de las células y los tejidos.",
+    "CE02": "Conocer el uso y la indicación de productos sanitarios vinculados a los cuidados de enfermería.",
+    "CE03": "Conocer los diferentes grupos de fármacos, los principios de su autorización, uso e indicación, y los mecanismos de acción de los mismos.",
+    "CE04": "Utilización de los medicamentos, evaluando los beneficios esperados y los riesgos asociados y/o efectos derivados de su administración y consumo.",
+    "CE05": "Conocer y valorar las necesidades nutricionales de las personas sanas y con problemas de salud a lo largo del ciclo vital, para promover y reforzar pautas de conducta alimentaria saludable. Identificar los nutrientes y los alimentos en que se encuentran.",
+    "CE06": "Identificar los problemas nutricionales de mayor prevalencia y seleccionar las recomendaciones dietéticas adecuadas.",
+    "CE07": "Aplicar las tecnologías y sistemas de información y comunicación de los cuidados de salud.",
+    "CE08": "Conocer los procesos fisiopatológicos y sus manifestaciones y los factores de riesgo que determinan los estados de salud y enfermedad en las diferentes etapas del ciclo vital.",
+    "CE09": "Identificar las respuestas psicosociales de las personas ante las diferentes situaciones de salud (en particular, la enfermedad y el sufrimiento), seleccionando las acciones adecuadas para proporcionar ayuda en las mismas. Establecer una relación empática y respetuosa con el paciente y familia, acorde con la situación de la persona, problema de salud y etapa de desarrollo. Utilizar estrategias y habilidades que permitan una comunicación efectiva con pacientes, familias y grupos sociales, asi como la expresion de sus preocupaciones e intereses.",
+    "CE10": "Reconocer las situaciones de riesgo vital y saber ejecutar maniobras de soporte vital básico y avanzado.",
+    "CE11": "Conocer e identificar los problemas psicológicos y físicos derivados de la violencia de género para capacitar al estudiante en la prevención, la detección precoz, la asistencia, y la rehabilitación de las víctimas de esta forma de violencia.",
+    "CE12": "Identificar, integrar y relacionar el concepto de salud y los cuidados, desde una perspectiva histórica, para comprender la evolución del cuidado de enfermería.",
+    "CE13": "Comprender desde una perspectiva ontológica y epistemológica, la evolución de los conceptos centrales que configuran la disciplina de enfermería, así como los modelos teóricos más relevantes, aplicando la metodología científica en el proceso de cuidar y desarrollando los planes de cuidados correspondientes.",
+    "CE14": "Aplicar el proceso de enfermería para proporcionar y garantizar el bienestar la calidad y seguridad a las personas atendidas.",
+    "CE15": "Conocer y aplicar los principios que sustentan los cuidados integrales de enfermería.",
+    "CE16": "Dirigir, evaluar y prestar los cuidados integrales de enfermería, al individuo, la familia y la comunidad.",
+    "CE17": "Capacidad para describir los fundamentos del nivel primario de salud y las actividades a desarrollar para proporcionar un cuidado integral de enfermería al individuo, la familia y la comunidad.",
+    "CE18": "Comprender la función y actividades y actitud cooperativa que el profesional ha de desarrollar en un equipo de Atención Primaria de Salud. Promover la participación de las personas, familia y grupos en su proceso de salud-enfermedad",
+    "CE19": "Identificar los factores relacionados con la salud y los problemas del entorno, para atender a las personas en situaciones de salud y enfermedad como integrantes de una comunidad.",
+    "CE20": "Identificar y analizar la influencia de factores internos y externos en el nivel de salud de individuos y grupos.",
+    "CE21": "Aplicar los métodos y procedimientos necesarios en su ámbito para identificar los problemas de salud más relevantes en una comunidad.",
+    "CE22": "Analizar los datos estadísticos referidos a estudios poblacionales, identificando las posibles causas de problemas de salud.",
+    "CE23": "Educar, facilitar y apoyar la salud y el bienestar de los miembros de la comunidad, cuyas vidas están afectadas por problemas de salud, riesgo, sufrimiento, enfermedad, incapacidad o muerte.",
+    "CE24": "Conocer las alteraciones de salud del adulto, identificando las manifestaciones que aparecen en sus distintas fases.",
+    "CE25": "Identificar las necesidades de cuidado derivadas de los problemas de salud. Analizar los datos recogidos en la valoración, priorizar los problemas del paciente adulto, establecer y ejecutar el plan de cuidados y realizar su evaluación.",
+    "CE26": "Realizar las técnicas y procedimientos de cuidados de enfermería, estableciendo una relación terapéutica con los enfermos y familiares. Seleccionar las intervenciones encaminadas a tratar o prevenir los problemas derivados de las desviaciones de salud.",
+    "CE27": "Tener una actitud cooperativa con los diferentes miembros del equipo.",
+    "CE28": "Identificar las características de las mujeres en las diferentes etapas del ciclo reproductivo y en el climaterio y en las alteraciones que se pueden presentar proporcionando los cuidados necesarios en cada etapa.",
+    "CE29": "Aplicar cuidados generales durante el proceso de maternidad para facilitar la adaptación de las mujeres y los neonatos a las nuevas demandas y prevenir complicaciones.",
+    "CE30": "Conocer los aspectos específicos de los cuidados del neonato. Identificar las características de las diferentes etapas de la infancia y adolescencia y los factores que condicionan el patrón normal de crecimiento y desarrollo.",
+    "CE31": "Conocer los problemas de salud más frecuentes en la infancia e identificar sus manifestaciones. Analizar los datos de valoración del niño, identificando los problemas de enfermería y las complicaciones que pueden presentarse.",
+    "CE32": "Aplicar las técnicas que integran el cuidado de enfermería, estableciendo una relación terapéutica con los niños y sus cuidadores.",
+    "CE33": "Seleccionar las intervenciones dirigidas al niño sano y al enfermo, así como las derivadas de los métodos de diagnóstico y tratamiento.",
+    "CE34": "Ser capaz de proporcionar educación para la salud a los padres o cuidadores primarios.",
+    "CE35": "Comprender los cambios asociados al proceso de envejecer y su repercusión en la salud. Identificar las modificaciones estructurales, funcionales, psicológicas y de formas de vida asociadas al proceso de envejecer.",
+    "CE36": "Conocer los problemas de salud más frecuentes en las personas mayores. Seleccionar las intervenciones cuidadoras dirigidas a tratar o a prevenir los problemas de salud y su adaptación a la vida diaria mediante recursos de proximidad y apoyo a la persona anciana.",
+    "CE37": "Conocer el Sistema Sanitario Español.",
+    "CE38": "Identificar las características de la función directiva de los servicios de enfermería y la gestión de cuidados.",
+    "CE39": "Conocer y ser capaz de aplicar las técnicas de dirección de grupos.",
+    "CE40": "Conocer la legislación aplicable y el código ético y deontológico de la enfermería española, inspirado en el código europeo de ética y deontología de enfermería.",
+    "CE41": "Prestar cuidados, garantizando el derecho a la dignidad, privacidad, intimidad, confidencialidad y capacidad de decisión del paciente y familia.",
+    "CE42": "Individualizar el cuidado considerando la edad, el género, las diferencias culturales, el grupo étnico, las creencias y valores.",
+    "CE43": "Conocer los problemas de salud mental más relevantes en las diferentes etapas del ciclo vital, proporcionando cuidados integrales y eficaces, en el ámbito de la enfermería.",
+    "CE44": "Conocer los cuidados paliativos y control del dolor para prestar cuidados que alivien la situación de los enfermos avanzados y terminales.",
+    "CE45": "Practicas pre profesionales, en forma de rotatorio clínico independiente y con una evaluación final de competencias, en los centros de Salud, Hospitales y otros centros asistenciales que permitan incorporar los valores profesionales, competencias de comunicación asistencial, razonamiento clínico, gestión clínica y juicio crítico, integrando en la práctica profesional los conocimientos, habilidades y actitudes de la Enfermería, basados en principios y valores, asociados a las competencias descritas en los objetivos generales y en las materias que conforman el Titulo.",
+    "CE46": "Trabajo fin de grado: Materia transversal cuyo trabajo se realizara asociado a distintas materias"
+  },
+  "trainingActivities": [
+    {
+      "id": "Clases presenciales teóricas",
+      "name": "Clases presenciales teóricas",
+      "description": ""
+    },
+    {
+      "id": "Clases presenciales prácticas",
+      "name": "Clases presenciales prácticas",
+      "description": ""
+    },
+    {
+      "id": "Seminarios",
+      "name": "Seminarios",
+      "description": ""
+    },
+    {
+      "id": "Trabajos dirigidos",
+      "name": "Trabajos dirigidos",
+      "description": ""
+    },
+    {
+      "id": "Tutorías",
+      "name": "Tutorías",
+      "description": ""
+    },
+    {
+      "id": "Estudio personal",
+      "name": "Estudio personal",
+      "description": ""
+    },
+    {
+      "id": "Evaluación",
+      "name": "Evaluación",
+      "description": ""
+    }
+  ],
+  "teachingMethodologies": [
+    {
+      "id": "Clases expositivas",
+      "name": "Clases expositivas",
+      "description": ""
+    },
+    {
+      "id": "Clases en salas de informática",
+      "name": "Clases en salas de informática",
+      "description": ""
+    },
+    {
+      "id": "Clases en el Centro de Simulación de Enfermería",
+      "name": "Clases en el Centro de Simulación de Enfermería",
+      "description": ""
+    },
+    {
+      "id": "Trabajo individual o en grupo, resolución de problemas e informes del Centro de Simulación",
+      "name": "Trabajo individual o en grupo, resolución de problemas e informes del Centro de Simulación",
+      "description": ""
+    },
+    {
+      "id": "Entrevista personal con el profesor",
+      "name": "Entrevista personal con el profesor",
+      "description": ""
+    },
+    {
+      "id": "Estudio del alumno basado en diferentes fuentes de información",
+      "name": "Estudio del alumno basado en diferentes fuentes de información",
+      "description": ""
+    },
+    {
+      "id": "Realización de pruebas que verifiquen las competencias adquiridas",
+      "name": "Realización de pruebas que verifiquen las competencias adquiridas",
+      "description": ""
+    },
+    {
+      "id": "Informe y Defensa oral y pública del Trabajo Fin de Grado a través de póster",
+      "name": "Informe y Defensa oral y pública del Trabajo Fin de Grado a través de póster",
+      "description": ""
+    }
+  ],
+  "evaluationSystems": [
+    {
+      "id": "Intervención en clases, seminarios y clases prácticas",
+      "name": "Intervención en clases, seminarios y clases prácticas",
+      "description": ""
+    },
+    {
+      "id": "Resolución de problemas",
+      "name": "Resolución de problemas",
+      "description": ""
+    },
+    {
+      "id": "Resolución de casos prácticos",
+      "name": "Resolución de casos prácticos",
+      "description": ""
+    },
+    {
+      "id": "Evaluaciones parciales",
+      "name": "Evaluaciones parciales",
+      "description": ""
+    },
+    {
+      "id": "Examen final",
+      "name": "Examen final",
+      "description": ""
+    },
+    {
+      "id": "Trabajos individuales y/o en equipo",
+      "name": "Trabajos individuales y/o en equipo",
+      "description": ""
+    },
+    {
+      "id": "Trabajo de investigación",
+      "name": "Trabajo de investigación",
+      "description": ""
+    },
+    {
+      "id": "Exposición oral y defensa pública",
+      "name": "Exposición oral y defensa pública",
+      "description": ""
+    }
+  ],
+  "modules": [
+    {
+      "name": "Módulo 1: Formación básica de la enfermería",
+      "ects": 79,
+      "subjects": [
+        {
+          "name": "Materia 1.1: Estructura, función y comportamiento del ser humano",
+          "ects": 46,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Clases presenciales prácticas",
+            "Seminarios",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Intervención en clases, seminarios y clases prácticas",
+              "minWeight": "5.0%",
+              "maxWeight": "25.0%"
+            },
+            {
+              "system": "Resolución de problemas",
+              "minWeight": "0.0%",
+              "maxWeight": "5.0%"
+            },
+            {
+              "system": "Resolución de casos prácticos",
+              "minWeight": "5.0%",
+              "maxWeight": "15.0%"
+            },
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "5.0%",
+              "maxWeight": "60.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "45.0%",
+              "maxWeight": "85.0%"
+            },
+            {
+              "system": "Trabajos individuales y/o en equipo",
+              "minWeight": "5.0%",
+              "maxWeight": "15.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG02",
+            "CG03",
+            "CG04",
+            "CG05",
+            "CG06",
+            "CG07",
+            "CG08",
+            "CG09",
+            "CG10",
+            "CG11",
+            "CG12",
+            "CG13",
+            "CG14",
+            "CG15",
+            "CG16",
+            "CG17",
+            "CG18",
+            "CB1",
+            "CB2",
+            "CE01",
+            "CE02",
+            "CE03",
+            "CE04",
+            "CE05",
+            "CE06",
+            "CE07",
+            "CE08"
+          ],
+          "courses": [
+            {
+              "name": "Anatomía",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Bioquímica",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Fisiología",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Fisiopatología general",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Psicología",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Nutrición y Dietética",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Sociología",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Farmacología y Microbiología",
+              "type": "Básica",
+              "year": 2,
+              "semester": 4,
+              "ects": 7
+            }
+          ]
+        },
+        {
+          "name": "Materia 1.2: Formación general humanística",
+          "ects": 21,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Clases presenciales prácticas",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Resolución de casos prácticos",
+              "minWeight": "10.0%",
+              "maxWeight": "20.0%"
+            },
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "20.0%",
+              "maxWeight": "30.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "20.0%",
+              "maxWeight": "30.0%"
+            },
+            {
+              "system": "Trabajos individuales y/o en equipo",
+              "minWeight": "10.0%",
+              "maxWeight": "30.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG04",
+            "CG07",
+            "CG08",
+            "CG10",
+            "CG11",
+            "CG12",
+            "CG15",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CT1",
+            "CT2",
+            "CT3",
+            "CE09",
+            "CE11",
+            "CE40",
+            "CE41"
+          ],
+          "courses": [
+            {
+              "name": "Antropología I",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Antropología II",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Ética general I",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Ética general II",
+              "type": "Básica",
+              "year": 2,
+              "semester": 4,
+              "ects": 3
+            },
+            {
+              "name": "Deontología y Bioética",
+              "type": "Básica",
+              "year": 2,
+              "semester": 3,
+              "ects": 3
+            },
+            {
+              "name": "Fundamentos filosóficos de la enfermería",
+              "type": "Básica",
+              "year": 2,
+              "semester": 3,
+              "ects": 3
+            },
+            {
+              "name": "Ética en Enfermería",
+              "type": "Básica",
+              "year": 4,
+              "semester": 7,
+              "ects": 3
+            }
+          ]
+        },
+        {
+          "name": "Materia 1.3: Materias instrumentales",
+          "ects": 12,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Intervención en clases, seminarios y clases prácticas",
+              "minWeight": "0.0%",
+              "maxWeight": "10.0%"
+            },
+            {
+              "system": "Resolución de casos prácticos",
+              "minWeight": "20.0%",
+              "maxWeight": "32.0%"
+            },
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "20.0%",
+              "maxWeight": "35.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "35.0%",
+              "maxWeight": "60.0%"
+            },
+            {
+              "system": "Trabajos individuales y/o en equipo",
+              "minWeight": "0.0%",
+              "maxWeight": "10.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG06",
+            "CG14",
+            "CG16",
+            "CB2",
+            "CB3",
+            "CB5",
+            "CE07",
+            "CE22"
+          ],
+          "courses": [
+            {
+              "name": "Estadística",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Inglés científico",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Bases de la metodología científica en ciencias de la salud",
+              "type": "Básica",
+              "year": 2,
+              "semester": 4,
+              "ects": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Módulo 2: Ciencias de la Enfermería",
+      "ects": 76,
+      "subjects": [
+        {
+          "name": "Materia 2.1: Bases de la disciplina y de la profesión enfermera",
+          "ects": 9,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Clases presenciales prácticas",
+            "Seminarios",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Resolución de problemas",
+              "minWeight": "0.0%",
+              "maxWeight": "10.0%"
+            },
+            {
+              "system": "Resolución de casos prácticos",
+              "minWeight": "0.0%",
+              "maxWeight": "20.0%"
+            },
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "0.0%",
+              "maxWeight": "30.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "70.0%",
+              "maxWeight": "70.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG03",
+            "CG07",
+            "CG17",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE12",
+            "CE13",
+            "CE14",
+            "CE15",
+            "CE27"
+          ],
+          "courses": [
+            {
+              "name": "Fundamentos metodológicos de la enfermería",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Historia de la Enfermería",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Bases de enfermería",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 3,
+              "ects": 3
+            }
+          ]
+        },
+        {
+          "name": "Materia 2.2: Atención de enfermería a la persona en las distintas etapas de la vida",
+          "ects": 47,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Clases presenciales prácticas",
+            "Seminarios",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Intervención en clases, seminarios y clases prácticas",
+              "minWeight": "10.0%",
+              "maxWeight": "20.0%"
+            },
+            {
+              "system": "Resolución de casos prácticos",
+              "minWeight": "10.0%",
+              "maxWeight": "25.0%"
+            },
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "30.0%",
+              "maxWeight": "37.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "45.0%",
+              "maxWeight": "80.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG02",
+            "CG04",
+            "CG06",
+            "CG07",
+            "CG08",
+            "CG09",
+            "CG10",
+            "CG11",
+            "CG15",
+            "CG16",
+            "CG17",
+            "CG18",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE07",
+            "CE09",
+            "CE10",
+            "CE11",
+            "CE23",
+            "CE24",
+            "CE25",
+            "CE26",
+            "CE27",
+            "CE28",
+            "CE29",
+            "CE30",
+            "CE31",
+            "CE32",
+            "CE33",
+            "CE34",
+            "CE35",
+            "CE36",
+            "CE37",
+            "CE41",
+            "CE42",
+            "CE43",
+            "CE44"
+          ],
+          "courses": [
+            {
+              "name": "Atención de enfermería a la persona adulta I",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 3,
+              "ects": 6
+            },
+            {
+              "name": "Atención de enfermería a la persona adulta II",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 4,
+              "ects": 6
+            },
+            {
+              "name": "Atención de enfermería a la persona adulta III",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 5,
+              "ects": 5
+            },
+            {
+              "name": "Atención de enfermería a la persona adulta IV",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 6,
+              "ects": 6
+            },
+            {
+              "name": "Atención de enfermería a la persona adulta V",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 7,
+              "ects": 3
+            },
+            {
+              "name": "Atención de enfermería a la persona en la infancia y adolescencia",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 5,
+              "ects": 6
+            },
+            {
+              "name": "Atención de enfermería a la persona anciana",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 6,
+              "ects": 6
+            },
+            {
+              "name": "Cuidados Paliativos",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 7,
+              "ects": 3
+            },
+            {
+              "name": "Salud Mental",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 5,
+              "ects": 3
+            },
+            {
+              "name": "Enfermería Materno-Infantil",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 6,
+              "ects": 3
+            }
+          ]
+        },
+        {
+          "name": "Materia 2.3: Enfermería de salud pública y comunitaria y gestión sanitaria",
+          "ects": 14,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Clases presenciales prácticas",
+            "Seminarios",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Resolución de casos prácticos",
+              "minWeight": "0.0%",
+              "maxWeight": "10.0%"
+            },
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "0.0%",
+              "maxWeight": "30.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "55.0%",
+              "maxWeight": "65.0%"
+            },
+            {
+              "system": "Trabajos individuales y/o en equipo",
+              "minWeight": "15.0%",
+              "maxWeight": "25.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG02",
+            "CG04",
+            "CG05",
+            "CG06",
+            "CG07",
+            "CG08",
+            "CG09",
+            "CG10",
+            "CG11",
+            "CG12",
+            "CG13",
+            "CG14",
+            "CG15",
+            "CG16",
+            "CG17",
+            "CG18",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE07",
+            "CE09",
+            "CE14",
+            "CE15",
+            "CE16",
+            "CE17",
+            "CE18",
+            "CE19",
+            "CE20",
+            "CE21",
+            "CE22",
+            "CE23"
+          ],
+          "courses": [
+            {
+              "name": "Enfermería Comunitaria I",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 3,
+              "ects": 3
+            },
+            {
+              "name": "Enfermería Comunitaria II",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 4,
+              "ects": 3
+            },
+            {
+              "name": "Gestión sanitaria y legislación profesional I",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 5,
+              "ects": 3
+            },
+            {
+              "name": "Gestión sanitaria y legislación profesional II",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 7,
+              "ects": 3
+            },
+            {
+              "name": "Métodos de Educación para la Salud",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 6,
+              "ects": 2
+            }
+          ]
+        },
+        {
+          "name": "Materia 2.4: Formación complementaria de la disciplina",
+          "ects": 6,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "30.0%",
+              "maxWeight": "30.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "60.0%",
+              "maxWeight": "60.0%"
+            },
+            {
+              "system": "Trabajos individuales y/o en equipo",
+              "minWeight": "10.0%",
+              "maxWeight": "10.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG02",
+            "CG04",
+            "CG05",
+            "CG06",
+            "CG09",
+            "CG11",
+            "CG15",
+            "CG17",
+            "CB2",
+            "CB3",
+            "CB4"
+          ],
+          "courses": [
+            {
+              "name": "Optativas (Formación complementaria de la disciplina)",
+              "type": "Optativa",
+              "year": 4,
+              "semester": 7,
+              "ects": 3
+            },
+            {
+              "name": "Optativas (Formación complementaria de la disciplina) II",
+              "type": "Optativa",
+              "year": 4,
+              "semester": 8,
+              "ects": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Módulo 3: Prácticas tuteladas y Trabajo Fin de Grado",
+      "ects": 93,
+      "subjects": [
+        {
+          "name": "Materia 3.1: Prácticas tuteladas",
+          "ects": 87,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Clases presenciales prácticas",
+            "Seminarios",
+            "Trabajos dirigidos",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Evaluaciones parciales",
+              "minWeight": "30.0%",
+              "maxWeight": "40.0%"
+            },
+            {
+              "system": "Examen final",
+              "minWeight": "60.0%",
+              "maxWeight": "70.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG02",
+            "CG03",
+            "CG04",
+            "CG05",
+            "CG06",
+            "CG07",
+            "CG08",
+            "CG09",
+            "CG10",
+            "CG11",
+            "CG12",
+            "CG13",
+            "CG14",
+            "CG15",
+            "CG16",
+            "CG17",
+            "CG18",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CE45"
+          ],
+          "courses": [
+            {
+              "name": "Practicum I",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 3,
+              "ects": 17
+            },
+            {
+              "name": "Practicum II",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 4,
+              "ects": 16
+            },
+            {
+              "name": "Practicum III",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 5,
+              "ects": 15
+            },
+            {
+              "name": "Practicum IV",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 6,
+              "ects": 16
+            },
+            {
+              "name": "Practicum V",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 8,
+              "ects": 20
+            },
+            {
+              "name": "Practicum 0",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            }
+          ]
+        },
+        {
+          "name": "Materia 3.2: Trabajo fin de grado",
+          "ects": 6,
+          "trainingActivities": [
+            "Clases presenciales teóricas",
+            "Clases presenciales prácticas",
+            "Tutorías",
+            "Estudio personal",
+            "Evaluación"
+          ],
+          "evaluation": [
+            {
+              "system": "Trabajos individuales y/o en equipo",
+              "minWeight": "15.0%",
+              "maxWeight": "15.0%"
+            },
+            {
+              "system": "Trabajo de investigación",
+              "minWeight": "70.0%",
+              "maxWeight": "70.0%"
+            },
+            {
+              "system": "Exposición oral y defensa pública",
+              "minWeight": "15.0%",
+              "maxWeight": "15.0%"
+            }
+          ],
+          "learningOutcomes": [
+            "CG01",
+            "CG02",
+            "CG03",
+            "CG04",
+            "CG05",
+            "CG06",
+            "CG07",
+            "CG08",
+            "CG09",
+            "CG10",
+            "CG11",
+            "CG12",
+            "CG13",
+            "CG14",
+            "CG15",
+            "CG16",
+            "CG17",
+            "CG18",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE46"
+          ],
+          "courses": [
+            {
+              "name": "Trabajo Fin de Grado",
+              "type": "Trabajo Fin de Grado / Máster",
+              "year": 4,
+              "semester": 7,
+              "ects": 2
+            },
+            {
+              "name": "Trabajo Fin de Grado",
+              "type": "Trabajo Fin de Grado / Máster",
+              "year": 4,
+              "semester": 8,
+              "ects": 4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

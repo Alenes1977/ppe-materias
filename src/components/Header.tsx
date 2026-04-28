@@ -179,51 +179,55 @@ const Header: FC = () => {
         </div>
 
         {/* Navegación desktop */}
-        {activeDegree ? (
-          <nav className="hidden items-center gap-1 text-xs font-medium md:flex">
-            <a
-              href={`${base}/asignaturas`}
-              onClick={handleNavigation(`${base}/asignaturas`)}
-              className={navLinkClass(isActive('asignaturas'))}
-              style={navLinkStyle(isActive('asignaturas'))}
-              {...navLinkHandlers(isActive('asignaturas'))}
-            >
-              Asignaturas
-            </a>
-            <span className="text-gray-200">|</span>
-            <a
-              href={`${base}/plan-estudios`}
-              onClick={handleNavigation(`${base}/plan-estudios`)}
-              className={navLinkClass(isActive('plan-estudios'))}
-              style={navLinkStyle(isActive('plan-estudios'))}
-              {...navLinkHandlers(isActive('plan-estudios'))}
-            >
-              Plan de Estudios
-            </a>
-            <span className="text-gray-200">|</span>
-            <a
-              href={`${base}/competencias`}
-              onClick={handleNavigation(`${base}/competencias`)}
-              className={navLinkClass(isActive('competencias'))}
-              style={navLinkStyle(isActive('competencias'))}
-              {...navLinkHandlers(isActive('competencias'))}
-            >
-              {labelCompetencias}
-            </a>
-            <span className="text-gray-200">|</span>
-            <a
-              href={`${base}/asistente-guia-docente`}
-              onClick={handleNavigation(`${base}/asistente-guia-docente`)}
-              className={`flex items-center rounded-md px-2 py-1 font-semibold transition-all duration-300 ${
-                isActive('asistente-guia-docente')
-                  ? 'bg-emerald-100 text-emerald-800 shadow-sm'
-                  : 'border border-gray-200 bg-white text-gray-400 hover:-translate-y-0.5 hover:transform hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-800 hover:shadow-sm'
-              }`}
-            >
-              Asistente
-            </a>
-          </nav>
-        ) : null}
+        <div className="hidden items-center gap-1 text-xs font-medium md:flex">
+          {activeDegree ? (
+            <>
+              <a
+                href={`${base}/asignaturas`}
+                onClick={handleNavigation(`${base}/asignaturas`)}
+                className={navLinkClass(isActive('asignaturas'))}
+                style={navLinkStyle(isActive('asignaturas'))}
+                {...navLinkHandlers(isActive('asignaturas'))}
+              >
+                Asignaturas
+              </a>
+              <span className="text-gray-200">|</span>
+              <a
+                href={`${base}/plan-estudios`}
+                onClick={handleNavigation(`${base}/plan-estudios`)}
+                className={navLinkClass(isActive('plan-estudios'))}
+                style={navLinkStyle(isActive('plan-estudios'))}
+                {...navLinkHandlers(isActive('plan-estudios'))}
+              >
+                Plan de Estudios
+              </a>
+              <span className="text-gray-200">|</span>
+              <a
+                href={`${base}/competencias`}
+                onClick={handleNavigation(`${base}/competencias`)}
+                className={navLinkClass(isActive('competencias'))}
+                style={navLinkStyle(isActive('competencias'))}
+                {...navLinkHandlers(isActive('competencias'))}
+              >
+                {labelCompetencias}
+              </a>
+              <span className="text-gray-200">|</span>
+              <a
+                href={`${base}/asistente-guia-docente`}
+                onClick={handleNavigation(`${base}/asistente-guia-docente`)}
+                className={`flex items-center rounded-md px-2 py-1 font-semibold transition-all duration-300 ${
+                  isActive('asistente-guia-docente')
+                    ? 'bg-emerald-100 text-emerald-800 shadow-sm'
+                    : 'border border-gray-200 bg-white text-gray-400 hover:-translate-y-0.5 hover:transform hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-800 hover:shadow-sm'
+                }`}
+              >
+                Asistente
+              </a>
+              <span className="text-gray-200">|</span>
+            </>
+          ) : null}
+
+        </div>
       </div>
 
       {/* ── Fila 2: breadcrumb (desktop, solo dentro de un grado) ── */}

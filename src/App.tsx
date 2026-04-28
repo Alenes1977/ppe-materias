@@ -19,6 +19,7 @@ import Materia from './components/Materia';
 import Materias from './components/Materias';
 import Modulo from './components/Modulo';
 import AsistenteGuiaDocente from './components/AsistenteGuiaDocente';
+import PlanBuilder from './components/PlanBuilder';
 
 const ScrollToTop: FC = () => {
   const location = useLocation();
@@ -47,6 +48,9 @@ const App: FC = () => {
           <Routes>
             {/* Pantalla raíz: selector de grado o redirección al último */}
             <Route path="/" element={<RootRedirect />} />
+
+            {/* Herramienta de construcción de planes (sin DegreeLayout) */}
+            <Route path="/plan-builder" element={<PlanBuilder />} />
 
             {/* Layout por grado: provee DegreeContext a todas las subrutas */}
             <Route

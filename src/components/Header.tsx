@@ -6,10 +6,13 @@ import {
   faBars,
   faTimes,
   faChevronDown,
+  faRightLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import Breadcrumb from './Breadcrumb';
 import { DegreeContext } from '../context/DegreeContext';
 import { DEGREES } from '../data/degrees';
+
+const LAST_DEGREE_KEY = 'lastDegreeId';
 
 const Header: FC = () => {
   const location = useLocation();
@@ -64,21 +67,24 @@ const Header: FC = () => {
     ? ctx.labelLO.plural.charAt(0).toUpperCase() + ctx.labelLO.plural.slice(1)
     : 'Competencias';
 
+  const handleGoToSelector = () => {
+    localStorage.removeItem(LAST_DEGREE_KEY);
+    setGradoOpen(false);
+    navigate('/');
+  };
+
   return (
     <header className="fixed left-0 top-0 z-50 w-full bg-white shadow-md">
+      {/* ── Fila 1: selector de grado + navegación ── */}
       <div
-        className="mx-auto grid grid-cols-12 items-center px-4 py-2"
+        className="relative z-10 mx-auto flex items-center justify-between px-4 py-2"
         style={{ maxWidth: '1400px' }}
       >
-        {/* Breadcrumbs (desktop) */}
-        <div className="col-span-5 hidden justify-self-start md:block">
-          <Breadcrumb />
-        </div>
-
-        {/* Botón menú móvil */}
-        <div className="col-span-2 justify-self-start md:hidden">
+        {/* Selector de grado / logo */}
+        <div className="flex items-center gap-2">
+          {/* Botón menú móvil */}
           <button
-            className="rounded-md p-1 hover:bg-gray-100"
+            className="rounded-md p-1 hover:bg-gray-100 md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menú principal"
           >
@@ -87,32 +93,43 @@ const Header: FC = () => {
               className="text-lg text-gray-600"
             />
           </button>
-        </div>
 
-        {/* Título central */}
-        <div className="col-span-5 justify-self-center md:col-span-2">
           {activeDegree ? (
-            <div className="relative">
+            <div className="relative flex items-center gap-1">
+              {/* Nombre del grado + desplegable de cambio rápido */}
               <button
                 onClick={() => setGradoOpen(!gradoOpen)}
-                className="flex items-center gap-1 rounded-md px-2 py-1 hover:bg-gray-50"
+                className="flex items-center gap-1.5 rounded-l-md border border-gray-200 bg-white px-2.5 py-1.5 hover:bg-blue-50"
+                title="Cambiar grado"
               >
                 <span
-                  className="font-poppins whitespace-nowrap text-sm font-bold md:text-base"
+                  className="font-poppins whitespace-nowrap text-sm font-bold"
                   style={{ color: PRIMARY_BLUE }}
                 >
                   {activeDegree.meta.shortName}
                 </span>
                 <FontAwesomeIcon
                   icon={faChevronDown}
-                  className="text-xs text-gray-400"
+                  className={`text-xs text-gray-400 transition-transform duration-150 ${gradoOpen ? 'rotate-180' : ''}`}
                 />
               </button>
+
+              {/* Botón explícito "Cambiar" */}
+              <button
+                onClick={handleGoToSelector}
+                className="flex items-center gap-1 rounded-r-md border border-l-0 border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-400 hover:bg-blue-50 hover:text-blue-700"
+                title="Ver todos los grados"
+              >
+                <FontAwesomeIcon icon={faRightLeft} className="text-xs" />
+                <span className="hidden sm:inline">Cambiar</span>
+              </button>
+
+              {/* Dropdown de cambio rápido */}
               {gradoOpen ? (
-                <div className="absolute left-1/2 top-full mt-1 w-56 -translate-x-1/2 rounded-xl border border-gray-200 bg-white shadow-xl">
+                <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-xl border border-gray-200 bg-white shadow-xl">
                   <div className="p-2">
                     <p className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-gray-400">
-                      Cambiar grado
+                      Cambio rápido de grado
                     </p>
                     {Object.values(DEGREES).map((entry) => (
                       <button
@@ -132,13 +149,11 @@ const Header: FC = () => {
                     ))}
                     <hr className="my-1" />
                     <button
-                      onClick={() => {
-                        setGradoOpen(false);
-                        navigate('/');
-                      }}
-                      className="w-full rounded-lg px-3 py-2 text-left text-xs text-gray-400 hover:text-gray-600"
+                      onClick={handleGoToSelector}
+                      className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs text-gray-500 hover:bg-gray-50 hover:text-gray-800"
                     >
-                      Ver todos los grados →
+                      <FontAwesomeIcon icon={faRightLeft} />
+                      Ver pantalla de selección de grado
                     </button>
                   </div>
                 </div>
@@ -148,10 +163,10 @@ const Header: FC = () => {
             <a
               href="/"
               onClick={handleNavigation('/')}
-              className="flex items-center space-x-3"
+              className="flex items-center"
             >
               <span
-                className="font-poppins self-center whitespace-nowrap text-sm font-bold md:text-lg"
+                className="font-poppins whitespace-nowrap text-sm font-bold md:text-base"
                 style={{ color: PRIMARY_BLUE }}
               >
                 Portal PPE
@@ -160,63 +175,73 @@ const Header: FC = () => {
           )}
         </div>
 
-        {/* Navegación (desktop) */}
+        {/* Navegación desktop */}
         {activeDegree ? (
-          <div className="col-span-3 hidden justify-self-end md:col-span-4 md:block">
-            <nav className="flex items-center space-x-2 text-xs font-medium">
-              <a
-                href={`${base}/asignaturas`}
-                onClick={handleNavigation(`${base}/asignaturas`)}
-                className={navLinkClass(isActive('asignaturas'))}
-                style={navLinkStyle(isActive('asignaturas'))}
-                {...navLinkHandlers(isActive('asignaturas'))}
-              >
-                Asignaturas
-              </a>
-              <span className="text-gray-200">|</span>
-              <a
-                href={`${base}/plan-estudios`}
-                onClick={handleNavigation(`${base}/plan-estudios`)}
-                className={navLinkClass(isActive('plan-estudios'))}
-                style={navLinkStyle(isActive('plan-estudios'))}
-                {...navLinkHandlers(isActive('plan-estudios'))}
-              >
-                Plan de Estudios
-              </a>
-              <span className="text-gray-200">|</span>
-              <a
-                href={`${base}/competencias`}
-                onClick={handleNavigation(`${base}/competencias`)}
-                className={navLinkClass(isActive('competencias'))}
-                style={navLinkStyle(isActive('competencias'))}
-                {...navLinkHandlers(isActive('competencias'))}
-              >
-                {labelCompetencias}
-              </a>
-              <span className="text-gray-200">|</span>
-              <a
-                href={`${base}/asistente-guia-docente`}
-                onClick={handleNavigation(`${base}/asistente-guia-docente`)}
-                className={`flex items-center rounded-md px-2 py-1 font-semibold transition-all duration-300 ${
-                  isActive('asistente-guia-docente')
-                    ? 'bg-emerald-100 text-emerald-800 shadow-sm'
-                    : 'border border-gray-200 bg-white text-gray-400 hover:-translate-y-0.5 hover:transform hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-800 hover:shadow-sm'
-                }`}
-              >
-                Asistente
-              </a>
-            </nav>
-          </div>
+          <nav className="hidden items-center gap-1 text-xs font-medium md:flex">
+            <a
+              href={`${base}/asignaturas`}
+              onClick={handleNavigation(`${base}/asignaturas`)}
+              className={navLinkClass(isActive('asignaturas'))}
+              style={navLinkStyle(isActive('asignaturas'))}
+              {...navLinkHandlers(isActive('asignaturas'))}
+            >
+              Asignaturas
+            </a>
+            <span className="text-gray-200">|</span>
+            <a
+              href={`${base}/plan-estudios`}
+              onClick={handleNavigation(`${base}/plan-estudios`)}
+              className={navLinkClass(isActive('plan-estudios'))}
+              style={navLinkStyle(isActive('plan-estudios'))}
+              {...navLinkHandlers(isActive('plan-estudios'))}
+            >
+              Plan de Estudios
+            </a>
+            <span className="text-gray-200">|</span>
+            <a
+              href={`${base}/competencias`}
+              onClick={handleNavigation(`${base}/competencias`)}
+              className={navLinkClass(isActive('competencias'))}
+              style={navLinkStyle(isActive('competencias'))}
+              {...navLinkHandlers(isActive('competencias'))}
+            >
+              {labelCompetencias}
+            </a>
+            <span className="text-gray-200">|</span>
+            <a
+              href={`${base}/asistente-guia-docente`}
+              onClick={handleNavigation(`${base}/asistente-guia-docente`)}
+              className={`flex items-center rounded-md px-2 py-1 font-semibold transition-all duration-300 ${
+                isActive('asistente-guia-docente')
+                  ? 'bg-emerald-100 text-emerald-800 shadow-sm'
+                  : 'border border-gray-200 bg-white text-gray-400 hover:-translate-y-0.5 hover:transform hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-800 hover:shadow-sm'
+              }`}
+            >
+              Asistente
+            </a>
+          </nav>
         ) : null}
       </div>
 
-      {/* Menú móvil */}
+      {/* ── Fila 2: breadcrumb (desktop, solo dentro de un grado) ── */}
+      {activeDegree ? (
+        <div className="relative z-0 hidden border-t border-gray-100 bg-gray-50/80 md:block">
+          <div
+            className="mx-auto px-4 py-1.5"
+            style={{ maxWidth: '1400px' }}
+          >
+            <Breadcrumb />
+          </div>
+        </div>
+      ) : null}
+
+      {/* ── Menú móvil ── */}
       {menuOpen ? (
-        <div className="mt-2 border-t bg-white py-2 shadow-inner md:hidden">
+        <div className="border-t bg-white py-2 shadow-inner md:hidden">
           <div className="px-4 py-2">
             <Breadcrumb isMobile className="mb-3" />
             {activeDegree ? (
-              <div className="mt-4 flex flex-col space-y-2">
+              <div className="mt-2 flex flex-col space-y-2">
                 <a
                   href={`${base}/asignaturas`}
                   onClick={handleNavigation(`${base}/asignaturas`)}
@@ -278,10 +303,11 @@ const Header: FC = () => {
                 </a>
                 <hr />
                 <button
-                  onClick={() => navigate('/')}
-                  className="rounded-md border border-gray-200 px-3 py-2 text-left text-xs text-gray-400"
+                  onClick={handleGoToSelector}
+                  className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 text-left text-xs text-gray-500"
                 >
-                  Cambiar grado →
+                  <FontAwesomeIcon icon={faRightLeft} />
+                  Pantalla de selección de grado
                 </button>
               </div>
             ) : null}

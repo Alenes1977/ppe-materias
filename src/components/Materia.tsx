@@ -41,7 +41,18 @@ const Materia: React.FC = () => {
       const subj = modulo.subjects.find(
         (s) => generateSlug(s.name) === materiaSlug,
       );
-      if (subj) return { ...subj, modulo: modulo.name };
+      if (subj) {
+        // Si la materia no tiene LOs propios, agrega los de sus cursos
+        const learningOutcomes =
+          subj.learningOutcomes.length > 0
+            ? subj.learningOutcomes
+            : [
+                ...new Set(
+                  subj.courses.flatMap((c) => c.learningOutcomes ?? []),
+                ),
+              ];
+        return { ...subj, learningOutcomes, modulo: modulo.name };
+      }
     }
     return null;
   }, [degreePlan, materiaSlug]);
@@ -223,18 +234,23 @@ const Materia: React.FC = () => {
                   {labelLO.plural.charAt(0).toUpperCase() +
                     labelLO.plural.slice(1)}
                 </h2>
-                <div className="flex flex-wrap gap-2">
+                <ul className="space-y-2">
                   {materiaInfo.learningOutcomes.map((loId) => (
-                    <Link
-                      key={loId}
-                      to={`${base}/competencias/${loId}`}
-                      className="group relative inline-flex items-center rounded-full bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-800 transition-all hover:bg-blue-100 sm:text-sm"
-                      title={degreePlan.learningOutcomes[loId]}
-                    >
-                      {loId}
-                    </Link>
+                    <li key={loId}>
+                      <Link
+                        to={`${base}/competencias/${loId}`}
+                        className="group flex items-start gap-3 rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 transition-all hover:border-blue-300 hover:bg-blue-100"
+                      >
+                        <span className="mt-0.5 shrink-0 rounded-full bg-blue-200 px-2 py-0.5 text-xs font-semibold text-blue-800 group-hover:bg-blue-300">
+                          {loId}
+                        </span>
+                        <span className="text-sm text-gray-700 group-hover:text-blue-900">
+                          {degreePlan.learningOutcomes[loId] ?? loId}
+                        </span>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
           </div>

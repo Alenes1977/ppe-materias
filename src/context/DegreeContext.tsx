@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { DEGREES, getDegree } from '../data/degrees';
+import { getDegree } from '../data/degrees';
 import { getSubjectsFromPlan } from '../lib/dataUtils';
 import type {
   DegreeInfo,
@@ -89,9 +89,6 @@ const DegreeProviderInner: FC<{
 };
 
 // ── Helpers exportados ────────────────────────────────────────────────────────
-
-/** Lista de todos los grados disponibles para la pantalla de selección */
-export { DEGREES };
 
 /** Devuelve el último degreeId guardado en localStorage, si existe */
 export function getLastDegreeId(): string | null {

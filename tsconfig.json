@@ -45,7 +45,9 @@
     /** Reporta errores por parámetros de función no usados. */
     "noUnusedParameters": true,
     /** Asegura que los switch cubran todos los casos relevantes. */
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    /** Silencia deprecaciones conocidas del compilador (TS 6.0). */
+    "ignoreDeprecations": "6.0"
   },
   /** Archivos que se incluyen en la comprobación. */
   "include": ["src"],

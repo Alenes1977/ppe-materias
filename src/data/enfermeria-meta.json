@@ -1,0 +1,16 @@
+{
+  "id": "enfermeria",
+  "name": "Grado en Enfermería",
+  "shortName": "Enfermería",
+  "university": "Universidad de Navarra",
+  "ructCode": "",
+  "anecaVerified": true,
+  "verificationYear": "2009",
+  "lastUpdated": "07 abril 2022",
+  "primaryColor": "#1e3a8a",
+  "learningOutcomeLabel": {
+    "singular": "Competencia",
+    "plural": "Competencias",
+    "acronym": "C"
+  }
+}

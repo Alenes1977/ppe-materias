@@ -1,4 +1,4 @@
-{
+﻿{
   "schemaVersion": 1,
   "learningOutcomes": {
     "CB1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio",
@@ -76,121 +76,121 @@
   },
   "trainingActivities": [
     {
-      "id": "Clases presenciales teóricas",
+      "id": "AF1",
       "name": "Clases presenciales teóricas",
       "description": ""
     },
     {
-      "id": "Clases presenciales prácticas",
+      "id": "AF2",
       "name": "Clases presenciales prácticas",
       "description": ""
     },
     {
-      "id": "Seminarios",
+      "id": "AF3",
       "name": "Seminarios",
       "description": ""
     },
     {
-      "id": "Trabajos dirigidos",
+      "id": "AF4",
       "name": "Trabajos dirigidos",
       "description": ""
     },
     {
-      "id": "Tutorías",
+      "id": "AF5",
       "name": "Tutorías",
       "description": ""
     },
     {
-      "id": "Estudio personal",
+      "id": "AF6",
       "name": "Estudio personal",
       "description": ""
     },
     {
-      "id": "Evaluación",
+      "id": "AF7",
       "name": "Evaluación",
       "description": ""
     }
   ],
   "teachingMethodologies": [
     {
-      "id": "Clases expositivas",
+      "id": "MD1",
       "name": "Clases expositivas",
       "description": ""
     },
     {
-      "id": "Clases en salas de informática",
+      "id": "MD2",
       "name": "Clases en salas de informática",
       "description": ""
     },
     {
-      "id": "Clases en el Centro de Simulación de Enfermería",
+      "id": "MD3",
       "name": "Clases en el Centro de Simulación de Enfermería",
       "description": ""
     },
     {
-      "id": "Trabajo individual o en grupo, resolución de problemas e informes del Centro de Simulación",
+      "id": "MD4",
       "name": "Trabajo individual o en grupo, resolución de problemas e informes del Centro de Simulación",
       "description": ""
     },
     {
-      "id": "Entrevista personal con el profesor",
+      "id": "MD5",
       "name": "Entrevista personal con el profesor",
       "description": ""
     },
     {
-      "id": "Estudio del alumno basado en diferentes fuentes de información",
+      "id": "MD6",
       "name": "Estudio del alumno basado en diferentes fuentes de información",
       "description": ""
     },
     {
-      "id": "Realización de pruebas que verifiquen las competencias adquiridas",
+      "id": "MD7",
       "name": "Realización de pruebas que verifiquen las competencias adquiridas",
       "description": ""
     },
     {
-      "id": "Informe y Defensa oral y pública del Trabajo Fin de Grado a través de póster",
+      "id": "MD8",
       "name": "Informe y Defensa oral y pública del Trabajo Fin de Grado a través de póster",
       "description": ""
     }
   ],
   "evaluationSystems": [
     {
-      "id": "Intervención en clases, seminarios y clases prácticas",
+      "id": "SE1",
       "name": "Intervención en clases, seminarios y clases prácticas",
       "description": ""
     },
     {
-      "id": "Resolución de problemas",
+      "id": "SE2",
       "name": "Resolución de problemas",
       "description": ""
     },
     {
-      "id": "Resolución de casos prácticos",
+      "id": "SE3",
       "name": "Resolución de casos prácticos",
       "description": ""
     },
     {
-      "id": "Evaluaciones parciales",
+      "id": "SE4",
       "name": "Evaluaciones parciales",
       "description": ""
     },
     {
-      "id": "Examen final",
+      "id": "SE5",
       "name": "Examen final",
       "description": ""
     },
     {
-      "id": "Trabajos individuales y/o en equipo",
+      "id": "SE6",
       "name": "Trabajos individuales y/o en equipo",
       "description": ""
     },
     {
-      "id": "Trabajo de investigación",
+      "id": "SE7",
       "name": "Trabajo de investigación",
       "description": ""
     },
     {
-      "id": "Exposición oral y defensa pública",
+      "id": "SE8",
       "name": "Exposición oral y defensa pública",
       "description": ""
     }
@@ -204,42 +204,43 @@
           "name": "Materia 1.1: Estructura, función y comportamiento del ser humano",
           "ects": 46,
           "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Clases presenciales prácticas",
-            "Seminarios",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
+            "AF1",
+            "AF2",
+            "AF3",
+            "AF4",
+            "AF5",
+            "AF6",
+            "AF7"
           ],
+          "teachingMethodologies": ["MD1", "MD3", "MD4", "MD5", "MD6", "MD7"],
           "evaluation": [
             {
-              "system": "Intervención en clases, seminarios y clases prácticas",
+              "system": "SE1",
               "minWeight": "5.0%",
               "maxWeight": "25.0%"
             },
             {
-              "system": "Resolución de problemas",
+              "system": "SE2",
               "minWeight": "0.0%",
               "maxWeight": "5.0%"
             },
             {
-              "system": "Resolución de casos prácticos",
+              "system": "SE3",
               "minWeight": "5.0%",
               "maxWeight": "15.0%"
             },
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "5.0%",
               "maxWeight": "60.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "45.0%",
               "maxWeight": "85.0%"
             },
             {
-              "system": "Trabajos individuales y/o en equipo",
+              "system": "SE6",
               "minWeight": "5.0%",
               "maxWeight": "15.0%"
             }
@@ -312,9 +313,9 @@
             },
             {
               "name": "Nutrición y Dietética",
-              "type": "Básica",
-              "year": 1,
-              "semester": 2,
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
               "ects": 3
             },
             {
@@ -326,7 +327,7 @@
             },
             {
               "name": "Farmacología y Microbiología",
-              "type": "Básica",
+              "type": "Obligatoria",
               "year": 2,
               "semester": 4,
               "ects": 7
@@ -336,32 +337,26 @@
         {
           "name": "Materia 1.2: Formación general humanística",
           "ects": 21,
-          "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Clases presenciales prácticas",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6", "AF7"],
+          "teachingMethodologies": ["MD1", "MD3", "MD4", "MD5", "MD6", "MD7"],
           "evaluation": [
             {
-              "system": "Resolución de casos prácticos",
+              "system": "SE3",
               "minWeight": "10.0%",
               "maxWeight": "20.0%"
             },
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "20.0%",
               "maxWeight": "30.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "20.0%",
               "maxWeight": "30.0%"
             },
             {
-              "system": "Trabajos individuales y/o en equipo",
+              "system": "SE6",
               "minWeight": "10.0%",
               "maxWeight": "30.0%"
             }
@@ -404,7 +399,7 @@
             {
               "name": "Ética general I",
               "type": "Básica",
-              "year": 1,
+              "year": 2,
               "semester": 2,
               "ects": 3
             },
@@ -412,28 +407,28 @@
               "name": "Ética general II",
               "type": "Básica",
               "year": 2,
-              "semester": 4,
+              "semester": 2,
               "ects": 3
             },
             {
-              "name": "Deontología y Bioética",
-              "type": "Básica",
-              "year": 2,
-              "semester": 3,
-              "ects": 3
-            },
-            {
-              "name": "Fundamentos filosóficos de la enfermería",
-              "type": "Básica",
-              "year": 2,
-              "semester": 3,
-              "ects": 3
-            },
-            {
-              "name": "Ética en Enfermería",
-              "type": "Básica",
+              "name": "Bioética",
+              "type": "Obligatoria",
               "year": 4,
-              "semester": 7,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "CORE: Claves Culturales I",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "CORE: Claves Culturales II",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 1,
               "ects": 3
             }
           ]
@@ -441,36 +436,39 @@
         {
           "name": "Materia 1.3: Materias instrumentales",
           "ects": 12,
-          "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
+          "trainingActivities": ["AF1", "AF4", "AF5", "AF6", "AF7"],
+          "teachingMethodologies": [
+            "MD1",
+            "MD2",
+            "MD3",
+            "MD4",
+            "MD5",
+            "MD6",
+            "MD7"
           ],
           "evaluation": [
             {
-              "system": "Intervención en clases, seminarios y clases prácticas",
+              "system": "SE1",
               "minWeight": "0.0%",
               "maxWeight": "10.0%"
             },
             {
-              "system": "Resolución de casos prácticos",
+              "system": "SE3",
               "minWeight": "20.0%",
               "maxWeight": "32.0%"
             },
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "20.0%",
               "maxWeight": "35.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "35.0%",
               "maxWeight": "60.0%"
             },
             {
-              "system": "Trabajos individuales y/o en equipo",
+              "system": "SE6",
               "minWeight": "0.0%",
               "maxWeight": "10.0%"
             }
@@ -505,7 +503,7 @@
               "name": "Bases de la metodología científica en ciencias de la salud",
               "type": "Básica",
               "year": 2,
-              "semester": 4,
+              "semester": 2,
               "ects": 3
             }
           ]
@@ -514,7 +512,7 @@
     },
     {
       "name": "Módulo 2: Ciencias de la Enfermería",
-      "ects": 76,
+      "ects": 70,
       "subjects": [
         {
           "name": "Materia 2.1: Bases de la disciplina y de la profesión enfermera",
@@ -527,6 +525,15 @@
             "Tutorías",
             "Estudio personal",
             "Evaluación"
+          ],
+          "teachingMethodologies": [
+            "Clases expositivas",
+            "Clases en salas de informática",
+            "Clases en el Centro de Simulación de Enfermería",
+            "Trabajo individual o en grupo, resolución de problemas e informes del Centro de Simulación",
+            "Entrevista personal con el profesor",
+            "Estudio del alumno basado en diferentes fuentes de información",
+            "Realización de pruebas que verifiquen las competencias adquiridas"
           ],
           "evaluation": [
             {
@@ -1078,4 +1085,4 @@
       ]
     }
   ]
-}
+

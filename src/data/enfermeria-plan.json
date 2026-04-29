@@ -329,7 +329,7 @@
               "name": "Farmacología y Microbiología",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 4,
+              "semester": "annual",
               "ects": 7
             }
           ]
@@ -518,41 +518,33 @@
           "name": "Materia 2.1: Bases de la disciplina y de la profesión enfermera",
           "ects": 9,
           "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Clases presenciales prácticas",
-            "Seminarios",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
+            "AF1",
+            "AF2",
+            "AF3",
+            "AF4",
+            "AF5",
+            "AF6",
+            "AF7"
           ],
-          "teachingMethodologies": [
-            "Clases expositivas",
-            "Clases en salas de informática",
-            "Clases en el Centro de Simulación de Enfermería",
-            "Trabajo individual o en grupo, resolución de problemas e informes del Centro de Simulación",
-            "Entrevista personal con el profesor",
-            "Estudio del alumno basado en diferentes fuentes de información",
-            "Realización de pruebas que verifiquen las competencias adquiridas"
-          ],
+          "teachingMethodologies": ["MD1", "MD3", "MD4", "MD5", "MD6", "MD7"],
           "evaluation": [
             {
-              "system": "Resolución de problemas",
+              "system": "SE2",
               "minWeight": "0.0%",
               "maxWeight": "10.0%"
             },
             {
-              "system": "Resolución de casos prácticos",
+              "system": "SE3",
               "minWeight": "0.0%",
               "maxWeight": "20.0%"
             },
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "0.0%",
               "maxWeight": "30.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "70.0%",
               "maxWeight": "70.0%"
             }
@@ -574,58 +566,59 @@
           ],
           "courses": [
             {
-              "name": "Fundamentos metodológicos de la enfermería",
+              "name": "Fundamentos filóficos de la enfermería",
               "type": "Obligatoria",
               "year": 1,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "Historia de la Enfermería",
+              "name": "Fundamentos metodológicos de la enfermería",
               "type": "Obligatoria",
               "year": 1,
               "semester": 2,
               "ects": 3
             },
             {
-              "name": "Bases de enfermería",
+              "name": "Historia de la Enfermería",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 3,
+              "semester": 1,
               "ects": 3
             }
           ]
         },
         {
           "name": "Materia 2.2: Atención de enfermería a la persona en las distintas etapas de la vida",
-          "ects": 47,
+          "ects": 41,
           "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Clases presenciales prácticas",
-            "Seminarios",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
+            "AF1",
+            "AF2",
+            "AF3",
+            "AF4",
+            "AF5",
+            "AF6",
+            "AF7"
           ],
+          "teachingMethodologies": ["MD1", "MD3", "MD4", "MD5", "MD6", "MD7"],
           "evaluation": [
             {
-              "system": "Intervención en clases, seminarios y clases prácticas",
+              "system": "SE1",
               "minWeight": "10.0%",
               "maxWeight": "20.0%"
             },
             {
-              "system": "Resolución de casos prácticos",
+              "system": "SE3",
               "minWeight": "10.0%",
               "maxWeight": "25.0%"
             },
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "30.0%",
               "maxWeight": "37.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "45.0%",
               "maxWeight": "80.0%"
             }
@@ -678,70 +671,56 @@
               "name": "Atención de enfermería a la persona adulta I",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 3,
+              "semester": 1,
               "ects": 6
             },
             {
               "name": "Atención de enfermería a la persona adulta II",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 4,
+              "semester": 2,
               "ects": 6
             },
             {
               "name": "Atención de enfermería a la persona adulta III",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 5,
+              "semester": 1,
               "ects": 5
             },
             {
               "name": "Atención de enfermería a la persona adulta IV",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 6,
+              "semester": 1,
               "ects": 6
             },
             {
               "name": "Atención de enfermería a la persona adulta V",
               "type": "Obligatoria",
-              "year": 4,
-              "semester": 7,
+              "year": 3,
+              "semester": 2,
               "ects": 3
             },
             {
               "name": "Atención de enfermería a la persona en la infancia y adolescencia",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 5,
+              "semester": 2,
               "ects": 6
             },
             {
               "name": "Atención de enfermería a la persona anciana",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 6,
+              "semester": 2,
               "ects": 6
             },
             {
               "name": "Cuidados Paliativos",
               "type": "Obligatoria",
               "year": 4,
-              "semester": 7,
-              "ects": 3
-            },
-            {
-              "name": "Salud Mental",
-              "type": "Obligatoria",
-              "year": 3,
-              "semester": 5,
-              "ects": 3
-            },
-            {
-              "name": "Enfermería Materno-Infantil",
-              "type": "Obligatoria",
-              "year": 3,
-              "semester": 6,
+              "semester": 1,
               "ects": 3
             }
           ]
@@ -750,32 +729,33 @@
           "name": "Materia 2.3: Enfermería de salud pública y comunitaria y gestión sanitaria",
           "ects": 14,
           "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Clases presenciales prácticas",
-            "Seminarios",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
+            "AF1",
+            "AF2",
+            "AF3",
+            "AF4",
+            "AF5",
+            "AF6",
+            "AF7"
           ],
+          "teachingMethodologies": ["MD1", "MD4", "MD5", "MD6", "MD7"],
           "evaluation": [
             {
-              "system": "Resolución de casos prácticos",
+              "system": "SE3",
               "minWeight": "0.0%",
               "maxWeight": "10.0%"
             },
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "0.0%",
               "maxWeight": "30.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "55.0%",
               "maxWeight": "65.0%"
             },
             {
-              "system": "Trabajos individuales y/o en equipo",
+              "system": "SE6",
               "minWeight": "15.0%",
               "maxWeight": "25.0%"
             }
@@ -821,62 +801,50 @@
               "name": "Enfermería Comunitaria I",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 3,
-              "ects": 3
+              "semester": 1,
+              "ects": 4
             },
             {
               "name": "Enfermería Comunitaria II",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 4,
-              "ects": 3
+              "semester": 2,
+              "ects": 4
             },
             {
-              "name": "Gestión sanitaria y legislación profesional I",
+              "name": "Gestión sanitaria",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 5,
+              "semester": 1,
               "ects": 3
             },
             {
-              "name": "Gestión sanitaria y legislación profesional II",
+              "name": "Deontología y legislación en enfermería",
               "type": "Obligatoria",
               "year": 4,
-              "semester": 7,
+              "semester": 1,
               "ects": 3
-            },
-            {
-              "name": "Métodos de Educación para la Salud",
-              "type": "Obligatoria",
-              "year": 3,
-              "semester": 6,
-              "ects": 2
             }
           ]
         },
         {
           "name": "Materia 2.4: Formación complementaria de la disciplina",
           "ects": 6,
-          "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
-          ],
+          "trainingActivities": ["AF1", "AF4", "AF5", "AF6", "AF7"],
+          "teachingMethodologies": ["MD1", "MD4", "MD5", "MD6", "MD7"],
           "evaluation": [
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "30.0%",
               "maxWeight": "30.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "60.0%",
               "maxWeight": "60.0%"
             },
             {
-              "system": "Trabajos individuales y/o en equipo",
+              "system": "SE6",
               "minWeight": "10.0%",
               "maxWeight": "10.0%"
             }
@@ -900,14 +868,14 @@
               "name": "Optativas (Formación complementaria de la disciplina)",
               "type": "Optativa",
               "year": 4,
-              "semester": 7,
+              "semester": 1,
               "ects": 3
             },
             {
               "name": "Optativas (Formación complementaria de la disciplina) II",
               "type": "Optativa",
               "year": 4,
-              "semester": 8,
+              "semester": 2,
               "ects": 3
             }
           ]
@@ -916,28 +884,29 @@
     },
     {
       "name": "Módulo 3: Prácticas tuteladas y Trabajo Fin de Grado",
-      "ects": 93,
+      "ects": 91,
       "subjects": [
         {
           "name": "Materia 3.1: Prácticas tuteladas",
-          "ects": 87,
+          "ects": 85,
           "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Clases presenciales prácticas",
-            "Seminarios",
-            "Trabajos dirigidos",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
+            "AF1",
+            "AF2",
+            "AF3",
+            "AF4",
+            "AF5",
+            "AF6",
+            "AF7"
           ],
+          "teachingMethodologies": ["MD1", "MD4", "MD5", "MD6", "MD7"],
           "evaluation": [
             {
-              "system": "Evaluaciones parciales",
+              "system": "SE4",
               "minWeight": "30.0%",
               "maxWeight": "40.0%"
             },
             {
-              "system": "Examen final",
+              "system": "SE5",
               "minWeight": "60.0%",
               "maxWeight": "70.0%"
             }
@@ -969,72 +938,75 @@
           ],
           "courses": [
             {
+              "name": "Prepracticum",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
               "name": "Practicum I",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 3,
-              "ects": 17
+              "semester": "annual",
+              "ects": 15
             },
             {
               "name": "Practicum II",
               "type": "Obligatoria",
-              "year": 2,
-              "semester": 4,
+              "year": 3,
+              "semester": 1,
               "ects": 16
             },
             {
               "name": "Practicum III",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 5,
+              "semester": 2,
               "ects": 15
             },
             {
               "name": "Practicum IV",
               "type": "Obligatoria",
-              "year": 3,
-              "semester": 6,
+              "year": 4,
+              "semester": 1,
               "ects": 16
             },
             {
               "name": "Practicum V",
               "type": "Obligatoria",
               "year": 4,
-              "semester": 8,
-              "ects": 20
-            },
-            {
-              "name": "Practicum 0",
-              "type": "Obligatoria",
-              "year": 1,
               "semester": 2,
-              "ects": 3
+              "ects": 20
             }
           ]
         },
         {
           "name": "Materia 3.2: Trabajo fin de grado",
           "ects": 6,
-          "trainingActivities": [
-            "Clases presenciales teóricas",
-            "Clases presenciales prácticas",
-            "Tutorías",
-            "Estudio personal",
-            "Evaluación"
+          "trainingActivities": ["AF1", "AF2", "AF5", "AF6", "AF7"],
+          "teachingMethodologies": [
+            "MD1",
+            "MD2",
+            "MD4",
+            "MD5",
+            "MD6",
+            "MD7",
+            "MD8"
           ],
           "evaluation": [
             {
-              "system": "Trabajos individuales y/o en equipo",
+              "system": "SE6",
               "minWeight": "15.0%",
               "maxWeight": "15.0%"
             },
             {
-              "system": "Trabajo de investigación",
+              "system": "SE7",
               "minWeight": "70.0%",
               "maxWeight": "70.0%"
             },
             {
-              "system": "Exposición oral y defensa pública",
+              "system": "SE8",
               "minWeight": "15.0%",
               "maxWeight": "15.0%"
             }
@@ -1068,17 +1040,10 @@
           "courses": [
             {
               "name": "Trabajo Fin de Grado",
-              "type": "Trabajo Fin de Grado / Máster",
+              "type": "Obligatoria",
               "year": 4,
-              "semester": 7,
-              "ects": 2
-            },
-            {
-              "name": "Trabajo Fin de Grado",
-              "type": "Trabajo Fin de Grado / Máster",
-              "year": 4,
-              "semester": 8,
-              "ects": 4
+              "semester": "annual",
+              "ects": 6
             }
           ]
         }

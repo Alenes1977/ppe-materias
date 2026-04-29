@@ -63,6 +63,8 @@ export interface SubjectGroup {
   ects: number;
   /** IDs de TrainingActivity */
   trainingActivities: string[];
+  /** IDs de TeachingMethodology (opcional) */
+  teachingMethodologies?: string[];
   evaluation: EvaluationEntry[];
   /** IDs de learningOutcomes del plan */
   learningOutcomes: string[];

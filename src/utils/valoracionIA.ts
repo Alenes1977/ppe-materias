@@ -43,9 +43,9 @@ export async function enviarGuiaParaValoracion(
       },
       presentacion: {
         profesores: guia.presentacion.profesores,
-        idioma: guia.presentacion.idioma,
+        idioma: guia.presentacion.idioma.join(', '),
         aula: guia.presentacion.aula,
-        horario: guia.presentacion.horario,
+        horario: guia.presentacion.horario.join(' | '),
         resumen: guia.presentacion.resumen,
       },
       programa: guia.programa,

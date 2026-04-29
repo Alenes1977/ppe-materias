@@ -12,9 +12,9 @@ export interface Profesor {
 
 export interface PresentacionData {
   profesores: Profesor[];
-  idioma: string;
+  idioma: string[];
   aula: string;
-  horario: string;
+  horario: string[];
   resumen: string;
   anioAcademico: string;
 }
@@ -41,17 +41,25 @@ const PasoA_Presentacion: React.FC<Props> = ({
     nombre: '',
     email: '',
   });
+  const [nuevoIdioma, setNuevoIdioma] = useState('');
+  const [nuevoHorario, setNuevoHorario] = useState('');
   const [touched, setTouched] = useState(false);
-  const [editandoIdioma, setEditandoIdioma] = useState(value.idioma === '');
-  const [idiomaTemp, setIdiomaTemp] = useState(value.idioma);
 
   const camposObligatoriosCompletos =
     value.profesores.length > 0 &&
-    value.idioma.trim() !== '' &&
+    value.idioma.length > 0 &&
     value.resumen.trim() !== '' &&
     value.resumen.replace(/<(.|\n)*?>/g, '').trim() !== '';
 
   const emailValido = /^\S+@\S+\.\S+$/.test(nuevoProfesor.email);
+  const idiomaDuplicado = value.idioma.some(
+    (idioma) => idioma.toLowerCase() === nuevoIdioma.trim().toLowerCase(),
+  );
+  const idiomaValido = nuevoIdioma.trim() !== '' && !idiomaDuplicado;
+  const horarioDuplicado = value.horario.some(
+    (horario) => horario.toLowerCase() === nuevoHorario.trim().toLowerCase(),
+  );
+  const horarioValido = nuevoHorario.trim() !== '' && !horarioDuplicado;
 
   const semLabel = () => {
     if (asignatura.semestre === 'annual') return 'Anual';
@@ -75,11 +83,38 @@ const PasoA_Presentacion: React.FC<Props> = ({
     });
   };
 
-  const handleConfirmIdioma = () => {
-    if (idiomaTemp.trim() !== '') {
-      onChange({ ...value, idioma: idiomaTemp });
-      setEditandoIdioma(false);
+  const handleAddIdioma = () => {
+    if (idiomaValido) {
+      onChange({
+        ...value,
+        idioma: [...value.idioma, nuevoIdioma.trim()],
+      });
+      setNuevoIdioma('');
     }
+  };
+
+  const handleRemoveIdioma = (index: number) => {
+    onChange({
+      ...value,
+      idioma: value.idioma.filter((_, i) => i !== index),
+    });
+  };
+
+  const handleAddHorario = () => {
+    if (horarioValido) {
+      onChange({
+        ...value,
+        horario: [...value.horario, nuevoHorario.trim()],
+      });
+      setNuevoHorario('');
+    }
+  };
+
+  const handleRemoveHorario = (index: number) => {
+    onChange({
+      ...value,
+      horario: value.horario.filter((_, i) => i !== index),
+    });
   };
 
   const handleNext = () => {
@@ -93,9 +128,9 @@ const PasoA_Presentacion: React.FC<Props> = ({
   };
 
   return (
-    <div className="rounded-lg bg-white p-6 shadow-md">
-      <h3 className="mb-4 text-xl font-bold text-blue-900">A. Presentación</h3>
-      <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div className="rounded-xl bg-white p-6 shadow-md">
+      <h3 className="mb-6 text-xl font-bold text-blue-900">A. Presentación</h3>
+      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
           <div className="mb-3">
             <span className="block text-xs font-semibold text-gray-500">
@@ -154,7 +189,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
             </label>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
               placeholder="Ej: 2026-2027"
               value={value.anioAcademico}
               onChange={(e) =>
@@ -163,14 +198,17 @@ const PasoA_Presentacion: React.FC<Props> = ({
             />
           </div>
 
-          <div className="mb-3">
-            <label className="mb-1 block font-medium text-gray-700">
-              Profesores encargados <span className="text-red-500">*</span>
-            </label>
+          <div className="mb-3 rounded-lg border border-blue-100 bg-blue-50/40 p-4">
+            <div className="mb-2 flex items-center justify-between">
+              <label className="text-sm font-semibold text-blue-900">
+                Profesores encargados <span className="text-red-500">*</span>
+              </label>
+              <span className="text-xs text-blue-700">Añade uno o varios</span>
+            </div>
             <div className="mb-2 flex flex-col gap-2 sm:flex-row">
               <input
                 type="text"
-                className="min-w-0 flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                className="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
                 placeholder="Nombre del profesor"
                 value={nuevoProfesor.nombre}
                 onChange={(e) =>
@@ -179,7 +217,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
               />
               <input
                 type="email"
-                className="min-w-0 flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                className="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
                 placeholder="Email"
                 value={nuevoProfesor.email}
                 onChange={(e) =>
@@ -196,7 +234,9 @@ const PasoA_Presentacion: React.FC<Props> = ({
                   !emailValido
                 }
               >
-                {value.profesores.length === 0 ? 'Confirmar' : 'Añadir otro'}
+                {value.profesores.length === 0
+                  ? 'Añadir profesor'
+                  : 'Añadir otro profesor'}
               </button>
             </div>
             {nuevoProfesor.email && !emailValido ? (
@@ -204,80 +244,86 @@ const PasoA_Presentacion: React.FC<Props> = ({
                 Introduce un email válido.
               </div>
             ) : null}
-            <ul className="space-y-1">
+            <div className="mt-3 flex flex-wrap gap-2">
               {value.profesores.map((prof, idx) => (
-                <li
+                <div
                   key={idx}
-                  className="flex items-center justify-between rounded bg-blue-50 px-3 py-1 text-blue-900"
+                  className="flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3 py-1 text-xs text-blue-900"
                 >
-                  <span>
-                    {prof.nombre} ({prof.email})
-                  </span>
+                  <span className="font-semibold">{prof.nombre}</span>
+                  <span className="text-blue-700">({prof.email})</span>
                   <button
                     type="button"
-                    className="ml-2 text-xs text-red-500 hover:underline"
+                    className="ml-1 text-xs text-red-500 hover:underline"
                     onClick={() => handleRemoveProfesor(idx)}
                   >
                     Quitar
                   </button>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
             {touched && value.profesores.length === 0 ? (
-              <div className="mt-1 text-xs text-red-500">
+              <div className="mt-2 text-xs text-red-500">
                 Debes añadir al menos un profesor.
               </div>
             ) : null}
           </div>
 
-          <div className="mb-3">
-            <label className="mb-1 block font-medium text-gray-700">
-              Idioma <span className="text-red-500">*</span>
-            </label>
-            {editandoIdioma ? (
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
-                  placeholder="Ejemplo: Español, Inglés..."
-                  value={idiomaTemp}
-                  onChange={(e) => setIdiomaTemp(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleConfirmIdioma();
-                    }
-                  }}
-                />
-                <button
-                  type="button"
-                  className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-                  onClick={handleConfirmIdioma}
-                  disabled={idiomaTemp.trim() === ''}
-                >
-                  Confirmar
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <div className="flex-1 rounded bg-blue-50 px-3 py-2 text-blue-900">
-                  {value.idioma}
-                </div>
-                <button
-                  type="button"
-                  className="rounded-md bg-gray-200 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100"
-                  onClick={() => {
-                    setEditandoIdioma(true);
-                    setIdiomaTemp(value.idioma);
-                  }}
-                >
-                  Editar
-                </button>
-              </div>
-            )}
-            {touched && value.idioma.trim() === '' ? (
+          <div className="mb-3 rounded-lg border border-indigo-100 bg-indigo-50/40 p-4">
+            <div className="mb-2 flex items-center justify-between">
+              <label className="text-sm font-semibold text-indigo-900">
+                Idiomas <span className="text-red-500">*</span>
+              </label>
+              <span className="text-xs text-indigo-700">Uno o varios</span>
+            </div>
+            <div className="mb-2 flex flex-col gap-2 sm:flex-row">
+              <input
+                type="text"
+                className="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+                placeholder="Ejemplo: Español, Inglés..."
+                value={nuevoIdioma}
+                onChange={(e) => setNuevoIdioma(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleAddIdioma();
+                  }
+                }}
+              />
+              <button
+                type="button"
+                className="w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
+                onClick={handleAddIdioma}
+                disabled={!idiomaValido}
+              >
+                {value.idioma.length === 0 ? 'Añadir idioma' : 'Añadir otro'}
+              </button>
+            </div>
+            {!idiomaValido && nuevoIdioma.trim() !== '' ? (
               <div className="mt-1 text-xs text-red-500">
-                Campo obligatorio.
+                Ese idioma ya está añadido.
+              </div>
+            ) : null}
+            <div className="mt-3 flex flex-wrap gap-2">
+              {value.idioma.map((idioma, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 rounded-full border border-indigo-200 bg-white px-3 py-1 text-xs text-indigo-900"
+                >
+                  <span className="font-semibold">{idioma}</span>
+                  <button
+                    type="button"
+                    className="ml-1 text-xs text-red-500 hover:underline"
+                    onClick={() => handleRemoveIdioma(idx)}
+                  >
+                    Quitar
+                  </button>
+                </div>
+              ))}
+            </div>
+            {touched && value.idioma.length === 0 ? (
+              <div className="mt-2 text-xs text-red-500">
+                Debes añadir al menos un idioma.
               </div>
             ) : null}
           </div>
@@ -286,24 +332,65 @@ const PasoA_Presentacion: React.FC<Props> = ({
             <label className="mb-1 block font-medium text-gray-700">Aula</label>
             <input
               type="text"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
               placeholder="Ejemplo: Aula M04 Edificio Amigos"
               value={value.aula}
               onChange={(e) => onChange({ ...value, aula: e.target.value })}
             />
           </div>
 
-          <div className="mb-3">
-            <label className="mb-1 block font-medium text-gray-700">
-              Horario de clase
-            </label>
-            <input
-              type="text"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
-              placeholder="Ejemplo: Lunes y miércoles, 10:00-12:00"
-              value={value.horario}
-              onChange={(e) => onChange({ ...value, horario: e.target.value })}
-            />
+          <div className="mb-3 rounded-lg border border-blue-100 bg-blue-50/40 p-4">
+            <div className="mb-2 flex items-center justify-between">
+              <label className="text-sm font-semibold text-blue-900">
+                Horario de clase
+              </label>
+              <span className="text-xs text-blue-700">Varias entradas</span>
+            </div>
+            <div className="mb-2 flex flex-col gap-2 sm:flex-row">
+              <input
+                type="text"
+                className="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                placeholder="Ejemplo: Lunes y miércoles, 10:00-12:00"
+                value={nuevoHorario}
+                onChange={(e) => setNuevoHorario(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleAddHorario();
+                  }
+                }}
+              />
+              <button
+                type="button"
+                className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 sm:w-auto"
+                onClick={handleAddHorario}
+                disabled={!horarioValido}
+              >
+                {value.horario.length === 0 ? 'Añadir horario' : 'Añadir otro'}
+              </button>
+            </div>
+            {!horarioValido && nuevoHorario.trim() !== '' ? (
+              <div className="mt-1 text-xs text-red-500">
+                Ese horario ya está añadido.
+              </div>
+            ) : null}
+            <div className="mt-3 flex flex-wrap gap-2">
+              {value.horario.map((horario, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3 py-1 text-xs text-blue-900"
+                >
+                  <span className="font-semibold">{horario}</span>
+                  <button
+                    type="button"
+                    className="ml-1 text-xs text-red-500 hover:underline"
+                    onClick={() => handleRemoveHorario(idx)}
+                  >
+                    Quitar
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

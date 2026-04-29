@@ -5,6 +5,7 @@ import type { GuiaDocenteData } from './AsistenteGuiaDocente';
 import type { AsignaturaProcesada } from '../lib/dataUtils';
 import { generarPDFGuiaDocente } from '../utils/pdfGuiaDocente';
 import ResumenGuiaDocente from './ResumenGuiaDocente';
+import { useDegree } from '../context/DegreeContext';
 
 interface Props {
   isOpen: boolean;
@@ -19,6 +20,7 @@ const ModalBorradorGuia: FC<Props> = ({
   guia,
   asignatura,
 }) => {
+  const { degreeInfo, degreePlan } = useDegree();
   // Cierra con Escape
   useEffect(() => {
     if (!isOpen) return;
@@ -62,7 +64,9 @@ const ModalBorradorGuia: FC<Props> = ({
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => generarPDFGuiaDocente(guia, asignatura)}
+              onClick={() =>
+                generarPDFGuiaDocente(guia, asignatura, degreeInfo, degreePlan)
+              }
               className="inline-flex items-center gap-2 rounded-lg border border-blue-300 bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 transition-all hover:bg-blue-100 hover:shadow"
             >
               <FontAwesomeIcon icon={faFilePdf} />

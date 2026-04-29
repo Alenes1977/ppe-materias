@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect, useContext } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PRIMARY_BLUE } from '../constants/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +9,6 @@ import {
   faRightLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import Breadcrumb from './Breadcrumb';
-import { DegreeContext } from '../context/DegreeContext';
 import { DEGREES } from '../data/degrees';
 
 const LAST_DEGREE_KEY = 'lastDegreeId';
@@ -19,7 +18,6 @@ const Header: FC = () => {
   const navigate = useNavigate();
   // useParams no funciona fuera de una Route con :degreeId; lo extraemos del path directamente
   const degreeId = location.pathname.split('/')[1] || undefined;
-  const ctx = useContext(DegreeContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [gradoOpen, setGradoOpen] = useState(false);
 
@@ -63,8 +61,8 @@ const Header: FC = () => {
   });
 
   const activeDegree = degreeId ? DEGREES[degreeId] : null;
-  const labelCompetencias = ctx
-    ? ctx.labelLO.plural.charAt(0).toUpperCase() + ctx.labelLO.plural.slice(1)
+  const labelCompetencias = activeDegree
+    ? activeDegree.meta.learningOutcomeLabel.plural
     : 'Competencias';
 
   const handleGoToSelector = () => {
@@ -218,15 +216,14 @@ const Header: FC = () => {
                 className={`flex items-center rounded-md px-2 py-1 font-semibold transition-all duration-300 ${
                   isActive('asistente-guia-docente')
                     ? 'bg-emerald-100 text-emerald-800 shadow-sm'
-                    : 'border border-gray-200 bg-white text-gray-400 hover:-translate-y-0.5 hover:transform hover:border-emerald-200 hover:bg-emerald-50/70 hover:text-emerald-800 hover:shadow-sm'
+                    : 'border border-emerald-200 bg-emerald-50/50 text-gray-500 hover:-translate-y-0.5 hover:transform hover:border-emerald-300 hover:bg-emerald-50/80 hover:text-emerald-800 hover:shadow-sm'
                 }`}
               >
-                Asistente
+                Asistente Guía Docente
               </a>
               <span className="text-gray-200">|</span>
             </>
           ) : null}
-
         </div>
       </div>
 
@@ -300,7 +297,7 @@ const Header: FC = () => {
                   className={`rounded-md px-3 py-2 font-semibold ${
                     isActive('asistente-guia-docente')
                       ? 'bg-emerald-100 text-emerald-800'
-                      : 'border border-gray-200 text-gray-400'
+                      : 'border border-emerald-200 bg-emerald-50/50 text-gray-500'
                   }`}
                 >
                   Asistente Guía Docente

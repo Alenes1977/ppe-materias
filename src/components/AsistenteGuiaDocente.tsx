@@ -43,6 +43,27 @@ function computeAnioAcademico(): string {
   return `${yr}-${yr + 1}`;
 }
 
+const normalizeGuia = (data: GuiaDocenteData): GuiaDocenteData => {
+  const idioma = Array.isArray(data.presentacion.idioma)
+    ? data.presentacion.idioma
+    : data.presentacion.idioma
+      ? [String(data.presentacion.idioma)]
+      : [];
+  const horario = Array.isArray(data.presentacion.horario)
+    ? data.presentacion.horario
+    : data.presentacion.horario
+      ? [String(data.presentacion.horario)]
+      : [];
+  return {
+    ...data,
+    presentacion: {
+      ...data.presentacion,
+      idioma,
+      horario,
+    },
+  };
+};
+
 export type GuiaDocenteData = {
   presentacion: PresentacionData;
   programa: UnidadPrograma[];
@@ -67,9 +88,9 @@ const pasos = [
 const defaultGuia = (): GuiaDocenteData => ({
   presentacion: {
     profesores: [],
-    idioma: '',
+    idioma: [],
     aula: '',
-    horario: '',
+    horario: [],
     resumen: '',
     anioAcademico: computeAnioAcademico(),
   },
@@ -125,7 +146,7 @@ const AsistenteGuiaDocente: React.FC = () => {
           try {
             const parsed = JSON.parse(saved) as GuiaDocenteData;
             if (parsed.version === GUIA_VERSION) {
-              setGuia(parsed);
+              setGuia(normalizeGuia(parsed));
             } else {
               localStorage.removeItem(key);
               setGuia(defaultGuia());

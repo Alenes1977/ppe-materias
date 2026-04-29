@@ -149,10 +149,10 @@ const ModalValoracionIA: React.FC<Props> = ({
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="mb-4 rounded-full bg-red-100 p-3">
+              <div className="mb-4 rounded-full bg-blue-100 p-3">
                 <FontAwesomeIcon
                   icon={faTimes}
-                  className="text-2xl text-red-600"
+                  className="text-2xl text-blue-600"
                 />
               </div>
               <h3 className="mb-2 text-lg font-semibold text-gray-900">
@@ -172,7 +172,7 @@ const ModalValoracionIA: React.FC<Props> = ({
             {puedeDescargarPDF ? (
               <button
                 onClick={handleDescargarPDF}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-semibold text-red-700 transition-colors hover:bg-red-100"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-semibold text-blue-700 transition-colors hover:bg-blue-100"
               >
                 <FontAwesomeIcon icon={faFilePdf} />
                 Descargar feedback (PDF)

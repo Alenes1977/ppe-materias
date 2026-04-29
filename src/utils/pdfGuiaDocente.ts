@@ -85,9 +85,9 @@ function buildDocDefinition(
           `Profesores: ${guia.presentacion.profesores
             .map((p) => `${p.nombre} (${p.email})`)
             .join(', ')}`,
-          `Idioma: ${guia.presentacion.idioma}`,
+          `Idioma: ${guia.presentacion.idioma.join(', ')}`,
           `Aula: ${guia.presentacion.aula}`,
-          `Horario: ${guia.presentacion.horario}`,
+          `Horario: ${guia.presentacion.horario.join(' | ')}`,
         ],
         margin: [0, 0, 0, 10],
       },

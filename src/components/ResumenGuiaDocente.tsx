@@ -201,13 +201,13 @@ const ResumenGuiaDocente: FC<Props> = ({
               .join(', ')}
           </div>
           <div>
-            <b>Idioma:</b> {guia.presentacion.idioma}
+            <b>Idioma:</b> {guia.presentacion.idioma.join(', ')}
           </div>
           <div>
             <b>Aula:</b> {guia.presentacion.aula}
           </div>
           <div>
-            <b>Horario:</b> {guia.presentacion.horario}
+            <b>Horario:</b> {guia.presentacion.horario.join(' | ')}
           </div>
           <div>
             <b>Breve resumen:</b>{' '}
@@ -220,8 +220,8 @@ const ResumenGuiaDocente: FC<Props> = ({
       {/* Resultados de aprendizaje / Competencias */}
       <section className="mb-6">
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-lg font-bold capitalize text-blue-700">
-            {labelLO.plural}
+          <h3 className="text-lg font-bold text-blue-700">
+            {labelLO.plural.charAt(0).toUpperCase() + labelLO.plural.slice(1)}
           </h3>
           {!modoPrevia && (
             <button

@@ -124,9 +124,9 @@ const ModalConfirmarEnvio: FC<Props> = ({
         presentacion: {
           anioAcademico: guia.presentacion.anioAcademico,
           profesores: guia.presentacion.profesores,
-          idioma: guia.presentacion.idioma,
+          idioma: guia.presentacion.idioma.join(', '),
           aula: guia.presentacion.aula,
-          horario: guia.presentacion.horario,
+          horario: guia.presentacion.horario.join(' | '),
           resumen: guia.presentacion.resumen,
         },
         competencias: asignatura.resultados_aprendizaje ?? [],
@@ -304,7 +304,7 @@ const ModalConfirmarEnvio: FC<Props> = ({
                     </li>
                     <li>
                       Además, la guía docente de{' '}
-                      <strong>{asignatura.nombre}</strong> se enviará al{' '}
+                      <strong>{asignatura.nombre}</strong> se hará llegar al{' '}
                       <strong>Coordinador de Curso</strong> para su revisión.
                     </li>
                   </ul>
@@ -314,6 +314,12 @@ const ModalConfirmarEnvio: FC<Props> = ({
                 Asegúrate de haber completado todos los apartados antes de
                 enviar. Siempre podrás volver a editar y reenviar la guía.
               </p>
+              <div className="mb-6 rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+                Recuerda que queda pendiente un último paso: una vez completada
+                y recibida la guía en tu correo-e,{' '}
+                <strong>copia la información en Aula Virtual - ADI</strong>.
+                Esto no se produce de manera automática por el momento.
+              </div>
               <div className="flex justify-end gap-3">
                 <button
                   type="button"

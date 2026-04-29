@@ -10,8 +10,8 @@
   "primaryColor": "#1e3a8a",
   "logoSrc": "FaviconUnav_rojo.svg",
   "learningOutcomeLabel": {
-    "singular": "resultado de aprendizaje",
-    "plural": "resultados de aprendizaje",
+    "singular": "Resultado de aprendizaje",
+    "plural": "Resultados de aprendizaje",
     "acronym": "RA"
   }
 }

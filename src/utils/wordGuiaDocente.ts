@@ -99,7 +99,7 @@ function buildWordDocument(
         spacing: { line: 240, after: 120 },
       }),
       new Paragraph({
-        text: `Idioma: ${guia.presentacion.idioma}`,
+        text: `Idioma: ${guia.presentacion.idioma.join(', ')}`,
         spacing: { line: 240, after: 120 },
       }),
       new Paragraph({
@@ -107,7 +107,7 @@ function buildWordDocument(
         spacing: { line: 240, after: 120 },
       }),
       new Paragraph({
-        text: `Horario: ${guia.presentacion.horario}`,
+        text: `Horario: ${guia.presentacion.horario.join(' | ')}`,
         spacing: { line: 240, after: 120 },
       }),
       new Paragraph({

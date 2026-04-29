@@ -1,5 +1,6 @@
 import type React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBook,
@@ -9,12 +10,20 @@ import {
   faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons';
 import { generateSlug } from '../utils/stringUtils';
-import { useDegree } from '../context/DegreeContext';
+import { DegreeContext } from '../context/DegreeContext';
+import { DEGREES } from '../data/degrees';
 
 const PlanEstudios: React.FC = () => {
   const { degreeId } = useParams<{ degreeId: string }>();
-  const { degreePlan, degreeInfo } = useDegree();
-  const base = `/${degreeId}`;
+  const ctx = useContext(DegreeContext);
+  const degree = degreeId ? DEGREES[degreeId] : null;
+  const degreePlan = ctx?.degreePlan ?? degree?.plan;
+  const degreeInfo = ctx?.degreeInfo ?? degree?.meta;
+  const base = degreeId ? `/${degreeId}` : '';
+
+  if (!degreePlan || !degreeInfo) {
+    return <Navigate to="/" replace />;
+  }
 
   const todasCourses = degreePlan.modules.flatMap((m) =>
     m.subjects.flatMap((s) => s.courses),

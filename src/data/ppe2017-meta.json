@@ -8,8 +8,8 @@
   "primaryColor": "#1e3a8a",
   "logoSrc": "FaviconUnav_rojo.svg",
   "learningOutcomeLabel": {
-    "singular": "competencia",
-    "plural": "competencias",
+    "singular": "Competencia",
+    "plural": "Competencias",
     "acronym": "C"
   }
 }

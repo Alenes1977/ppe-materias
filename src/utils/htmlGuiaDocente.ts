@@ -86,15 +86,15 @@ export function generarHTMLGuiaDocente(
         <div class="dato"><span class="dato-label">Profesores:</span> ${guia.presentacion.profesores
           .map((p) => `${p.nombre} (${p.email})`)
           .join(', ')}</div>
-        <div class="dato"><span class="dato-label">Idioma:</span> ${
-          guia.presentacion.idioma
-        }</div>
+        <div class="dato"><span class="dato-label">Idioma:</span> ${guia.presentacion.idioma.join(
+          ', ',
+        )}</div>
         <div class="dato"><span class="dato-label">Aula:</span> ${
           guia.presentacion.aula
         }</div>
-        <div class="dato"><span class="dato-label">Horario:</span> ${
-          guia.presentacion.horario
-        }</div>
+        <div class="dato"><span class="dato-label">Horario:</span> ${guia.presentacion.horario.join(
+          ' | ',
+        )}</div>
       </div>
       <div class="resumen"><span class="dato-label">Breve resumen:</span><br>${
         guia.presentacion.resumen

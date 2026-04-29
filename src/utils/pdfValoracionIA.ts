@@ -1,15 +1,15 @@
 import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 import type { ValoracionIAResponse } from './valoracionIA';
 
 function initVfs(): boolean {
   const vfs =
-    (pdfFonts as { pdfMake?: { vfs?: unknown }; vfs?: unknown })?.pdfMake
-      ?.vfs ||
-    (pdfFonts as { pdfMake?: { vfs?: unknown }; vfs?: unknown })?.vfs ||
     (pdfFonts as { default?: { pdfMake?: { vfs?: unknown } } })?.default
-      ?.pdfMake?.vfs;
+      ?.pdfMake?.vfs ||
+    (pdfFonts as { pdfMake?: { vfs?: unknown } })?.pdfMake?.vfs ||
+    (pdfFonts as { default?: unknown })?.default ||
+    pdfFonts;
 
   if (vfs) {
     (pdfMake as typeof pdfMake & { vfs?: unknown }).vfs = vfs;

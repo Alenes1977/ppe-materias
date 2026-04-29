@@ -80,18 +80,6 @@ const StepMeta: React.FC<Props> = ({ meta, onChange }) => {
             />
           </div>
           <div>
-            <label className={labelCls}>
-              Universidad <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              className={inputCls}
-              value={meta.university}
-              onChange={(e) => set('university', e.target.value)}
-              placeholder="Universidad de Navarra"
-            />
-          </div>
-          <div>
             <label className={labelCls}>Código RUCT (opcional)</label>
             <input
               type="text"
@@ -142,43 +130,6 @@ const StepMeta: React.FC<Props> = ({ meta, onChange }) => {
               value={meta.lastUpdated}
               onChange={(e) => set('lastUpdated', e.target.value)}
               placeholder="ej. 30 octubre 2025"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Apariencia */}
-      <section>
-        <h3 className="mb-4 border-b border-gray-200 pb-2 text-base font-semibold text-gray-800">
-          Apariencia
-        </h3>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className={labelCls}>Color principal</label>
-            <div className="flex items-center gap-2">
-              <input
-                type="color"
-                value={meta.primaryColor}
-                onChange={(e) => set('primaryColor', e.target.value)}
-                className="h-10 w-14 cursor-pointer rounded border border-gray-300 p-1"
-              />
-              <input
-                type="text"
-                className={`${inputCls} flex-1`}
-                value={meta.primaryColor}
-                onChange={(e) => set('primaryColor', e.target.value)}
-                placeholder="#1e3a8a"
-              />
-            </div>
-          </div>
-          <div>
-            <label className={labelCls}>Nombre del archivo de logo</label>
-            <input
-              type="text"
-              className={inputCls}
-              value={meta.logoSrc}
-              onChange={(e) => set('logoSrc', e.target.value)}
-              placeholder="ej. logo-unav.svg"
             />
           </div>
         </div>

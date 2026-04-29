@@ -594,6 +594,10 @@ const ModuleCard: React.FC<ModuleCardProps> = ({
     value: ModuleFormState[K],
   ) => onUpdate((m) => ({ ...m, [field]: value }));
 
+  const moduleNameOk = module.name.trim() !== '';
+  const moduleEctsOk = (module.ects || 0) > 0;
+  const canAddSubject = moduleNameOk && moduleEctsOk;
+
   const addSubject = () => {
     const newSubject: SubjectFormState = {
       _key: uid(),
@@ -709,12 +713,24 @@ const ModuleCard: React.FC<ModuleCardProps> = ({
               <button
                 type="button"
                 onClick={addSubject}
-                className="inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700"
+                className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white ${
+                  canAddSubject
+                    ? 'bg-teal-600 hover:bg-teal-700'
+                    : 'cursor-not-allowed bg-gray-300'
+                }`}
+                disabled={!canAddSubject}
               >
                 <FontAwesomeIcon icon={faPlus} />
                 Añadir materia
               </button>
             </div>
+
+            {!canAddSubject ? (
+              <p className="mb-3 text-xs text-gray-500">
+                Indica el nombre del módulo y sus ECTS totales para añadir
+                materias.
+              </p>
+            ) : null}
 
             {module.subjects.length === 0 ? (
               <div className="flex flex-col items-center gap-2 rounded-xl border-2 border-dashed border-teal-200 py-10 text-center">

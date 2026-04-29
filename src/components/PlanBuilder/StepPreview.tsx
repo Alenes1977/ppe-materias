@@ -37,13 +37,12 @@ const buildMeta = (meta: MetaFormState): DegreeInfo => ({
   id: meta.id || 'nuevo-grado',
   name: meta.name,
   shortName: meta.shortName,
-  university: meta.university,
+  university: meta.university || 'Universidad de Navarra',
   ...(meta.ructCode ? { ructCode: meta.ructCode } : {}),
   anecaVerified: meta.anecaVerified,
   ...(meta.verificationYear ? { verificationYear: meta.verificationYear } : {}),
   ...(meta.lastUpdated ? { lastUpdated: meta.lastUpdated } : {}),
   primaryColor: meta.primaryColor,
-  logoSrc: meta.logoSrc,
   learningOutcomeLabel: {
     singular: meta.loSingular,
     plural: meta.loPlural,
@@ -349,11 +348,6 @@ const StepPreview: React.FC<Props> = ({
                 Abre <code className="font-mono">src/data/degrees.ts</code> y
                 añade las importaciones y una entrada en{' '}
                 <code className="font-mono">DEGREES</code>.
-              </li>
-              <li>
-                Si el logo referenciado en{' '}
-                <code className="font-mono">logoSrc</code> es nuevo, colócalo en{' '}
-                <code className="font-mono">src/assets/</code>.
               </li>
             </ol>
           </div>

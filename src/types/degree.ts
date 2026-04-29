@@ -14,7 +14,6 @@ export interface DegreeInfo {
   verificationYear?: string;
   lastUpdated?: string;
   primaryColor: string;
-  logoSrc: string;
   learningOutcomeLabel: LearningOutcomeLabel;
 }
 

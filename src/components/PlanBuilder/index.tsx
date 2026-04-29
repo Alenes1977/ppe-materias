@@ -36,7 +36,6 @@ const defaultMeta: MetaFormState = {
   verificationYear: '',
   lastUpdated: '',
   primaryColor: '#1e3a8a',
-  logoSrc: 'FaviconUnav_rojo.svg',
   loSingular: 'resultado de aprendizaje',
   loPlural: 'resultados de aprendizaje',
   loAcronym: 'RA',
@@ -200,7 +199,7 @@ const PlanBuilder: React.FC = () => {
         return (
           <StepCatalog
             title="Actividades formativas"
-            description="Define las actividades formativas del grado (AF). Serán seleccionables al asignar a cada materia."
+            description="Define las actividades formativas del Grado (AF). Serán seleccionables al asignar a cada materia."
             idPrefix="AF"
             items={trainingActivities}
             onChange={setTrainingActivities}
@@ -210,7 +209,7 @@ const PlanBuilder: React.FC = () => {
         return (
           <StepCatalog
             title="Metodologías docentes"
-            description="Define las metodologías docentes del plan (MD). Si el plan no las define formalmente, activa el interruptor."
+            description="Define las metodologías docentes del Grado (MD). Si el plan no las define formalmente, activa el interruptor."
             idPrefix="MD"
             items={teachingMethodologies}
             onChange={setTeachingMethodologies}
@@ -224,7 +223,7 @@ const PlanBuilder: React.FC = () => {
         return (
           <StepCatalog
             title="Sistemas de evaluación"
-            description="Define los sistemas de evaluación del plan (SE). Serán seleccionables al definir la evaluación de cada materia y asignatura."
+            description="Define los sistemas de evaluación del Grado (SE). Serán seleccionables al definir la evaluación de cada materia y asignatura."
             idPrefix="SE"
             items={evaluationSystems}
             onChange={setEvaluationSystems}
@@ -384,9 +383,10 @@ const PlanBuilder: React.FC = () => {
               {STEPS[step].label === 'Act. formativas'
                 ? 'Actividades formativas'
                 : STEPS[step].label === 'Resultados'
-                  ? `Resultados de aprendizaje / ${
-                      meta.loPlural || 'competencias'
-                    }`
+                  ? meta.loPlural
+                    ? meta.loPlural.charAt(0).toUpperCase() +
+                      meta.loPlural.slice(1)
+                    : 'Competencias'
                   : STEPS[step].label}
             </h1>
           </div>

@@ -10,7 +10,6 @@ export interface MetaFormState {
   verificationYear: string;
   lastUpdated: string;
   primaryColor: string;
-  logoSrc: string;
   loSingular: string;
   loPlural: string;
   loAcronym: string;

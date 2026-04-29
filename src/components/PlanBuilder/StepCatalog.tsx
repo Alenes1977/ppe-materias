@@ -99,8 +99,7 @@ const StepCatalog: React.FC<Props> = ({
             <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full" />
           </label>
           <span className="text-sm text-gray-700">
-            Este plan no define {title.toLowerCase()} (se dejará vacío en el
-            JSON)
+            Este plan no define {title.toLowerCase()} (se dejará vacío){' '}
           </span>
         </div>
       ) : null}

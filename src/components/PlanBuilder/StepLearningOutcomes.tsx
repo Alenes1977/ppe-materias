@@ -54,7 +54,7 @@ const StepLearningOutcomes: React.FC<Props> = ({
       <div className="flex gap-2 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800">
         <FontAwesomeIcon icon={faInfoCircle} className="mt-0.5 shrink-0" />
         <span>
-          Define los {label}s / competencias del grado. Cada uno tiene un
+          Define los {label}s / competencias del Grado. Cada uno tiene un
           identificador único (ej.{' '}
           <code className="rounded bg-blue-100 px-1 font-mono">
             {acronym || 'RA'}1

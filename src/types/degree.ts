@@ -47,7 +47,7 @@ export interface EvaluationEntry {
 
 export interface CourseEntry {
   name: string;
-  /** "Obligatoria" | "Optativa" | "Básica" | etc. */
+  /** "Obligatoria" | "Optativa" | "Básica" | "Trabajo Fin de Grado" | etc. */
   type: string;
   year: number;
   semester: Semester;

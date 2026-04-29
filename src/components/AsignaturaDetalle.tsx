@@ -10,6 +10,7 @@ import {
   faClipboardList,
   faChartBar,
   faStar,
+  faScroll,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
 import { generateSlug } from '../utils/stringUtils';
@@ -18,7 +19,7 @@ import type { Semester } from '../types/degree';
 
 const semLabel = (s: Semester) => {
   if (s === 'annual') return 'Anual';
-  return `${s}º Semestre`;
+  return `${s}? Semestre`;
 };
 
 const AsignaturaDetalle: React.FC = () => {
@@ -123,7 +124,7 @@ const AsignaturaDetalle: React.FC = () => {
           <div className="mx-auto flex max-w-2xl flex-wrap items-center justify-center gap-2 sm:gap-4">
             <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-800 sm:px-4 sm:py-2 sm:text-sm">
               <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
-              {asignaturaInfo.curso}º Curso
+              {asignaturaInfo.curso}? Curso
             </span>
             <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-medium text-indigo-800 sm:px-4 sm:py-2 sm:text-sm">
               <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
@@ -132,10 +133,16 @@ const AsignaturaDetalle: React.FC = () => {
             <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1.5 text-xs font-medium text-purple-800 sm:px-4 sm:py-2 sm:text-sm">
               {asignaturaInfo.ects} ECTS
             </span>
-            {asignaturaInfo.tipo === 'Básica' && (
+            {asignaturaInfo.tipo === 'B?sica' && (
               <span className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-800 sm:px-4 sm:py-2 sm:text-sm">
                 <FontAwesomeIcon icon={faStar} className="mr-2" />
-                Básica
+                B?sica
+              </span>
+            )}
+            {asignaturaInfo.tipo === 'Trabajo Fin de Grado' && (
+              <span className="inline-flex items-center rounded-full bg-rose-100 px-3 py-1.5 text-xs font-medium text-rose-900 sm:px-4 sm:py-2 sm:text-sm">
+                <FontAwesomeIcon icon={faScroll} className="mr-2" />
+                Trabajo Fin de Grado
               </span>
             )}
           </div>
@@ -143,18 +150,18 @@ const AsignaturaDetalle: React.FC = () => {
 
         <div className="space-y-6 sm:space-y-8">
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
-            {/* Ubicación */}
+            {/* Ubicaci?n */}
             <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
               <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
                 <FontAwesomeIcon
                   icon={faBuilding}
                   className="mr-3 text-blue-600"
                 />
-                Ubicación en el Plan de Estudios
+                Ubicaci?n en el Plan de Estudios
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500">Módulo</h3>
+                  <h3 className="text-sm font-medium text-gray-500">M?dulo</h3>
                   <Link
                     to={`${base}/plan-estudios/${generateSlug(moduloName)}`}
                     className="mt-1 block rounded-lg bg-blue-50 p-2 text-sm text-blue-700 transition-all hover:bg-blue-100 sm:p-3"
@@ -204,7 +211,7 @@ const AsignaturaDetalle: React.FC = () => {
                     >
                       <span>{loId}</span>
                       <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-48 -translate-x-1/2 transform rounded-lg bg-gray-900 p-2 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 sm:w-72">
-                        {degreePlan.learningOutcomes[loId] || 'Sin descripción'}
+                        {degreePlan.learningOutcomes[loId] || 'Sin descripci?n'}
                         <div className="absolute left-1/2 top-full -translate-x-1/2 transform border-4 border-transparent border-t-gray-900" />
                       </div>
                     </Link>
@@ -255,14 +262,14 @@ const AsignaturaDetalle: React.FC = () => {
             )}
           </div>
 
-          {/* Evaluación */}
+          {/* Evaluaci?n */}
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
               <FontAwesomeIcon
                 icon={faChartBar}
                 className="mr-3 text-blue-600"
               />
-              Sistema de Evaluación
+              Sistema de Evaluaci?n
             </h2>
             {asignaturaInfo.evaluacion.length > 0 ? (
               <div className="overflow-x-auto">
@@ -273,10 +280,10 @@ const AsignaturaDetalle: React.FC = () => {
                         Sistema
                       </th>
                       <th className="pb-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">
-                        Mín.
+                        M?n.
                       </th>
                       <th className="pb-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">
-                        Máx.
+                        M?x.
                       </th>
                     </tr>
                   </thead>
@@ -302,7 +309,7 @@ const AsignaturaDetalle: React.FC = () => {
               </div>
             ) : (
               <p className="text-sm text-gray-500">
-                No hay sistemas de evaluación especificados.
+                No hay sistemas de evaluaci?n especificados.
               </p>
             )}
           </div>

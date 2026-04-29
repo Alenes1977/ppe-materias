@@ -400,7 +400,7 @@
               "name": "Ética general I",
               "type": "Básica",
               "year": 2,
-              "semester": 2,
+              "semester": 1,
               "ects": 3
             },
             {
@@ -418,15 +418,15 @@
               "ects": 3
             },
             {
-              "name": "CORE: Claves Culturales I",
-              "type": "Obligatoria",
+              "name": "Optativa: Formación Humanística II",
+              "type": "Optativa",
               "year": 2,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "CORE: Claves Culturales II",
-              "type": "Obligatoria",
+              "name": "Optativa: Formación Humanística I",
+              "type": "Optativa",
               "year": 4,
               "semester": 1,
               "ects": 3
@@ -668,35 +668,35 @@
           ],
           "courses": [
             {
-              "name": "Atención de enfermería a la persona adulta I",
+              "name": "Atención de enfermería a la persona en la edad adulta I",
               "type": "Obligatoria",
               "year": 2,
               "semester": 1,
               "ects": 6
             },
             {
-              "name": "Atención de enfermería a la persona adulta II",
+              "name": "Atención de enfermería a la persona en la edad adulta II",
               "type": "Obligatoria",
               "year": 2,
               "semester": 2,
               "ects": 6
             },
             {
-              "name": "Atención de enfermería a la persona adulta III",
+              "name": "Atención de enfermería a la persona en la edad adulta III",
               "type": "Obligatoria",
               "year": 3,
               "semester": 1,
               "ects": 5
             },
             {
-              "name": "Atención de enfermería a la persona adulta IV",
+              "name": "Atención de enfermería a la persona en la edad adulta IV",
               "type": "Obligatoria",
               "year": 3,
               "semester": 1,
               "ects": 6
             },
             {
-              "name": "Atención de enfermería a la persona adulta V",
+              "name": "Atención de enfermería a la persona en la edad adulta V",
               "type": "Obligatoria",
               "year": 3,
               "semester": 2,
@@ -1040,7 +1040,7 @@
           "courses": [
             {
               "name": "Trabajo Fin de Grado",
-              "type": "Obligatoria",
+              "type": "Trabajo Fin de Grado",
               "year": 4,
               "semester": "annual",
               "ects": 6

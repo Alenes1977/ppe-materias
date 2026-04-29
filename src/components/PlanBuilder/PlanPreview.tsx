@@ -12,6 +12,7 @@ import {
   faChevronRight,
   faStar,
   faBook,
+  faCalendarDays,
 } from '@fortawesome/free-solid-svg-icons';
 import type {
   MetaFormState,
@@ -376,7 +377,16 @@ const PlanPreview: React.FC<Props> = ({
   const ectsOptativas = todasCourses
     .filter((c) => c.type === 'Optativa')
     .reduce((sum, c) => sum + (c.ects || 0), 0);
+  const ectsTrabajoFinGrado = todasCourses
+    .filter((c) => c.type === 'Trabajo Fin de Grado')
+    .reduce((sum, c) => sum + (c.ects || 0), 0);
   const ectsTotal = todasCourses.reduce((sum, c) => sum + (c.ects || 0), 0);
+  const ectsOtros =
+    ectsTotal -
+    ectsBasicas -
+    ectsObligatorias -
+    ectsOptativas -
+    ectsTrabajoFinGrado;
 
   const maxYear = Math.max(...todasCourses.map((c) => c.year ?? 1), 4);
 
@@ -481,6 +491,29 @@ const PlanPreview: React.FC<Props> = ({
                   </span>
                 </div>
               )}
+              {ectsTrabajoFinGrado > 0 && (
+                <div className="flex items-center justify-between rounded-lg bg-purple-50 px-4 py-2.5">
+                  <span className="text-xs font-medium text-purple-800">
+                    Trabajo Fin de Grado
+                  </span>
+                  <span className="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-bold text-purple-900">
+                    {ectsTrabajoFinGrado} ECTS
+                  </span>
+                </div>
+              )}
+              {ectsOtros > 0 && (
+                <div
+                  className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-2.5"
+                  title="Otros tipos (p. ej. prácticum u optativa de especialización)"
+                >
+                  <span className="text-xs font-medium text-slate-700">
+                    Otros créditos
+                  </span>
+                  <span className="rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-bold text-slate-800">
+                    {ectsOtros} ECTS
+                  </span>
+                </div>
+              )}
               <div className="flex items-center justify-between rounded-lg bg-gray-100 px-4 py-2.5">
                 <span className="text-xs font-bold text-gray-700">Total</span>
                 <span className="rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-bold text-gray-800">
@@ -530,6 +563,9 @@ const PlanPreview: React.FC<Props> = ({
           {Array.from({ length: maxYear }, (_, i) => i + 1).map((curso) => {
             const asigsCurso = todasCourses.filter((c) => c.year === curso);
             if (asigsCurso.length === 0) return null;
+            const primerCuatri = asigsCurso.filter((c) => c.semester === '1');
+            const segundoCuatri = asigsCurso.filter((c) => c.semester === '2');
+            const anuales = asigsCurso.filter((c) => c.semester === 'annual');
             return (
               <div key={curso} className="mb-5 last:mb-0">
                 <h3 className="mb-3 inline-flex items-center gap-2 rounded-lg bg-blue-100 px-3 py-1.5 text-sm font-bold text-blue-800">
@@ -537,34 +573,29 @@ const PlanPreview: React.FC<Props> = ({
                   {curso}º Curso
                 </h3>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  {[1, 2].map((sem) => {
-                    const asigsSem = asigsCurso.filter(
-                      (c) =>
-                        c.semester === String(sem) ||
-                        (sem === 1 && c.semester === 'annual'),
-                    );
+                  {[primerCuatri, segundoCuatri].map((lista, idx) => {
+                    const q = idx + 1;
                     return (
                       <div
-                        key={sem}
+                        key={q}
                         className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
                       >
                         <h4 className="mb-3 text-sm font-semibold text-gray-600">
-                          {sem === 1 ? 'Primer' : 'Segundo'} semestre
-                          {sem === 1 ? ' · Anuales' : ''}
+                          {q === 1 ? 'Primer' : 'Segundo'} cuatrimestre
                         </h4>
-                        {asigsSem.length > 0 ? (
+                        {lista.length > 0 ? (
                           <ul className="space-y-1.5">
-                            {asigsSem.map((c) => (
+                            {lista.map((c) => (
                               <li
                                 key={c._key}
-                                className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2"
+                                className="flex items-start gap-2 rounded-lg bg-gray-50 px-3 py-2"
                               >
-                                <div className="flex min-w-0 items-center gap-2">
+                                <div className="flex min-w-0 flex-1 items-start gap-2">
                                   <FontAwesomeIcon
                                     icon={faBook}
-                                    className="shrink-0 text-xs text-blue-400"
+                                    className="mt-0.5 shrink-0 text-xs text-blue-400"
                                   />
-                                  <span className="truncate text-sm text-gray-700">
+                                  <span className="min-w-0 flex-1 break-words text-sm text-gray-700">
                                     {c.name || (
                                       <em className="text-gray-400">
                                         Sin nombre
@@ -572,7 +603,7 @@ const PlanPreview: React.FC<Props> = ({
                                     )}
                                   </span>
                                 </div>
-                                <span className="ml-3 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-700">
+                                <span className="shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-700">
                                   {c.ects} ECTS
                                 </span>
                               </li>
@@ -587,6 +618,43 @@ const PlanPreview: React.FC<Props> = ({
                     );
                   })}
                 </div>
+                {anuales.length > 0 && (
+                  <div className="mt-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-4 shadow-sm">
+                    <h4 className="mb-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-amber-950">
+                      <FontAwesomeIcon
+                        icon={faCalendarDays}
+                        className="text-amber-600"
+                      />
+                      Asignaturas anuales
+                      <span className="text-xs font-normal text-amber-800/80">
+                        (curso académico completo)
+                      </span>
+                    </h4>
+                    <ul className="space-y-1.5">
+                      {anuales.map((c) => (
+                        <li
+                          key={c._key}
+                          className="flex items-start gap-2 rounded-lg border border-amber-100 bg-white px-3 py-2"
+                        >
+                          <div className="flex min-w-0 flex-1 items-start gap-2">
+                            <FontAwesomeIcon
+                              icon={faBook}
+                              className="mt-0.5 shrink-0 text-xs text-amber-600"
+                            />
+                            <span className="min-w-0 flex-1 break-words text-sm text-gray-800">
+                              {c.name || (
+                                <em className="text-gray-400">Sin nombre</em>
+                              )}
+                            </span>
+                          </div>
+                          <span className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-900">
+                            {c.ects} ECTS
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             );
           })}

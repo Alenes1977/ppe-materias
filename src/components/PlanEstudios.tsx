@@ -4,6 +4,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBook,
+  faCalendarDays,
   faChevronRight,
   faGraduationCap,
   faUniversity,
@@ -12,6 +13,9 @@ import {
 import { generateSlug } from '../utils/stringUtils';
 import { DegreeContext } from '../context/DegreeContext';
 import { DEGREES } from '../data/degrees';
+
+/** Tipos de obligatoriedad mostrados por separado en la distribución (siguen dentro del total ECTS). */
+const TIPO_TRABAJO_FIN_GRADO = 'Trabajo Fin de Grado';
 
 const PlanEstudios: React.FC = () => {
   const { degreeId } = useParams<{ degreeId: string }>();
@@ -38,7 +42,14 @@ const PlanEstudios: React.FC = () => {
   const ectsOptativas = todasCourses
     .filter((c) => c.type === 'Optativa')
     .reduce((sum, c) => sum + c.ects, 0);
-  const ectsTotal = ectsBasicas + ectsObligatorias + ectsOptativas;
+  const ectsTrabajoFinGrado = todasCourses
+    .filter((c) => c.type === TIPO_TRABAJO_FIN_GRADO)
+    .reduce((sum, c) => sum + c.ects, 0);
+
+  const ectsTotal = todasCourses.reduce((sum, c) => sum + c.ects, 0);
+  const ectsDesglosados =
+    ectsBasicas + ectsObligatorias + ectsOptativas + ectsTrabajoFinGrado;
+  const ectsOtros = ectsTotal - ectsDesglosados;
 
   const maxYear = Math.max(...todasCourses.map((c) => c.year), 4);
 
@@ -111,7 +122,7 @@ const PlanEstudios: React.FC = () => {
                 icon={faLayerGroup}
                 className="mr-2 text-blue-600 sm:mr-3"
               />
-              Distribución de Créditos
+              Distribución de créditos ECTS
             </h3>
             <div className="space-y-3 sm:space-y-4">
               {ectsBasicas > 0 && (
@@ -141,6 +152,29 @@ const PlanEstudios: React.FC = () => {
                   </span>
                   <span className="rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-800 sm:px-3 sm:text-sm">
                     {ectsOptativas} ECTS
+                  </span>
+                </div>
+              )}
+              {ectsTrabajoFinGrado > 0 && (
+                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 sm:p-4">
+                  <span className="text-sm font-medium text-gray-700 sm:text-base">
+                    Trabajo Fin de Grado
+                  </span>
+                  <span className="rounded-full bg-rose-100 px-2.5 py-1 text-xs font-medium text-rose-900 sm:px-3 sm:text-sm">
+                    {ectsTrabajoFinGrado} ECTS
+                  </span>
+                </div>
+              )}
+              {ectsOtros > 0 && (
+                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 sm:p-4">
+                  <span
+                    className="text-sm font-medium text-gray-700 sm:text-base"
+                    title="Créditos con otro tipo de asignatura (p. ej. prácticum u optativa de especialización)"
+                  >
+                    Otros créditos
+                  </span>
+                  <span className="rounded-full bg-slate-200 px-2.5 py-1 text-xs font-medium text-slate-800 sm:px-3 sm:text-sm">
+                    {ectsOtros} ECTS
                   </span>
                 </div>
               )}
@@ -243,78 +277,111 @@ const PlanEstudios: React.FC = () => {
             <div className="ml-4 h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent" />
           </div>
 
-          {Array.from({ length: maxYear }, (_, i) => i + 1).map((curso) => (
-            <div key={curso} className="mb-6 last:mb-0 sm:mb-8">
-              <h3 className="mb-3 inline-flex items-center rounded-lg bg-blue-100 px-3 py-1.5 text-base font-bold text-blue-800 sm:mb-4 sm:px-4 sm:py-2 sm:text-lg">
-                <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
-                {curso}º Curso
-              </h3>
-              <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                {[1, 2].map((semestre) => {
-                  const filtradas = todasCourses
-                    .filter((c) => c.year === curso && c.semester === semestre)
-                    .map((c) => {
-                      let moduleName = '';
-                      let materiaName = '';
-                      for (const m of degreePlan.modules) {
-                        for (const s of m.subjects) {
-                          if (s.courses.find((co) => co.name === c.name)) {
-                            moduleName = m.name;
-                            materiaName = s.name;
-                            break;
-                          }
-                        }
-                        if (moduleName) break;
-                      }
-                      return { ...c, modulo: moduleName, materia: materiaName };
-                    })
-                    .sort((a, b) => a.name.localeCompare(b.name));
+          {Array.from({ length: maxYear }, (_, i) => i + 1).map((curso) => {
+            const delPrimerCuatri = todasCourses
+              .filter((c) => c.year === curso && c.semester === 1)
+              .sort((a, b) => a.name.localeCompare(b.name));
+            const delSegundoCuatri = todasCourses
+              .filter((c) => c.year === curso && c.semester === 2)
+              .sort((a, b) => a.name.localeCompare(b.name));
+            const anuales = todasCourses
+              .filter((c) => c.year === curso && c.semester === 'annual')
+              .sort((a, b) => a.name.localeCompare(b.name));
 
-                  return (
-                    <div
-                      key={semestre}
-                      className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
-                    >
-                      <h4 className="mb-3 text-base font-semibold text-gray-800 sm:mb-4 sm:text-lg">
-                        {semestre === 1 ? 'Primer' : 'Segundo'} Semestre
-                      </h4>
-                      {filtradas.length > 0 ? (
-                        <ul className="space-y-2 sm:space-y-3">
-                          {filtradas.map((c) => (
-                            <li key={c.name}>
-                              <Link
-                                to={`${base}/asignaturas/${generateSlug(
-                                  c.name,
-                                )}`}
-                                className="group flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
-                              >
-                                <div className="flex min-w-0 items-center">
-                                  <FontAwesomeIcon
-                                    icon={faBook}
-                                    className="mr-2 shrink-0 text-blue-500 sm:mr-3"
-                                  />
-                                  <span className="truncate text-sm font-medium text-gray-700 group-hover:text-blue-600 sm:text-base">
-                                    {c.name}
+            return (
+              <div key={curso} className="mb-6 last:mb-0 sm:mb-8">
+                <h3 className="mb-3 inline-flex items-center rounded-lg bg-blue-100 px-3 py-1.5 text-base font-bold text-blue-800 sm:mb-4 sm:px-4 sm:py-2 sm:text-lg">
+                  <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
+                  {curso}º Curso
+                </h3>
+
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                  {[delPrimerCuatri, delSegundoCuatri].map((lista, idx) => {
+                    const cuatriIdx = idx + 1;
+                    return (
+                      <div
+                        key={cuatriIdx}
+                        className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
+                      >
+                        <h4 className="mb-3 text-base font-semibold text-gray-800 sm:mb-4 sm:text-lg">
+                          {cuatriIdx === 1 ? 'Primer' : 'Segundo'} cuatrimestre
+                        </h4>
+                        {lista.length > 0 ? (
+                          <ul className="space-y-2 sm:space-y-3">
+                            {lista.map((c) => (
+                              <li key={`${curso}-${c.name}-q${cuatriIdx}`}>
+                                <Link
+                                  to={`${base}/asignaturas/${generateSlug(
+                                    c.name,
+                                  )}`}
+                                  className="group flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
+                                >
+                                  <div className="flex min-w-0 flex-1 items-start gap-2">
+                                    <FontAwesomeIcon
+                                      icon={faBook}
+                                      className="mt-0.5 shrink-0 text-blue-500 sm:mr-0"
+                                    />
+                                    <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-700 group-hover:text-blue-600 sm:text-base">
+                                      {c.name}
+                                    </span>
+                                  </div>
+                                  <span className="shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 sm:px-2.5">
+                                    {c.ects} ECTS
                                   </span>
-                                </div>
-                                <span className="ml-2 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 sm:px-2.5">
-                                  {c.ects} ECTS
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-sm text-gray-500">
-                          Sin asignaturas.
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-sm text-gray-500">
+                            Sin asignaturas.
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {anuales.length > 0 && (
+                  <div className="mt-4 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-4 shadow-sm sm:mt-6 sm:p-6">
+                    <h4 className="mb-2 flex flex-wrap items-center gap-2 text-base font-semibold text-amber-950 sm:mb-3 sm:text-lg">
+                      <FontAwesomeIcon
+                        icon={faCalendarDays}
+                        className="text-amber-600"
+                      />
+                      Asignaturas anuales
+                      <span className="text-xs font-normal text-amber-800/80 sm:text-sm">
+                        (imparten a lo largo del curso académico)
+                      </span>
+                    </h4>
+                    <ul className="space-y-2 sm:space-y-3">
+                      {anuales.map((c) => (
+                        <li key={`${curso}-${c.name}-annual`}>
+                          <Link
+                            to={`${base}/asignaturas/${generateSlug(c.name)}`}
+                            className="group flex items-start gap-3 rounded-lg border border-amber-200 bg-white p-3 transition-all hover:border-amber-300 hover:bg-amber-50/80 sm:p-4"
+                          >
+                            <div className="flex min-w-0 flex-1 items-start gap-2">
+                              <FontAwesomeIcon
+                                icon={faBook}
+                                className="mt-0.5 shrink-0 text-amber-600 sm:mr-0"
+                              />
+                              <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-800 group-hover:text-amber-900 sm:text-base">
+                                {c.name}
+                              </span>
+                            </div>
+                            <span className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-900 sm:px-2.5">
+                              {c.ects} ECTS
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

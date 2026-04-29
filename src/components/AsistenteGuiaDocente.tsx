@@ -40,7 +40,7 @@ const GUIA_VERSION = '3.0';
 function computeAnioAcademico(): string {
   const now = new Date();
   const yr = now.getFullYear();
-  return now.getMonth() >= 8 ? `${yr}-${yr + 1}` : `${yr - 1}-${yr}`;
+  return `${yr}-${yr + 1}`;
 }
 
 export type GuiaDocenteData = {

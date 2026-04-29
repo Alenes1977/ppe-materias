@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -42,6 +42,8 @@ const defaultMeta: MetaFormState = {
   loAcronym: 'RA',
 };
 
+const STORAGE_KEY = 'plan-builder-draft';
+
 // ── Definición de pasos ───────────────────────────────────────────────────────
 
 const STEPS = [
@@ -54,26 +56,122 @@ const STEPS = [
   { key: 'preview', label: 'Descargar' },
 ] as const;
 
+type PlanBuilderDraft = {
+  step: number;
+  meta: MetaFormState;
+  learningOutcomes: LOEntry[];
+  trainingActivities: CatalogItem[];
+  noTeachingMethodologies: boolean;
+  teachingMethodologies: CatalogItem[];
+  evaluationSystems: CatalogItem[];
+  modules: ModuleFormState[];
+};
+
+const loadDraft = (): PlanBuilderDraft | null => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const saved = window.localStorage.getItem(STORAGE_KEY);
+
+  if (!saved) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(saved) as Partial<PlanBuilderDraft>;
+    const savedStep =
+      typeof parsed.step === 'number' &&
+      parsed.step >= 0 &&
+      parsed.step < STEPS.length
+        ? parsed.step
+        : 0;
+
+    return {
+      step: savedStep,
+      meta: { ...defaultMeta, ...(parsed.meta ?? {}) },
+      learningOutcomes: Array.isArray(parsed.learningOutcomes)
+        ? parsed.learningOutcomes
+        : [],
+      trainingActivities: Array.isArray(parsed.trainingActivities)
+        ? parsed.trainingActivities
+        : [],
+      noTeachingMethodologies:
+        typeof parsed.noTeachingMethodologies === 'boolean'
+          ? parsed.noTeachingMethodologies
+          : false,
+      teachingMethodologies: Array.isArray(parsed.teachingMethodologies)
+        ? parsed.teachingMethodologies
+        : [],
+      evaluationSystems: Array.isArray(parsed.evaluationSystems)
+        ? parsed.evaluationSystems
+        : [],
+      modules: Array.isArray(parsed.modules) ? parsed.modules : [],
+    };
+  } catch {
+    window.localStorage.removeItem(STORAGE_KEY);
+    return null;
+  }
+};
+
 // ── Componente principal ──────────────────────────────────────────────────────
 
 const PlanBuilder: React.FC = () => {
-  const [step, setStep] = useState(0);
-  const [meta, setMeta] = useState<MetaFormState>(defaultMeta);
-  const [learningOutcomes, setLearningOutcomes] = useState<LOEntry[]>([]);
-  const [trainingActivities, setTrainingActivities] = useState<CatalogItem[]>(
-    [],
+  const [draft] = useState<PlanBuilderDraft | null>(() => loadDraft());
+  const [step, setStep] = useState(draft?.step ?? 0);
+  const [meta, setMeta] = useState<MetaFormState>(draft?.meta ?? defaultMeta);
+  const [learningOutcomes, setLearningOutcomes] = useState<LOEntry[]>(
+    draft?.learningOutcomes ?? [],
   );
-  const [noTeachingMethodologies, setNoTeachingMethodologies] = useState(false);
+  const [trainingActivities, setTrainingActivities] = useState<CatalogItem[]>(
+    draft?.trainingActivities ?? [],
+  );
+  const [noTeachingMethodologies, setNoTeachingMethodologies] = useState(
+    draft?.noTeachingMethodologies ?? false,
+  );
   const [teachingMethodologies, setTeachingMethodologies] = useState<
     CatalogItem[]
-  >([]);
-  const [evaluationSystems, setEvaluationSystems] = useState<CatalogItem[]>([]);
-  const [modules, setModules] = useState<ModuleFormState[]>([]);
+  >(draft?.teachingMethodologies ?? []);
+  const [evaluationSystems, setEvaluationSystems] = useState<CatalogItem[]>(
+    draft?.evaluationSystems ?? [],
+  );
+  const [modules, setModules] = useState<ModuleFormState[]>(
+    draft?.modules ?? [],
+  );
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   const isLast = step === STEPS.length - 1;
 
+  useEffect(() => {
+    const planDraft: PlanBuilderDraft = {
+      step,
+      meta,
+      learningOutcomes,
+      trainingActivities,
+      noTeachingMethodologies,
+      teachingMethodologies,
+      evaluationSystems,
+      modules,
+    };
+
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(planDraft));
+    } catch {
+      // Si el navegador bloquea localStorage o se llena la cuota, el formulario sigue funcionando en memoria.
+    }
+  }, [
+    step,
+    meta,
+    learningOutcomes,
+    trainingActivities,
+    noTeachingMethodologies,
+    teachingMethodologies,
+    evaluationSystems,
+    modules,
+  ]);
+
   const handleReset = () => {
+    window.localStorage.removeItem(STORAGE_KEY);
     setStep(0);
     setMeta(defaultMeta);
     setLearningOutcomes([]);

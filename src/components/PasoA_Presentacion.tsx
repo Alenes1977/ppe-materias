@@ -155,7 +155,7 @@ const PasoA_Presentacion: React.FC<Props> = ({
             <input
               type="text"
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
-              placeholder="Ej: 2025-2026"
+              placeholder="Ej: 2026-2027"
               value={value.anioAcademico}
               onChange={(e) =>
                 onChange({ ...value, anioAcademico: e.target.value })

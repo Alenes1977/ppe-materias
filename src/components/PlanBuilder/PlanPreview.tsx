@@ -87,9 +87,8 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
         </span>
       </button>
 
-      {open && (
-        <div className="border-t border-gray-100 px-5 py-5 space-y-5">
-
+      {open ? (
+        <div className="space-y-5 border-t border-gray-100 px-5 py-5">
           {/* Asignaturas — tabla horizontal */}
           {subject.courses.length > 0 && (
             <div>
@@ -124,7 +123,9 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                         <td className="px-3 py-2.5 text-center">
                           {course.type ? (
                             <span
-                              className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium ${typeColor(course.type)}`}
+                              className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium ${typeColor(
+                                course.type,
+                              )}`}
                             >
                               {course.type === 'Básica' && (
                                 <FontAwesomeIcon
@@ -206,9 +207,13 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                           {evalDict[ev.system]?.name ?? (ev.system || '—')}
                         </span>
                         <span className="ml-2 shrink-0 text-gray-400">
-                          <span className="text-blue-600 font-medium">{ev.minWeight}</span>
+                          <span className="font-medium text-blue-600">
+                            {ev.minWeight}
+                          </span>
                           {' – '}
-                          <span className="text-green-600 font-medium">{ev.maxWeight}</span>
+                          <span className="font-medium text-green-600">
+                            {ev.maxWeight}
+                          </span>
                         </span>
                       </li>
                     ))}
@@ -237,14 +242,16 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                     <span className="mt-0.5 shrink-0 rounded-full bg-blue-200 px-1.5 py-0.5 font-bold text-blue-800">
                       {loId}
                     </span>
-                    <span className="text-gray-700">{loDict[loId]?.text ?? loId}</span>
+                    <span className="text-gray-700">
+                      {loDict[loId]?.text ?? loId}
+                    </span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
@@ -309,7 +316,7 @@ const ModuleCardPreview: React.FC<ModuleCardProps> = ({
         />
       </button>
 
-      {open && (
+      {open ? (
         <div className="border-t border-gray-100 px-5 py-4">
           {module.subjects.length === 0 ? (
             <p className="py-4 text-center text-sm italic text-gray-400">
@@ -330,7 +337,7 @@ const ModuleCardPreview: React.FC<ModuleCardProps> = ({
             </div>
           )}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
@@ -352,10 +359,9 @@ const PlanPreview: React.FC<Props> = ({
   evaluationSystems,
   modules,
 }) => {
-  const loLabel =
-    meta.loPlural
-      ? meta.loPlural.charAt(0).toUpperCase() + meta.loPlural.slice(1)
-      : 'Resultados de aprendizaje';
+  const loLabel = meta.loPlural
+    ? meta.loPlural.charAt(0).toUpperCase() + meta.loPlural.slice(1)
+    : 'Resultados de aprendizaje';
 
   const todasCourses = modules.flatMap((m) =>
     m.subjects.flatMap((s) => s.courses),
@@ -400,7 +406,7 @@ const PlanPreview: React.FC<Props> = ({
             <em className="font-normal text-gray-400">Sin nombre todavía</em>
           )}
         </h2>
-        {(meta.shortName || meta.university) && (
+        {Boolean(meta.shortName || meta.university) && (
           <p className="mt-1 text-sm text-gray-500">
             {[meta.shortName, meta.university].filter(Boolean).join(' · ')}
           </p>
@@ -421,7 +427,10 @@ const PlanPreview: React.FC<Props> = ({
               { label: 'Duración', value: `${maxYear} años` },
               { label: 'Total créditos', value: `${ectsTotal} ECTS` },
             ].map(({ label, value }) => (
-              <div key={label} className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5">
+              <div
+                key={label}
+                className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5"
+              >
                 <dt className="text-xs text-gray-500">{label}</dt>
                 <dd className="text-sm font-medium text-gray-800">
                   {value || '—'}
@@ -444,7 +453,9 @@ const PlanPreview: React.FC<Props> = ({
             <div className="space-y-2">
               {ectsBasicas > 0 && (
                 <div className="flex items-center justify-between rounded-lg bg-amber-50 px-4 py-2.5">
-                  <span className="text-xs font-medium text-amber-700">Básicas</span>
+                  <span className="text-xs font-medium text-amber-700">
+                    Básicas
+                  </span>
                   <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800">
                     {ectsBasicas} ECTS
                   </span>
@@ -452,7 +463,9 @@ const PlanPreview: React.FC<Props> = ({
               )}
               {ectsObligatorias > 0 && (
                 <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-2.5">
-                  <span className="text-xs font-medium text-blue-700">Obligatorias</span>
+                  <span className="text-xs font-medium text-blue-700">
+                    Obligatorias
+                  </span>
                   <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-bold text-blue-800">
                     {ectsObligatorias} ECTS
                   </span>
@@ -460,7 +473,9 @@ const PlanPreview: React.FC<Props> = ({
               )}
               {ectsOptativas > 0 && (
                 <div className="flex items-center justify-between rounded-lg bg-green-50 px-4 py-2.5">
-                  <span className="text-xs font-medium text-green-700">Optativas</span>
+                  <span className="text-xs font-medium text-green-700">
+                    Optativas
+                  </span>
                   <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-bold text-green-800">
                     {ectsOptativas} ECTS
                   </span>

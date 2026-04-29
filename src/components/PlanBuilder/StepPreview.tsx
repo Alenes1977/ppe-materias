@@ -225,135 +225,138 @@ const StepPreview: React.FC<Props> = ({
         />
       ) : (
         <>
-      {/* Banner de éxito */}
-      <div className="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-5">
-        <FontAwesomeIcon
-          icon={faCheckCircle}
-          className="mt-0.5 text-xl text-green-600"
-        />
-        <div>
-          <p className="font-semibold text-green-800">
-            ¡Plan listo para descargar!
-          </p>
-          <p className="mt-1 text-sm text-green-700">
-            Los archivos JSON generados están listos. Descárgalos y colócalos en
-            la carpeta <code className="font-mono">src/data/</code> de la
-            aplicación. Recuerda registrar el nuevo grado en{' '}
-            <code className="font-mono">degrees.ts</code>.
-          </p>
-        </div>
-      </div>
-
-      {/* Resumen numérico */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {stats.map(({ label, value, icon, color }) => (
-          <div
-            key={label}
-            className={`flex flex-col items-center gap-1 rounded-xl bg-${color}-50 p-4 text-center`}
-          >
+          {/* Banner de éxito */}
+          <div className="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-5">
             <FontAwesomeIcon
-              icon={icon}
-              className={`text-xl text-${color}-500`}
+              icon={faCheckCircle}
+              className="mt-0.5 text-xl text-green-600"
             />
-            <span className={`text-2xl font-bold text-${color}-700`}>
-              {value}
-            </span>
-            <span className={`text-xs text-${color}-600`}>{label}</span>
+            <div>
+              <p className="font-semibold text-green-800">
+                ¡Plan listo para descargar!
+              </p>
+              <p className="mt-1 text-sm text-green-700">
+                Los archivos JSON generados están listos. Descárgalos y
+                colócalos en la carpeta{' '}
+                <code className="font-mono">src/data/</code> de la aplicación.
+                Recuerda registrar el nuevo grado en{' '}
+                <code className="font-mono">degrees.ts</code>.
+              </p>
+            </div>
           </div>
-        ))}
-      </div>
 
-      {/* Botones de descarga */}
-      <div className="flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={() => downloadFile(metaStr, `${id}-meta.json`)}
-          className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
-        >
-          <FontAwesomeIcon icon={faDownload} />
-          Descargar {id}-meta.json
-        </button>
-        <button
-          type="button"
-          onClick={() => downloadFile(planStr, `${id}-plan.json`)}
-          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
-        >
-          <FontAwesomeIcon icon={faDownload} />
-          Descargar {id}-plan.json
-        </button>
-      </div>
+          {/* Resumen numérico */}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {stats.map(({ label, value, icon, color }) => (
+              <div
+                key={label}
+                className={`flex flex-col items-center gap-1 rounded-xl bg-${color}-50 p-4 text-center`}
+              >
+                <FontAwesomeIcon
+                  icon={icon}
+                  className={`text-xl text-${color}-500`}
+                />
+                <span className={`text-2xl font-bold text-${color}-700`}>
+                  {value}
+                </span>
+                <span className={`text-xs text-${color}-600`}>{label}</span>
+              </div>
+            ))}
+          </div>
 
-      {/* Previsualización JSON meta */}
-      <div className="overflow-hidden rounded-xl border border-gray-200">
-        <button
-          type="button"
-          onClick={() => setShowMeta(!showMeta)}
-          className="flex w-full items-center gap-3 bg-gray-50 px-4 py-3 text-left hover:bg-gray-100"
-        >
-          <FontAwesomeIcon
-            icon={showMeta ? faChevronDown : faChevronRight}
-            className="w-3 text-gray-400"
-          />
-          <code className="text-sm font-bold text-gray-700">
-            {id}-meta.json
-          </code>
-          <span className="ml-auto text-xs text-gray-400">
-            {metaStr.split('\n').length} líneas
-          </span>
-        </button>
-        {showMeta ? (
-          <pre className="max-h-80 overflow-auto bg-gray-900 px-4 py-4 text-xs leading-relaxed text-green-300">
-            {metaStr}
-          </pre>
-        ) : null}
-      </div>
+          {/* Botones de descarga */}
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => downloadFile(metaStr, `${id}-meta.json`)}
+              className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+            >
+              <FontAwesomeIcon icon={faDownload} />
+              Descargar {id}-meta.json
+            </button>
+            <button
+              type="button"
+              onClick={() => downloadFile(planStr, `${id}-plan.json`)}
+              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+            >
+              <FontAwesomeIcon icon={faDownload} />
+              Descargar {id}-plan.json
+            </button>
+          </div>
 
-      {/* Previsualización JSON plan */}
-      <div className="overflow-hidden rounded-xl border border-gray-200">
-        <button
-          type="button"
-          onClick={() => setShowPlan(!showPlan)}
-          className="flex w-full items-center gap-3 bg-gray-50 px-4 py-3 text-left hover:bg-gray-100"
-        >
-          <FontAwesomeIcon
-            icon={showPlan ? faChevronDown : faChevronRight}
-            className="w-3 text-gray-400"
-          />
-          <code className="text-sm font-bold text-gray-700">
-            {id}-plan.json
-          </code>
-          <span className="ml-auto text-xs text-gray-400">
-            {planStr.split('\n').length} líneas
-          </span>
-        </button>
-        {showPlan ? (
-          <pre className="max-h-96 overflow-auto bg-gray-900 px-4 py-4 text-xs leading-relaxed text-green-300">
-            {planStr}
-          </pre>
-        ) : null}
-      </div>
+          {/* Previsualización JSON meta */}
+          <div className="overflow-hidden rounded-xl border border-gray-200">
+            <button
+              type="button"
+              onClick={() => setShowMeta(!showMeta)}
+              className="flex w-full items-center gap-3 bg-gray-50 px-4 py-3 text-left hover:bg-gray-100"
+            >
+              <FontAwesomeIcon
+                icon={showMeta ? faChevronDown : faChevronRight}
+                className="w-3 text-gray-400"
+              />
+              <code className="text-sm font-bold text-gray-700">
+                {id}-meta.json
+              </code>
+              <span className="ml-auto text-xs text-gray-400">
+                {metaStr.split('\n').length} líneas
+              </span>
+            </button>
+            {showMeta ? (
+              <pre className="max-h-80 overflow-auto bg-gray-900 px-4 py-4 text-xs leading-relaxed text-green-300">
+                {metaStr}
+              </pre>
+            ) : null}
+          </div>
 
-      {/* Instrucciones de uso */}
-      <div className="rounded-xl border border-blue-100 bg-blue-50 p-5 text-sm text-blue-800">
-        <p className="mb-2 font-semibold">Pasos para integrar el nuevo plan:</p>
-        <ol className="list-decimal space-y-1 pl-5">
-          <li>
-            Copia <code className="font-mono">{id}-meta.json</code> y{' '}
-            <code className="font-mono">{id}-plan.json</code> en{' '}
-            <code className="font-mono">src/data/</code>.
-          </li>
-          <li>
-            Abre <code className="font-mono">src/data/degrees.ts</code> y añade
-            las importaciones y una entrada en{' '}
-            <code className="font-mono">DEGREES</code>.
-          </li>
-          <li>
-            Si el logo referenciado en{' '}
-            <code className="font-mono">logoSrc</code> es nuevo, colócalo en{' '}
-            <code className="font-mono">src/assets/</code>.
-          </li>
-        </ol>
-      </div>
+          {/* Previsualización JSON plan */}
+          <div className="overflow-hidden rounded-xl border border-gray-200">
+            <button
+              type="button"
+              onClick={() => setShowPlan(!showPlan)}
+              className="flex w-full items-center gap-3 bg-gray-50 px-4 py-3 text-left hover:bg-gray-100"
+            >
+              <FontAwesomeIcon
+                icon={showPlan ? faChevronDown : faChevronRight}
+                className="w-3 text-gray-400"
+              />
+              <code className="text-sm font-bold text-gray-700">
+                {id}-plan.json
+              </code>
+              <span className="ml-auto text-xs text-gray-400">
+                {planStr.split('\n').length} líneas
+              </span>
+            </button>
+            {showPlan ? (
+              <pre className="max-h-96 overflow-auto bg-gray-900 px-4 py-4 text-xs leading-relaxed text-green-300">
+                {planStr}
+              </pre>
+            ) : null}
+          </div>
+
+          {/* Instrucciones de uso */}
+          <div className="rounded-xl border border-blue-100 bg-blue-50 p-5 text-sm text-blue-800">
+            <p className="mb-2 font-semibold">
+              Pasos para integrar el nuevo plan:
+            </p>
+            <ol className="list-decimal space-y-1 pl-5">
+              <li>
+                Copia <code className="font-mono">{id}-meta.json</code> y{' '}
+                <code className="font-mono">{id}-plan.json</code> en{' '}
+                <code className="font-mono">src/data/</code>.
+              </li>
+              <li>
+                Abre <code className="font-mono">src/data/degrees.ts</code> y
+                añade las importaciones y una entrada en{' '}
+                <code className="font-mono">DEGREES</code>.
+              </li>
+              <li>
+                Si el logo referenciado en{' '}
+                <code className="font-mono">logoSrc</code> es nuevo, colócalo en{' '}
+                <code className="font-mono">src/assets/</code>.
+              </li>
+            </ol>
+          </div>
         </>
       )}
     </div>

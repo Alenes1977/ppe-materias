@@ -9,6 +9,7 @@ import {
 import BackButton from './BackButton';
 import { generateSlug } from '../utils/stringUtils';
 import { useDegree } from '../context/DegreeContext';
+import { courseYearPillClass, ectsPillClass } from '../utils/courseBadgeStyles';
 
 const CompetenciaDetalle: React.FC = () => {
   const { id, degreeId } = useParams<{ id: string; degreeId: string }>();
@@ -166,10 +167,10 @@ const CompetenciaDetalle: React.FC = () => {
                       {asignatura.nombre}
                     </h3>
                     <div className="mt-auto flex flex-wrap gap-2">
-                      <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+                      <span className={courseYearPillClass(asignatura.curso)}>
                         {asignatura.curso}º curso
                       </span>
-                      <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800">
+                      <span className={ectsPillClass()}>
                         {asignatura.ects} ECTS
                       </span>
                     </div>

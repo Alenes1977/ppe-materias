@@ -13,6 +13,7 @@ import {
 import { generateSlug } from '../utils/stringUtils';
 import { DegreeContext } from '../context/DegreeContext';
 import { CourseTypePill } from './CourseTypePill';
+import { ectsPillClass } from '../utils/courseBadgeStyles';
 import { DEGREES } from '../data/degrees';
 
 /** Tipos de obligatoriedad mostrados por separado en la distribución (siguen dentro del total ECTS). */
@@ -326,7 +327,7 @@ const PlanEstudios: React.FC = () => {
                                   </span>
                                   <div className="flex shrink-0 items-start gap-2">
                                     <CourseTypePill type={c.type} />
-                                    <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 sm:px-2.5">
+                                    <span className={ectsPillClass()}>
                                       {c.ects} ECTS
                                     </span>
                                   </div>
@@ -372,7 +373,7 @@ const PlanEstudios: React.FC = () => {
                             </span>
                             <div className="flex shrink-0 items-start gap-2">
                               <CourseTypePill type={c.type} />
-                              <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-900 sm:px-2.5">
+                              <span className={ectsPillClass()}>
                                 {c.ects} ECTS
                               </span>
                             </div>

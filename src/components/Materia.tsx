@@ -14,6 +14,11 @@ import {
 import BackButton from './BackButton';
 import { CourseTypePill } from './CourseTypePill';
 import { formatCatalogEntry, generateSlug } from '../utils/stringUtils';
+import {
+  courseYearPillClass,
+  ectsPillClass,
+  semesterPillClass,
+} from '../utils/courseBadgeStyles';
 import { useDegree } from '../context/DegreeContext';
 import type { Semester } from '../types/degree';
 
@@ -139,19 +144,17 @@ const Materia: React.FC = () => {
                     <CourseTypePill type={course.type} className="shrink-0" />
                   </div>
                   <div className="mt-auto flex flex-wrap gap-2">
-                    <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+                    <span className={courseYearPillClass(course.year)}>
                       <FontAwesomeIcon
                         icon={faGraduationCap}
                         className="mr-1.5"
                       />
                       {course.year}º Curso
                     </span>
-                    <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-800">
+                    <span className={semesterPillClass(course.semester)}>
                       {semLabel(course.semester)}
                     </span>
-                    <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-                      {course.ects} ECTS
-                    </span>
+                    <span className={ectsPillClass()}>{course.ects} ECTS</span>
                   </div>
                 </Link>
               ))}

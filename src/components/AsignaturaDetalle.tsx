@@ -14,6 +14,11 @@ import {
 import BackButton from './BackButton';
 import { CourseTypePill } from './CourseTypePill';
 import { formatCatalogEntry, generateSlug } from '../utils/stringUtils';
+import {
+  courseYearPillClass,
+  ectsPillClass,
+  semesterPillClass,
+} from '../utils/courseBadgeStyles';
 import { useDegree } from '../context/DegreeContext';
 import type { Semester } from '../types/degree';
 
@@ -127,15 +132,15 @@ const AsignaturaDetalle: React.FC = () => {
             {asignaturaInfo.nombre}
           </h1>
           <div className="mx-auto flex max-w-2xl flex-wrap items-center justify-center gap-2 sm:gap-4">
-            <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-800 sm:px-4 sm:py-2 sm:text-sm">
+            <span className={courseYearPillClass(asignaturaInfo.curso, 'md')}>
               <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
               {asignaturaInfo.curso}º Curso
             </span>
-            <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-medium text-indigo-800 sm:px-4 sm:py-2 sm:text-sm">
+            <span className={semesterPillClass(asignaturaInfo.semestre, 'md')}>
               <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
               {semLabel(asignaturaInfo.semestre)}
             </span>
-            <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1.5 text-xs font-medium text-purple-800 sm:px-4 sm:py-2 sm:text-sm">
+            <span className={ectsPillClass('md')}>
               {asignaturaInfo.ects} ECTS
             </span>
             <CourseTypePill type={asignaturaInfo.tipo} size="md" />

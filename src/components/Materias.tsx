@@ -6,9 +6,10 @@ import {
   faLayerGroup,
   faBook,
   faChevronRight,
-  faCalendarAlt,
+  faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 import { useDegree } from '../context/DegreeContext';
+import { courseYearPillClass, ectsPillClass } from '../utils/courseBadgeStyles';
 
 const Materias = () => {
   const { degreeId } = useParams<{ degreeId: string }>();
@@ -104,12 +105,14 @@ const Materias = () => {
                       {materia.asignaturasPorCurso.map(
                         ({ curso, asignaturas }) => (
                           <div key={curso}>
-                            <div className="mb-1.5 flex items-center text-xs text-gray-500 sm:mb-2">
-                              <FontAwesomeIcon
-                                icon={faCalendarAlt}
-                                className="mr-1.5"
-                              />
-                              {curso}º Curso
+                            <div className="mb-1.5 sm:mb-2">
+                              <span className={courseYearPillClass(curso)}>
+                                <FontAwesomeIcon
+                                  icon={faGraduationCap}
+                                  className="mr-1.5"
+                                />
+                                {curso}º Curso
+                              </span>
                             </div>
                             <ul className="space-y-1">
                               {asignaturas.map((asig) => (
@@ -128,7 +131,9 @@ const Materias = () => {
                                     <span className="min-w-0 break-words">
                                       {asig.name}
                                     </span>
-                                    <span className="ml-auto shrink-0 text-gray-400">
+                                    <span
+                                      className={`ml-auto shrink-0 ${ectsPillClass()}`}
+                                    >
                                       {asig.ects} ECTS
                                     </span>
                                   </Link>

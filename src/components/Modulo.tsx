@@ -1,6 +1,11 @@
 import type { FC } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { generateSlug } from '../utils/stringUtils';
+import {
+  courseYearPillClass,
+  ectsPillClass,
+  semesterPillClass,
+} from '../utils/courseBadgeStyles';
 import BackButton from './BackButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -138,17 +143,17 @@ const Modulo: FC = () => {
                         />
                       </div>
                       <div className="mt-auto flex flex-wrap gap-1.5">
-                        <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
+                        <span className={courseYearPillClass(course.year)}>
                           <FontAwesomeIcon
                             icon={faCalendarAlt}
                             className="mr-1"
                           />
                           {course.year}º curso
                         </span>
-                        <span className="inline-flex items-center rounded-full bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-600">
+                        <span className={semesterPillClass(course.semester)}>
                           {semLabel(course.semester)}
                         </span>
-                        <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-700">
+                        <span className={ectsPillClass()}>
                           {course.ects} ECTS
                         </span>
                       </div>

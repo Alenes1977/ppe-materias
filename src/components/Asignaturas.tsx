@@ -5,8 +5,14 @@ import {
   faSearch,
   faClock,
   faCalendar,
+  faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 import { generateSlug } from '../utils/stringUtils';
+import {
+  courseYearPillClass,
+  ectsPillClass,
+  semesterPillClass,
+} from '../utils/courseBadgeStyles';
 import { useDegree } from '../context/DegreeContext';
 import { CourseTypePill } from './CourseTypePill';
 import type { Semester } from '../types/degree';
@@ -22,9 +28,10 @@ type AsignaturaItem = {
 };
 
 const getSemestreBadge = (semestre: Semester) => {
+  const cls = semesterPillClass(semestre);
   if (semestre === 'annual' || semestre === ('anual' as Semester)) {
     return (
-      <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+      <span className={cls}>
         <FontAwesomeIcon icon={faClock} className="mr-1.5" />
         Anual
       </span>
@@ -32,14 +39,14 @@ const getSemestreBadge = (semestre: Semester) => {
   }
   if (semestre === 1) {
     return (
-      <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">
+      <span className={cls}>
         <FontAwesomeIcon icon={faCalendar} className="mr-1.5" />
         1er Sem
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-medium text-purple-800">
+    <span className={cls}>
       <FontAwesomeIcon icon={faCalendar} className="mr-1.5" />
       2º Sem
     </span>
@@ -128,9 +135,11 @@ const Asignaturas: FC = () => {
             </h3>
             <div className="mt-1.5 flex flex-wrap items-center gap-1.5 sm:mt-2">
               <CourseTypePill type={asignatura.tipo} />
-            </div>
-            <div className="mt-0.5 text-xs text-gray-600 sm:mt-1 sm:text-sm">
-              {asignatura.ects} ECTS
+              <span className={courseYearPillClass(asignatura.curso)}>
+                <FontAwesomeIcon icon={faGraduationCap} className="mr-1.5" />
+                {asignatura.curso}º curso
+              </span>
+              <span className={ectsPillClass()}>{asignatura.ects} ECTS</span>
             </div>
           </div>
           <div className="flex-shrink-0">

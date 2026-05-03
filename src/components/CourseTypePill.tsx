@@ -4,10 +4,10 @@ import type { FC } from 'react';
 export const COURSE_TYPE_TFG = 'Trabajo Fin de Grado';
 
 const TYPE_CLASSES: Record<string, string> = {
-  Básica: 'bg-amber-100 text-amber-800',
-  Obligatoria: 'bg-purple-100 text-purple-800',
-  Optativa: 'bg-green-100 text-green-800',
-  [COURSE_TYPE_TFG]: 'bg-rose-100 text-rose-900',
+  Básica: 'border-amber-200/70 bg-amber-100 text-amber-900',
+  Obligatoria: 'border-violet-200/70 bg-violet-100 text-violet-900',
+  Optativa: 'border-green-200/70 bg-green-100 text-green-900',
+  [COURSE_TYPE_TFG]: 'border-rose-200/70 bg-rose-100 text-rose-900',
 };
 
 const SIZE_CLASSES = {
@@ -28,10 +28,11 @@ export const CourseTypePill: FC<CourseTypePillProps> = ({
   className = '',
 }) => {
   const label = (type?.trim() || 'Obligatoria') as string;
-  const colors = TYPE_CLASSES[label] ?? 'bg-slate-100 text-slate-800';
+  const colors =
+    TYPE_CLASSES[label] ?? 'border-slate-200/70 bg-slate-100 text-slate-800';
   return (
     <span
-      className={`inline-flex shrink-0 items-center rounded-full ${SIZE_CLASSES[size]} ${colors} ${className}`.trim()}
+      className={`inline-flex shrink-0 items-center rounded-full border ${SIZE_CLASSES[size]} ${colors} ${className}`.trim()}
     >
       {label}
     </span>

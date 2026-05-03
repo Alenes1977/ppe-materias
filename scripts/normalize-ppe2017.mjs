@@ -29,13 +29,13 @@ for (const modulo of raw.modulos) {
 
 // ── 2. Generar catálogos con IDs ─────────────────────────────────────────────
 const activities = [...activitySet].map((name, i) => ({
-  id: `AF-PPE2017-${i + 1}`,
+  id: `AF${i + 1}`,
   name,
   description: '',
 }));
 
 const evaluations = [...evalSet].map((name, i) => ({
-  id: `SE-PPE2017-${i + 1}`,
+  id: `SE${i + 1}`,
   name,
   description: '',
 }));

@@ -30,42 +30,42 @@
   },
   "trainingActivities": [
     {
-      "id": "AF-PPE2017-1",
+      "id": "AF1",
       "name": "Asistencia a clases magistrales",
       "description": ""
     },
     {
-      "id": "AF-PPE2017-2",
+      "id": "AF2",
       "name": "Seminarios de discusión",
       "description": ""
     },
     {
-      "id": "AF-PPE2017-3",
+      "id": "AF3",
       "name": "Tutorías",
       "description": ""
     },
     {
-      "id": "AF-PPE2017-4",
+      "id": "AF4",
       "name": "Estudio personal",
       "description": ""
     },
     {
-      "id": "AF-PPE2017-5",
+      "id": "AF5",
       "name": "Elaboración de trabajos dirigidos",
       "description": ""
     },
     {
-      "id": "AF-PPE2017-6",
+      "id": "AF6",
       "name": "Análisis de casos y actividades prácticas presenciales",
       "description": ""
     },
     {
-      "id": "AF-PPE2017-7",
+      "id": "AF7",
       "name": "Elaboración del Trabajo Fin de Grado",
       "description": ""
     },
     {
-      "id": "AF-PPE2017-8",
+      "id": "AF8",
       "name": "Defensa del Trabajo Fin de Grado",
       "description": ""
     }
@@ -73,32 +73,32 @@
   "teachingMethodologies": [],
   "evaluationSystems": [
     {
-      "id": "SE-PPE2017-1",
+      "id": "SE1",
       "name": "Pruebas escritas",
       "description": ""
     },
     {
-      "id": "SE-PPE2017-2",
+      "id": "SE2",
       "name": "Elaboración y presentación de trabajos dirigidos",
       "description": ""
     },
     {
-      "id": "SE-PPE2017-3",
+      "id": "SE3",
       "name": "Casos prácticos y actividades presenciales",
       "description": ""
     },
     {
-      "id": "SE-PPE2017-4",
+      "id": "SE4",
       "name": "Intervenciones en clase y tutorías",
       "description": ""
     },
     {
-      "id": "SE-PPE2017-5",
+      "id": "SE5",
       "name": "Realización del Trabajo Fin de Grado",
       "description": ""
     },
     {
-      "id": "SE-PPE2017-6",
+      "id": "SE6",
       "name": "Defensa del Trabajo Fin de Grado",
       "description": ""
     }
@@ -111,31 +111,25 @@
         {
           "name": "Core curriculum",
           "ects": 18,
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -214,32 +208,25 @@
         {
           "name": "Fundamentos de filosofía",
           "ects": 24,
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "20%",
               "maxWeight": "100%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -294,32 +281,25 @@
         {
           "name": "Conocimiento, realidad y acción",
           "ects": 24,
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "20%",
               "maxWeight": "100%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -422,32 +402,25 @@
       "subjects": [
         {
           "name": "Teoría política y social",
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "20%",
               "maxWeight": "100%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -519,32 +492,25 @@
         },
         {
           "name": "Sociedad, cultura y comunicación en el mundo contemporáneo",
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "20%",
               "maxWeight": "100%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -646,32 +612,25 @@
       "subjects": [
         {
           "name": "Teoría económica",
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "20%",
               "maxWeight": "100%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -724,32 +683,25 @@
         },
         {
           "name": "Economía aplicada",
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "20%",
               "maxWeight": "100%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -862,32 +814,25 @@
       "subjects": [
         {
           "name": "Formación específica complementaria",
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "20%",
               "maxWeight": "100%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "0%",
               "maxWeight": "50%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -944,32 +889,25 @@
       "subjects": [
         {
           "name": "Seminarios interdisciplinares",
-          "trainingActivities": [
-            "AF-PPE2017-1",
-            "AF-PPE2017-2",
-            "AF-PPE2017-6",
-            "AF-PPE2017-3",
-            "AF-PPE2017-4",
-            "AF-PPE2017-5"
-          ],
+          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-1",
+              "system": "SE1",
               "minWeight": "0%",
               "maxWeight": "30%"
             },
             {
-              "system": "SE-PPE2017-2",
+              "system": "SE2",
               "minWeight": "30%",
               "maxWeight": "80%"
             },
             {
-              "system": "SE-PPE2017-3",
+              "system": "SE3",
               "minWeight": "20%",
               "maxWeight": "70%"
             },
             {
-              "system": "SE-PPE2017-4",
+              "system": "SE4",
               "minWeight": "0%",
               "maxWeight": "20%"
             }
@@ -1052,19 +990,15 @@
         },
         {
           "name": "Trabajo Fin de Grado",
-          "trainingActivities": [
-            "AF-PPE2017-3",
-            "AF-PPE2017-7",
-            "AF-PPE2017-8"
-          ],
+          "trainingActivities": ["AF3", "AF7", "AF8"],
           "evaluation": [
             {
-              "system": "SE-PPE2017-5",
+              "system": "SE5",
               "minWeight": "60%",
               "maxWeight": "90%"
             },
             {
-              "system": "SE-PPE2017-6",
+              "system": "SE6",
               "minWeight": "10%",
               "maxWeight": "40%"
             }

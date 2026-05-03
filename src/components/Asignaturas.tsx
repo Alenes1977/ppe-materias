@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { generateSlug } from '../utils/stringUtils';
 import { useDegree } from '../context/DegreeContext';
+import { CourseTypePill } from './CourseTypePill';
 import type { Semester } from '../types/degree';
 
 type AsignaturaItem = {
@@ -125,6 +126,9 @@ const Asignaturas: FC = () => {
             <h3 className="text-sm font-semibold text-gray-800 group-hover:text-blue-600 sm:text-base">
               {asignatura.nombre}
             </h3>
+            <div className="mt-1.5 flex flex-wrap items-center gap-1.5 sm:mt-2">
+              <CourseTypePill type={asignatura.tipo} />
+            </div>
             <div className="mt-0.5 text-xs text-gray-600 sm:mt-1 sm:text-sm">
               {asignatura.ects} ECTS
             </div>

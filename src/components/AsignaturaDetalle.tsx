@@ -9,11 +9,10 @@ import {
   faBookOpen,
   faClipboardList,
   faChartBar,
-  faStar,
-  faScroll,
   faChalkboardUser,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
+import { CourseTypePill } from './CourseTypePill';
 import { formatCatalogEntry, generateSlug } from '../utils/stringUtils';
 import { useDegree } from '../context/DegreeContext';
 import type { Semester } from '../types/degree';
@@ -139,18 +138,7 @@ const AsignaturaDetalle: React.FC = () => {
             <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1.5 text-xs font-medium text-purple-800 sm:px-4 sm:py-2 sm:text-sm">
               {asignaturaInfo.ects} ECTS
             </span>
-            {asignaturaInfo.tipo === 'Básica' && (
-              <span className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-800 sm:px-4 sm:py-2 sm:text-sm">
-                <FontAwesomeIcon icon={faStar} className="mr-2" />
-                Básica
-              </span>
-            )}
-            {asignaturaInfo.tipo === 'Trabajo Fin de Grado' && (
-              <span className="inline-flex items-center rounded-full bg-rose-100 px-3 py-1.5 text-xs font-medium text-rose-900 sm:px-4 sm:py-2 sm:text-sm">
-                <FontAwesomeIcon icon={faScroll} className="mr-2" />
-                Trabajo Fin de Grado
-              </span>
-            )}
+            <CourseTypePill type={asignaturaInfo.tipo} size="md" />
           </div>
         </div>
 

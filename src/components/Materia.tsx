@@ -9,10 +9,10 @@ import {
   faClipboardList,
   faChartBar,
   faLayerGroup,
-  faStar,
   faChalkboardUser,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
+import { CourseTypePill } from './CourseTypePill';
 import { formatCatalogEntry, generateSlug } from '../utils/stringUtils';
 import { useDegree } from '../context/DegreeContext';
 import type { Semester } from '../types/degree';
@@ -132,16 +132,13 @@ const Materia: React.FC = () => {
                   to={`${base}/asignaturas/${generateSlug(course.name)}`}
                   className="group flex flex-col rounded-lg border border-gray-200 bg-gradient-to-br from-white to-blue-50 p-3 transition-all hover:border-blue-300 hover:shadow-lg sm:p-4"
                 >
-                  <h3 className="mb-3 text-base font-semibold text-gray-800 group-hover:text-blue-600">
-                    {course.name}
-                  </h3>
+                  <div className="mb-3 flex items-start justify-between gap-2">
+                    <h3 className="min-w-0 flex-1 text-base font-semibold leading-snug text-gray-800 group-hover:text-blue-600">
+                      {course.name}
+                    </h3>
+                    <CourseTypePill type={course.type} className="shrink-0" />
+                  </div>
                   <div className="mt-auto flex flex-wrap gap-2">
-                    {course.type === 'Básica' && (
-                      <span className="inline-flex items-center rounded-full bg-amber-100 px-2 py-1 text-xs font-medium text-amber-800">
-                        <FontAwesomeIcon icon={faStar} className="mr-1.5" />
-                        Básica
-                      </span>
-                    )}
                     <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
                       <FontAwesomeIcon
                         icon={faGraduationCap}

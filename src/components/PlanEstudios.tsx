@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { generateSlug } from '../utils/stringUtils';
 import { DegreeContext } from '../context/DegreeContext';
+import { CourseTypePill } from './CourseTypePill';
 import { DEGREES } from '../data/degrees';
 
 /** Tipos de obligatoriedad mostrados por separado en la distribución (siguen dentro del total ECTS). */
@@ -316,18 +317,19 @@ const PlanEstudios: React.FC = () => {
                                   )}`}
                                   className="group flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-3 transition-all hover:border-blue-200 hover:bg-blue-50 sm:p-4"
                                 >
-                                  <div className="flex min-w-0 flex-1 items-start gap-2">
-                                    <FontAwesomeIcon
-                                      icon={faBook}
-                                      className="mt-0.5 shrink-0 text-blue-500 sm:mr-0"
-                                    />
-                                    <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-700 group-hover:text-blue-600 sm:text-base">
-                                      {c.name}
+                                  <FontAwesomeIcon
+                                    icon={faBook}
+                                    className="mt-0.5 shrink-0 text-blue-500"
+                                  />
+                                  <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-700 group-hover:text-blue-600 sm:text-base">
+                                    {c.name}
+                                  </span>
+                                  <div className="flex shrink-0 items-start gap-2">
+                                    <CourseTypePill type={c.type} />
+                                    <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 sm:px-2.5">
+                                      {c.ects} ECTS
                                     </span>
                                   </div>
-                                  <span className="shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 sm:px-2.5">
-                                    {c.ects} ECTS
-                                  </span>
                                 </Link>
                               </li>
                             ))}
@@ -361,18 +363,19 @@ const PlanEstudios: React.FC = () => {
                             to={`${base}/asignaturas/${generateSlug(c.name)}`}
                             className="group flex items-start gap-3 rounded-lg border border-amber-200 bg-white p-3 transition-all hover:border-amber-300 hover:bg-amber-50/80 sm:p-4"
                           >
-                            <div className="flex min-w-0 flex-1 items-start gap-2">
-                              <FontAwesomeIcon
-                                icon={faBook}
-                                className="mt-0.5 shrink-0 text-amber-600 sm:mr-0"
-                              />
-                              <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-800 group-hover:text-amber-900 sm:text-base">
-                                {c.name}
+                            <FontAwesomeIcon
+                              icon={faBook}
+                              className="mt-0.5 shrink-0 text-amber-600"
+                            />
+                            <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-800 group-hover:text-amber-900 sm:text-base">
+                              {c.name}
+                            </span>
+                            <div className="flex shrink-0 items-start gap-2">
+                              <CourseTypePill type={c.type} />
+                              <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-900 sm:px-2.5">
+                                {c.ects} ECTS
                               </span>
                             </div>
-                            <span className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-900 sm:px-2.5">
-                              {c.ects} ECTS
-                            </span>
                           </Link>
                         </li>
                       ))}

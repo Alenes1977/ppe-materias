@@ -9,9 +9,9 @@ import {
   faBookOpen,
   faChalkboardTeacher,
   faCalendarAlt,
-  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { useDegree } from '../context/DegreeContext';
+import { CourseTypePill } from './CourseTypePill';
 import type { Semester } from '../types/degree';
 
 const Modulo: FC = () => {
@@ -128,16 +128,14 @@ const Modulo: FC = () => {
                       to={`${base}/asignaturas/${generateSlug(course.name)}`}
                       className="group flex flex-col rounded-lg border border-gray-200 bg-gray-50 p-3 transition-all hover:border-blue-300 hover:bg-blue-50 sm:p-4"
                     >
-                      <div className="mb-2 flex items-start justify-between">
-                        <h3 className="text-sm font-semibold text-gray-800 group-hover:text-blue-600">
+                      <div className="mb-2 flex items-start justify-between gap-2">
+                        <h3 className="min-w-0 flex-1 text-sm font-semibold leading-snug text-gray-800 group-hover:text-blue-600">
                           {course.name}
                         </h3>
-                        {course.type === 'Básica' && (
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            className="ml-1 mt-0.5 shrink-0 text-amber-400"
-                          />
-                        )}
+                        <CourseTypePill
+                          type={course.type}
+                          className="shrink-0"
+                        />
                       </div>
                       <div className="mt-auto flex flex-wrap gap-1.5">
                         <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">

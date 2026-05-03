@@ -26,7 +26,18 @@
     "CE10": "Conocer y utilizar los conceptos y métodos fundamentales de la Teoría Económica, aplicándolos al análisis y discusión de situaciones reales",
     "CE11": "Identificar y manejar los principales modelos microeconómicos y macroeconómicos que explican los procesos y comportamientos económicos",
     "CE12": "Reflexionar, desde una perspectiva histórica, sobre la dimensión ética de la actividad económica y su capacidad para configurar realidades sociopolíticas particulares",
-    "CE13": "Identificar los elementos relevantes del entorno económico globalizado, valorando su coherencia con otros parámetros normativos de índole política o filosófica"
+    "CE13": "Identificar los elementos relevantes del entorno económico globalizado, valorando su coherencia con otros parámetros normativos de índole política o filosófica",
+    "COP1": "Conocer grandes obras de la literatura, del arte, de la ciencia y, en general, del pensamiento humano",
+    "COP2": "Conocer los aspectos básicos del cristianismo y su relación con la cultura y el pensamiento actual",
+    "COP3": "Argumentar correctamente, de manera oral y por escrito, el propio punto de vista sobre cuestiones transversales a los diferentes grados como la ecología, la ciudadanía, la familia, la paz, el sufrimiento, las desigualdades sociales, la racionalidad del mundo, o el respeto a la diferencia",
+    "COP4": "Reconocer la conexión entre las teorías filosóficas del pasado y los debates contemporáneos",
+    "COP5": "Conocer las teorías y argumentos de los principales filósofos y pensadores, extraídos de sus propios escritos, y tener un conocimiento básico de las interpretaciones más importantes",
+    "COP6": "Conocer y manejar con solvencia los conceptos y métodos fundamentales de las finanzas",
+    "COP7": "Conocer y manejar los conceptos matemáticos fundamentales, así como los principales modelos que son de aplicación habitual en los métodos cuantitativos que se emplean en economía y sociología aplicada",
+    "COP8": "Conocer los aspectos teórico-prácticos del funcionamiento de la empresa",
+    "COP9": "Comparar diferentes sistemas e instituciones jurídico-políticas, valorando su alcance internacional y su capacidad de influencia geopolítica",
+    "COP10": "Conocer los fundamentos históricos, políticos, económicos, jurídicos y culturales que afectan a la actual sociedad internacional",
+    "COP11": "Tener un conocimiento básico del contexto histórico, social y cultural de la actividad económica"
   },
   "trainingActivities": [
     {
@@ -41,22 +52,22 @@
     },
     {
       "id": "AF3",
-      "name": "Tutorías",
+      "name": "Análisis de casos y actividades prácticas presenciales",
       "description": ""
     },
     {
       "id": "AF4",
-      "name": "Estudio personal",
+      "name": "Tutorías",
       "description": ""
     },
     {
       "id": "AF5",
-      "name": "Elaboración de trabajos dirigidos",
+      "name": "Estudio personal",
       "description": ""
     },
     {
       "id": "AF6",
-      "name": "Análisis de casos y actividades prácticas presenciales",
+      "name": "Elaboración de trabajos dirigidos",
       "description": ""
     },
     {
@@ -111,11 +122,11 @@
         {
           "name": "Core curriculum",
           "ects": 18,
-          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
-              "minWeight": "0%",
+              "minWeight": "30%",
               "maxWeight": "70%"
             },
             {
@@ -134,11 +145,23 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG2",
+            "CG3",
+            "CB1",
+            "CB3",
+            "CB4",
+            "CT1",
+            "CT2",
+            "CT3",
+            "COP1",
+            "COP2",
+            "COP3"
+          ],
           "courses": [
             {
               "name": "Antropología",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 1,
               "semester": "annual",
               "ects": 6,
@@ -155,7 +178,7 @@
             },
             {
               "name": "Ética",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 2,
               "semester": "annual",
               "ects": 6,
@@ -184,7 +207,9 @@
                 "CB4",
                 "CT1",
                 "CT2",
-                "CT3"
+                "COP1",
+                "COP2",
+                "COP3"
               ]
             },
             {
@@ -200,7 +225,10 @@
                 "CB3",
                 "CB4",
                 "CT1",
-                "CT2"
+                "CT2",
+                "COP1",
+                "COP2",
+                "COP3"
               ]
             }
           ]
@@ -208,7 +236,7 @@
         {
           "name": "Fundamentos de filosofía",
           "ects": 24,
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -231,11 +259,22 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG1",
+            "CG2",
+            "CG5",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CE4",
+            "CE5",
+            "CE6"
+          ],
           "courses": [
             {
               "name": "Filosofía y pensamiento crítico",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 1,
               "semester": 1,
               "ects": 6,
@@ -253,8 +292,8 @@
               ]
             },
             {
-              "name": "Introducción a la lógica",
-              "type": "Obligatoria",
+              "name": "Introduction to Logic",
+              "type": "Básica",
               "year": 1,
               "semester": 2,
               "ects": 6,
@@ -262,7 +301,7 @@
             },
             {
               "name": "Historia de la filosofía: grandes autores",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 1,
               "semester": 2,
               "ects": 6,
@@ -281,7 +320,7 @@
         {
           "name": "Conocimiento, realidad y acción",
           "ects": 24,
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -304,13 +343,25 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG3",
+            "CG4",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CE1",
+            "CE4",
+            "CE5",
+            "CE6",
+            "CE13"
+          ],
           "courses": [
             {
               "name": "Knowledge and reality",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 2,
-              "semester": 1,
+              "semester": 2,
               "ects": 6,
               "learningOutcomes": [
                 "CG3",
@@ -402,7 +453,7 @@
       "subjects": [
         {
           "name": "Teoría política y social",
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -425,11 +476,25 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG1",
+            "CG2",
+            "CG5",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE1",
+            "CE3",
+            "CE5",
+            "CE7",
+            "CE8",
+            "CE9",
+            "CE12"
+          ],
           "courses": [
             {
               "name": "Sociología",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 1,
               "semester": 1,
               "ects": 6,
@@ -446,7 +511,7 @@
               ]
             },
             {
-              "name": "Introducción a la ciencia política",
+              "name": "Introduction to Political Science",
               "type": "Obligatoria",
               "year": 1,
               "semester": 1,
@@ -492,7 +557,7 @@
         },
         {
           "name": "Sociedad, cultura y comunicación en el mundo contemporáneo",
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -515,10 +580,26 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG3",
+            "CG4",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE1",
+            "CE2",
+            "CE3",
+            "CE7",
+            "CE8",
+            "CE9",
+            "CE12",
+            "CE13"
+          ],
           "courses": [
             {
-              "name": "Historia universal contemporánea",
+              "name": "Contemporary World History",
               "type": "Obligatoria",
               "year": 1,
               "semester": 1,
@@ -567,7 +648,7 @@
             },
             {
               "name": "Comunicación política",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 2,
               "semester": 2,
               "ects": 6,
@@ -575,9 +656,9 @@
             },
             {
               "name": "Historia de las ideas e ideologías políticas",
-              "type": "Obligatoria",
+              "type": "Básica",
               "year": 2,
-              "semester": 2,
+              "semester": 1,
               "ects": 6,
               "learningOutcomes": [
                 "CG3",
@@ -612,7 +693,7 @@
       "subjects": [
         {
           "name": "Teoría económica",
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -635,18 +716,28 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG1",
+            "CG2",
+            "CG5",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB5",
+            "CE10",
+            "CE11"
+          ],
           "courses": [
             {
-              "name": "Fundamentos de economía",
-              "type": "Obligatoria",
+              "name": "Fundamentals of Economics",
+              "type": "Básica",
               "year": 1,
               "semester": 1,
               "ects": 6,
               "learningOutcomes": ["CG1", "CG2", "CG5", "CB2", "CB5", "CE10"]
             },
             {
-              "name": "Microeconomía",
+              "name": "Microeconomics",
               "type": "Obligatoria",
               "year": 2,
               "semester": 1,
@@ -662,7 +753,7 @@
               ]
             },
             {
-              "name": "Macroeconomía",
+              "name": "Macroeconomics",
               "type": "Obligatoria",
               "year": 2,
               "semester": 1,
@@ -683,7 +774,7 @@
         },
         {
           "name": "Economía aplicada",
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -706,7 +797,20 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG3",
+            "CG4",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CE1",
+            "CE3",
+            "CE10",
+            "CE11",
+            "CE12",
+            "CE13"
+          ],
           "courses": [
             {
               "name": "Decision Making in Economics",
@@ -814,7 +918,7 @@
       "subjects": [
         {
           "name": "Formación específica complementaria",
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -837,11 +941,31 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG3",
+            "CG4",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE1",
+            "CE2",
+            "CE3",
+            "CE4",
+            "COP4",
+            "COP5",
+            "COP6",
+            "COP7",
+            "COP8",
+            "COP9",
+            "COP10",
+            "COP11"
+          ],
           "courses": [
             {
-              "name": "Optativas",
-              "type": "Obligatoria",
+              "name": "Optativas I",
+              "type": "Optativa",
               "year": 3,
               "semester": 2,
               "ects": 30,
@@ -856,12 +980,20 @@
                 "CE1",
                 "CE2",
                 "CE3",
-                "CE4"
+                "CE4",
+                "COP4",
+                "COP5",
+                "COP6",
+                "COP7",
+                "COP8",
+                "COP9",
+                "COP10",
+                "COP11"
               ]
             },
             {
-              "name": "Optativas",
-              "type": "Obligatoria",
+              "name": "Optativas II",
+              "type": "Optativa",
               "year": 4,
               "semester": 1,
               "ects": 30,
@@ -876,7 +1008,15 @@
                 "CE1",
                 "CE2",
                 "CE3",
-                "CE4"
+                "CE4",
+                "COP4",
+                "COP5",
+                "COP6",
+                "COP7",
+                "COP8",
+                "COP9",
+                "COP10",
+                "COP11"
               ]
             }
           ]
@@ -889,7 +1029,7 @@
       "subjects": [
         {
           "name": "Seminarios interdisciplinares",
-          "trainingActivities": ["AF1", "AF2", "AF6", "AF3", "AF4", "AF5"],
+          "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",
@@ -912,7 +1052,23 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG1",
+            "CG2",
+            "CG3",
+            "CG4",
+            "CG5",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE1",
+            "CE2",
+            "CE3",
+            "CE4",
+            "CE5"
+          ],
           "courses": [
             {
               "name": "Capstone seminars I",
@@ -990,7 +1146,7 @@
         },
         {
           "name": "Trabajo Fin de Grado",
-          "trainingActivities": ["AF3", "AF7", "AF8"],
+          "trainingActivities": ["AF4", "AF7", "AF8"],
           "evaluation": [
             {
               "system": "SE5",
@@ -1003,7 +1159,23 @@
               "maxWeight": "40%"
             }
           ],
-          "learningOutcomes": [],
+          "learningOutcomes": [
+            "CG1",
+            "CG2",
+            "CG3",
+            "CG4",
+            "CG5",
+            "CB1",
+            "CB2",
+            "CB3",
+            "CB4",
+            "CB5",
+            "CE1",
+            "CE2",
+            "CE3",
+            "CE4",
+            "CE5"
+          ],
           "courses": [
             {
               "name": "Trabajo Fin de Grado",

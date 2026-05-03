@@ -354,7 +354,7 @@ const PlanEstudios: React.FC = () => {
                       />
                       Asignaturas anuales
                       <span className="text-xs font-normal text-amber-800/80 sm:text-sm">
-                        (imparten a lo largo del curso académico)
+                        (se imparten a lo largo del curso académico)
                       </span>
                     </h4>
                     <ul className="space-y-2 sm:space-y-3">

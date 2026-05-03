@@ -10,7 +10,6 @@ import {
   faChartBar,
   faChevronDown,
   faChevronRight,
-  faStar,
   faBook,
   faCalendarDays,
 } from '@fortawesome/free-solid-svg-icons';
@@ -21,21 +20,25 @@ import type {
   ModuleFormState,
   SubjectFormState,
 } from './builderTypes';
+import type { Semester as DegreeSemester } from '../../types/degree';
+import { CourseTypePill } from '../CourseTypePill';
+import {
+  courseYearPillClass,
+  ectsPillClass,
+  semesterPillClass,
+} from '../../utils/courseBadgeStyles';
+import { formatCatalogEntry } from '../../utils/stringUtils';
 
 const semLabel = (s: string) => {
   if (s === 'annual') return 'Anual';
   return `${s}º Sem.`;
 };
 
-const TYPE_COLORS: Record<string, string> = {
-  Básica: 'bg-amber-100 text-amber-800 border-amber-200',
-  Obligatoria: 'bg-blue-100 text-blue-800 border-blue-200',
-  Optativa: 'bg-green-100 text-green-800 border-green-200',
-  'Trabajo Fin de Grado': 'bg-purple-100 text-purple-800 border-purple-200',
-  Prácticum: 'bg-rose-100 text-rose-800 border-rose-200',
-};
-const typeColor = (t: string) =>
-  TYPE_COLORS[t] ?? 'bg-gray-100 text-gray-600 border-gray-200';
+function toDegreeSemester(s: string): DegreeSemester {
+  if (s === 'annual') return 'annual';
+  if (s === '1') return 1;
+  return 2;
+}
 
 // ── Tarjeta de materia expandible ────────────────────────────────────────────
 
@@ -83,9 +86,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
             {subject.courses.length !== 1 ? 's' : ''}
           </p>
         </div>
-        <span className="shrink-0 rounded-full bg-teal-100 px-2.5 py-0.5 text-xs font-semibold text-teal-800">
-          {subject.ects} ECTS
-        </span>
+        <span className={ectsPillClass()}>{subject.ects} ECTS</span>
       </button>
 
       {open ? (
@@ -123,36 +124,35 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                         </td>
                         <td className="px-3 py-2.5 text-center">
                           {course.type ? (
-                            <span
-                              className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium ${typeColor(
-                                course.type,
-                              )}`}
-                            >
-                              {course.type === 'Básica' && (
-                                <FontAwesomeIcon
-                                  icon={faStar}
-                                  className="text-xs"
-                                />
-                              )}
-                              {course.type}
-                            </span>
+                            <div className="flex justify-center">
+                              <CourseTypePill type={course.type} />
+                            </div>
                           ) : (
                             <span className="text-gray-300">—</span>
                           )}
                         </td>
-                        <td className="px-3 py-2.5 text-center text-gray-600">
-                          {course.year}º
+                        <td className="px-3 py-2.5 text-center">
+                          <span
+                            className={courseYearPillClass(course.year ?? 1)}
+                          >
+                            {course.year}º
+                          </span>
                         </td>
-                        <td className="px-3 py-2.5 text-center text-gray-600">
-                          {semLabel(course.semester)}
+                        <td className="px-3 py-2.5 text-center">
+                          <span
+                            className={semesterPillClass(
+                              toDegreeSemester(course.semester),
+                            )}
+                          >
+                            {semLabel(course.semester)}
+                          </span>
                         </td>
                         <td className="px-3 py-2.5 text-right">
-                          <span className="font-semibold text-blue-700">
-                            {course.ects}
-                          </span>
-                          <span className="ml-0.5 text-xs text-gray-400">
-                            ECTS
-                          </span>
+                          <div className="flex justify-end">
+                            <span className={ectsPillClass()}>
+                              {course.ects} ECTS
+                            </span>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -182,7 +182,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                         className="flex items-center gap-2 text-xs text-gray-600"
                       >
                         <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
-                        {actDict[afId]?.name ?? afId}
+                        {formatCatalogEntry(afId, actDict[afId]?.name)}
                       </li>
                     ))}
                   </ul>
@@ -205,7 +205,10 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                         className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 px-3 py-1.5 text-xs"
                       >
                         <span className="text-gray-700">
-                          {evalDict[ev.system]?.name ?? (ev.system || '—')}
+                          {formatCatalogEntry(
+                            ev.system,
+                            evalDict[ev.system]?.name,
+                          )}
                         </span>
                         <span className="ml-2 shrink-0 text-gray-400">
                           <span className="font-medium text-blue-600">
@@ -462,29 +465,29 @@ const PlanPreview: React.FC<Props> = ({
           ) : (
             <div className="space-y-2">
               {ectsBasicas > 0 && (
-                <div className="flex items-center justify-between rounded-lg bg-amber-50 px-4 py-2.5">
-                  <span className="text-xs font-medium text-amber-700">
-                    Básicas
+                <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5">
+                  <span className="text-xs font-medium text-gray-700">
+                    Asignaturas básicas
                   </span>
-                  <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800">
+                  <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-bold text-blue-800">
                     {ectsBasicas} ECTS
                   </span>
                 </div>
               )}
               {ectsObligatorias > 0 && (
-                <div className="flex items-center justify-between rounded-lg bg-blue-50 px-4 py-2.5">
-                  <span className="text-xs font-medium text-blue-700">
-                    Obligatorias
+                <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5">
+                  <span className="text-xs font-medium text-gray-700">
+                    Asignaturas obligatorias
                   </span>
-                  <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-bold text-blue-800">
+                  <span className="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-bold text-purple-800">
                     {ectsObligatorias} ECTS
                   </span>
                 </div>
               )}
               {ectsOptativas > 0 && (
-                <div className="flex items-center justify-between rounded-lg bg-green-50 px-4 py-2.5">
-                  <span className="text-xs font-medium text-green-700">
-                    Optativas
+                <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5">
+                  <span className="text-xs font-medium text-gray-700">
+                    Asignaturas optativas
                   </span>
                   <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-bold text-green-800">
                     {ectsOptativas} ECTS
@@ -492,21 +495,21 @@ const PlanPreview: React.FC<Props> = ({
                 </div>
               )}
               {ectsTrabajoFinGrado > 0 && (
-                <div className="flex items-center justify-between rounded-lg bg-purple-50 px-4 py-2.5">
-                  <span className="text-xs font-medium text-purple-800">
+                <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5">
+                  <span className="text-xs font-medium text-gray-700">
                     Trabajo Fin de Grado
                   </span>
-                  <span className="rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-bold text-purple-900">
+                  <span className="rounded-full bg-rose-100 px-2.5 py-0.5 text-xs font-bold text-rose-900">
                     {ectsTrabajoFinGrado} ECTS
                   </span>
                 </div>
               )}
               {ectsOtros > 0 && (
                 <div
-                  className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-2.5"
+                  className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5"
                   title="Otros tipos (p. ej. prácticum u optativa de especialización)"
                 >
-                  <span className="text-xs font-medium text-slate-700">
+                  <span className="text-xs font-medium text-gray-700">
                     Otros créditos
                   </span>
                   <span className="rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-bold text-slate-800">
@@ -514,9 +517,9 @@ const PlanPreview: React.FC<Props> = ({
                   </span>
                 </div>
               )}
-              <div className="flex items-center justify-between rounded-lg bg-gray-100 px-4 py-2.5">
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5">
                 <span className="text-xs font-bold text-gray-700">Total</span>
-                <span className="rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-bold text-gray-800">
+                <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800">
                   {ectsTotal} ECTS
                 </span>
               </div>
@@ -568,10 +571,16 @@ const PlanPreview: React.FC<Props> = ({
             const anuales = asigsCurso.filter((c) => c.semester === 'annual');
             return (
               <div key={curso} className="mb-5 last:mb-0">
-                <h3 className="mb-3 inline-flex items-center gap-2 rounded-lg bg-blue-100 px-3 py-1.5 text-sm font-bold text-blue-800">
-                  <FontAwesomeIcon icon={faGraduationCap} />
-                  {curso}º Curso
-                </h3>
+                <div className="mb-3">
+                  <span
+                    className={`${courseYearPillClass(
+                      curso,
+                    )} text-sm font-bold`}
+                  >
+                    <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
+                    {curso}º Curso
+                  </span>
+                </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[primerCuatri, segundoCuatri].map((lista, idx) => {
                     const q = idx + 1;
@@ -588,24 +597,27 @@ const PlanPreview: React.FC<Props> = ({
                             {lista.map((c) => (
                               <li
                                 key={c._key}
-                                className="flex items-start gap-2 rounded-lg bg-gray-50 px-3 py-2"
+                                className="rounded-lg border border-gray-200 bg-gray-50 p-3"
                               >
-                                <div className="flex min-w-0 flex-1 items-start gap-2">
+                                <div className="flex items-start gap-3">
                                   <FontAwesomeIcon
                                     icon={faBook}
-                                    className="mt-0.5 shrink-0 text-xs text-blue-400"
+                                    className="mt-0.5 shrink-0 text-blue-500"
                                   />
-                                  <span className="min-w-0 flex-1 break-words text-sm text-gray-700">
+                                  <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-700">
                                     {c.name || (
-                                      <em className="text-gray-400">
+                                      <em className="font-normal text-gray-400">
                                         Sin nombre
                                       </em>
                                     )}
                                   </span>
+                                  <div className="flex shrink-0 items-start gap-2">
+                                    <CourseTypePill type={c.type} />
+                                    <span className={ectsPillClass()}>
+                                      {c.ects} ECTS
+                                    </span>
+                                  </div>
                                 </div>
-                                <span className="shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-700">
-                                  {c.ects} ECTS
-                                </span>
                               </li>
                             ))}
                           </ul>
@@ -634,22 +646,27 @@ const PlanPreview: React.FC<Props> = ({
                       {anuales.map((c) => (
                         <li
                           key={c._key}
-                          className="flex items-start gap-2 rounded-lg border border-amber-100 bg-white px-3 py-2"
+                          className="rounded-lg border border-amber-200 bg-white p-3"
                         >
-                          <div className="flex min-w-0 flex-1 items-start gap-2">
+                          <div className="flex items-start gap-3">
                             <FontAwesomeIcon
                               icon={faBook}
-                              className="mt-0.5 shrink-0 text-xs text-amber-600"
+                              className="mt-0.5 shrink-0 text-amber-600"
                             />
-                            <span className="min-w-0 flex-1 break-words text-sm text-gray-800">
+                            <span className="min-w-0 flex-1 break-words text-sm font-medium text-gray-800">
                               {c.name || (
-                                <em className="text-gray-400">Sin nombre</em>
+                                <em className="font-normal text-gray-400">
+                                  Sin nombre
+                                </em>
                               )}
                             </span>
+                            <div className="flex shrink-0 items-start gap-2">
+                              <CourseTypePill type={c.type} />
+                              <span className={ectsPillClass()}>
+                                {c.ects} ECTS
+                              </span>
+                            </div>
                           </div>
-                          <span className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-900">
-                            {c.ects} ECTS
-                          </span>
                         </li>
                       ))}
                     </ul>

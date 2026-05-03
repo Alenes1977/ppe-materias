@@ -10,9 +10,10 @@ import {
   faChartBar,
   faLayerGroup,
   faStar,
+  faChalkboardUser,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
-import { generateSlug } from '../utils/stringUtils';
+import { formatCatalogEntry, generateSlug } from '../utils/stringUtils';
 import { useDegree } from '../context/DegreeContext';
 import type { Semester } from '../types/degree';
 
@@ -34,6 +35,9 @@ const Materia: React.FC = () => {
   );
   const evalDict = Object.fromEntries(
     degreePlan.evaluationSystems.map((s) => [s.id, s]),
+  );
+  const mdDict = Object.fromEntries(
+    degreePlan.teachingMethodologies.map((m) => [m.id, m]),
   );
 
   const materiaInfo = useMemo(() => {
@@ -176,7 +180,7 @@ const Materia: React.FC = () => {
                     >
                       <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
                       <span className="text-sm text-gray-700">
-                        {actDict[afId]?.name ?? afId}
+                        {formatCatalogEntry(afId, actDict[afId]?.name)}
                       </span>
                     </div>
                   ))}
@@ -201,7 +205,10 @@ const Materia: React.FC = () => {
                       className="rounded-lg border border-gray-100 bg-gray-50 px-4 py-3"
                     >
                       <p className="mb-2 text-sm font-medium text-gray-900">
-                        {evalDict[ev.system]?.name ?? ev.system}
+                        {formatCatalogEntry(
+                          ev.system,
+                          evalDict[ev.system]?.name,
+                        )}
                       </p>
                       <div className="flex gap-4">
                         <span className="text-xs text-gray-500">
@@ -217,6 +224,31 @@ const Materia: React.FC = () => {
                           </span>
                         </span>
                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {(materiaInfo.teachingMethodologies?.length ?? 0) > 0 && (
+              <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:col-span-2">
+                <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
+                  <FontAwesomeIcon
+                    icon={faChalkboardUser}
+                    className="mr-2 text-teal-600 sm:mr-3"
+                  />
+                  Metodologías docentes
+                </h2>
+                <div className="space-y-2">
+                  {(materiaInfo.teachingMethodologies ?? []).map((mdId) => (
+                    <div
+                      key={mdId}
+                      className="flex items-start gap-3 rounded-lg border border-teal-100 bg-teal-50/80 px-4 py-3"
+                    >
+                      <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-teal-500" />
+                      <span className="text-sm text-teal-900">
+                        {formatCatalogEntry(mdId, mdDict[mdId]?.name)}
+                      </span>
                     </div>
                   ))}
                 </div>

@@ -160,15 +160,59 @@
             { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA2", "RA3", "RA9", "RA10", "RA20", "RA21", "RA22", "RA27"
+            "RA1",
+            "RA2",
+            "RA3",
+            "RA9",
+            "RA10",
+            "RA20",
+            "RA21",
+            "RA22",
+            "RA27"
           ],
           "courses": [
-            { "name": "Antropología I",   "type": "Obligatoria", "year": 1, "semester": 1, "ects": 3 },
-            { "name": "Antropología II",  "type": "Obligatoria", "year": 1, "semester": 2, "ects": 3 },
-            { "name": "Ética I",          "type": "Obligatoria", "year": 2, "semester": 1, "ects": 3 },
-            { "name": "Ética II",         "type": "Obligatoria", "year": 2, "semester": 2, "ects": 3 },
-            { "name": "Claves culturales I",  "type": "Obligatoria", "year": 3, "semester": 1, "ects": 3 },
-            { "name": "Claves culturales II", "type": "Obligatoria", "year": 4, "semester": 2, "ects": 3 }
+            {
+              "name": "Antropología I",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Antropología II",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Ética I",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Ética II",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Claves culturales I",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Claves culturales II",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3
+            }
           ]
         },
         {
@@ -181,14 +225,53 @@
             { "system": "SE3", "minWeight": "20%", "maxWeight": "40%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA2", "RA4", "RA5", "RA8", "RA9", "RA10", "RA11", "RA14", "RA19"
+            "RA1",
+            "RA2",
+            "RA4",
+            "RA5",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA11",
+            "RA14",
+            "RA19"
           ],
           "courses": [
-            { "name": "Historia de la Filosofía antigua y medieval",     "type": "Básica",     "year": 1, "semester": 2, "ects": 6 },
-            { "name": "Historia de la Filosofía moderna y contemporánea","type": "Básica",     "year": 2, "semester": 2, "ects": 6 },
-            { "name": "Filosofía de la cultura",                         "type": "Obligatoria","year": 2, "semester": 2, "ects": 3 },
-            { "name": "Knowledge and Truth",                             "type": "Obligatoria","year": 3, "semester": 1, "ects": 6 },
-            { "name": "Filosofía actual",                                "type": "Obligatoria","year": 3, "semester": 1, "ects": 6 }
+            {
+              "name": "Historia de la Filosofía antigua y medieval",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Historia de la Filosofía moderna y contemporánea",
+              "type": "Básica",
+              "year": 2,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Filosofía de la cultura",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Knowledge and Truth",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Filosofía actual",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 6
+            }
           ]
         },
         {
@@ -201,12 +284,41 @@
             { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA3", "RA4", "RA5", "RA8", "RA9", "RA10", "RA12", "RA13", "RA14", "RA26", "RA27"
+            "RA1",
+            "RA3",
+            "RA4",
+            "RA5",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA12",
+            "RA13",
+            "RA14",
+            "RA26",
+            "RA27"
           ],
           "courses": [
-            { "name": "Filosofía política clásica y moderna",       "type": "Básica",     "year": 1, "semester": 1, "ects": 6 },
-            { "name": "Philosophy of Economics",                    "type": "Obligatoria","year": 1, "semester": 2, "ects": 3 },
-            { "name": "Filosofía política contemporánea y actual",  "type": "Básica",     "year": 2, "semester": 1, "ects": 6 },
+            {
+              "name": "Filosofía política clásica y moderna",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Philosophy of Economics",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Filosofía política contemporánea y actual",
+              "type": "Básica",
+              "year": 2,
+              "semester": 1,
+              "ects": 6
+            },
             {
               "name": "Filosofía para un mundo complejo",
               "type": "Obligatoria",
@@ -218,8 +330,20 @@
                 { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
               ]
             },
-            { "name": "Filosofía de la acción",                          "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 },
-            { "name": "Teorías filosóficas sobre la ciudadanía",         "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 }
+            {
+              "name": "Filosofía de la acción",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Teorías filosóficas sobre la ciudadanía",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3
+            }
           ]
         }
       ]
@@ -238,15 +362,64 @@
             { "system": "SE3", "minWeight": "30%", "maxWeight": "60%" }
           ],
           "learningOutcomes": [
-            "RA2", "RA6", "RA9", "RA10", "RA11", "RA13", "RA14", "RA15", "RA16", "RA18", "RA19", "RA24", "RA25", "RA27"
+            "RA2",
+            "RA6",
+            "RA9",
+            "RA10",
+            "RA11",
+            "RA13",
+            "RA14",
+            "RA15",
+            "RA16",
+            "RA18",
+            "RA19",
+            "RA24",
+            "RA25",
+            "RA27"
           ],
           "courses": [
-            { "name": "Political Science",                              "type": "Básica",     "year": 1, "semester": 1, "ects": 6 },
-            { "name": "Historia de las ideas y de las ideologías políticas", "type": "Básica","year": 1, "semester": 1, "ects": 6 },
-            { "name": "EU Institutions and Policy",                     "type": "Obligatoria","year": 1, "semester": 2, "ects": 3 },
-            { "name": "Comparative Political Systems",                  "type": "Básica",     "year": 2, "semester": 1, "ects": 6 },
-            { "name": "Evaluación de políticas públicas",               "type": "Obligatoria","year": 2, "semester": 2, "ects": 3 },
-            { "name": "International Relations",                        "type": "Obligatoria","year": 2, "semester": 2, "ects": 6 },
+            {
+              "name": "Political Science",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Historia de las ideas y de las ideologías políticas",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "EU Institutions and Policy",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Comparative Political Systems",
+              "type": "Básica",
+              "year": 2,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Evaluación de políticas públicas",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "International Relations",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 6
+            },
             {
               "name": "Gestión y políticas públicas",
               "type": "Obligatoria",
@@ -270,17 +443,80 @@
             { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA3", "RA6", "RA8", "RA9", "RA10", "RA12", "RA13", "RA15", "RA16", "RA18", "RA23", "RA24", "RA25", "RA26", "RA27"
+            "RA1",
+            "RA3",
+            "RA6",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA12",
+            "RA13",
+            "RA15",
+            "RA16",
+            "RA18",
+            "RA23",
+            "RA24",
+            "RA25",
+            "RA26",
+            "RA27"
           ],
           "courses": [
-            { "name": "Contemporary Political History",       "type": "Obligatoria","year": 1, "semester": 2, "ects": 3 },
-            { "name": "Estructura y cambio social",           "type": "Básica",     "year": 2, "semester": 1, "ects": 6 },
-            { "name": "Política y sociedad en la España actual","type": "Obligatoria","year": 2, "semester": 1, "ects": 3 },
-            { "name": "Comunicación política",                "type": "Obligatoria","year": 3, "semester": 1, "ects": 6 },
-            { "name": "Cristianismo, sociedad y economía",    "type": "Obligatoria","year": 3, "semester": 1, "ects": 3 },
-            { "name": "Política y cultura latinoamericana",   "type": "Obligatoria","year": 3, "semester": 2, "ects": 3 },
-            { "name": "Población: Teorías y políticas",       "type": "Obligatoria","year": 3, "semester": 2, "ects": 3 },
-            { "name": "Hegemony and Globalization",           "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 }
+            {
+              "name": "Contemporary Political History",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Estructura y cambio social",
+              "type": "Básica",
+              "year": 2,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Política y sociedad en la España actual",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Comunicación política",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Cristianismo, sociedad y economía",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Política y cultura latinoamericana",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Población: Teorías y políticas",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Hegemony and Globalization",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3
+            }
           ]
         }
       ]
@@ -299,14 +535,52 @@
             { "system": "SE4", "minWeight": "20%", "maxWeight": "50%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA2", "RA7", "RA8", "RA9", "RA11", "RA17", "RA18", "RA19"
+            "RA1",
+            "RA2",
+            "RA7",
+            "RA8",
+            "RA9",
+            "RA11",
+            "RA17",
+            "RA18",
+            "RA19"
           ],
           "courses": [
-            { "name": "Historia del pensamiento económico","type": "Obligatoria","year": 1, "semester": 1, "ects": 3 },
-            { "name": "Microeconomics",                   "type": "Básica",     "year": 1, "semester": 2, "ects": 6 },
-            { "name": "Macroeconomics",                   "type": "Obligatoria","year": 2, "semester": 1, "ects": 6 },
-            { "name": "International Economics",          "type": "Obligatoria","year": 2, "semester": 2, "ects": 3 },
-            { "name": "Political Economy",                "type": "Obligatoria","year": 2, "semester": 2, "ects": 6 }
+            {
+              "name": "Historia del pensamiento económico",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Microeconomics",
+              "type": "Básica",
+              "year": 1,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Macroeconomics",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "International Economics",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Political Economy",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 6
+            }
           ]
         },
         {
@@ -319,15 +593,63 @@
             { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA3", "RA7", "RA8", "RA9", "RA10", "RA12", "RA13", "RA17", "RA24", "RA25", "RA26", "RA27"
+            "RA1",
+            "RA3",
+            "RA7",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA12",
+            "RA13",
+            "RA17",
+            "RA24",
+            "RA25",
+            "RA26",
+            "RA27"
           ],
           "courses": [
-            { "name": "Métodos cuantitativos", "type": "Básica",     "year": 1, "semester": 1, "ects": 6 },
-            { "name": "Gestión de proyectos",  "type": "Obligatoria","year": 1, "semester": 2, "ects": 6 },
-            { "name": "Entorno económico global","type": "Obligatoria","year": 3, "semester": 1, "ects": 3 },
-            { "name": "Ética del trabajo",     "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 },
-            { "name": "Economía pública",      "type": "Obligatoria","year": 4, "semester": 2, "ects": 6 },
-            { "name": "Development Economics", "type": "Obligatoria","year": 4, "semester": 2, "ects": 3 }
+            {
+              "name": "Métodos cuantitativos",
+              "type": "Básica",
+              "year": 1,
+              "semester": 1,
+              "ects": 6
+            },
+            {
+              "name": "Gestión de proyectos",
+              "type": "Obligatoria",
+              "year": 1,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Entorno económico global",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 3
+            },
+            {
+              "name": "Ética del trabajo",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3
+            },
+            {
+              "name": "Economía pública",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 6
+            },
+            {
+              "name": "Development Economics",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 2,
+              "ects": 3
+            }
           ]
         }
       ]
@@ -346,11 +668,34 @@
             { "system": "SE3", "minWeight": "20%", "maxWeight": "50%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA3", "RA4", "RA8", "RA9", "RA10", "RA12", "RA13", "RA18", "RA23", "RA24", "RA27"
+            "RA1",
+            "RA3",
+            "RA4",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA12",
+            "RA13",
+            "RA18",
+            "RA23",
+            "RA24",
+            "RA27"
           ],
           "courses": [
-            { "name": "Optativas 3º curso", "type": "Optativa", "year": 3, "semester": 2, "ects": 21 },
-            { "name": "Optativas 4º curso", "type": "Optativa", "year": 4, "semester": 1, "ects": 30 }
+            {
+              "name": "Optativas 3º curso",
+              "type": "Optativa",
+              "year": 3,
+              "semester": 2,
+              "ects": 21
+            },
+            {
+              "name": "Optativas 4º curso",
+              "type": "Optativa",
+              "year": 4,
+              "semester": 1,
+              "ects": 30
+            }
           ]
         }
       ]
@@ -369,10 +714,31 @@
             { "system": "SE7", "minWeight": "20%", "maxWeight": "40%" }
           ],
           "learningOutcomes": [
-            "RA1", "RA2", "RA3", "RA4", "RA8", "RA9", "RA10", "RA11", "RA12", "RA13", "RA14", "RA18", "RA19", "RA23", "RA24", "RA27"
+            "RA1",
+            "RA2",
+            "RA3",
+            "RA4",
+            "RA8",
+            "RA9",
+            "RA10",
+            "RA11",
+            "RA12",
+            "RA13",
+            "RA14",
+            "RA18",
+            "RA19",
+            "RA23",
+            "RA24",
+            "RA27"
           ],
           "courses": [
-            { "name": "Trabajo Fin de Grado", "type": "Obligatoria", "year": 4, "semester": 2, "ects": 6 }
+            {
+              "name": "Trabajo Fin de Grado",
+              "type": "Trabajo Fin de Grado",
+              "year": 4,
+              "semester": 2,
+              "ects": 6
+            }
           ]
         }
       ]

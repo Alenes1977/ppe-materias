@@ -84,54 +84,63 @@ const Competencias: FC = () => {
         {/* Estadísticas */}
         <div className="mb-8 grid grid-cols-1 gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-            <div className="mb-2 flex items-center justify-between">
+            <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
+              <div className="min-w-0">
+                <p className="text-3xl font-bold tabular-nums tracking-tight text-blue-700 sm:text-4xl md:text-5xl">
+                  {stats.total}
+                </p>
+                <h3 className="mt-1.5 text-sm font-semibold text-gray-800 sm:mt-2 sm:text-base">
+                  {labelPlural} definidas
+                </h3>
+              </div>
               <FontAwesomeIcon
                 icon={faClipboardList}
-                className="text-xl text-blue-600 sm:text-2xl"
+                className="mt-1 shrink-0 text-2xl text-blue-500/80 sm:text-3xl"
+                aria-hidden
               />
-              <span className="rounded-full bg-blue-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
-                {stats.total}
-              </span>
             </div>
-            <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
-              {labelPlural} definidas
-            </h3>
             <p className="text-xs text-gray-600 sm:text-sm">
               Total de {labelLO.plural} en el plan de estudios.
             </p>
           </div>
 
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-            <div className="mb-2 flex items-center justify-between">
+            <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
+              <div className="min-w-0">
+                <p className="text-3xl font-bold tabular-nums tracking-tight text-indigo-700 sm:text-4xl md:text-5xl">
+                  {stats.totalCourses}
+                </p>
+                <h3 className="mt-1.5 text-sm font-semibold text-gray-800 sm:mt-2 sm:text-base">
+                  Asignaturas del plan
+                </h3>
+              </div>
               <FontAwesomeIcon
                 icon={faBookOpen}
-                className="text-xl text-indigo-600 sm:text-2xl"
+                className="mt-1 shrink-0 text-2xl text-indigo-500/80 sm:text-3xl"
+                aria-hidden
               />
-              <span className="rounded-full bg-indigo-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
-                {stats.totalCourses}
-              </span>
             </div>
-            <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
-              Asignaturas del plan
-            </h3>
             <p className="text-xs text-gray-600 sm:text-sm">
               Asignaturas totales consideradas para el cálculo.
             </p>
           </div>
 
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-            <div className="mb-2 flex items-center justify-between">
+            <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
+              <div className="min-w-0">
+                <p className="text-3xl font-bold tabular-nums tracking-tight text-teal-700 sm:text-4xl md:text-5xl">
+                  {stats.media.toFixed(1)}
+                </p>
+                <h3 className="mt-1.5 text-sm font-semibold text-gray-800 sm:mt-2 sm:text-base">
+                  Media de presencia
+                </h3>
+              </div>
               <FontAwesomeIcon
                 icon={faLayerGroup}
-                className="text-xl text-teal-600 sm:text-2xl"
+                className="mt-1 shrink-0 text-2xl text-teal-500/80 sm:text-3xl"
+                aria-hidden
               />
-              <span className="rounded-full bg-teal-600 px-2 py-1 text-xs font-bold text-white sm:px-3">
-                {stats.media.toFixed(1)}
-              </span>
             </div>
-            <h3 className="mb-2 text-base font-semibold text-gray-800 sm:text-lg">
-              Media de presencia
-            </h3>
             <p className="text-xs text-gray-600 sm:text-sm">
               Asignaturas de media por {labelLO.singular}.
             </p>

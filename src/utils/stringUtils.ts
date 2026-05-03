@@ -22,3 +22,12 @@ export const normalizeString = (str: string): string => {
 export const generateSlug = (str: string): string => {
   return normalizeString(str);
 };
+
+/** Etiqueta "id - nombre" para catálogos (actividades formativas, sistemas de evaluación, etc.) */
+export const formatCatalogEntry = (
+  id: string,
+  name?: string | null,
+): string => {
+  const n = name?.trim();
+  return n ? `${id} - ${n}` : id;
+};

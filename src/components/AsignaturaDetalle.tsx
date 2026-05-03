@@ -11,15 +11,16 @@ import {
   faChartBar,
   faStar,
   faScroll,
+  faChalkboardUser,
 } from '@fortawesome/free-solid-svg-icons';
 import BackButton from './BackButton';
-import { generateSlug } from '../utils/stringUtils';
+import { formatCatalogEntry, generateSlug } from '../utils/stringUtils';
 import { useDegree } from '../context/DegreeContext';
 import type { Semester } from '../types/degree';
 
 const semLabel = (s: Semester) => {
   if (s === 'annual') return 'Anual';
-  return `${s}? Semestre`;
+  return `${s}º Semestre`;
 };
 
 const AsignaturaDetalle: React.FC = () => {
@@ -36,6 +37,9 @@ const AsignaturaDetalle: React.FC = () => {
   const evalDict = Object.fromEntries(
     degreePlan.evaluationSystems.map((s) => [s.id, s]),
   );
+  const mdDict = Object.fromEntries(
+    degreePlan.teachingMethodologies.map((m) => [m.id, m]),
+  );
 
   let asignaturaInfo: {
     nombre: string;
@@ -46,6 +50,7 @@ const AsignaturaDetalle: React.FC = () => {
     modulo: string;
     materia: string;
     actividadesFormativas: string[];
+    metodologiasDocentes: string[];
     evaluacion: { tipo: string; min: string; max: string }[];
     resultadosAprendizaje: string[];
   } | null = null;
@@ -67,6 +72,7 @@ const AsignaturaDetalle: React.FC = () => {
           modulo: modulo.name,
           materia: materia.name,
           actividadesFormativas: materia.trainingActivities,
+          metodologiasDocentes: materia.teachingMethodologies ?? [],
           evaluacion: (course.evaluation ?? materia.evaluation).map((e) => ({
             tipo: e.system,
             min: e.minWeight,
@@ -124,7 +130,7 @@ const AsignaturaDetalle: React.FC = () => {
           <div className="mx-auto flex max-w-2xl flex-wrap items-center justify-center gap-2 sm:gap-4">
             <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-800 sm:px-4 sm:py-2 sm:text-sm">
               <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
-              {asignaturaInfo.curso}? Curso
+              {asignaturaInfo.curso}º Curso
             </span>
             <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-medium text-indigo-800 sm:px-4 sm:py-2 sm:text-sm">
               <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
@@ -133,10 +139,10 @@ const AsignaturaDetalle: React.FC = () => {
             <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1.5 text-xs font-medium text-purple-800 sm:px-4 sm:py-2 sm:text-sm">
               {asignaturaInfo.ects} ECTS
             </span>
-            {asignaturaInfo.tipo === 'B?sica' && (
+            {asignaturaInfo.tipo === 'Básica' && (
               <span className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-800 sm:px-4 sm:py-2 sm:text-sm">
                 <FontAwesomeIcon icon={faStar} className="mr-2" />
-                B?sica
+                Básica
               </span>
             )}
             {asignaturaInfo.tipo === 'Trabajo Fin de Grado' && (
@@ -150,18 +156,18 @@ const AsignaturaDetalle: React.FC = () => {
 
         <div className="space-y-6 sm:space-y-8">
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
-            {/* Ubicaci?n */}
+            {/* Ubicación */}
             <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
               <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
                 <FontAwesomeIcon
                   icon={faBuilding}
                   className="mr-3 text-blue-600"
                 />
-                Ubicaci?n en el Plan de Estudios
+                Ubicación en el Plan de Estudios
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500">M?dulo</h3>
+                  <h3 className="text-sm font-medium text-gray-500">Módulo</h3>
                   <Link
                     to={`${base}/plan-estudios/${generateSlug(moduloName)}`}
                     className="mt-1 block rounded-lg bg-blue-50 p-2 text-sm text-blue-700 transition-all hover:bg-blue-100 sm:p-3"
@@ -211,7 +217,7 @@ const AsignaturaDetalle: React.FC = () => {
                     >
                       <span>{loId}</span>
                       <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-48 -translate-x-1/2 transform rounded-lg bg-gray-900 p-2 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 sm:w-72">
-                        {degreePlan.learningOutcomes[loId] || 'Sin descripci?n'}
+                        {degreePlan.learningOutcomes[loId] || 'Sin descripción'}
                         <div className="absolute left-1/2 top-full -translate-x-1/2 transform border-4 border-transparent border-t-gray-900" />
                       </div>
                     </Link>
@@ -244,7 +250,7 @@ const AsignaturaDetalle: React.FC = () => {
                       className="rounded-lg border border-blue-100 bg-blue-50 p-3 sm:p-4"
                     >
                       <p className="font-medium text-blue-800">
-                        {act?.name ?? afId}
+                        {formatCatalogEntry(afId, act?.name)}
                       </p>
                       {act?.description ? (
                         <p className="mt-1 text-xs text-blue-600 sm:text-sm">
@@ -262,14 +268,14 @@ const AsignaturaDetalle: React.FC = () => {
             )}
           </div>
 
-          {/* Evaluaci?n */}
+          {/* Evaluación */}
           <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
               <FontAwesomeIcon
                 icon={faChartBar}
                 className="mr-3 text-blue-600"
               />
-              Sistema de Evaluaci?n
+              Sistema de Evaluación
             </h2>
             {asignaturaInfo.evaluacion.length > 0 ? (
               <div className="overflow-x-auto">
@@ -280,10 +286,10 @@ const AsignaturaDetalle: React.FC = () => {
                         Sistema
                       </th>
                       <th className="pb-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">
-                        M?n.
+                        Mín.
                       </th>
                       <th className="pb-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">
-                        M?x.
+                        Máx.
                       </th>
                     </tr>
                   </thead>
@@ -293,7 +299,7 @@ const AsignaturaDetalle: React.FC = () => {
                       return (
                         <tr key={i} className="hover:bg-gray-50">
                           <td className="py-3 pr-4 text-sm text-gray-800">
-                            {se?.name ?? ev.tipo}
+                            {formatCatalogEntry(ev.tipo, se?.name)}
                           </td>
                           <td className="py-3 text-right text-sm text-gray-600">
                             {ev.min}
@@ -309,10 +315,43 @@ const AsignaturaDetalle: React.FC = () => {
               </div>
             ) : (
               <p className="text-sm text-gray-500">
-                No hay sistemas de evaluaci?n especificados.
+                No hay sistemas de evaluación especificados.
               </p>
             )}
           </div>
+
+          {/* Metodologías docentes */}
+          {asignaturaInfo.metodologiasDocentes.length > 0 ? (
+            <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+              <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
+                <FontAwesomeIcon
+                  icon={faChalkboardUser}
+                  className="mr-3 text-teal-600"
+                />
+                Metodologías docentes
+              </h2>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {asignaturaInfo.metodologiasDocentes.map((mdId) => {
+                  const md = mdDict[mdId];
+                  return (
+                    <div
+                      key={mdId}
+                      className="rounded-lg border border-teal-100 bg-teal-50/80 p-3 sm:p-4"
+                    >
+                      <p className="font-medium text-teal-900">
+                        {formatCatalogEntry(mdId, md?.name)}
+                      </p>
+                      {md?.description ? (
+                        <p className="mt-1 text-xs text-teal-800 sm:text-sm">
+                          {md.description}
+                        </p>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

@@ -453,6 +453,7 @@
       "subjects": [
         {
           "name": "Teoría política y social",
+          "ects": 18,
           "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
@@ -557,6 +558,7 @@
         },
         {
           "name": "Sociedad, cultura y comunicación en el mundo contemporáneo",
+          "ects": 30,
           "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
@@ -693,6 +695,7 @@
       "subjects": [
         {
           "name": "Teoría económica",
+          "ects": 18,
           "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
@@ -774,6 +777,7 @@
         },
         {
           "name": "Economía aplicada",
+          "ects": 27,
           "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
@@ -1029,6 +1033,7 @@
       "subjects": [
         {
           "name": "Seminarios interdisciplinares",
+          "ects": 6,
           "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
@@ -1146,6 +1151,7 @@
         },
         {
           "name": "Trabajo Fin de Grado",
+          "ects": 15,
           "trainingActivities": ["AF4", "AF7", "AF8"],
           "evaluation": [
             {

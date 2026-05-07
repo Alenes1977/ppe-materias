@@ -922,6 +922,7 @@
       "subjects": [
         {
           "name": "Formación específica complementaria",
+          "ects": 60,
           "trainingActivities": ["AF1", "AF2", "AF3", "AF4", "AF5", "AF6"],
           "evaluation": [
             {

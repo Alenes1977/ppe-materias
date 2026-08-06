@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    /** Compila el código a la versión más reciente de JavaScript. */
+    "target": "ESNext",
+    /** Incluye las definiciones de tipos de las últimas características de ES y de DOM. */
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    /** Usa formato de ES Modules para el código compilado. */
+    "module": "ESNext",
+    /** Omite la verificación de tipos en archivos .d.ts. */
+    "skipLibCheck": true,
+    /** Ruta base para resolver imports. */
+    "baseUrl": ".",
+    /** Mapeo de rutas para usar alias. */
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    /* Bundler mode */
+
+    /** Resuelve módulos como lo haría un bundler como Vite o Webpack. */
+    "moduleResolution": "Bundler",
+    /** Permite importar archivos TypeScript usando la extensión .ts. */
+    "allowImportingTsExtensions": true,
+    /** No permite usar archivos JavaScript. */
+    "allowJs": false,
+    /** Permite importar archivos JSON. */
+    "resolveJsonModule": true,
+    /** Requiere que todos los archivos sean módulos ES. */
+    "isolatedModules": true,
+    /** No emite archivos de salida, así que no genera JavaScript compilado. */
+    "noEmit": true,
+    /** Convierte JSX a JavaScript normal. */
+    "jsx": "react-jsx",
+    /** Permite interoperabilidad entre import y export. */
+    "esModuleInterop": true,
+
+    /* Linting */
+
+    /** Activa todas las comprobaciones estrictas de tipos. */
+    "strict": true,
+    /** Exige nombres de archivo consistentes. */
+    "forceConsistentCasingInFileNames": true,
+    /** Reporta errores por variables locales no usadas. */
+    "noUnusedLocals": true,
+    /** Reporta errores por parámetros de función no usados. */
+    "noUnusedParameters": true,
+    /** Asegura que los switch cubran todos los casos relevantes. */
+    "noFallthroughCasesInSwitch": true
+  },
+  /** Archivos que se incluyen en la comprobación. */
+  "include": ["src"],
+  /** Referencias a otras configuraciones. */
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

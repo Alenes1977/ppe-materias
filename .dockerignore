@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.github
+*.md
+.eslintignore
+.eslintrc.cjs
+.prettierrc.json5
+.prettierignore
+.editorconfig
+.npmrc
+tsconfig.node.json
+vercel.json
+static.json

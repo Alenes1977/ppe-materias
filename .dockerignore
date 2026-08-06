@@ -9,6 +9,5 @@ dist
 .prettierignore
 .editorconfig
 .npmrc
-tsconfig.node.json
 vercel.json
 static.json

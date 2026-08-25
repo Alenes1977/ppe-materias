@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,css,json}\"",
     "preview": "vite preview"
   },
   "dependencies": {

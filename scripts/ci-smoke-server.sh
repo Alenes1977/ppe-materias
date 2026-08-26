@@ -1,20 +1,25 @@
 #!/usr/bin/env sh
-# Arranca el preview de producción (dist/) y exige GET /health.
+# Arranca el servidor como en ECS (NODE_ENV=production) y exige GET /health.
 # Corre sobre el árbol del repo + dist/ (tras npm run build), no sobre Docker:
-# el runner UNAV no puede ejecutar la imagen. Si el bundle no sirve, ECS también fallará.
+# el runner UNAV no puede ejecutar la imagen. Si el proceso no arranca, ECS
+# también fallará (cert SAML, SESSION_SECRET, etc.).
 #
-# En ECS el contenedor escucha el puerto 80 (nginx). Aquí usamos 8080 porque el
-# job CI no es root y no puede bind a 80. El path de health es el mismo: /health.
+# En ECS el contenedor escucha PORT=8181. Aquí usamos 8080 porque no hace falta
+# coincidir con el ALB: el path de health sí, /health.
 set -eu
 
+export NODE_ENV=production
 export PORT="${PORT:-8080}"
+export APP_BASE_URL="${APP_BASE_URL:-https://guiadocente.unav.edu}"
+export SESSION_SECRET="${SESSION_SECRET:-ci-smoke-session-secret-at-least-32ch}"
+export CAS_BASE_URL="${CAS_BASE_URL:-https://cas.unav.es/cas}"
 
 if [ ! -d dist ]; then
   echo "Falta dist/: hay que ejecutar npm run build antes." >&2
   exit 1
 fi
 
-npx vite preview --host 127.0.0.1 --port "${PORT}" &
+npx tsx server/index.ts &
 pid=$!
 trap 'kill "$pid" 2>/dev/null || true' EXIT
 

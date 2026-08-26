@@ -4,7 +4,7 @@ En cada push a `main` (tras tests OK) el job `build_image` construye una imagen
 **linux/amd64** (Fargate) y la publica en el registro del propio proyecto GitLab.
 
 Pipeline: [`.gitlab-ci.yml`](../.gitlab-ci.yml). Imagen: [`Dockerfile`](../Dockerfile)
-(SPA Vite + nginx en el puerto **80**). Health: `GET /health` (sin autenticación).
+(SPA Vite + Express SAML2 en el puerto **8181**). Health: `GET /health` (sin autenticación).
 
 Kaniko, no Docker-in-Docker: el runner de `code.unav.edu` no permite DinD privilegiado.
 
@@ -37,8 +37,8 @@ No hay variables de build obligatorias que añadir a mano.
 `$CI_REGISTRY`, `$CI_REGISTRY_IMAGE`, `$CI_REGISTRY_USER` y `$CI_REGISTRY_PASSWORD`
 las rellena GitLab solo.
 
-No pongas secretos de runtime en CI/CD Variables. Esta app no necesita secretos en
-la imagen; si en el futuro hay API keys, van en la **task ECS** (runtime), no en el build.
+No pongas secretos de runtime en CI/CD Variables. `SESSION_SECRET` y el resto de
+SAML van en la **task ECS** (runtime), no en la imagen.
 
 Si más adelante se añaden `VITE_*`, créalas aquí (no Protected si `main` no está
 protegida) y pásalas a Kaniko con `--build-arg` en `scripts/ci-build-registry.sh`.
@@ -52,9 +52,9 @@ reciba una imagen rota, el CI comprueba lo más cercano al arranque real:
 
 | Job            | Cuándo              | Qué                                                                                         |
 | -------------- | ------------------- | ------------------------------------------------------------------------------------------- |
-| `test`         | MR y ramas          | typecheck, lint, format, **`vite build`**, preview de `dist/` + **`GET /health`**           |
-| `build_image`  | `main` tras `test`  | Kaniko linux/amd64 → `:SHA` y `:latest`                                                     |
-| `verify_image` | `main` tras el push | La imagen existe en el registry y el manifiesto es **linux/amd64**                          |
+| `test`         | MR y ramas          | typecheck, lint, format, **`vite build`**, arranque prod + **`GET /health`** |
+| `build_image`  | `main` tras `test`  | Kaniko linux/amd64 → `:SHA` y `:latest`                                      |
+| `verify_image` | `main` tras el push | La imagen existe en el registry y el manifiesto es **linux/amd64**           |
 
 `/health` es el mismo path que debe usar el health check del target group de ECS.
 Si el build no arranca, el pipeline falla **antes** de publicar.
@@ -72,8 +72,9 @@ Campo `image` de la task:
 
 `registry.code.unav.edu/team-ia/eurekai-guias-docentes:latest`
 
-- Puerto del contenedor: **80** (variable `PORT` si se quiere cambiar; nginx la lee).
-- Health check: `GET /health` (HTTP, sin auth).
+- Puerto del contenedor: **8181** (variable `PORT`; Express la lee).
+- Health check: `GET /health` (HTTP, sin auth). El proceso **no arranca** en
+  producción sin `SESSION_SECRET`: ECS marcaría la task unhealthy.
 - Plataforma: **LINUX/X86_64**.
 - Las tasks deben alcanzar `registry.code.unav.edu` por **HTTPS**.
 
@@ -96,7 +97,17 @@ El registro de GitLab es **privado**. ECS necesita credenciales de pull:
 4. En la task definition: `repositoryCredentials.credentialsParameter` = ese ARN
    (Private registry authentication).
 
-Runtime de la task: no hay secretos de aplicación. Opcional: `PORT=80`.
+Runtime de la task (no van en el build). `PORT=8181` ya está; hay que añadir:
+
+| Variable         | Valor                                      | Obligatorio |
+| ---------------- | ------------------------------------------ | ----------- |
+| `SESSION_SECRET` | cadena aleatoria ≥32 (`openssl rand -base64 48`) | Sí     |
+| `APP_BASE_URL`   | `https://guiadocente.unav.edu`             | No (ese es el default) |
+| `SAML_ISSUER`    | `https://guiadocente.unav.edu`             | No (ese es el default) |
+| `CAS_BASE_URL`   | `https://cas.unav.es/cas`                  | No (ese es el default) |
+
+Sin `SESSION_SECRET` la nueva revisión de la task **no llega a healthy**. Los
+certificados del IdP van en la imagen (`server/cas.crt`, `server/caspre.crt`).
 
 ---
 

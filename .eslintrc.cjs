@@ -1,6 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
+  ignorePatterns: ['dist', 'coverage', 'node_modules'],
   env: {
     node: true,
     browser: true,
@@ -68,4 +69,12 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['server/**/*.ts'],
+      rules: {
+        'import-x/no-named-as-default-member': 'off',
+      },
+    },
+  ],
 };

@@ -125,12 +125,16 @@ export const createSamlStrategy = async ({
   };
 
   // El tercer argumento es el verify de SLO; no lo usamos, pero la API lo exige.
+  // CAS firma aserciones (`signAssertions: true`) y no la Response
+  // (`signResponses` va comentado). node-saml exige ambas por defecto.
   return new SamlStrategy(
     {
       callbackUrl,
       entryPoint,
       issuer,
       idpCert,
+      wantAssertionsSigned: true,
+      wantAuthnResponseSigned: false,
     },
     verify,
     verify,

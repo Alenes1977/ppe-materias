@@ -15,8 +15,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * EntityID registrado en CAS. El ACS se construye como
- * `{APP_BASE_URL}/api/auth/cas/callback` y debe vivir en este mismo origen:
- * la cookie de sesión es SameSite=Lax.
+ * `{APP_BASE_URL}/saml/acs` y debe vivir en este mismo origen: la cookie de
+ * sesión es SameSite=Lax. El login que anota el IdP es `/saml/login`.
  */
 const DEFAULT_ISSUER = 'https://guiadocente.unav.edu';
 const DEV_SESSION_SECRET = 'dev-only-change-me';
@@ -91,7 +91,7 @@ const casBaseUrl = (
 ).replace(/\/$/, '');
 const sessionSecret = resolveSessionSecret();
 
-const callbackUrl = `${appBaseUrl}/api/auth/cas/callback`;
+const callbackUrl = `${appBaseUrl}/saml/acs`;
 /**
  * Dónde vive la SPA. En producción es el mismo origen que `/api`. En
  * `npm run dev:all` Express no sirve HTML: tras el CAS hay que volver a Vite.
@@ -194,16 +194,16 @@ app.use(passport.initialize());
 app.get('/health', sendHealth);
 app.get('/api/health', sendHealth);
 
-app.get('/login/metadata', (_req, res) => {
+const sendMetadata = (_req: express.Request, res: express.Response) => {
   res.type('application/xml');
   res.send(saml.generateServiceProviderMetadata(null));
-});
+};
 
-app.get('/api/auth/cas/failure', (_req, res) => {
+const sendLoginFailure = (_req: express.Request, res: express.Response) => {
   res.status(401).send('No se ha podido iniciar sesión con el CAS.');
-});
+};
 
-app.get('/api/auth/cas/login', (req, res, next) => {
+const startSamlLogin: express.RequestHandler = (req, res, next) => {
   const fromQuery =
     typeof req.query.returnTo === 'string' ? req.query.returnTo : '';
   const fromCookie =
@@ -223,41 +223,51 @@ app.get('/api/auth/cas/login', (req, res, next) => {
   passport.authenticate('saml', {
     session: false,
     additionalParams: { RelayState: relayState },
-    failureRedirect: '/api/auth/cas/failure',
+    failureRedirect: '/saml/failure',
   } as passport.AuthenticateOptions)(req, res, next);
-});
+};
 
-app.post(
-  '/api/auth/cas/callback',
+const completeSamlLogin: express.RequestHandler = (req, res) => {
+  try {
+    const user = req.user as CasUser;
+
+    res.cookie(SESSION_COOKIE, createSessionToken(user), {
+      ...cookieBase,
+      maxAge: SESSION_MAX_AGE_MS,
+    });
+    res.clearCookie(RETURN_TO_COOKIE, cookieBase);
+    console.log('[cas] Usuario autenticado y cookie de sesión emitida:', user);
+
+    const relay =
+      typeof req.body?.RelayState === 'string' ? req.body.RelayState : '/';
+    const destPath = isSafeReturnPath(relay) ? relay : '/';
+    res.redirect(`${spaOrigin}${destPath}`);
+  } catch (error) {
+    console.error('[cas] Fallo al emitir la sesión SAML:', error);
+    res.status(401).send('No se ha podido validar la sesión con el CAS.');
+  }
+};
+
+const samlAcs = [
   express.urlencoded({ extended: false }),
   passport.authenticate('saml', {
     session: false,
-    failureRedirect: '/api/auth/cas/failure',
+    failureRedirect: '/saml/failure',
   }),
-  (req, res) => {
-    try {
-      const user = req.user as CasUser;
+  completeSamlLogin,
+] as const;
 
-      res.cookie(SESSION_COOKIE, createSessionToken(user), {
-        ...cookieBase,
-        maxAge: SESSION_MAX_AGE_MS,
-      });
-      res.clearCookie(RETURN_TO_COOKIE, cookieBase);
-      console.log(
-        '[cas] Usuario autenticado y cookie de sesión emitida:',
-        user,
-      );
+app.get('/saml/metadata', sendMetadata);
+app.get('/login/metadata', sendMetadata);
 
-      const relay =
-        typeof req.body?.RelayState === 'string' ? req.body.RelayState : '/';
-      const destPath = isSafeReturnPath(relay) ? relay : '/';
-      res.redirect(`${spaOrigin}${destPath}`);
-    } catch (error) {
-      console.error('[cas] Fallo al emitir la sesión SAML:', error);
-      res.status(401).send('No se ha podido validar la sesión con el CAS.');
-    }
-  },
-);
+app.get('/saml/failure', sendLoginFailure);
+app.get('/api/auth/cas/failure', sendLoginFailure);
+
+app.get('/saml/login', startSamlLogin);
+app.get('/api/auth/cas/login', startSamlLogin);
+
+app.post('/saml/acs', ...samlAcs);
+app.post('/api/auth/cas/callback', ...samlAcs);
 
 app.get('/api/auth/session', (req, res) => {
   const session = readSession(req.cookies[SESSION_COOKIE]);
@@ -282,7 +292,7 @@ app.use((req, res, next) => {
   if (isDocumentNavigation(req)) {
     const returnTo = isSafeReturnPath(req.originalUrl) ? req.originalUrl : '/';
     rememberReturnTo(res, returnTo);
-    res.redirect('/api/auth/cas/login');
+    res.redirect('/saml/login');
     return;
   }
 
@@ -310,7 +320,11 @@ if (isProduction) {
   });
 } else {
   app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api') || req.path === '/login/metadata') {
+    if (
+      req.path.startsWith('/api') ||
+      req.path.startsWith('/saml') ||
+      req.path === '/login/metadata'
+    ) {
       next();
       return;
     }

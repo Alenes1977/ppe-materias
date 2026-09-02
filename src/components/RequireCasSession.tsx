@@ -31,7 +31,7 @@ export const RequireCasSession = ({ children }: { children: ReactNode }) => {
         returnTo.startsWith('/') && !returnTo.startsWith('//')
           ? `?returnTo=${encodeURIComponent(returnTo)}`
           : '';
-      window.location.replace(`/api/auth/cas/login${query}`);
+      window.location.replace(`/saml/login${query}`);
     };
 
     void resolve();

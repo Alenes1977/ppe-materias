@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       proxy: {
         '/api': `http://127.0.0.1:${apiPort}`,
+        '/saml': `http://127.0.0.1:${apiPort}`,
         '/login/metadata': `http://127.0.0.1:${apiPort}`,
       },
     },

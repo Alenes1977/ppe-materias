@@ -165,34 +165,22 @@
           ],
           "evaluation": [
             {
-              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas"
             },
             {
-              "system": "SE2 Resolución de problemas y/o casos prácticos",
-              "minWeight": "5%",
-              "maxWeight": "20%"
+              "system": "SE2 Resolución de problemas y/o casos prácticos"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "30%",
-              "maxWeight": "80%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE4 Autoevaluación y coevaluación",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE4 Autoevaluación y coevaluación"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "20%",
-              "maxWeight": "60%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             },
             {
-              "system": "SE6 Exposición oral y defensa pública",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE6 Exposición oral y defensa pública"
             }
           ],
           "learningOutcomes": [
@@ -280,34 +268,22 @@
           ],
           "evaluation": [
             {
-              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas"
             },
             {
-              "system": "SE2 Resolución de problemas y/o casos prácticos",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE2 Resolución de problemas y/o casos prácticos"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "30%",
-              "maxWeight": "80%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE4 Autoevaluación y coevaluación",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE4 Autoevaluación y coevaluación"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "20%",
-              "maxWeight": "60%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             },
             {
-              "system": "SE6 Exposición oral y defensa pública",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE6 Exposición oral y defensa pública"
             }
           ],
           "learningOutcomes": [
@@ -349,34 +325,22 @@
           ],
           "evaluation": [
             {
-              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas"
             },
             {
-              "system": "SE2 Resolución de problemas y/o casos prácticos",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE2 Resolución de problemas y/o casos prácticos"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "30%",
-              "maxWeight": "80%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE4 Autoevaluación y coevaluación",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE4 Autoevaluación y coevaluación"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "20%",
-              "maxWeight": "60%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             },
             {
-              "system": "SE6 Exposición oral y defensa pública",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE6 Exposición oral y defensa pública"
             }
           ],
           "learningOutcomes": [
@@ -441,34 +405,22 @@
           ],
           "evaluation": [
             {
-              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas"
             },
             {
-              "system": "SE2 Resolución de problemas y/o casos prácticos",
-              "minWeight": "5%",
-              "maxWeight": "20%"
+              "system": "SE2 Resolución de problemas y/o casos prácticos"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "5%",
-              "maxWeight": "30%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE4 Autoevaluación y coevaluación",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE4 Autoevaluación y coevaluación"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "40%",
-              "maxWeight": "80%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             },
             {
-              "system": "SE6 Exposición oral y defensa pública",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE6 Exposición oral y defensa pública"
             }
           ],
           "learningOutcomes": [
@@ -538,29 +490,19 @@
           ],
           "evaluation": [
             {
-              "system": "SE7 Comprensión auditiva",
-              "minWeight": "10%",
-              "maxWeight": "30%"
+              "system": "SE7 Comprensión auditiva"
             },
             {
-              "system": "SE8 Comprensión lectora",
-              "minWeight": "10%",
-              "maxWeight": "30%"
+              "system": "SE8 Comprensión lectora"
             },
             {
-              "system": "SE9 Expresión escrita",
-              "minWeight": "10%",
-              "maxWeight": "30%"
+              "system": "SE9 Expresión escrita"
             },
             {
-              "system": "SE10 Gramática y vocabulario",
-              "minWeight": "10%",
-              "maxWeight": "30%"
+              "system": "SE10 Gramática y vocabulario"
             },
             {
-              "system": "SE11 Expresión oral",
-              "minWeight": "10%",
-              "maxWeight": "30%"
+              "system": "SE11 Expresión oral"
             }
           ],
           "learningOutcomes": [
@@ -638,24 +580,16 @@
           ],
           "evaluation": [
             {
-              "system": "SE2 Resolución de problemas y/o casos prácticos",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE2 Resolución de problemas y/o casos prácticos"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE4 Autoevaluación y coevaluación",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE4 Autoevaluación y coevaluación"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "70%",
-              "maxWeight": "90%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             }
           ],
           "learningOutcomes": [
@@ -691,29 +625,19 @@
           ],
           "evaluation": [
             {
-              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
-              "minWeight": "0%",
-              "maxWeight": "10%"
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas"
             },
             {
-              "system": "SE2 Resolución de problemas y/o casos prácticos",
-              "minWeight": "5%",
-              "maxWeight": "20%"
+              "system": "SE2 Resolución de problemas y/o casos prácticos"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "5%",
-              "maxWeight": "30%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "40%",
-              "maxWeight": "80%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             },
             {
-              "system": "SE6 Exposición oral y defensa pública",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE6 Exposición oral y defensa pública"
             }
           ],
           "learningOutcomes": [
@@ -752,29 +676,19 @@
           ],
           "evaluation": [
             {
-              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "0%",
-              "maxWeight": "30%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE4 Autoevaluación y coevaluación",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE4 Autoevaluación y coevaluación"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "70%",
-              "maxWeight": "90%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             },
             {
-              "system": "SE6 Exposición oral y defensa pública",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE6 Exposición oral y defensa pública"
             }
           ],
           "learningOutcomes": [
@@ -815,29 +729,19 @@
           ],
           "evaluation": [
             {
-              "system": "SE1 Intervención en clases, teóricas y/o prácticas",
-              "minWeight": "0%",
-              "maxWeight": "30%"
+              "system": "SE1 Intervención en clases, teóricas y/o prácticas"
             },
             {
-              "system": "SE2 Resolución de problemas y/o casos prácticos",
-              "minWeight": "0%",
-              "maxWeight": "80%"
+              "system": "SE2 Resolución de problemas y/o casos prácticos"
             },
             {
-              "system": "SE3 Evaluaciones parciales y finales",
-              "minWeight": "0%",
-              "maxWeight": "80%"
+              "system": "SE3 Evaluaciones parciales y finales"
             },
             {
-              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo",
-              "minWeight": "0%",
-              "maxWeight": "80%"
+              "system": "SE5 Evaluación de trabajos y proyectos individuales y/o en equipo"
             },
             {
-              "system": "SE6 Exposición oral y defensa pública",
-              "minWeight": "0%",
-              "maxWeight": "20%"
+              "system": "SE6 Exposición oral y defensa pública"
             }
           ],
           "learningOutcomes": [

@@ -6,8 +6,8 @@ import { slugify } from '../lib/utils';
 export interface Evaluacion {
   /** ID del sistema de evaluación */
   tipo: string;
-  'ponderacion-minima': string;
-  'ponderacion-maxima': string;
+  'ponderacion-minima'?: string;
+  'ponderacion-maxima'?: string;
 }
 
 export interface ActividadFormativa {
@@ -57,8 +57,12 @@ export function getSubjectsFromPlan(plan: DegreePlan): ProcessedSubject[] {
           course.evaluation ?? materia.evaluation
         ).map((e) => ({
           tipo: e.system,
-          'ponderacion-minima': e.minWeight,
-          'ponderacion-maxima': e.maxWeight,
+          ...(e.minWeight
+            ? { 'ponderacion-minima': e.minWeight }
+            : {}),
+          ...(e.maxWeight
+            ? { 'ponderacion-maxima': e.maxWeight }
+            : {}),
         }));
 
         list.push({

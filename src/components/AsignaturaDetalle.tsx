@@ -55,7 +55,7 @@ const AsignaturaDetalle: React.FC = () => {
     materia: string;
     actividadesFormativas: string[];
     metodologiasDocentes: string[];
-    evaluacion: { tipo: string; min: string; max: string }[];
+    evaluacion: { tipo: string; min?: string; max?: string }[];
     resultadosAprendizaje: string[];
   } | null = null;
   let moduloName: string | null = null;
@@ -295,10 +295,10 @@ const AsignaturaDetalle: React.FC = () => {
                             {formatCatalogEntry(ev.tipo, se?.name)}
                           </td>
                           <td className="py-3 text-right text-sm text-gray-600">
-                            {ev.min}
+                            {ev.min ?? 'Pendiente'}
                           </td>
                           <td className="py-3 text-right text-sm text-gray-600">
-                            {ev.max}
+                            {ev.max ?? 'Pendiente'}
                           </td>
                         </tr>
                       );

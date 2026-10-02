@@ -12,9 +12,14 @@ export interface EvaluacionSeleccionada {
 
 interface SistemaEvaluacion {
   tipo: string;
-  'ponderacion-minima': string;
-  'ponderacion-maxima': string;
+  'ponderacion-minima'?: string;
+  'ponderacion-maxima'?: string;
 }
+
+const parseLimite = (valor?: string): number | undefined => {
+  const limite = Number.parseInt(valor ?? '', 10);
+  return Number.isFinite(limite) ? limite : undefined;
+};
 
 interface Props {
   sistemasPosibles: SistemaEvaluacion[];
@@ -50,9 +55,12 @@ const PasoE_Evaluacion: React.FC<Props> = ({
   const fueraDeRango = value.some((ev) => {
     const sistema = sistemasPosibles.find((s) => s.tipo === ev.tipo);
     if (!sistema) return true;
-    const min = parseInt(sistema['ponderacion-minima']);
-    const max = parseInt(sistema['ponderacion-maxima']);
-    return ev.porcentaje < min || ev.porcentaje > max;
+    const min = parseLimite(sistema['ponderacion-minima']);
+    const max = parseLimite(sistema['ponderacion-maxima']);
+    return (
+      (min !== undefined && ev.porcentaje < min) ||
+      (max !== undefined && ev.porcentaje > max)
+    );
   });
 
   // No hay duplicados
@@ -114,8 +122,9 @@ const PasoE_Evaluacion: React.FC<Props> = ({
       <h3 className="mb-4 text-xl font-bold text-blue-900">E. Evaluación</h3>
       <p className="mb-6 text-gray-600">
         Selecciona los sistemas de evaluación previstos para esta asignatura,
-        asigna el porcentaje (dentro de la horquilla permitida) y describe cómo
-        se evaluará cada apartado. La suma debe ser exactamente 100%.
+        asigna el porcentaje y describe cómo se evaluará cada apartado. Si el
+        plan aporta una horquilla verificada, respétala; la suma debe ser
+        exactamente 100%.
       </p>
       {/* Barra de progreso de porcentaje */}
       <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-4">
@@ -174,8 +183,16 @@ const PasoE_Evaluacion: React.FC<Props> = ({
               (ev) => ev.tipo === s.tipo,
             );
             const checked = !!evaluacionSeleccionada;
-            const min = parseInt(s['ponderacion-minima']);
-            const max = parseInt(s['ponderacion-maxima']);
+            const min = parseLimite(s['ponderacion-minima']);
+            const max = parseLimite(s['ponderacion-maxima']);
+            const rangoDisponible = min !== undefined && max !== undefined;
+            const fueraDelRango =
+              (min !== undefined &&
+                evaluacionSeleccionada !== undefined &&
+                evaluacionSeleccionada.porcentaje < min) ||
+              (max !== undefined &&
+                evaluacionSeleccionada !== undefined &&
+                evaluacionSeleccionada.porcentaje > max);
 
             return (
               <div
@@ -202,7 +219,9 @@ const PasoE_Evaluacion: React.FC<Props> = ({
                         {info?.name ?? s.tipo}
                       </span>
                       <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
-                        {min}% - {max}%
+                        {rangoDisponible
+                          ? `${min}% - ${max}%`
+                          : 'Ponderación pendiente de validar'}
                       </span>
                       {checked ? (
                         <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-semibold text-white">
@@ -237,14 +256,16 @@ const PasoE_Evaluacion: React.FC<Props> = ({
                       />
                       <span className="text-xs text-gray-600">%</span>
                       <span className="text-xs text-gray-500">
-                        Rango permitido: {min}% - {max}%
+                        {rangoDisponible
+                          ? `Rango permitido: ${min}% - ${max}%`
+                          : 'No hay un rango verificado para este sistema.'}
                       </span>
                     </div>
 
-                    {(evaluacionSeleccionada.porcentaje < min ||
-                      evaluacionSeleccionada.porcentaje > max) && (
+                    {fueraDelRango && (
                       <div className="mb-3 text-sm font-medium text-red-600">
-                        El porcentaje debe estar entre {min}% y {max}%.
+                        El porcentaje debe estar dentro del rango verificado de
+                        {' '}{min ?? '—'}% a {max ?? '—'}%.
                       </div>
                     )}
 

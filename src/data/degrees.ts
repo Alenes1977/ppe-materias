@@ -7,6 +7,8 @@ import ppe2017Meta from './ppe2017-meta.json';
 import ppe2017PlanRaw from './ppe2017-plan.json';
 import enfermeriaMeta from './enfermeria-meta.json';
 import enfermeriaPlanRaw from './enfermeria-plan.json';
+import gestionAplicadaMeta from './gestion-aplicada-meta.json';
+import gestionAplicadaPlanRaw from './gestion-aplicada-plan.json';
 
 export interface DegreeEntry {
   meta: DegreeInfo;
@@ -22,6 +24,9 @@ validateReferences(ppe2017Plan);
 const enfermeriaPlan = enfermeriaPlanRaw as unknown as DegreePlan;
 validateReferences(enfermeriaPlan);
 
+const gestionAplicadaPlan = gestionAplicadaPlanRaw as unknown as DegreePlan;
+validateReferences(gestionAplicadaPlan);
+
 export const DEGREES: Record<string, DegreeEntry> = {
   ppe: {
     meta: ppeMeta as DegreeInfo,
@@ -34,6 +39,10 @@ export const DEGREES: Record<string, DegreeEntry> = {
   enfermeria: {
     meta: enfermeriaMeta as DegreeInfo,
     plan: enfermeriaPlan,
+  },
+  'gestion-aplicada': {
+    meta: gestionAplicadaMeta as DegreeInfo,
+    plan: gestionAplicadaPlan,
   },
 };
 

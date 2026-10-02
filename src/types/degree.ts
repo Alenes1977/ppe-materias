@@ -41,8 +41,9 @@ export interface TeachingMethodology {
 export interface EvaluationEntry {
   /** ID referenciando a evaluationSystems */
   system: string;
-  minWeight: string;
-  maxWeight: string;
+  /** Límites disponibles solo cuando están respaldados por la fuente vigente */
+  minWeight?: string;
+  maxWeight?: string;
 }
 
 export interface CourseEntry {

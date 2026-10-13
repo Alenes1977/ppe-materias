@@ -122,7 +122,7 @@
         {
           "name": "Core curriculum",
           "ects": 18,
-          "trainingActivities": ["AF1", "AF2", "AF4", "AF6"],
+          "trainingActivities": ["AF1", "AF2", "AF4", "AF5", "AF6"],
           "evaluation": [
             {
               "system": "SE1",

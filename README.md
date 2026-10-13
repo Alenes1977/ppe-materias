@@ -35,6 +35,45 @@ La información está verificada por la ANECA y corresponde al plan de estudios 
 - [pdfmake], [docx], [react-quill] para generación de documentos
 
 
+## Pruebas en local
+
+La [guía de desarrollo y entregas a UNAV](docs/desarrollo-local-y-entregas-unav.md)
+explica la relación entre GitHub y GitLab, las protecciones del modo local y el
+procedimiento para entregar cambios conservando CAS y la configuración de IT.
+
+Para revisar los planes y las pantallas sin iniciar sesión en CAS:
+
+```sh
+npm ci
+npm run dev:local
+```
+
+Abre http://127.0.0.1:5173. Este modo muestra el aviso «Pruebas locales»,
+escucha únicamente en la interfaz local y permite navegar sin cuenta ni `.env`.
+Los cambios en los archivos se reflejan automáticamente. Detén el servidor con
+`Ctrl+C`.
+
+El comando arranca solo Vite y desactiva sus proxies de autenticación. No arranca
+el servidor Express ni contacta con CAS. Las funciones que envían información a
+servicios externos, como la valoración por IA y el envío de guías, siguen usando
+sus servicios habituales.
+
+El modo `local-preview` se rechaza al compilar, al usar `vite preview` y cuando
+`NODE_ENV=production`. Las compilaciones habituales mantienen la autenticación
+CAS. `npm run dev:all` conserva el desarrollo con el servidor CAS y su configuración
+en `.env`.
+
+Comprobaciones disponibles:
+
+```sh
+npm run test:local
+node --test scripts/credit-summary.test.mjs
+npm run typecheck
+npm run lint
+npm run format:check
+npm run build
+```
+
 ## Estructura del proyecto
 
 - `src/components/` — Componentes React principales (plan de estudios, asignaturas, guía docente, etc.)

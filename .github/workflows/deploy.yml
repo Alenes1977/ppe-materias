@@ -1,8 +1,9 @@
 name: Deploy to ECS
 
 on:
-  push:
-    branches: [main]
+  # GitHub contiene el desarrollo local. Cada despliegue AWS requiere
+  # una ejecución manual autorizada; los pushes no publican la aplicación.
+  workflow_dispatch:
 
 env:
   AWS_REGION: eu-west-1

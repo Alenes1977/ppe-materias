@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:local": "vite --mode local-preview --host 127.0.0.1 --strictPort",
+    "test:local": "node --test scripts/local-preview.test.mjs",
     "build": "tsc && vite build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.server.json",
     "lint": "eslint .",

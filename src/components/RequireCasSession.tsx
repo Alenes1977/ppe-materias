@@ -1,14 +1,17 @@
 import { type ReactNode, useEffect, useState } from 'react';
 
+const localPreview = import.meta.env.DEV && __LOCAL_PREVIEW__;
+
 /**
  * Cierre de la SPA cuando el backend no intercepta la navegación (Vite en :5173).
  *
  * En producción Express ya redirige al CAS antes de servir `index.html`.
  */
 export const RequireCasSession = ({ children }: { children: ReactNode }) => {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(localPreview);
 
   useEffect(() => {
+    if (localPreview) return;
     let active = true;
 
     const resolve = async () => {
@@ -39,6 +42,20 @@ export const RequireCasSession = ({ children }: { children: ReactNode }) => {
       active = false;
     };
   }, []);
+
+  if (localPreview) {
+    return (
+      <>
+        <div
+          role="status"
+          className="bg-amber-100 px-4 py-2 text-center text-sm text-amber-950"
+        >
+          Pruebas locales · Acceso CAS desactivado
+        </div>
+        {children}
+      </>
+    );
+  }
 
   if (!ready) {
     return (

@@ -57,12 +57,8 @@ export function getSubjectsFromPlan(plan: DegreePlan): ProcessedSubject[] {
           course.evaluation ?? materia.evaluation
         ).map((e) => ({
           tipo: e.system,
-          ...(e.minWeight
-            ? { 'ponderacion-minima': e.minWeight }
-            : {}),
-          ...(e.maxWeight
-            ? { 'ponderacion-maxima': e.maxWeight }
-            : {}),
+          ...(e.minWeight ? { 'ponderacion-minima': e.minWeight } : {}),
+          ...(e.maxWeight ? { 'ponderacion-maxima': e.maxWeight } : {}),
         }));
 
         list.push({

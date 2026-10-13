@@ -379,12 +379,7 @@
               "maxWeight": "10%"
             }
           ],
-          "learningOutcomes": [
-            "RA7",
-            "RA23",
-            "RA6",
-            "RA28"
-          ],
+          "learningOutcomes": ["RA7", "RA23", "RA6", "RA28"],
           "courses": [
             {
               "name": "Contabilidad y Finanzas 1",
@@ -563,13 +558,7 @@
               "maxWeight": "30%"
             }
           ],
-          "learningOutcomes": [
-            "RA11",
-            "RA18",
-            "RA19",
-            "RA16",
-            "RA30"
-          ],
+          "learningOutcomes": ["RA11", "RA18", "RA19", "RA16", "RA30"],
           "courses": [
             {
               "name": "Segundo idioma moderno 1",
@@ -716,14 +705,7 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [
-            "RA1",
-            "RA18",
-            "RA6",
-            "RA19",
-            "RA20",
-            "RA30"
-          ],
+          "learningOutcomes": ["RA1", "RA18", "RA6", "RA19", "RA20", "RA30"],
           "courses": [
             {
               "name": "Intercambio Académico",
@@ -840,13 +822,7 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": [
-            "RA12",
-            "RA6",
-            "RA8",
-            "RA9",
-            "RA10"
-          ],
+          "learningOutcomes": ["RA12", "RA6", "RA8", "RA9", "RA10"],
           "courses": [
             {
               "name": "Antropología 1",

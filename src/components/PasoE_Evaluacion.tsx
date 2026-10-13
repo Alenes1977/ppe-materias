@@ -262,12 +262,12 @@ const PasoE_Evaluacion: React.FC<Props> = ({
                       </span>
                     </div>
 
-                    {fueraDelRango && (
+                    {fueraDelRango ? (
                       <div className="mb-3 text-sm font-medium text-red-600">
-                        El porcentaje debe estar dentro del rango verificado de
-                        {' '}{min ?? '—'}% a {max ?? '—'}%.
+                        El porcentaje debe estar dentro del rango verificado de{' '}
+                        {min ?? '—'}% a {max ?? '—'}%.
                       </div>
-                    )}
+                    ) : null}
 
                     <label className="mb-1 block text-sm font-medium text-gray-700">
                       Detalles de la evaluación (opcional)

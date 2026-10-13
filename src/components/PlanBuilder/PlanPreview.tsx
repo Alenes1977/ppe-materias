@@ -28,6 +28,8 @@ import {
   semesterPillClass,
 } from '../../utils/courseBadgeStyles';
 import { formatCatalogEntry } from '../../utils/stringUtils';
+import { getCreditSummary } from '../../lib/creditSummary';
+import { ElectiveCreditsNote } from '../ElectiveCreditsNote';
 
 const semLabel = (s: string) => {
   if (s === 'annual') return 'Anual';
@@ -371,25 +373,14 @@ const PlanPreview: React.FC<Props> = ({
     m.subjects.flatMap((s) => s.courses),
   );
 
-  const ectsBasicas = todasCourses
-    .filter((c) => c.type === 'Básica')
-    .reduce((sum, c) => sum + (c.ects || 0), 0);
-  const ectsObligatorias = todasCourses
-    .filter((c) => c.type === 'Obligatoria')
-    .reduce((sum, c) => sum + (c.ects || 0), 0);
-  const ectsOptativas = todasCourses
-    .filter((c) => c.type === 'Optativa')
-    .reduce((sum, c) => sum + (c.ects || 0), 0);
-  const ectsTrabajoFinGrado = todasCourses
-    .filter((c) => c.type === 'Trabajo Fin de Grado')
-    .reduce((sum, c) => sum + (c.ects || 0), 0);
-  const ectsTotal = todasCourses.reduce((sum, c) => sum + (c.ects || 0), 0);
-  const ectsOtros =
-    ectsTotal -
-    ectsBasicas -
-    ectsObligatorias -
-    ectsOptativas -
-    ectsTrabajoFinGrado;
+  const {
+    ectsBasicas,
+    ectsObligatorias,
+    ectsOptativas,
+    ectsTrabajoFinGrado,
+    ectsTotal,
+    ectsOtros,
+  } = getCreditSummary(modules);
 
   const maxYear = Math.max(...todasCourses.map((c) => c.year ?? 1), 4);
 
@@ -527,6 +518,8 @@ const PlanPreview: React.FC<Props> = ({
           )}
         </div>
       </div>
+
+      <ElectiveCreditsNote modules={modules} />
 
       {/* Módulos */}
       <div>

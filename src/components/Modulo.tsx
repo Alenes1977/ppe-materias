@@ -18,6 +18,7 @@ import {
 import { useDegree } from '../context/DegreeContext';
 import { CourseTypePill } from './CourseTypePill';
 import type { Semester } from '../types/degree';
+import { ElectiveCreditsNote } from './ElectiveCreditsNote';
 
 const Modulo: FC = () => {
   const { moduloSlug, degreeId } = useParams<{
@@ -91,6 +92,8 @@ const Modulo: FC = () => {
             </span>
           </div>
         </div>
+
+        <ElectiveCreditsNote modules={[modulo]} />
 
         {/* Materias */}
         <div className="space-y-6 sm:space-y-8">

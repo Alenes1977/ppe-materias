@@ -15,9 +15,8 @@ import { DegreeContext } from '../context/DegreeContext';
 import { CourseTypePill } from './CourseTypePill';
 import { ectsPillClass } from '../utils/courseBadgeStyles';
 import { DEGREES } from '../data/degrees';
-
-/** Tipos de obligatoriedad mostrados por separado en la distribución (siguen dentro del total ECTS). */
-const TIPO_TRABAJO_FIN_GRADO = 'Trabajo Fin de Grado';
+import { getCreditSummary } from '../lib/creditSummary';
+import { ElectiveCreditsNote } from './ElectiveCreditsNote';
 
 const PlanEstudios: React.FC = () => {
   const { degreeId } = useParams<{ degreeId: string }>();
@@ -35,23 +34,14 @@ const PlanEstudios: React.FC = () => {
     m.subjects.flatMap((s) => s.courses),
   );
 
-  const ectsBasicas = todasCourses
-    .filter((c) => c.type === 'Básica')
-    .reduce((sum, c) => sum + c.ects, 0);
-  const ectsObligatorias = todasCourses
-    .filter((c) => c.type === 'Obligatoria')
-    .reduce((sum, c) => sum + c.ects, 0);
-  const ectsOptativas = todasCourses
-    .filter((c) => c.type === 'Optativa')
-    .reduce((sum, c) => sum + c.ects, 0);
-  const ectsTrabajoFinGrado = todasCourses
-    .filter((c) => c.type === TIPO_TRABAJO_FIN_GRADO)
-    .reduce((sum, c) => sum + c.ects, 0);
-
-  const ectsTotal = todasCourses.reduce((sum, c) => sum + c.ects, 0);
-  const ectsDesglosados =
-    ectsBasicas + ectsObligatorias + ectsOptativas + ectsTrabajoFinGrado;
-  const ectsOtros = ectsTotal - ectsDesglosados;
+  const {
+    ectsBasicas,
+    ectsObligatorias,
+    ectsOptativas,
+    ectsTrabajoFinGrado,
+    ectsTotal,
+    ectsOtros,
+  } = getCreditSummary(degreePlan.modules);
 
   const maxYear = Math.max(...todasCourses.map((c) => c.year), 4);
 
@@ -193,6 +183,8 @@ const PlanEstudios: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <ElectiveCreditsNote modules={degreePlan.modules} />
 
         {/* Módulos */}
         <div className="mb-8 sm:mb-12">

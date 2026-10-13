@@ -210,20 +210,26 @@ const Materia: React.FC = () => {
                           evalDict[ev.system]?.name,
                         )}
                       </p>
-                      <div className="flex gap-4">
-                        <span className="text-xs text-gray-500">
-                          Mín:{' '}
-                          <span className="font-semibold text-blue-700">
-                            {ev.minWeight}
+                      {ev.minWeight && ev.maxWeight ? (
+                        <div className="flex gap-4">
+                          <span className="text-xs text-gray-500">
+                            Mín:{' '}
+                            <span className="font-semibold text-blue-700">
+                              {ev.minWeight}
+                            </span>
                           </span>
-                        </span>
-                        <span className="text-xs text-gray-500">
-                          Máx:{' '}
-                          <span className="font-semibold text-green-700">
-                            {ev.maxWeight}
+                          <span className="text-xs text-gray-500">
+                            Máx:{' '}
+                            <span className="font-semibold text-green-700">
+                              {ev.maxWeight}
+                            </span>
                           </span>
-                        </span>
-                      </div>
+                        </div>
+                      ) : (
+                        <p className="text-xs font-medium text-amber-700">
+                          Ponderaciones pendientes de validar
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>

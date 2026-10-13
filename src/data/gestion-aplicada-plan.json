@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
   "learningOutcomes": {
-    "CB1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio.",
-    "CB2": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio.",
-    "CB3": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética.",
-    "CB4": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado.",
-    "CB5": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía.",
-    "CG1": "Tener una actitud reflexiva y crítica que permita identificar supuestos y evaluar situaciones en términos de evidencia, con un punto de vista creativo, constructivo y orientado a la resolución de problemas relacionados con la gestión y dirección empresarial.",
-    "CG2": "Alcanzar el nivel de usuario avanzado en el uso de las TICs necesarias para la gestión.",
-    "CG3": "Organizar y planificar el trabajo propio; saber gestionar el tiempo, con habilidad para la organización y temporalización de las tareas propias de la gestión y dirección empresarial.",
-    "CG4": "Buscar, analizar y sintetizar información proveniente de fuentes diversas dentro del ámbito de la gestión y dirección de empresas.",
-    "CG5": "Trabajar e integrarse, dentro del ámbito de la gestión y dirección de empresas, en equipos multidisciplinares y contextos multiculturales sin perder autonomía.",
-    "CG6": "Generar entornos de trabajo fundados en la confianza, honradez, lealtad, compromiso y respeto, observando el principio de confidencialidad por razón del ejercicio profesional.",
-    "CT1": "Comprender que es propio del espíritu universitario afrontar de manera crítica y reflexiva el estudio de la propia disciplina en su conexión con el resto de los saberes.",
-    "CT2": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas.",
-    "CT3": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la propia disciplina.",
-    "CE1": "Comprender la estructura y el funcionamiento de la empresa a nivel estratégico, táctico y operativo, los mecanismos de cooperación interfuncional y sus interacciones con el entorno en un contexto global.",
-    "CE2": "Facilitar y coordinar el trabajo y la cooperación interfuncional, actuando como puente de comunicación entre distintas redes de trabajo interrelacionadas.",
-    "CE3": "Identificar los rasgos básicos de una cultura organizacional y reflejarlos en el trabajo diario.",
-    "CE4": "Identificar y gestionar eficazmente los foros y relaciones clave para el desarrollo de la actividad de la empresa.",
-    "CE5": "Utilizar eficazmente los canales de comunicación interna y externa de la organización.",
-    "CE6": "Obtener, catalogar y archivar la información necesaria y relevante utilizando fuentes diversas y fiables, asegurando su localización, aplicando los aspectos legales y éticos, y preservando la confidencialidad de los datos.",
-    "CE7": "Elaborar y presentar la información en el formato y soporte adecuado que permita su uso y transferencia.",
-    "CE8": "Gestionar eficazmente los documentos asociados a los sistemas de gestión y procesos de la organización conforme a los principios de la calidad total.",
-    "CE9": "Saber aplicar los principios contables y normas de valoración del Plan General Contable en cualquier tipo de organización y analizar, o preparar para su posterior análisis, la información contable y financiera relevante que de ahí se deriva.",
-    "CE10": "Interpretar los indicadores macroeconómicos y comprender el funcionamiento de los mercados para poder relacionar su comportamiento con la actividad de la organización en un contexto global.",
-    "CE11": "Comprender los fundamentos del Derecho y la legislación vigente en relación a la actividad propia de las organizaciones, de modo que se puedan interpretar los textos jurídicos de los ámbitos laboral, fiscal y mercantil.",
-    "CE12": "Conocer las instituciones y trámites relacionados con actos de comercio y ser capaz de localizar las fuentes donde buscar la solución a cuestiones jurídicas concretas en contextos nacionales e internacionales.",
-    "CE13": "Conocer y aplicar los soportes que ofrecen las nuevas tecnologías como medio para expandir la actividad de la organización, conociendo los sistemas de seguridad y la legislación vigente en relación con la actividad comercial y los negocios electrónicos.",
-    "CE14": "Interactuar eficazmente con otras personas para alcanzar objetivos profesionales en contextos empresariales nacionales e internacionales.",
-    "CE15": "Identificar y afrontar los conflictos que se originan en el entorno de trabajo mediante la negociación con el fin de que las partes implicadas adquieran una visión más objetiva y global de la situación y descubran o creen elementos que produzcan valor añadido a la relación.",
-    "CE16": "Comunicarse en al menos dos idiomas más, diferentes a la lengua materna, alcanzando un nivel avanzado en uno de ellos y un nivel intermedio en el otro, según los criterios del Marco Común Europeo de Referencia para las lenguas."
+    "RA1": "Que los estudiantes hayan demostrado poseer y comprender conocimientos en un área de estudio que parte de la base de la educación secundaria general, y se suele encontrar a un nivel que, si bien se apoya en libros de texto avanzados, incluye también algunos aspectos que implican conocimientos procedentes de la vanguardia de su campo de estudio.",
+    "RA2": "Comprender la estructura y el funcionamiento de la empresa a nivel estratégico, táctico y operativo, los mecanismos de cooperación interfuncional y sus interacciones con el entorno en un contexto global.",
+    "RA3": "Comprender los fundamentos del Derecho y la legislación vigente en relación a la actividad propia de las organizaciones, de modo que se puedan interpretar los textos jurídicos de los ámbitos laboral, fiscal y mercantil.",
+    "RA4": "Conocer las instituciones y trámites relacionados con actos de comercio y ser capaz de localizar las fuentes donde buscar la solución a cuestiones jurídicas concretas en contextos nacionales e internacionales.",
+    "RA5": "Conocer y aplicar los soportes que ofrecen las nuevas tecnologías como medio para expandir la actividad de la organización, conociendo los sistemas de seguridad y la legislación vigente en relación con la actividad comercial y los negocios electrónicos.",
+    "RA6": "Que los estudiantes tengan la capacidad de reunir e interpretar datos relevantes (normalmente dentro de su área de estudio) para emitir juicios que incluyan una reflexión sobre temas relevantes de índole social, científica o ética.",
+    "RA7": "Tener una actitud reflexiva y crítica que permita identificar supuestos y evaluar situaciones en términos de evidencia, con un punto de vista creativo, constructivo y orientado a la resolución de problemas relacionados con la gestión y dirección empresarial.",
+    "RA8": "Comprender que es propio del espíritu universitario afrontar de manera crítica y reflexiva el estudio de la propia disciplina en su conexión con el resto de los saberes.",
+    "RA9": "Identificar las cuestiones más relevantes de la existencia humana presentes en las grandes creaciones religiosas, humanísticas y científicas y adoptar una postura personal razonada frente a ellas.",
+    "RA10": "Descubrir y enjuiciar los presupuestos antropológicos y las repercusiones éticas de la propia disciplina.",
+    "RA11": "Trabajar e integrarse, dentro del ámbito de la gestión y dirección de empresas, en equipos multidisciplinares y contextos multiculturales sin perder autonomía.",
+    "RA12": "Generar entornos de trabajo fundados en la confianza, honradez, lealtad, compromiso y respeto, observando el principio de confidencialidad por razón del ejercicio profesional.",
+    "RA13": "Facilitar y coordinar el trabajo y la cooperación interfuncional, actuando como puente de comunicación entre distintas redes de trabajo interrelacionadas.",
+    "RA14": "Identificar los rasgos básicos de una cultura organizacional y reflejarlos en el trabajo diario.",
+    "RA15": "Identificar y gestionar eficazmente los foros y relaciones clave para el desarrollo de la actividad de la empresa.",
+    "RA16": "Interactuar eficazmente con otras personas para alcanzar objetivos profesionales en contextos empresariales nacionales e internacionales.",
+    "RA17": "Identificar y afrontar los conflictos que se originan en el entorno de trabajo mediante la negociación con el fin de que las partes implicadas adquieran una visión más objetiva y global de la situación y descubran o creen elementos que produzcan valor añadido a la relación.",
+    "RA18": "Que los estudiantes sepan aplicar sus conocimientos a su trabajo o vocación de una forma profesional y posean las competencias que suelen demostrarse por medio de la elaboración y defensa de argumentos y la resolución de problemas dentro de su área de estudio.",
+    "RA19": "Que los estudiantes puedan transmitir información, ideas, problemas y soluciones a un público tanto especializado como no especializado.",
+    "RA20": "Que los estudiantes hayan desarrollado aquellas habilidades de aprendizaje necesarias para emprender estudios posteriores con un alto grado de autonomía.",
+    "RA21": "Alcanzar el nivel de usuario avanzado en el uso de las TICs necesarias para la gestión.",
+    "RA22": "Organizar y planificar el trabajo propio; saber gestionar el tiempo, con habilidad para la organización y temporalización de las tareas propias de la gestión y dirección empresarial.",
+    "RA23": "Buscar, analizar y sintetizar información proveniente de fuentes diversas dentro del ámbito de la gestión y dirección de empresas.",
+    "RA24": "Utilizar eficazmente los canales de comunicación interna y externa de la organización.",
+    "RA25": "Obtener, catalogar y archivar la información necesaria y relevante utilizando fuentes diversas y fiables, asegurando su localización, aplicando los aspectos legales y éticos, y preservando la confidencialidad de los datos.",
+    "RA26": "Elaborar y presentar la información en el formato y soporte adecuado que permita su uso y transferencia.",
+    "RA27": "Gestionar eficazmente los documentos asociados a los sistemas de gestión y procesos de la organización conforme a los principios de la calidad total.",
+    "RA28": "Saber aplicar los principios contables y normas de valoración del Plan General Contable en cualquier tipo de organización y analizar, o preparar para su posterior análisis, la información contable y financiera relevante que de ahí se deriva.",
+    "RA29": "Interpretar los indicadores macroeconómicos y comprender el funcionamiento de los mercados para poder relacionar su comportamiento con la actividad de la organización en un contexto global.",
+    "RA30": "Comunicarse en al menos dos idiomas más, diferentes a la lengua materna, alcanzando un nivel avanzado en uno de ellos y un nivel intermedio en el otro, según los criterios del Marco Común Europeo de Referencia para las lenguas."
   },
   "trainingActivities": [
     {
@@ -150,12 +150,12 @@
   ],
   "modules": [
     {
-      "name": "MÓDULO 1: EMPRESA",
-      "ects": 54,
+      "name": "Módulo 1: Empresa",
+      "ects": 108,
       "subjects": [
         {
           "name": "Empresa y Entorno",
-          "ects": 24,
+          "ects": 78,
           "trainingActivities": [
             "AF1 Clases presenciales teóricas y/o prácticas",
             "AF2 Trabajo individual o en grupo y estudio personal",
@@ -196,25 +196,25 @@
             }
           ],
           "learningOutcomes": [
-            "CG1",
-            "CG2",
-            "CG3",
-            "CG4",
-            "CG5",
-            "CG6",
-            "CB1",
-            "CB2",
-            "CB3",
-            "CB5",
-            "CE1",
-            "CE2",
-            "CE3",
-            "CE4",
-            "CE6",
-            "CE8",
-            "CE10",
-            "CE13",
-            "CE15"
+            "RA7",
+            "RA21",
+            "RA22",
+            "RA23",
+            "RA11",
+            "RA12",
+            "RA1",
+            "RA18",
+            "RA6",
+            "RA20",
+            "RA2",
+            "RA13",
+            "RA14",
+            "RA15",
+            "RA25",
+            "RA27",
+            "RA29",
+            "RA5",
+            "RA17"
           ],
           "courses": [
             {
@@ -229,6 +229,41 @@
               "type": "Básica",
               "year": 1,
               "semester": 2,
+              "ects": 12
+            },
+            {
+              "name": "Gestión Empresarial 3",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 1,
+              "ects": 9
+            },
+            {
+              "name": "Gestión Empresarial 4",
+              "type": "Obligatoria",
+              "year": 2,
+              "semester": 2,
+              "ects": 12
+            },
+            {
+              "name": "Gestión Empresarial 5",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 1,
+              "ects": 12
+            },
+            {
+              "name": "Gestión Empresarial 6",
+              "type": "Obligatoria",
+              "year": 3,
+              "semester": 2,
+              "ects": 9
+            },
+            {
+              "name": "Gestión Empresarial 7",
+              "type": "Obligatoria",
+              "year": 4,
+              "semester": 1,
               "ects": 12
             }
           ]
@@ -276,25 +311,25 @@
             }
           ],
           "learningOutcomes": [
-            "CG1",
-            "CG4",
-            "CG6",
-            "CB2",
-            "CB3",
-            "CB4",
-            "CE11",
-            "CE12"
+            "RA7",
+            "RA23",
+            "RA12",
+            "RA18",
+            "RA6",
+            "RA19",
+            "RA3",
+            "RA4"
           ],
           "courses": [
             {
-              "name": "Derecho (semestre 6)",
+              "name": "Derecho 1",
               "type": "Obligatoria",
               "year": 3,
               "semester": 2,
               "ects": 6
             },
             {
-              "name": "Derecho (semestre 7)",
+              "name": "Derecho 2",
               "type": "Obligatoria",
               "year": 4,
               "semester": 1,
@@ -344,7 +379,7 @@
               "maxWeight": "10%"
             }
           ],
-          "learningOutcomes": ["CG1", "CG4", "CB3", "CE9"],
+          "learningOutcomes": ["RA7", "RA23", "RA6", "RA28"],
           "courses": [
             {
               "name": "Contabilidad y Finanzas 1",
@@ -354,28 +389,28 @@
               "ects": 6
             },
             {
-              "name": "Contabilidad y Finanzas (semestre 3)",
+              "name": "Contabilidad y Finanzas 2",
               "type": "Obligatoria",
               "year": 2,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "Contabilidad y Finanzas (semestre 4)",
+              "name": "Contabilidad y Finanzas 3",
               "type": "Obligatoria",
               "year": 2,
               "semester": 2,
               "ects": 3
             },
             {
-              "name": "Contabilidad y Finanzas (semestre 5)",
+              "name": "Contabilidad y Finanzas 4",
               "type": "Obligatoria",
               "year": 3,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "Contabilidad y Finanzas (semestre 6)",
+              "name": "Contabilidad y Finanzas 5",
               "type": "Obligatoria",
               "year": 3,
               "semester": 2,
@@ -386,7 +421,7 @@
       ]
     },
     {
-      "name": "MÓDULO 2: COMUNICACIÓN E IDIOMAS MODERNOS",
+      "name": "Módulo 2: Comunicación e idiomas modernos",
       "ects": 84,
       "subjects": [
         {
@@ -432,14 +467,14 @@
             }
           ],
           "learningOutcomes": [
-            "CG1",
-            "CB3",
-            "CB4",
-            "CE2",
-            "CE4",
-            "CE5",
-            "CE7",
-            "CE14"
+            "RA7",
+            "RA6",
+            "RA19",
+            "RA13",
+            "RA15",
+            "RA24",
+            "RA26",
+            "RA16"
           ],
           "courses": [
             {
@@ -457,28 +492,28 @@
               "ects": 6
             },
             {
-              "name": "Comunicación en las Organizaciones (semestre 4)",
+              "name": "Comunicación Empresarial 3",
               "type": "Obligatoria",
               "year": 2,
               "semester": 2,
               "ects": 3
             },
             {
-              "name": "Comunicación en las Organizaciones (semestre 5)",
+              "name": "Comunicación Empresarial 4",
               "type": "Obligatoria",
               "year": 3,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "Comunicación en las Organizaciones (semestre 6)",
+              "name": "Comunicación Empresarial 5",
               "type": "Obligatoria",
               "year": 3,
               "semester": 2,
               "ects": 3
             },
             {
-              "name": "Comunicación en las Organizaciones (semestre 7)",
+              "name": "Comunicación Empresarial 6",
               "type": "Obligatoria",
               "year": 4,
               "semester": 1,
@@ -523,52 +558,52 @@
               "maxWeight": "30%"
             }
           ],
-          "learningOutcomes": ["CG5", "CB2", "CB4", "CE14", "CE16"],
+          "learningOutcomes": ["RA11", "RA18", "RA19", "RA16", "RA30"],
           "courses": [
             {
-              "name": "Segundo Idioma Moderno 1",
+              "name": "Segundo idioma moderno 1",
               "type": "Básica",
               "year": 1,
-              "semester": 1,
+              "semester": "annual",
               "ects": 9
             },
             {
-              "name": "Tercer Idioma Moderno 1",
+              "name": "Tercer idioma moderno 1",
               "type": "Básica",
               "year": 1,
-              "semester": 1,
+              "semester": "annual",
               "ects": 9
             },
             {
-              "name": "Comunicación en Idiomas Modernos (semestre 3)",
+              "name": "Segundo idioma moderno 2",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 1,
+              "semester": "annual",
               "ects": 9
             },
             {
-              "name": "Comunicación en Idiomas Modernos (semestre 4)",
+              "name": "Tercer idioma moderno 2",
               "type": "Obligatoria",
               "year": 2,
-              "semester": 2,
+              "semester": "annual",
               "ects": 9
             },
             {
-              "name": "Comunicación en Idiomas Modernos (semestre 5)",
+              "name": "Segundo idioma moderno 3",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 1,
+              "semester": "annual",
               "ects": 9
             },
             {
-              "name": "Comunicación en Idiomas Modernos (semestre 6)",
+              "name": "Tercer idioma moderno 3",
               "type": "Obligatoria",
               "year": 3,
-              "semester": 2,
+              "semester": "annual",
               "ects": 9
             },
             {
-              "name": "Comunicación en Idiomas Modernos (semestre 7)",
+              "name": "Tercer idioma moderno 4",
               "type": "Obligatoria",
               "year": 4,
               "semester": 1,
@@ -579,11 +614,11 @@
       ]
     },
     {
-      "name": "MÓDULO 3: OPTATIVAS",
-      "ects": 48,
+      "name": "Módulo 3: Optativas",
+      "ects": 24,
       "subjects": [
         {
-          "name": "Prácticas Externas",
+          "name": "Prácticas académicas externas",
           "ects": 24,
           "trainingActivities": [
             "AF2 Trabajo individual o en grupo y estudio personal",
@@ -613,19 +648,19 @@
             }
           ],
           "learningOutcomes": [
-            "CG1",
-            "CG2",
-            "CG3",
-            "CG4",
-            "CG5",
-            "CG6",
-            "CB2",
-            "CE2",
-            "CE3"
+            "RA7",
+            "RA21",
+            "RA22",
+            "RA23",
+            "RA11",
+            "RA12",
+            "RA18",
+            "RA13",
+            "RA14"
           ],
           "courses": [
             {
-              "name": "Prácticas Externas",
+              "name": "Prácticas Académicas Externas",
               "type": "Optativa",
               "year": 4,
               "semester": 2,
@@ -670,10 +705,10 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": ["CB1", "CB2", "CB3", "CB4", "CB5", "CE16"],
+          "learningOutcomes": ["RA1", "RA18", "RA6", "RA19", "RA20", "RA30"],
           "courses": [
             {
-              "name": "Formación Complementaria",
+              "name": "Intercambio Académico",
               "type": "Optativa",
               "year": 4,
               "semester": 2,
@@ -684,7 +719,7 @@
       ]
     },
     {
-      "name": "MÓDULO 4: TRABAJO FIN DE GRADO",
+      "name": "Módulo 4: Trabajo fin de grado",
       "ects": 6,
       "subjects": [
         {
@@ -725,15 +760,15 @@
             }
           ],
           "learningOutcomes": [
-            "CG1",
-            "CG3",
-            "CG4",
-            "CB1",
-            "CB3",
-            "CB4",
-            "CE1",
-            "CE6",
-            "CE16"
+            "RA7",
+            "RA22",
+            "RA23",
+            "RA1",
+            "RA6",
+            "RA19",
+            "RA2",
+            "RA25",
+            "RA30"
           ],
           "courses": [
             {
@@ -748,7 +783,7 @@
       ]
     },
     {
-      "name": "MODULO 5: Core Curriculum",
+      "name": "Módulo 5: Core Curriculum",
       "ects": 18,
       "subjects": [
         {
@@ -787,45 +822,45 @@
               "maxWeight": "20%"
             }
           ],
-          "learningOutcomes": ["CG6", "CB3", "CT1", "CT2", "CT3"],
+          "learningOutcomes": ["RA12", "RA6", "RA8", "RA9", "RA10"],
           "courses": [
             {
-              "name": "Formación Transversal (semestre 1)",
+              "name": "Antropología 1",
               "type": "Obligatoria",
               "year": 1,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "Formación Transversal (semestre 2)",
+              "name": "Antropología 2",
               "type": "Obligatoria",
               "year": 1,
               "semester": 2,
               "ects": 3
             },
             {
-              "name": "Formación Transversal (semestre 3)",
+              "name": "Ética 1",
               "type": "Obligatoria",
               "year": 2,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "Formación Transversal (semestre 4)",
+              "name": "Ética 2",
               "type": "Obligatoria",
               "year": 2,
               "semester": 2,
               "ects": 3
             },
             {
-              "name": "Formación Transversal (semestre 5)",
+              "name": "Claves Culturales 1",
               "type": "Obligatoria",
               "year": 3,
               "semester": 1,
               "ects": 3
             },
             {
-              "name": "Formación Transversal (semestre 7)",
+              "name": "Claves Culturales 2",
               "type": "Obligatoria",
               "year": 4,
               "semester": 1,

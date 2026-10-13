@@ -1,0 +1,16 @@
+{
+  "id": "gestion-aplicada",
+  "name": "Grado en Gestión Aplicada",
+  "shortName": "Gestión Aplicada",
+  "university": "Universidad de Navarra",
+  "ructCode": "",
+  "anecaVerified": true,
+  "verificationYear": "2026",
+  "lastUpdated": "07 abril 2026",
+  "primaryColor": "#1e3a8a",
+  "learningOutcomeLabel": {
+    "singular": "Resultado de aprendizaje",
+    "plural": "Resultados de aprendizaje",
+    "acronym": "RA"
+  }
+}
